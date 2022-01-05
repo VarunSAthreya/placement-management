@@ -3,6 +3,16 @@
     "version": "0.0.0",
     "private": true,
     "author": "VarunSAthreya",
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/VarunSAthreya/placement-management.git"
+    },
+    "keywords": [],
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/VarunSAthreya/placement-management/issues"
+    },
+    "homepage": "https://github.com/VarunSAthreya/placement-management#readme",
     "workspaces": [
         "apps/*",
         "packages/*"
