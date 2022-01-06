@@ -1,8 +1,9 @@
-import { createServer } from "./server";
+import { ApolloServer } from 'apollo-server';
+import { resolvers } from './graphql/resolvers';
+import { typeDefs } from './graphql/schema';
 
-const port = process.env.PORT || 5000;
-const server = createServer();
+const server = new ApolloServer({ typeDefs, resolvers });
 
-server.listen(port, () => {
-    console.log(`api running on ${port}`);
+server.listen().then(({ url }: { url: string }) => {
+    console.log(`Server listening at ${url}`);
 });
