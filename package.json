@@ -23,7 +23,9 @@
         "lint": "turbo run lint",
         "test": "turbo run test",
         "clean": "turbo run clean && rm -rf node_modules",
-        "format": "prettier --write \"**/*.{ts,tsx,md}\""
+        "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+        "api:dev": "yarn workspace api dev",
+        "web:dev": "yarn workspace web dev"
     },
     "devDependencies": {
         "prettier": "^2.5.1",
