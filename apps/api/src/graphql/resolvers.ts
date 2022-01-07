@@ -2,7 +2,7 @@ import {
     applied,
     companies,
     eligibility,
-    placed,
+    selected,
     studentDetails,
     students,
 } from '../db';
@@ -18,7 +18,7 @@ export const resolvers = {
                 (company) => company.name.toLowerCase() === name.toLowerCase()
             ),
         applied: () => applied,
-        placed: () => placed,
+        selected: () => selected,
     },
     Student: {
         details: (student: any) => {
@@ -38,11 +38,11 @@ export const resolvers = {
                 };
             });
 
-            const placedCompanies = placed.filter(
-                (plc) => plc.student === student.USN
+            const selectedCompanies = selected.filter(
+                (sle) => sle.student === student.USN
             );
 
-            student.details.placed = placedCompanies.map((comp) => {
+            student.details.selected = selectedCompanies.map((comp) => {
                 return {
                     company: companies.filter(
                         (company) => company.name === comp.company
@@ -58,7 +58,6 @@ export const resolvers = {
             const appliedStudentsUSN = applied.filter(
                 (app) => app.company === company.name
             );
-            console.log(appliedStudentsUSN);
 
             return appliedStudentsUSN.map((usn) => {
                 return {
@@ -69,8 +68,8 @@ export const resolvers = {
             });
         },
         selected: (company: any) => {
-            const selectedStudentsUSN = placed.filter(
-                (pla) => pla.company === company.name
+            const selectedStudentsUSN = selected.filter(
+                (sle) => sle.company === company.name
             );
 
             return selectedStudentsUSN.map((usn) => {

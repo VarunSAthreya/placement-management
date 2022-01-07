@@ -41,6 +41,7 @@ export const studentDetails = [
         section: 'C',
         eligible: true,
         package: 0,
+        year: 2023,
     },
     {
         USN: '1JS19CS157',
@@ -53,12 +54,14 @@ export const studentDetails = [
         branch: 'CSE',
         section: 'C',
         eligible: true,
+        year: 2023,
     },
     {
         USN: '1JS19CS183',
         CGPA: 8.5,
         backlogs: 0,
         branch: 'CSE',
+        year: 2023,
         section: 'C',
         eligible: true,
         tenth: 8.5,
@@ -70,6 +73,7 @@ export const studentDetails = [
         USN: '1JS19CS146',
         CGPA: 8.5,
         backlogs: 0,
+        year: 2023,
         branch: 'CSE',
         section: 'C',
         eligible: true,
@@ -169,7 +173,7 @@ export const applied = [
     },
 ];
 
-export const placed = [
+export const selected = [
     {
         student: '1JS19CS183',
         company: 'TCS',

@@ -12,6 +12,7 @@ export const typeDefs = gql`
 
     type StudentDetails {
         USN: String!
+        year: Int!
         branch: Branch!
         section: Section!
         eligible: Boolean!
@@ -21,7 +22,7 @@ export const typeDefs = gql`
         twelth: Float!
         package: Float
         applied: [Applied]!
-        placed: [Placed]!
+        selected: [Selected]!
     }
 
     type Company {
@@ -31,7 +32,7 @@ export const typeDefs = gql`
         type: CompanyType!
         eligibility: CompanyEdibility!
         applied: [Applied]!
-        selected: [Placed]!
+        selected: [Selected]!
     }
 
     type CompanyEdibility {
@@ -47,7 +48,7 @@ export const typeDefs = gql`
         company: Company!
     }
 
-    type Placed {
+    type Selected {
         student: Student!
         company: Company!
     }
@@ -58,7 +59,7 @@ export const typeDefs = gql`
         company(name: String!): Company!
         companies: [Company]!
         applied: [Applied]!
-        placed: [Placed]!
+        selected: [Selected]!
     }
 
     enum UserType {
