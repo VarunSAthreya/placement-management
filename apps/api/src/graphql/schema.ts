@@ -54,6 +54,7 @@ export const typeDefs = gql`
 
     type Query {
         students: [Student]!
+        student(USN: ID!): Student!
         companies: [Company]!
         applied: [Applied]!
         placed: [Placed]!

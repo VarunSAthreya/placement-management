@@ -9,13 +9,15 @@ import {
 
 export const resolvers = {
     Query: {
-        students: async () => students,
-        companies: async () => companies,
-        applied: async () => applied,
-        placed: async () => placed,
+        students: () => students,
+        student: (_: any, { USN }: { USN: string }) =>
+            students.find((student) => student.USN === USN),
+        companies: () => companies,
+        applied: () => applied,
+        placed: () => placed,
     },
     Student: {
-        details: async (student: any) => {
+        details: (student: any) => {
             student.details = studentDetails.filter(
                 (std) => std.USN === student.USN
             )[0];
@@ -48,7 +50,7 @@ export const resolvers = {
         },
     },
     Company: {
-        applied: async (company: any) => {
+        applied: (company: any) => {
             const appliedStudentsUSN = applied.filter(
                 (app) => app.company === company.name
             );
@@ -62,7 +64,7 @@ export const resolvers = {
                 };
             });
         },
-        selected: async (company: any) => {
+        selected: (company: any) => {
             const selectedStudentsUSN = placed.filter(
                 (pla) => pla.company === company.name
             );
@@ -75,7 +77,7 @@ export const resolvers = {
                 };
             });
         },
-        eligibility: async (company: any) => {
+        eligibility: (company: any) => {
             return eligibility.filter((elg) => elg.name === company.name)[0];
         },
     },
