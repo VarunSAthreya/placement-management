@@ -86,52 +86,55 @@ export const companies = [
         dateOfArrival: '2019-04-01',
         CTC: 100000,
         type: 'PRODUCT',
-        eligibility: {
-            name: 'Google',
-            CGPA: 8.5,
-            backlogs: 0,
-            tenth: 8.5,
-            twelth: 8.5,
-        },
     },
     {
         name: 'Amazon',
         dateOfArrival: '2019-05-01',
         CTC: 100000,
         type: 'PRODUCT',
-        eligibility: {
-            name: 'Amazon',
-            CGPA: 8.5,
-            backlogs: 0,
-            tenth: 8.5,
-            twelth: 8.5,
-        },
     },
     {
         name: 'Microsoft',
         dateOfArrival: '2019-06-01',
         CTC: 100000,
         type: 'PRODUCT',
-        eligibility: {
-            name: 'Microsoft',
-            CGPA: 8.5,
-            backlogs: 0,
-            tenth: 8.5,
-            twelth: 8.5,
-        },
     },
     {
         name: 'TCS',
         dateOfArrival: '2019-06-01',
         CTC: 100000,
         type: 'SERVICE',
-        eligibility: {
-            name: 'TCS',
-            CGPA: 8.5,
-            backlogs: 0,
-            tenth: 8.5,
-            twelth: 8.5,
-        },
+    },
+];
+
+export const eligibility = [
+    {
+        name: 'TCS',
+        CGPA: 8.5,
+        backlogs: 0,
+        tenth: 8.5,
+        twelth: 8.5,
+    },
+    {
+        name: 'Microsoft',
+        CGPA: 8.5,
+        backlogs: 0,
+        tenth: 8.5,
+        twelth: 8.5,
+    },
+    {
+        name: 'Amazon',
+        CGPA: 8.5,
+        backlogs: 0,
+        tenth: 8.5,
+        twelth: 8.5,
+    },
+    {
+        name: 'Google',
+        CGPA: 8.5,
+        backlogs: 0,
+        tenth: 8.5,
+        twelth: 8.5,
     },
 ];
 

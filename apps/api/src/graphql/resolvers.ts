@@ -1,4 +1,11 @@
-import { applied, companies, placed, studentDetails, students } from '../db';
+import {
+    applied,
+    companies,
+    eligibility,
+    placed,
+    studentDetails,
+    students,
+} from '../db';
 
 export const resolvers = {
     Query: {
@@ -67,6 +74,9 @@ export const resolvers = {
                     )[0],
                 };
             });
+        },
+        eligibility: async (company: any) => {
+            return eligibility.filter((elg) => elg.name === company.name)[0];
         },
     },
 };
