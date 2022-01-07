@@ -11,8 +11,12 @@ export const resolvers = {
     Query: {
         students: () => students,
         student: (_: any, { USN }: { USN: string }) =>
-            students.find((student) => student.USN === USN),
+            students.find((student) => student.USN === USN.toUpperCase()),
         companies: () => companies,
+        company: (_: any, { name }: { name: string }) =>
+            companies.find(
+                (company) => company.name.toLowerCase() === name.toLowerCase()
+            ),
         applied: () => applied,
         placed: () => placed,
     },
