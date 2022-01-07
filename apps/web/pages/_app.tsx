@@ -1,10 +1,13 @@
+import { ChakraProvider } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { AppProps } from 'next/app';
-import 'tailwindcss/tailwind.css';
-import '../styles/global.css';
 
 const MyApp: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
-    return <Component {...pageProps} />;
+    return (
+        <ChakraProvider>
+            <Component {...pageProps} />
+        </ChakraProvider>
+    );
 };
 
 export default MyApp;
