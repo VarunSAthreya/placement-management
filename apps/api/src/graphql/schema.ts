@@ -4,16 +4,17 @@ export const typeDefs = gql`
     type Student {
         USN: ID!
         name: String!
-        branch: Branch!
-        section: Section!
-        eligible: Boolean!
         email: String!
         password: String!
+        type: UserType!
         details: StudentDetails!
     }
 
     type StudentDetails {
         USN: String!
+        branch: Branch!
+        section: Section!
+        eligible: Boolean!
         CGPA: Float!
         backlogs: Int!
         tenth: Float!
@@ -56,6 +57,11 @@ export const typeDefs = gql`
         companies: [Company]!
         applied: [Applied]!
         placed: [Placed]!
+    }
+
+    enum UserType {
+        STUDENT
+        ADMIN
     }
 
     enum Branch {
