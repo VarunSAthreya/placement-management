@@ -18,8 +18,9 @@ export const typeDefs = gql`
         backlogs: Int!
         tenth: Float!
         twelth: Float!
-        placed: Boolean!
         package: Float
+        applied: [Applied]!
+        placed: [Placed]!
     }
 
     type Company {
@@ -28,6 +29,8 @@ export const typeDefs = gql`
         CTC: Float!
         type: CompanyType!
         eligibility: CompanyEdibility!
+        applied: [Applied]!
+        selected: [Placed]!
     }
 
     type CompanyEdibility {
@@ -50,9 +53,9 @@ export const typeDefs = gql`
 
     type Query {
         students: [Student]!
-        # companies: [Company]!
-        # applied: [Applied]!
-        # placed: [Placed]!
+        companies: [Company]!
+        applied: [Applied]!
+        placed: [Placed]!
     }
 
     enum Branch {
