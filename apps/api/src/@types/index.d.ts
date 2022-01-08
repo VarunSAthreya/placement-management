@@ -3,7 +3,7 @@ interface IUser {
     name: string;
     email: string;
     password: string;
-    type: UserType;
+    type: string;
     details?: IStudentDetails;
 }
 
@@ -27,7 +27,7 @@ interface ICompany {
     name: string;
     dateOfArrival: string;
     CTC: number;
-    type: CompanyType;
+    type: string;
     eligibility?: CompanyEdibility;
     applied?: Applied[];
     selected?: Selected[];
@@ -49,30 +49,4 @@ interface IApplied {
 interface ISelected {
     student: string;
     company: string;
-}
-
-enum UserType {
-    STUDENT = 'STUDENT',
-    ADMIN = 'ADMIN',
-}
-
-enum Branch {
-    CSE = 'CSE',
-    ECE = 'ECE',
-    ISE = 'ISE',
-    ME = 'ME',
-    CV = 'CV',
-    EIE = 'EIE',
-    IEM = 'IEM',
-}
-
-enum Section {
-    A = 'A',
-    B = 'B',
-    C = 'C',
-}
-
-enum CompanyType {
-    SERVICE = 'SERVICE',
-    PRODUCT = 'PRODUCT',
 }
