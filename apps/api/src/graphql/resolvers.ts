@@ -21,7 +21,7 @@ export const resolvers = {
         selected: () => selected,
     },
     Student: {
-        details: (student: any) => {
+        details: (student: IUser) => {
             student.details = studentDetails.filter(
                 (std) => std.USN === student.USN
             )[0];
@@ -54,7 +54,7 @@ export const resolvers = {
         },
     },
     Company: {
-        applied: (company: any) => {
+        applied: (company: ICompany) => {
             const appliedStudentsUSN = applied.filter(
                 (app) => app.company === company.name
             );
@@ -67,7 +67,7 @@ export const resolvers = {
                 };
             });
         },
-        selected: (company: any) => {
+        selected: (company: ICompany) => {
             const selectedStudentsUSN = selected.filter(
                 (sle) => sle.company === company.name
             );
@@ -80,7 +80,7 @@ export const resolvers = {
                 };
             });
         },
-        eligibility: (company: any) => {
+        eligibility: (company: ICompany) => {
             return eligibility.filter((elg) => elg.name === company.name)[0];
         },
     },

@@ -1,4 +1,4 @@
-const { gql } = require('apollo-server');
+import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
     type Student {
@@ -16,6 +16,7 @@ export const typeDefs = gql`
         branch: Branch!
         section: Section!
         eligible: Boolean!
+        placed: Boolean!
         CGPA: Float!
         backlogs: Int!
         tenth: Float!

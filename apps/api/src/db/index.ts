@@ -1,35 +1,35 @@
-export const students = [
+export const students: IUser[] = [
     {
         USN: '1JS19CS186',
         name: 'Varun S Athreya',
         email: '1js19cs186@jssateb.ac.in',
-        type: 'STUDENT',
+        type: UserType.STUDENT,
         password: 'asdfghjkl',
     },
     {
         USN: '1JS19CS146',
         name: 'Sandeep M',
         email: '1js19cs146@jssateb.ac.in',
-        type: 'STUDENT',
+        type: UserType.STUDENT,
         password: 'asdfghjkl',
     },
     {
         USN: '1JS19CS183',
         name: 'Ullas HP',
         email: '1js19cs183@jssateb.ac.in',
-        type: 'STUDENT',
+        type: UserType.STUDENT,
         password: 'asdfghjkl',
     },
     {
         USN: '1JS19CS157',
         name: 'Shithin Shetty',
         email: '1js19cs157@jssateb.ac.in',
-        type: 'STUDENT',
+        type: UserType.STUDENT,
         password: 'asdfghjkl',
     },
 ];
 
-export const studentDetails = [
+export const studentDetails: IStudentDetails[] = [
     {
         USN: '1JS19CS186',
         CGPA: 8.5,
@@ -37,8 +37,8 @@ export const studentDetails = [
         tenth: 8.5,
         twelth: 8.5,
         placed: false,
-        branch: 'CSE',
-        section: 'C',
+        branch: Branch.CSE,
+        section: Section.C,
         eligible: true,
         package: 0,
         year: 2023,
@@ -51,8 +51,8 @@ export const studentDetails = [
         twelth: 8.5,
         placed: true,
         package: 10,
-        branch: 'CSE',
-        section: 'C',
+        branch: Branch.CSE,
+        section: Section.C,
         eligible: true,
         year: 2023,
     },
@@ -60,9 +60,9 @@ export const studentDetails = [
         USN: '1JS19CS183',
         CGPA: 8.5,
         backlogs: 0,
-        branch: 'CSE',
+        branch: Branch.CSE,
         year: 2023,
-        section: 'C',
+        section: Section.C,
         eligible: true,
         tenth: 8.5,
         twelth: 8.5,
@@ -74,8 +74,8 @@ export const studentDetails = [
         CGPA: 8.5,
         backlogs: 0,
         year: 2023,
-        branch: 'CSE',
-        section: 'C',
+        branch: Branch.CSE,
+        section: Section.C,
         eligible: true,
         tenth: 8.5,
         twelth: 8.5,
@@ -84,34 +84,34 @@ export const studentDetails = [
     },
 ];
 
-export const companies = [
+export const companies: ICompany[] = [
     {
         name: 'Google',
         dateOfArrival: '2019-04-01',
         CTC: 100000,
-        type: 'PRODUCT',
+        type: CompanyType.PRODUCT,
     },
     {
         name: 'Amazon',
         dateOfArrival: '2019-05-01',
         CTC: 100000,
-        type: 'PRODUCT',
+        type: CompanyType.PRODUCT,
     },
     {
         name: 'Microsoft',
         dateOfArrival: '2019-06-01',
         CTC: 100000,
-        type: 'PRODUCT',
+        type: CompanyType.PRODUCT,
     },
     {
         name: 'TCS',
         dateOfArrival: '2019-06-01',
         CTC: 100000,
-        type: 'SERVICE',
+        type: CompanyType.SERVICE,
     },
 ];
 
-export const eligibility = [
+export const eligibility: ICompanyEdibility[] = [
     {
         name: 'TCS',
         CGPA: 8.5,
@@ -142,7 +142,7 @@ export const eligibility = [
     },
 ];
 
-export const applied = [
+export const applied: IApplied[] = [
     {
         student: '1JS19CS186',
         company: 'Google',
@@ -173,7 +173,7 @@ export const applied = [
     },
 ];
 
-export const selected = [
+export const selected: ISelected[] = [
     {
         student: '1JS19CS183',
         company: 'TCS',
