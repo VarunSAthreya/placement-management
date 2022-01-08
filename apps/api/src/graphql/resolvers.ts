@@ -3,15 +3,15 @@ import {
     companies,
     eligibility,
     selected,
-    studentDetails,
-    students,
+    userDetails,
+    users,
 } from '../db';
 
 export const resolvers = {
     Query: {
-        students: () => students,
-        student: (_: any, { USN }: { USN: string }) =>
-            students.find((student) => student.USN === USN.toUpperCase()),
+        users: () => users,
+        user: (_: any, { USN }: { USN: string }) =>
+            users.find((student) => student.USN === USN.toUpperCase()),
         companies: () => companies,
         company: (_: any, { name }: { name: string }) =>
             companies.find(
@@ -20,17 +20,15 @@ export const resolvers = {
         applied: () => applied,
         selected: () => selected,
     },
-    Student: {
-        details: (student: IUser) => {
-            student.details = studentDetails.filter(
-                (std) => std.USN === student.USN
-            )[0];
+    User: {
+        details: (user: IUser) => {
+            user.details = userDetails.filter((std) => std.USN === user.USN)[0];
 
             const appliedCompanies = applied.filter(
-                (app) => app.student === student.USN
+                (app) => app.user === user.USN
             );
 
-            student.details.applied = appliedCompanies.map((comp) => {
+            user.details.applied = appliedCompanies.map((comp) => {
                 return {
                     company: companies.filter(
                         (company) => company.name === comp.company
@@ -39,10 +37,10 @@ export const resolvers = {
             });
 
             const selectedCompanies = selected.filter(
-                (sle) => sle.student === student.USN
+                (sle) => sle.user === user.USN
             );
 
-            student.details.selected = selectedCompanies.map((comp) => {
+            user.details.selected = selectedCompanies.map((comp) => {
                 return {
                     company: companies.filter(
                         (company) => company.name === comp.company
@@ -50,7 +48,7 @@ export const resolvers = {
                 };
             });
 
-            return student.details;
+            return user.details;
         },
     },
     Company: {
@@ -61,9 +59,7 @@ export const resolvers = {
 
             return appliedStudentsUSN.map((usn) => {
                 return {
-                    student: students.filter(
-                        (std) => std.USN === usn.student
-                    )[0],
+                    user: users.filter((std) => std.USN === usn.user)[0],
                 };
             });
         },
@@ -74,9 +70,7 @@ export const resolvers = {
 
             return selectedStudentsUSN.map((usn) => {
                 return {
-                    student: students.filter(
-                        (std) => std.USN === usn.student
-                    )[0],
+                    user: users.filter((std) => std.USN === usn.user)[0],
                 };
             });
         },

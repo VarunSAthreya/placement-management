@@ -1,16 +1,16 @@
 import { gql } from 'apollo-server';
 
 export const typeDefs = gql`
-    type Student {
+    type User {
         USN: ID!
         name: String!
         email: String!
         password: String!
-        type: UserType!
-        details: StudentDetails!
+        role: Roles!
+        details: UserDetails!
     }
 
-    type StudentDetails {
+    type UserDetails {
         USN: String!
         year: Int!
         branch: Branch!
@@ -28,8 +28,8 @@ export const typeDefs = gql`
 
     type Company {
         name: String!
-        dateOfArrival: String!
-        CTC: Float!
+        arrival_date: String!
+        package: Float!
         type: CompanyType!
         eligibility: CompanyEdibility!
         applied: [Applied]!
@@ -45,25 +45,25 @@ export const typeDefs = gql`
     }
 
     type Applied {
-        student: Student!
+        user: User!
         company: Company!
     }
 
     type Selected {
-        student: Student!
+        user: User!
         company: Company!
     }
 
     type Query {
-        students: [Student]!
-        student(USN: ID!): Student!
+        users: [User]!
+        user(USN: ID!): User!
         company(name: String!): Company!
         companies: [Company]!
         applied: [Applied]!
         selected: [Selected]!
     }
 
-    enum UserType {
+    enum Roles {
         STUDENT
         ADMIN
     }

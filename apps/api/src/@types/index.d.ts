@@ -3,15 +3,15 @@ interface IUser {
     name: string;
     email: string;
     password: string;
-    type: string;
-    details?: IStudentDetails;
+    role: string;
+    details?: IUserDetails;
 }
 
-interface IStudentDetails {
+interface IUserDetails {
     USN: string;
     year: number;
-    branch: Branch;
-    section: Section;
+    branch: string;
+    section: string;
     eligible: boolean;
     placed: boolean;
     CGPA: number;
@@ -25,8 +25,8 @@ interface IStudentDetails {
 
 interface ICompany {
     name: string;
-    dateOfArrival: string;
-    CTC: number;
+    arrival_date: string;
+    package: number;
     type: string;
     eligibility?: CompanyEdibility;
     applied?: Applied[];
@@ -42,11 +42,11 @@ interface ICompanyEdibility {
 }
 
 interface IApplied {
-    student: string;
+    user: string;
     company: string;
 }
 
 interface ISelected {
-    student: string;
+    user: string;
     company: string;
 }
