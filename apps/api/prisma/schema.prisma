@@ -17,16 +17,16 @@ model Applied {
 }
 
 model Company {
-  name             String            @id @db.VarChar
-  arrival_date     DateTime?         @db.Timestamp(6)
-  type             CompanyType
-  package          Float?
-  Applied          Applied[]
-  CompanyEdibility CompanyEdibility?
-  Selected         Selected[]
+  name                String              @id @db.VarChar
+  arrival_date        DateTime?           @db.Timestamp(6)
+  type                CompanyType
+  package             Float?
+  applied             Applied[]
+  company_eligibility CompanyEligibility?
+  selected            Selected[]
 }
 
-model CompanyEdibility {
+model CompanyEligibility {
   name     String  @id @db.VarChar
   CGPA     Float   @default(0.0)
   backlogs Int     @default(0)
@@ -45,23 +45,23 @@ model Selected {
 }
 
 model User {
-  USN         String       @id @db.VarChar
-  name        String       @db.VarChar
-  email       String       @unique @db.VarChar
-  password    String       @db.VarChar
-  role        Roles        @default(STUDENT)
-  created_at  DateTime     @db.Timestamp(6)
-  Applied     Applied[]
-  Selected    Selected[]
-  UserDetails UserDetails?
+  USN          String       @id @db.VarChar
+  name         String       @db.VarChar
+  email        String       @unique @db.VarChar
+  password     String       @db.VarChar
+  role         Roles        @default(STUDENT)
+  created_at   DateTime     @default(now())
+  applied      Applied[]
+  selected     Selected[]
+  user_details UserDetails?
 }
 
 model UserDetails {
   USN      String   @id @db.VarChar
   year     Int
-  branch   Braches
+  branch   Branches
   section  Sections
-  elegible Boolean  @default(true)
+  eligible Boolean  @default(true)
   placed   Boolean  @default(false)
   CGPA     Float    @default(0.0)
   backlogs Int      @default(0)
@@ -71,7 +71,7 @@ model UserDetails {
   User     User     @relation(fields: [USN], references: [USN], onDelete: Cascade, onUpdate: NoAction)
 }
 
-enum Braches {
+enum Branches {
   CSE
   ECE
   ISE
@@ -79,6 +79,8 @@ enum Braches {
   CV
   EIE
   IEM
+
+  @@map("Branches")
 }
 
 enum CompanyType {
