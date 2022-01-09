@@ -16,11 +16,12 @@ export const resolvers = {
     Query: {
         users: async () => getUsers(),
 
-        user: async (_: any, { USN }: { USN: string }) => getUser(USN),
+        user: async (_: Context, { USN }: { USN: string }) => getUser(USN),
 
         companies: async () => getCompanies(),
 
-        company: async (_: any, { name }: { name: string }) => getCompany(name),
+        company: async (_: Context, { name }: { name: string }) =>
+            getCompany(name),
 
         applied: async () => getAllApplied(),
 
@@ -29,10 +30,13 @@ export const resolvers = {
     Mutation: {
         createUser: async (_: Context, { input }: { input: IUser }) =>
             createUser(input),
+
         createCompany: async (_: Context, { input }: { input: ICompany }) =>
             createCompany(input),
+
         createApplied: async (_: Context, { input }: { input: IApplied }) =>
             createApplied(input),
+
         createSelected: async (_: Context, { input }: { input: ISelected }) =>
             createSelected(input),
     },

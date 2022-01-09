@@ -46,15 +46,18 @@ export const getUser = async (USN: string) =>
     });
 
 export const createUser = async (user: IUser) => {
+    const { USN, password, role, details } = user;
+
     const res = await prisma.user.create({
         data: {
-            USN: user.USN,
-            password: user.password,
-            role: user.role,
+            USN,
+            password,
+            role,
             details: {
-                create: user.details,
+                create: details,
             },
         },
     });
+
     return getUser(res.USN);
 };

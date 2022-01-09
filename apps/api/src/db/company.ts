@@ -40,11 +40,9 @@ export const getCompany = async (name: string) =>
     });
 
 export const createCompany = async (company: ICompany) => {
-    console.log(JSON.stringify(company));
-
     const { name, arrival_date, package: pkg, type, eligibility } = company;
 
-    const res = await prisma.company.create({
+    await prisma.company.create({
         data: {
             name,
             arrival_date,
@@ -55,9 +53,6 @@ export const createCompany = async (company: ICompany) => {
             },
         },
     });
-    console.log('\n\n');
 
-    console.log(JSON.stringify(res));
-
-    return getCompany(res.name);
+    return getCompany(name);
 };
