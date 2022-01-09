@@ -8,12 +8,12 @@ datasource db {
 }
 
 model Applied {
-  user        String      @db.VarChar
-  company     String      @db.VarChar
-  Company     Company     @relation(fields: [company], references: [name], onDelete: Cascade, onUpdate: NoAction)
-  UserDetails UserDetails @relation(fields: [user], references: [USN], onDelete: Cascade, onUpdate: NoAction)
+  userID    String      @db.VarChar
+  companyID String      @db.VarChar
+  company   Company     @relation(fields: [companyID], references: [name], onDelete: Cascade, onUpdate: NoAction)
+  user      UserDetails @relation(fields: [userID], references: [USN], onDelete: Cascade, onUpdate: NoAction)
 
-  @@id([user, company])
+  @@id([userID, companyID])
 }
 
 model Company {
@@ -36,12 +36,12 @@ model CompanyEligibility {
 }
 
 model Selected {
-  user        String      @db.VarChar
-  company     String      @db.VarChar
-  Company     Company     @relation(fields: [company], references: [name], onDelete: Cascade, onUpdate: NoAction)
-  UserDetails UserDetails @relation(fields: [user], references: [USN], onDelete: Cascade, onUpdate: NoAction)
+  userID    String      @db.VarChar
+  companyID String      @db.VarChar
+  company   Company     @relation(fields: [companyID], references: [name], onDelete: Cascade, onUpdate: NoAction)
+  user      UserDetails @relation(fields: [userID], references: [USN], onDelete: Cascade, onUpdate: NoAction)
 
-  @@id([user, company])
+  @@id([userID, companyID])
 }
 
 model User {
