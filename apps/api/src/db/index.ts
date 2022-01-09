@@ -12,5 +12,5 @@ export {
     userDetails,
     users,
 } from './dummy';
-export { getSelected } from './selected';
+export { createSelected, getAllSelected } from './selected';
 export { createUser, getUser, getUsers } from './user';

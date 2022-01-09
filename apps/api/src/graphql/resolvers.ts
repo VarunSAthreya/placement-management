@@ -1,11 +1,13 @@
+import { Context } from 'apollo-server-core';
 import {
     createApplied,
     createCompany,
+    createSelected,
     createUser,
     getAllApplied,
+    getAllSelected,
     getCompanies,
     getCompany,
-    getSelected,
     getUser,
     getUsers,
 } from '../db';
@@ -22,14 +24,16 @@ export const resolvers = {
 
         applied: async () => getAllApplied(),
 
-        selected: async () => getSelected(),
+        selected: async () => getAllSelected(),
     },
     Mutation: {
-        createUser: async (_: any, { input }: { input: IUser }) =>
+        createUser: async (_: Context, { input }: { input: IUser }) =>
             createUser(input),
-        createCompany: async (_: any, { input }: { input: ICompany }) =>
+        createCompany: async (_: Context, { input }: { input: ICompany }) =>
             createCompany(input),
-        createApplied: async (_: any, { input }: { input: IApplied }) =>
+        createApplied: async (_: Context, { input }: { input: IApplied }) =>
             createApplied(input),
+        createSelected: async (_: Context, { input }: { input: ISelected }) =>
+            createSelected(input),
     },
 };

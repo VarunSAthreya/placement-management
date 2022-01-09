@@ -143,5 +143,6 @@ export const typeDefs = gql`
         createUser(input: UserInput!): User!
         createCompany(input: CompanyInput!): Company!
         createApplied(input: AppliedInput!): Applied!
+        createSelected(input: SelectedInput!): Selected!
     }
 `;
