@@ -1,35 +1,38 @@
-export const students = [
+const { PrismaClient } = require('@prisma/client');
+export const prisma = new PrismaClient();
+
+export const users: IUser[] = [
     {
         USN: '1JS19CS186',
         name: 'Varun S Athreya',
         email: '1js19cs186@jssateb.ac.in',
-        type: 'STUDENT',
+        role: 'STUDENT',
         password: 'asdfghjkl',
     },
     {
         USN: '1JS19CS146',
         name: 'Sandeep M',
         email: '1js19cs146@jssateb.ac.in',
-        type: 'STUDENT',
+        role: 'STUDENT',
         password: 'asdfghjkl',
     },
     {
         USN: '1JS19CS183',
         name: 'Ullas HP',
         email: '1js19cs183@jssateb.ac.in',
-        type: 'STUDENT',
+        role: 'STUDENT',
         password: 'asdfghjkl',
     },
     {
         USN: '1JS19CS157',
         name: 'Shithin Shetty',
         email: '1js19cs157@jssateb.ac.in',
-        type: 'STUDENT',
+        role: 'STUDENT',
         password: 'asdfghjkl',
     },
 ];
 
-export const studentDetails = [
+export const userDetails: IUserDetails[] = [
     {
         USN: '1JS19CS186',
         CGPA: 8.5,
@@ -84,34 +87,34 @@ export const studentDetails = [
     },
 ];
 
-export const companies = [
+export const companies: ICompany[] = [
     {
         name: 'Google',
-        dateOfArrival: '2019-04-01',
-        CTC: 100000,
+        arrival_date: new Date().toISOString(),
+        package: 100000,
         type: 'PRODUCT',
     },
     {
         name: 'Amazon',
-        dateOfArrival: '2019-05-01',
-        CTC: 100000,
+        arrival_date: new Date().toISOString(),
+        package: 100000,
         type: 'PRODUCT',
     },
     {
         name: 'Microsoft',
-        dateOfArrival: '2019-06-01',
-        CTC: 100000,
+        arrival_date: new Date().toISOString(),
+        package: 100000,
         type: 'PRODUCT',
     },
     {
         name: 'TCS',
-        dateOfArrival: '2019-06-01',
-        CTC: 100000,
+        arrival_date: new Date().toISOString(),
+        package: 100000,
         type: 'SERVICE',
     },
 ];
 
-export const eligibility = [
+export const eligibility: ICompanyEligibility[] = [
     {
         name: 'TCS',
         CGPA: 8.5,
@@ -142,48 +145,48 @@ export const eligibility = [
     },
 ];
 
-export const applied = [
+export const applied: IApplied[] = [
     {
-        student: '1JS19CS186',
-        company: 'Google',
+        userID: '1JS19CS186',
+        companyID: 'Google',
     },
     {
-        student: '1JS19CS183',
-        company: 'Google',
+        userID: '1JS19CS183',
+        companyID: 'Google',
     },
     {
-        student: '1JS19CS186',
-        company: 'Microsoft',
+        userID: '1JS19CS186',
+        companyID: 'Microsoft',
     },
     {
-        student: '1JS19CS146',
-        company: 'Amazon',
+        userID: '1JS19CS146',
+        companyID: 'Amazon',
     },
     {
-        student: '1JS19CS157',
-        company: 'TCS',
+        userID: '1JS19CS157',
+        companyID: 'TCS',
     },
     {
-        student: '1JS19CS146',
-        company: 'Microsoft',
+        userID: '1JS19CS146',
+        companyID: 'Microsoft',
     },
     {
-        student: '1JS19CS183',
-        company: 'TCS',
+        userID: '1JS19CS183',
+        companyID: 'TCS',
     },
 ];
 
-export const selected = [
+export const selected: ISelected[] = [
     {
-        student: '1JS19CS183',
-        company: 'TCS',
+        userID: '1JS19CS183',
+        companyID: 'TCS',
     },
     {
-        student: '1JS19CS186',
-        company: 'Google',
+        userID: '1JS19CS186',
+        companyID: 'Google',
     },
     {
-        student: '1JS19CS146',
-        company: 'Amazon',
+        userID: '1JS19CS146',
+        companyID: 'Amazon',
     },
 ];

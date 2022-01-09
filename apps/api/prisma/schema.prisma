@@ -1,0 +1,100 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Applied {
+  userID    String      @db.VarChar
+  companyID String      @db.VarChar
+  company   Company     @relation(fields: [companyID], references: [name], onDelete: Cascade, onUpdate: NoAction)
+  user      UserDetails @relation(fields: [userID], references: [USN], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([userID, companyID])
+}
+
+model Company {
+  name         String              @id @db.VarChar
+  arrival_date DateTime?           @db.Timestamp(6)
+  type         CompanyType
+  package      Float?
+  applied      Applied[]
+  eligibility  CompanyEligibility?
+  selected     Selected[]
+}
+
+model CompanyEligibility {
+  name     String  @id @db.VarChar
+  CGPA     Float   @default(0.0)
+  backlogs Int     @default(0)
+  tenth    Float   @default(0.0)
+  twelth   Float   @default(0.0)
+  Company  Company @relation(fields: [name], references: [name], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model Selected {
+  userID    String      @db.VarChar
+  companyID String      @db.VarChar
+  company   Company     @relation(fields: [companyID], references: [name], onDelete: Cascade, onUpdate: NoAction)
+  user      UserDetails @relation(fields: [userID], references: [USN], onDelete: Cascade, onUpdate: NoAction)
+
+  @@id([userID, companyID])
+}
+
+model User {
+  USN        String       @id @db.VarChar
+  name       String       @db.VarChar
+  email      String       @unique @db.VarChar
+  password   String       @db.VarChar
+  role       Roles        @default(STUDENT)
+  created_at DateTime     @default(now())
+  details    UserDetails?
+}
+
+model UserDetails {
+  USN      String     @id @db.VarChar
+  year     Int
+  branch   Branches
+  section  Sections
+  eligible Boolean    @default(true)
+  placed   Boolean    @default(false)
+  CGPA     Float      @default(0.0)
+  backlogs Int        @default(0)
+  tenth    Float      @default(0.0)
+  twelth   Float      @default(0.0)
+  package  Float      @default(0.0)
+  applied  Applied[]
+  selected Selected[]
+  User     User       @relation(fields: [USN], references: [USN], onDelete: Cascade, onUpdate: NoAction)
+}
+
+enum Branches {
+  CSE
+  ECE
+  ISE
+  ME
+  CV
+  EIE
+  IEM
+
+  @@map("Branches")
+}
+
+enum CompanyType {
+  SERVICE
+  PRODUCT
+}
+
+enum Roles {
+  ADMIN
+  STUDENT
+}
+
+enum Sections {
+  A
+  B
+  C
+}
