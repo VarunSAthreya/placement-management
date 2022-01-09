@@ -28,12 +28,12 @@ interface ICompany {
     arrival_date: string;
     package: number;
     type: string;
-    eligibility?: CompanyEdibility;
+    eligibility?: ICompanyEligibility;
     applied?: Applied[];
     selected?: Selected[];
 }
 
-interface ICompanyEdibility {
+interface ICompanyEligibility {
     name: string;
     CGPA: number;
     backlogs: number;
@@ -42,11 +42,11 @@ interface ICompanyEdibility {
 }
 
 interface IApplied {
-    user: string;
-    company: string;
+    userID: string;
+    companyID: string;
 }
 
 interface ISelected {
-    user: string;
-    company: string;
+    userID: string;
+    companyID: string;
 }

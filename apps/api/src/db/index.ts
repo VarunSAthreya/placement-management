@@ -90,31 +90,31 @@ export const userDetails: IUserDetails[] = [
 export const companies: ICompany[] = [
     {
         name: 'Google',
-        arrival_date: '2019-04-01',
+        arrival_date: new Date().toISOString(),
         package: 100000,
         type: 'PRODUCT',
     },
     {
         name: 'Amazon',
-        arrival_date: '2019-05-01',
+        arrival_date: new Date().toISOString(),
         package: 100000,
         type: 'PRODUCT',
     },
     {
         name: 'Microsoft',
-        arrival_date: '2019-06-01',
+        arrival_date: new Date().toISOString(),
         package: 100000,
         type: 'PRODUCT',
     },
     {
         name: 'TCS',
-        arrival_date: '2019-06-01',
+        arrival_date: new Date().toISOString(),
         package: 100000,
         type: 'SERVICE',
     },
 ];
 
-export const eligibility: ICompanyEdibility[] = [
+export const eligibility: ICompanyEligibility[] = [
     {
         name: 'TCS',
         CGPA: 8.5,
@@ -147,46 +147,46 @@ export const eligibility: ICompanyEdibility[] = [
 
 export const applied: IApplied[] = [
     {
-        user: '1JS19CS186',
-        company: 'Google',
+        userID: '1JS19CS186',
+        companyID: 'Google',
     },
     {
-        user: '1JS19CS183',
-        company: 'Google',
+        userID: '1JS19CS183',
+        companyID: 'Google',
     },
     {
-        user: '1JS19CS186',
-        company: 'Microsoft',
+        userID: '1JS19CS186',
+        companyID: 'Microsoft',
     },
     {
-        user: '1JS19CS146',
-        company: 'Amazon',
+        userID: '1JS19CS146',
+        companyID: 'Amazon',
     },
     {
-        user: '1JS19CS157',
-        company: 'TCS',
+        userID: '1JS19CS157',
+        companyID: 'TCS',
     },
     {
-        user: '1JS19CS146',
-        company: 'Microsoft',
+        userID: '1JS19CS146',
+        companyID: 'Microsoft',
     },
     {
-        user: '1JS19CS183',
-        company: 'TCS',
+        userID: '1JS19CS183',
+        companyID: 'TCS',
     },
 ];
 
 export const selected: ISelected[] = [
     {
-        user: '1JS19CS183',
-        company: 'TCS',
+        userID: '1JS19CS183',
+        companyID: 'TCS',
     },
     {
-        user: '1JS19CS186',
-        company: 'Google',
+        userID: '1JS19CS186',
+        companyID: 'Google',
     },
     {
-        user: '1JS19CS146',
-        company: 'Amazon',
+        userID: '1JS19CS146',
+        companyID: 'Amazon',
     },
 ];
