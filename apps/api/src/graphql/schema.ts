@@ -118,12 +118,11 @@ export const typeDefs = gql`
         package: Float
         type: CompanyType!
         eligibility: CompanyEdibilityInput!
-        applied: [AppliedInput]!
-        selected: [SelectedInput]!
+        applied: [AppliedInput]
+        selected: [SelectedInput]
     }
 
     input CompanyEdibilityInput {
-        name: String!
         CGPA: Float!
         backlogs: Int!
         tenth: Float!
@@ -142,5 +141,6 @@ export const typeDefs = gql`
 
     type Mutation {
         createUser(input: UserInput!): User!
+        createCompany(input: CompanyInput!): Company!
     }
 `;

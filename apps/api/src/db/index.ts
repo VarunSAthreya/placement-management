@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 export const prisma = new PrismaClient();
 
 export { getApplied } from './applied';
-export { getCompanies, getCompany } from './company';
+export { createCompany, getCompanies, getCompany } from './company';
 export {
     applied,
     companies,
