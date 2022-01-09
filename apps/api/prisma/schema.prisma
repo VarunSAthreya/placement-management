@@ -46,8 +46,6 @@ model Selected {
 
 model User {
   USN        String       @id @db.VarChar
-  name       String       @db.VarChar
-  email      String       @unique @db.VarChar
   password   String       @db.VarChar
   role       Roles        @default(STUDENT)
   created_at DateTime     @default(now())
@@ -57,6 +55,8 @@ model User {
 model UserDetails {
   USN      String     @id @db.VarChar
   year     Int
+  name     String     @db.VarChar
+  email    String     @unique @db.VarChar
   branch   Branches
   section  Sections
   eligible Boolean    @default(true)

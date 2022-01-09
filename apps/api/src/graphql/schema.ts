@@ -3,8 +3,6 @@ import { gql } from 'apollo-server';
 export const typeDefs = gql`
     type User {
         USN: ID!
-        name: String!
-        email: String!
         password: String!
         role: Roles!
         details: UserDetails!
@@ -13,6 +11,8 @@ export const typeDefs = gql`
     type UserDetails {
         USN: String!
         year: Int!
+        name: String!
+        email: String!
         branch: Branch!
         section: Section!
         eligible: Boolean!
