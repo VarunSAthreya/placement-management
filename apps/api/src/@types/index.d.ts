@@ -1,8 +1,13 @@
 interface IUser {
     USN: string;
     password: string;
-    role: string;
+    role: Roles;
     details?: IUserDetails;
+}
+
+enum Roles {
+    STUDENT = 'STUDENT',
+    ADMIN = 'ADMIN',
 }
 
 interface IUserDetails {
@@ -10,8 +15,8 @@ interface IUserDetails {
     year: number;
     name: string;
     email: string;
-    branch: string;
-    section: string;
+    branch: Branch;
+    section: Section;
     eligible: boolean;
     placed: boolean;
     CGPA: number;
@@ -23,14 +28,34 @@ interface IUserDetails {
     selected?: Selected[];
 }
 
+enum Branch {
+    CSE = 'CSE',
+    ECE = 'ECE',
+    ISE = 'ISE',
+    ME = 'ME',
+    CV = 'CV',
+    EIE = 'EIE',
+    IEM = 'IEM',
+}
+
+enum Section {
+    A = 'A',
+    B = 'B',
+    C = 'C',
+}
+
 interface ICompany {
     name: string;
     arrival_date: string;
     package: number;
-    type: string;
+    type: CompanyType;
     eligibility?: ICompanyEligibility;
     applied?: Applied[];
     selected?: Selected[];
+}
+enum CompanyType {
+    SERVICE = 'SERVICE',
+    PRODUCT = 'PRODUCT',
 }
 
 interface ICompanyEligibility {
