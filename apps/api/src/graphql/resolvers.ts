@@ -1,4 +1,5 @@
 import {
+    createUser,
     getApplied,
     getCompanies,
     getCompany,
@@ -20,5 +21,9 @@ export const resolvers = {
         applied: async () => getApplied(),
 
         selected: async () => getSelected(),
+    },
+    Mutation: {
+        createUser: async (_: any, { input }: { input: IUser }) =>
+            createUser(input),
     },
 };

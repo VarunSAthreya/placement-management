@@ -13,4 +13,4 @@ export {
     users,
 } from './dummy';
 export { getSelected } from './selected';
-export { getUser, getUsers } from './user';
+export { createUser, getUser, getUsers } from './user';
