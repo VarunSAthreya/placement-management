@@ -1,7 +1,5 @@
 interface IUser {
     USN: string;
-    name: string;
-    email: string;
     password: string;
     role: string;
     details?: IUserDetails;
@@ -10,6 +8,8 @@ interface IUser {
 interface IUserDetails {
     USN: string;
     year: number;
+    name: string;
+    email: string;
     branch: string;
     section: string;
     eligible: boolean;
