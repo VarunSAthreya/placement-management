@@ -130,17 +130,18 @@ export const typeDefs = gql`
     }
 
     input AppliedInput {
-        user: UserDetailsInput!
-        company: CompanyInput!
+        userID: String!
+        companyID: String!
     }
 
     input SelectedInput {
-        user: UserDetailsInput!
-        company: CompanyInput!
+        userID: String!
+        companyID: String!
     }
 
     type Mutation {
         createUser(input: UserInput!): User!
         createCompany(input: CompanyInput!): Company!
+        createApplied(input: AppliedInput!): Applied!
     }
 `;

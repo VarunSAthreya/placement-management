@@ -1,7 +1,8 @@
 import {
+    createApplied,
     createCompany,
     createUser,
-    getApplied,
+    getAllApplied,
     getCompanies,
     getCompany,
     getSelected,
@@ -19,7 +20,7 @@ export const resolvers = {
 
         company: async (_: any, { name }: { name: string }) => getCompany(name),
 
-        applied: async () => getApplied(),
+        applied: async () => getAllApplied(),
 
         selected: async () => getSelected(),
     },
@@ -28,5 +29,7 @@ export const resolvers = {
             createUser(input),
         createCompany: async (_: any, { input }: { input: ICompany }) =>
             createCompany(input),
+        createApplied: async (_: any, { input }: { input: IApplied }) =>
+            createApplied(input),
     },
 };
