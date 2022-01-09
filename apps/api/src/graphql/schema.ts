@@ -45,12 +45,12 @@ export const typeDefs = gql`
     }
 
     type Applied {
-        user: User!
+        user: UserDetails!
         company: Company!
     }
 
     type Selected {
-        user: User!
+        user: UserDetails!
         company: Company!
     }
 
