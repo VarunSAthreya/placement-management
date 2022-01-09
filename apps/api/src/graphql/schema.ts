@@ -4,7 +4,12 @@ export const typeDefs = gql`
     type User {
         USN: ID!
         role: Roles!
-        details: UserDetails!
+        details: UserDetails
+    }
+
+    enum Roles {
+        STUDENT
+        ADMIN
     }
 
     type UserDetails {
@@ -25,14 +30,35 @@ export const typeDefs = gql`
         selected: [Selected]!
     }
 
+    enum Branch {
+        CSE
+        ECE
+        ISE
+        ME
+        CV
+        EIE
+        IEM
+    }
+
+    enum Section {
+        A
+        B
+        C
+    }
+
     type Company {
         name: String!
-        arrival_date: String!
-        package: Float!
+        arrival_date: String
+        package: Float
         type: CompanyType!
         eligibility: CompanyEdibility!
         applied: [Applied]!
         selected: [Selected]!
+    }
+
+    enum CompanyType {
+        SERVICE
+        PRODUCT
     }
 
     type CompanyEdibility {
@@ -62,29 +88,59 @@ export const typeDefs = gql`
         selected: [Selected]!
     }
 
-    enum Roles {
-        STUDENT
-        ADMIN
+    input UserInput {
+        USN: ID!
+        role: Roles!
+        password: String!
+        details: UserDetailsInput
     }
 
-    enum Branch {
-        CSE
-        ECE
-        ISE
-        ME
-        CV
-        EIE
-        IEM
+    input UserDetailsInput {
+        year: Int!
+        name: String!
+        email: String!
+        branch: Branch!
+        section: Section!
+        eligible: Boolean!
+        placed: Boolean!
+        CGPA: Float!
+        backlogs: Int!
+        tenth: Float!
+        twelth: Float!
+        package: Float
+        applied: [AppliedInput]
+        selected: [SelectedInput]
     }
 
-    enum Section {
-        A
-        B
-        C
+    input CompanyInput {
+        name: String!
+        arrival_date: String
+        package: Float
+        type: CompanyType!
+        eligibility: CompanyEdibilityInput!
+        applied: [AppliedInput]!
+        selected: [SelectedInput]!
     }
 
-    enum CompanyType {
-        SERVICE
-        PRODUCT
+    input CompanyEdibilityInput {
+        name: String!
+        CGPA: Float!
+        backlogs: Int!
+        tenth: Float!
+        twelth: Float!
+    }
+
+    input AppliedInput {
+        user: UserDetailsInput!
+        company: CompanyInput!
+    }
+
+    input SelectedInput {
+        user: UserDetailsInput!
+        company: CompanyInput!
+    }
+
+    type Mutation {
+        createUser(input: UserInput!): User!
     }
 `;
