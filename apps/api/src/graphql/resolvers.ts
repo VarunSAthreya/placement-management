@@ -1,101 +1,43 @@
-import { prisma } from '../db';
+import { Context } from 'apollo-server-core';
+import {
+    createApplied,
+    createCompany,
+    createSelected,
+    createUser,
+    getAllApplied,
+    getAllSelected,
+    getCompanies,
+    getCompany,
+    getUser,
+    getUsers,
+} from '../db';
 
 export const resolvers = {
     Query: {
-        users: async () =>
-            prisma.user.findMany({
-                include: {
-                    details: {
-                        include: {
-                            applied: {
-                                include: {
-                                    user: true,
-                                    company: true,
-                                },
-                            },
-                            selected: {
-                                include: {
-                                    user: true,
-                                    company: true,
-                                },
-                            },
-                        },
-                    },
-                },
-            }),
-        user: async (_: any, { USN }: { USN: string }) =>
-            prisma.user.findUnique({
-                where: { USN },
-                include: {
-                    details: {
-                        include: {
-                            applied: {
-                                include: {
-                                    user: true,
-                                    company: true,
-                                },
-                            },
-                            selected: {
-                                include: {
-                                    user: true,
-                                    company: true,
-                                },
-                            },
-                        },
-                    },
-                },
-            }),
+        users: async () => getUsers(),
 
-        companies: async () =>
-            prisma.company.findMany({
-                include: {
-                    eligibility: true,
-                    applied: {
-                        include: {
-                            user: true,
-                            company: true,
-                        },
-                    },
-                    selected: {
-                        include: {
-                            user: true,
-                            company: true,
-                        },
-                    },
-                },
-            }),
-        company: async (_: any, { name }: { name: string }) =>
-            prisma.company.findUnique({
-                where: { name },
-                include: {
-                    eligibility: true,
-                    applied: {
-                        include: {
-                            user: true,
-                            company: true,
-                        },
-                    },
-                    selected: {
-                        include: {
-                            user: true,
-                            company: true,
-                        },
-                    },
-                },
-            }),
-        applied: async () =>
-            prisma.applied.findMany({
-                include: {
-                    user: true,
-                    company: true,
-                },
-            }),
-        selected: () =>
-            prisma.selected.findMany({
-                include: {
-                    user: true,
-                    company: true,
-                },
-            }),
+        user: async (_: Context, { USN }: { USN: string }) => getUser(USN),
+
+        companies: async () => getCompanies(),
+
+        company: async (_: Context, { name }: { name: string }) =>
+            getCompany(name),
+
+        applied: async () => getAllApplied(),
+
+        selected: async () => getAllSelected(),
+    },
+    Mutation: {
+        createUser: async (_: Context, { input }: { input: IUser }) =>
+            createUser(input),
+
+        createCompany: async (_: Context, { input }: { input: ICompany }) =>
+            createCompany(input),
+
+        createApplied: async (_: Context, { input }: { input: IApplied }) =>
+            createApplied(input),
+
+        createSelected: async (_: Context, { input }: { input: ISelected }) =>
+            createSelected(input),
     },
 };
