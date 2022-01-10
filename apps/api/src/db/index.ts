@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
 
-export const prisma = new PrismaClient();
+export const prisma = new PrismaClient({ log: ['query'] });
 
 export { createApplied, getAllApplied } from './applied';
 export { createCompany, getCompanies, getCompany } from './company';
@@ -13,4 +13,4 @@ export {
     users,
 } from './dummy';
 export { createSelected, getAllSelected } from './selected';
-export { createUser, getUser, getUsers } from './user';
+export { createUser, getUser, getUsers, updateUserDetails } from './user';

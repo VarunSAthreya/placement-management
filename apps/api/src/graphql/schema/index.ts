@@ -37,6 +37,7 @@ const typeDefs = gql`
         createCompany(input: CompanyInput!): Company!
         createApplied(input: AppliedInput!): Applied!
         createSelected(input: SelectedInput!): Selected!
+        updateUserDetails(input: UserDetailsUpdateInput!): UserDetails!
     }
 `;
 

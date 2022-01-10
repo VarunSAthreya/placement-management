@@ -10,6 +10,7 @@ import {
     getCompany,
     getUser,
     getUsers,
+    updateUserDetails,
 } from '../db';
 
 export const resolvers = {
@@ -39,5 +40,9 @@ export const resolvers = {
 
         createSelected: async (_: Context, { input }: { input: ISelected }) =>
             createSelected(input),
+        updateUserDetails: async (
+            _: Context,
+            { input }: { input: IUserDetails }
+        ) => updateUserDetails(input),
     },
 };

@@ -69,6 +69,22 @@ const user = gql`
         applied: [AppliedInput]
         selected: [SelectedInput]
     }
+
+    input UserDetailsUpdateInput {
+        USN: String!
+        year: Int
+        name: String
+        email: String
+        branch: Branch
+        section: Section
+        eligible: Boolean
+        placed: Boolean
+        CGPA: Float
+        backlogs: Int
+        tenth: Float
+        twelth: Float
+        package: Float
+    }
 `;
 
 export default user;

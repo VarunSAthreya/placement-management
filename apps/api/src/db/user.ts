@@ -61,3 +61,22 @@ export const createUser = async (user: IUser) => {
 
     return getUser(res.USN);
 };
+
+export const getUserDetails = async (USN: string) =>
+    prisma.userDetails.findUnique({ where: { USN } });
+
+export const updateUserDetails = async (userDetails: IUserDetails) => {
+    const { USN, ...rest } = userDetails;
+
+    const res = await prisma.user.update({
+        where: { USN },
+        data: {
+            details: {
+                update: rest,
+            },
+        },
+    });
+    console.log(res);
+
+    return getUserDetails(res.USN);
+};
