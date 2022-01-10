@@ -4,6 +4,7 @@ import {
     createCompany,
     createSelected,
     createUser,
+    deleteApplied,
     deleteCompany,
     deleteUser,
     getAllApplied,
@@ -56,5 +57,8 @@ export const resolvers = {
 
         deleteCompany: async (_: Context, { name }: { name: string }) =>
             deleteCompany(name),
+
+        deleteApplied: async (_: Context, { input }: { input: IApplied }) =>
+            deleteApplied(input),
     },
 };

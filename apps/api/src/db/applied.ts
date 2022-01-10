@@ -54,3 +54,19 @@ export const createApplied = async (applied: IApplied) => {
 
     return getApplied(applied.userID, applied.companyID);
 };
+
+export const deleteApplied = async (applied: IApplied) => {
+    const { userID, companyID } = applied;
+    const res = await getApplied(userID, companyID);
+
+    await prisma.applied.delete({
+        where: {
+            userID_companyID: {
+                userID: userID,
+                companyID: companyID,
+            },
+        },
+    });
+
+    return res;
+};

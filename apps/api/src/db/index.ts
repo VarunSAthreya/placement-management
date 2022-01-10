@@ -2,7 +2,7 @@ import { PrismaClient } from '@prisma/client';
 
 export const prisma = new PrismaClient({ log: ['query'] });
 
-export { createApplied, getAllApplied } from './applied';
+export { createApplied, deleteApplied, getAllApplied } from './applied';
 export {
     createCompany,
     deleteCompany,
