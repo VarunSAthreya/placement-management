@@ -21,6 +21,7 @@ import {
     BsFillPersonLinesFill,
     BsPeople,
     BsPersonPlus,
+    BsPersonCircle,
 } from 'react-icons/bs';
 
 const routes = [
@@ -29,6 +30,7 @@ const routes = [
     { name: 'Students', link: '/students', icon: BsPeople },
     { name: 'Applied', link: '/applied', icon: BsFillPersonLinesFill },
     { name: 'Placed', link: '/placed', icon: BsPersonPlus },
+    { name: 'Profile', link: '/profile', icon: BsPersonCircle },
 ];
 
 const SideBar = () => {
@@ -61,7 +63,7 @@ const SideBar = () => {
 const SidebarContent = ({ onClose, ...rest }) => {
     return (
         <Box
-            bg={useColorModeValue('#f8f9fa', 'gray.900')}
+            bg={useColorModeValue('white', 'gray.900')}
             w={{ base: 'full', md: 72 }}
             pos={'fixed'}
             borderRadius={8}
@@ -87,7 +89,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                         fontSize="11px"
                     >
                         {/* <CreativeTimLogo w="32px" h="32px" me="10px" /> */}
-                        <Text fontSize="sm" mt="3px">
+                        <Text fontSize="lg" mt="3px">
                             PLACEMENT PORTAL
                         </Text>
                     </Box>
@@ -121,7 +123,7 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                 borderRadius="lg"
                 role="group"
                 cursor="pointer"
-                bg={'#f8f9fa'}
+                bg={'white'}
                 my={2}
                 _hover={{
                     bg: 'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)',
@@ -156,6 +158,9 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                     color={useColorModeValue('gray.700', 'white')}
                     my="auto"
                     fontSize="sm"
+                    _groupHover={{
+                        color: 'white',
+                    }}
                 >
                     {children}
                 </Text>
