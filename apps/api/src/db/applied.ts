@@ -4,7 +4,11 @@ export const getAllApplied = async () =>
     prisma.applied.findMany({
         include: {
             user: true,
-            company: true,
+            company: {
+                include: {
+                    eligibility: true,
+                },
+            },
         },
     });
 
@@ -15,7 +19,11 @@ export const getAppliedOnUSN = async (USN: string) =>
         },
         include: {
             user: true,
-            company: true,
+            company: {
+                include: {
+                    eligibility: true,
+                },
+            },
         },
     });
 
@@ -26,44 +34,58 @@ export const getAppliedOnCompany = async (companyID: string) =>
         },
         include: {
             user: true,
-            company: true,
+            company: {
+                include: {
+                    eligibility: true,
+                },
+            },
         },
     });
 
-export const getApplied = async (USN: string, companyID: string) =>
+export const getApplied = async (applied: IApplied) => {
+    const { userID, companyID } = applied;
+
     prisma.applied.findUnique({
         where: {
             userID_companyID: {
-                userID: USN,
+                userID,
                 companyID,
             },
         },
         include: {
             user: true,
-            company: true,
+            company: {
+                include: {
+                    eligibility: true,
+                },
+            },
         },
     });
+};
 
 export const createApplied = async (applied: IApplied) => {
+    const { userID, companyID } = applied;
+
     await prisma.applied.create({
         data: {
-            userID: applied.userID,
-            companyID: applied.companyID,
+            userID,
+            companyID,
         },
     });
 
-    return getApplied(applied.userID, applied.companyID);
+    return getApplied(applied);
 };
 
 export const deleteApplied = async (applied: IApplied) => {
     const { userID, companyID } = applied;
-    const res = await getApplied(userID, companyID);
+
+    const res = await getApplied(applied);
 
     await prisma.applied.delete({
         where: {
             userID_companyID: {
-                userID: userID,
-                companyID: companyID,
+                userID,
+                companyID,
             },
         },
     });

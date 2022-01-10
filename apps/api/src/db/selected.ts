@@ -4,7 +4,11 @@ export const getAllSelected = async () =>
     prisma.selected.findMany({
         include: {
             user: true,
-            company: true,
+            company: {
+                include: {
+                    eligibility: true,
+                },
+            },
         },
     });
 
@@ -15,7 +19,11 @@ export const getSelectedOnUSN = async (USN: string) =>
         },
         include: {
             user: true,
-            company: true,
+            company: {
+                include: {
+                    eligibility: true,
+                },
+            },
         },
     });
 
@@ -26,15 +34,21 @@ export const getSelectedOnCompany = async (companyID: string) =>
         },
         include: {
             user: true,
-            company: true,
+            company: {
+                include: {
+                    eligibility: true,
+                },
+            },
         },
     });
 
-export const getSelected = async (USN: string, companyID: string) =>
-    prisma.selected.findUnique({
+export const getSelected = async (selected: ISelected) => {
+    const { userID, companyID } = selected;
+
+    return prisma.selected.findUnique({
         where: {
             userID_companyID: {
-                userID: USN,
+                userID,
                 companyID,
             },
         },
@@ -47,28 +61,25 @@ export const getSelected = async (USN: string, companyID: string) =>
             },
         },
     });
-
-export const createSelected = async (applied: ISelected) => {
-    await prisma.selected.create({
-        data: {
-            userID: applied.userID,
-            companyID: applied.companyID,
-        },
-    });
-
-    return getSelected(applied.userID, applied.companyID);
 };
 
-export const deleteSelected = async (applied: ISelected) => {
-    const { userID, companyID } = applied;
-    const res = await getSelected(userID, companyID);
+export const createSelected = async (selected: ISelected) => {
+    const { userID, companyID } = selected;
+
+    await prisma.selected.create({
+        data: { userID, companyID },
+    });
+
+    return getSelected(selected);
+};
+
+export const deleteSelected = async (selected: ISelected) => {
+    const { userID, companyID } = selected;
+    const res = await getSelected(selected);
 
     await prisma.selected.delete({
         where: {
-            userID_companyID: {
-                userID,
-                companyID,
-            },
+            userID_companyID: { userID, companyID },
         },
     });
 
