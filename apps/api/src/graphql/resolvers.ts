@@ -4,6 +4,7 @@ import {
     createCompany,
     createSelected,
     createUser,
+    deleteUser,
     getAllApplied,
     getAllSelected,
     getCompanies,
@@ -47,5 +48,7 @@ export const resolvers = {
         ) => updateUserDetails(input),
         updateCompany: async (_: Context, { input }: { input: ICompany }) =>
             updateCompany(input),
+        deleteUser: async (_: Context, { USN }: { USN: string }) =>
+            deleteUser(USN),
     },
 };

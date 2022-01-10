@@ -79,3 +79,9 @@ export const updateUserDetails = async (userDetails: IUserDetails) => {
 
     return getUserDetails(res.USN);
 };
+
+export const deleteUser = async (USN: string) => {
+    const res = getUser(USN);
+    await prisma.user.delete({ where: { USN } });
+    return res;
+};

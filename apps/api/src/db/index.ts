@@ -18,4 +18,10 @@ export {
     users,
 } from './dummy';
 export { createSelected, getAllSelected } from './selected';
-export { createUser, getUser, getUsers, updateUserDetails } from './user';
+export {
+    createUser,
+    deleteUser,
+    getUser,
+    getUsers,
+    updateUserDetails,
+} from './user';

@@ -39,6 +39,7 @@ const typeDefs = gql`
         createSelected(input: SelectedInput!): Selected!
         updateUserDetails(input: UserDetailsUpdateInput!): UserDetails!
         updateCompany(input: CompanyUpdateInput!): Company!
+        deleteUser(USN: ID!): User!
     }
 `;
 
