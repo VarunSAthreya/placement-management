@@ -1,5 +1,3 @@
-import React from 'react';
-// Chakra imports
 import {
     Flex,
     Button,
@@ -7,142 +5,115 @@ import {
     FormLabel,
     Heading,
     Input,
-    Link,
-    Switch,
-    Text,
-    useColorModeValue,
+    Icon,
+    InputGroup,
+    InputLeftElement,
 } from '@chakra-ui/react';
-// Assets
+import { AiOutlineMail, AiFillLock } from 'react-icons/ai';
 
 const Login = () => {
-    // Chakra color mode
-    const titleColor = useColorModeValue('teal.300', 'teal.200');
-    const textColor = useColorModeValue('gray.400', 'white');
     return (
         <Flex position="relative" mb="40px">
             <Flex
-                h={{ sm: 'initial', md: '75vh', lg: '85vh' }}
-                w="100%"
+                h={{ sm: 'initial', md: '75vh', lg: '90vh' }}
+                w={{ base: '100%', md: '50%', lg: '45%' }}
+                justifyContent={'center'}
                 maxW="1044px"
                 mx="auto"
-                justifyContent="space-between"
                 mb="30px"
                 pt={{ sm: '100px', md: '0px' }}
             >
                 <Flex
-                    alignItems="center"
-                    justifyContent="start"
-                    style={{ userSelect: 'none' }}
-                    w={{ base: '100%', md: '50%', lg: '42%' }}
+                    direction="column"
+                    w="100%"
+                    background="transparent"
+                    p="32px"
+                    mt={{ md: '150px', lg: '100px' }}
+                    justifyContent={'center'}
+                    color="white"
+                    borderRadius={8}
+                    bg={'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'}
                 >
-                    <Flex
-                        direction="column"
-                        w="100%"
-                        background="transparent"
-                        p="48px"
-                        mt={{ md: '150px', lg: '80px' }}
+                    <Heading
+                        fontSize="48px"
+                        mb="20px"
+                        p={1}
+                        textAlign={'center'}
                     >
-                        <Heading color={titleColor} fontSize="32px" mb="10px">
-                            Welcome Back
-                        </Heading>
-                        <Text
-                            mb="36px"
-                            ms="4px"
-                            color={textColor}
-                            fontWeight="bold"
-                            fontSize="14px"
-                        >
-                            Enter your email and password to sign in
-                        </Text>
-                        <FormControl>
-                            <FormLabel
-                                ms="4px"
-                                fontSize="sm"
-                                fontWeight="normal"
-                            >
-                                Email
-                            </FormLabel>
+                        Placement Portal
+                    </Heading>
+                    <FormControl p={4}>
+                        <FormLabel ms="4px" fontSize="md" fontWeight="normal">
+                            Email
+                        </FormLabel>
+                        <InputGroup>
+                            <InputLeftElement pointerEvents="none">
+                                <Icon
+                                    as={AiOutlineMail}
+                                    color="black"
+                                    w={6}
+                                    h={6}
+                                    mt={'3px'}
+                                />
+                            </InputLeftElement>
+
                             <Input
                                 borderRadius="15px"
+                                variant={'filled'}
                                 mb="24px"
-                                fontSize="sm"
+                                focusBorderColor="black"
+                                _placeholder={{ color: 'black' }}
+                                fontSize="md"
+                                color="white"
                                 type="text"
                                 placeholder="Your email adress"
                                 size="lg"
                             />
-                            <FormLabel
-                                ms="4px"
-                                fontSize="sm"
-                                fontWeight="normal"
-                            >
-                                Password
-                            </FormLabel>
+                        </InputGroup>
+
+                        <FormLabel ms="4px" fontSize="md" fontWeight="normal">
+                            Password
+                        </FormLabel>
+                        <InputGroup>
+                            <InputLeftElement pointerEvents="none">
+                                <Icon
+                                    as={AiFillLock}
+                                    color="black"
+                                    w={6}
+                                    h={6}
+                                    mt={'3px'}
+                                />
+                            </InputLeftElement>
                             <Input
                                 borderRadius="15px"
-                                mb="36px"
-                                fontSize="sm"
+                                variant={'filled'}
+                                mb="24px"
+                                fontSize="md"
+                                focusBorderColor="black"
+                                color="white"
                                 type="password"
-                                placeholder="Your password"
+                                placeholder="Password"
+                                _placeholder={{ color: 'black' }}
                                 size="lg"
                             />
-                            <Button
-                                fontSize="10px"
-                                type="submit"
-                                bg="teal.300"
-                                w="100%"
-                                h="45"
-                                mb="20px"
-                                color="white"
-                                mt="20px"
-                                _hover={{
-                                    bg: 'teal.200',
-                                }}
-                                _active={{
-                                    bg: 'teal.400',
-                                }}
-                            >
-                                SIGN IN
-                            </Button>
-                        </FormControl>
-                        <Flex
-                            flexDirection="column"
-                            justifyContent="center"
-                            alignItems="center"
-                            maxW="100%"
-                            mt="0px"
+                        </InputGroup>
+                        <Button
+                            fontSize="10px"
+                            type="submit"
+                            bg="white"
+                            w="100%"
+                            h="45"
+                            mb="20px"
+                            color="black"
+                            mt="20px"
+                            _hover={{
+                                bg: '#e2e2e2',
+                            }}
                         >
-                            <Text color={textColor} fontWeight="medium">
-                                Don have an account?
-                                <Link
-                                    color={titleColor}
-                                    as="span"
-                                    ms="5px"
-                                    fontWeight="bold"
-                                >
-                                    Sign Up
-                                </Link>
-                            </Text>
-                        </Flex>
-                    </Flex>
+                            SIGN IN
+                        </Button>
+                    </FormControl>
                 </Flex>
-                {/* <Box
-                    display={{ base: 'none', md: 'block' }}
-                    overflowX="hidden"
-                    h="100%"
-                    w="40vw"
-                    position="absolute"
-                    right="0px"
-                >
-                    <Box
-                        bgImage={signInImage}
-                        w="100%"
-                        h="100%"
-                        bgSize="cover"
-                        bgPosition="50%"
-                        position="absolute"
-                        borderBottomLeftRadius="20px"
-                    ></Box>
-                </Box> */}
             </Flex>
         </Flex>
     );
