@@ -3,7 +3,12 @@ import { PrismaClient } from '@prisma/client';
 export const prisma = new PrismaClient({ log: ['query'] });
 
 export { createApplied, getAllApplied } from './applied';
-export { createCompany, getCompanies, getCompany } from './company';
+export {
+    createCompany,
+    getCompanies,
+    getCompany,
+    updateCompany,
+} from './company';
 export {
     applied,
     companies,

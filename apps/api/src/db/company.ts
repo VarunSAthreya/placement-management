@@ -56,3 +56,21 @@ export const createCompany = async (company: ICompany) => {
 
     return getCompany(name);
 };
+
+export const updateCompany = async (company: ICompany) => {
+    const { name, arrival_date, package: pkg, type, eligibility } = company;
+
+    await prisma.company.update({
+        where: { name },
+        data: {
+            arrival_date,
+            package: pkg,
+            type,
+            eligibility: {
+                update: eligibility,
+            },
+        },
+    });
+
+    return getCompany(name);
+};

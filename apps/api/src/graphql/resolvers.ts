@@ -10,6 +10,7 @@ import {
     getCompany,
     getUser,
     getUsers,
+    updateCompany,
     updateUserDetails,
 } from '../db';
 
@@ -44,5 +45,7 @@ export const resolvers = {
             _: Context,
             { input }: { input: IUserDetails }
         ) => updateUserDetails(input),
+        updateCompany: async (_: Context, { input }: { input: ICompany }) =>
+            updateCompany(input),
     },
 };

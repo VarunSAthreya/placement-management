@@ -40,6 +40,21 @@ const company = gql`
         tenth: Float!
         twelth: Float!
     }
+
+    input CompanyUpdateInput {
+        name: String!
+        arrival_date: String
+        package: Float
+        type: CompanyType
+        eligibility: CompanyEdibilityUpdateInput
+    }
+
+    input CompanyEdibilityUpdateInput {
+        CGPA: Float
+        backlogs: Int
+        tenth: Float
+        twelth: Float
+    }
 `;
 
 export default company;

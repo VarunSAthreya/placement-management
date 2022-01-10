@@ -76,7 +76,6 @@ export const updateUserDetails = async (userDetails: IUserDetails) => {
             },
         },
     });
-    console.log(res);
 
     return getUserDetails(res.USN);
 };
