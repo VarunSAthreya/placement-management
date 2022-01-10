@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import AppliedCard from '../components/Card/AppliedCard';
+import StudentAppliedCard from '../components/Card/StudentAppliedCard';
 import SideBar from '../components/Sidebar/Sidebar';
 
 const appliedCardData = [
@@ -65,7 +65,7 @@ const Applied = () => {
                             <Flex direction="column" w="100%">
                                 {appliedCardData.map((row) => {
                                     return (
-                                        <AppliedCard
+                                        <StudentAppliedCard
                                             key={row.usn}
                                             name={row.name}
                                             branch={row.branch}
