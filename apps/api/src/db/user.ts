@@ -81,7 +81,7 @@ export const updateUserDetails = async (userDetails: IUserDetails) => {
 };
 
 export const deleteUser = async (USN: string) => {
-    const res = getUser(USN);
+    const res = await getUser(USN);
     await prisma.user.delete({ where: { USN } });
     return res;
 };

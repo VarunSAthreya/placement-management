@@ -5,6 +5,7 @@ export const prisma = new PrismaClient({ log: ['query'] });
 export { createApplied, getAllApplied } from './applied';
 export {
     createCompany,
+    deleteCompany,
     getCompanies,
     getCompany,
     updateCompany,

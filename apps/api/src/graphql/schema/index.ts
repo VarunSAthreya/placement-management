@@ -40,6 +40,7 @@ const typeDefs = gql`
         updateUserDetails(input: UserDetailsUpdateInput!): UserDetails!
         updateCompany(input: CompanyUpdateInput!): Company!
         deleteUser(USN: ID!): User!
+        deleteCompany(name: String!): Company!
     }
 `;
 

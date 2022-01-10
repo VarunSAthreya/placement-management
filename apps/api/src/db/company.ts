@@ -74,3 +74,13 @@ export const updateCompany = async (company: ICompany) => {
 
     return getCompany(name);
 };
+
+export const deleteCompany = async (name: string) => {
+    const res = await getCompany(name);
+
+    await prisma.company.delete({
+        where: { name },
+    });
+
+    return res;
+};
