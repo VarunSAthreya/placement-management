@@ -18,7 +18,7 @@ export {
     userDetails,
     users,
 } from './dummy';
-export { createSelected, getAllSelected } from './selected';
+export { createSelected, deleteSelected, getAllSelected } from './selected';
 export {
     createUser,
     deleteUser,

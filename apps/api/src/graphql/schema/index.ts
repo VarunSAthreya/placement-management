@@ -42,6 +42,7 @@ const typeDefs = gql`
         deleteUser(USN: ID!): User!
         deleteCompany(name: String!): Company!
         deleteApplied(input: AppliedInput!): Applied!
+        deleteSelected(input: SelectedInput!): Selected!
     }
 `;
 

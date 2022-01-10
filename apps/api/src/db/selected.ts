@@ -40,11 +40,15 @@ export const getSelected = async (USN: string, companyID: string) =>
         },
         include: {
             user: true,
-            company: true,
+            company: {
+                include: {
+                    eligibility: true,
+                },
+            },
         },
     });
 
-export const createSelected = async (applied: IApplied) => {
+export const createSelected = async (applied: ISelected) => {
     await prisma.selected.create({
         data: {
             userID: applied.userID,
@@ -53,4 +57,20 @@ export const createSelected = async (applied: IApplied) => {
     });
 
     return getSelected(applied.userID, applied.companyID);
+};
+
+export const deleteSelected = async (applied: ISelected) => {
+    const { userID, companyID } = applied;
+    const res = await getSelected(userID, companyID);
+
+    await prisma.selected.delete({
+        where: {
+            userID_companyID: {
+                userID,
+                companyID,
+            },
+        },
+    });
+
+    return res;
 };
