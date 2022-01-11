@@ -1,48 +1,33 @@
 import { prisma } from '.';
 
-export const getUsers = async () =>
-    prisma.user.findMany({
+const query = {
+    details: {
         include: {
-            details: {
+            applied: {
                 include: {
-                    applied: {
-                        include: {
-                            user: true,
-                            company: true,
-                        },
-                    },
-                    selected: {
-                        include: {
-                            user: true,
-                            company: true,
-                        },
-                    },
+                    user: true,
+                    company: true,
+                },
+            },
+            selected: {
+                include: {
+                    user: true,
+                    company: true,
                 },
             },
         },
+    },
+};
+
+export const getUsers = async () =>
+    prisma.user.findMany({
+        include: query,
     });
 
 export const getUser = async (USN: string) =>
     prisma.user.findUnique({
         where: { USN },
-        include: {
-            details: {
-                include: {
-                    applied: {
-                        include: {
-                            user: true,
-                            company: true,
-                        },
-                    },
-                    selected: {
-                        include: {
-                            user: true,
-                            company: true,
-                        },
-                    },
-                },
-            },
-        },
+        include: query,
     });
 
 export const createUser = async (user: IUser) => {

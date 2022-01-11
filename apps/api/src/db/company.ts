@@ -1,42 +1,30 @@
 import { prisma } from '.';
 
+const query = {
+    eligibility: true,
+    applied: {
+        include: {
+            user: true,
+            company: true,
+        },
+    },
+    selected: {
+        include: {
+            user: true,
+            company: true,
+        },
+    },
+};
+
 export const getCompanies = async () =>
     prisma.company.findMany({
-        include: {
-            eligibility: true,
-            applied: {
-                include: {
-                    user: true,
-                    company: true,
-                },
-            },
-            selected: {
-                include: {
-                    user: true,
-                    company: true,
-                },
-            },
-        },
+        include: query,
     });
 
 export const getCompany = async (name: string) =>
     prisma.company.findUnique({
         where: { name },
-        include: {
-            eligibility: true,
-            applied: {
-                include: {
-                    user: true,
-                    company: true,
-                },
-            },
-            selected: {
-                include: {
-                    user: true,
-                    company: true,
-                },
-            },
-        },
+        include: query,
     });
 
 export const createCompany = async (company: ICompany) => {

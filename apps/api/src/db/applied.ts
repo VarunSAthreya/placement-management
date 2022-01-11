@@ -1,15 +1,17 @@
 import { getCompany, getUserDetails, prisma } from '.';
 
+const query = {
+    user: true,
+    company: {
+        include: {
+            eligibility: true,
+        },
+    },
+};
+
 export const getAllApplied = async () =>
     prisma.applied.findMany({
-        include: {
-            user: true,
-            company: {
-                include: {
-                    eligibility: true,
-                },
-            },
-        },
+        include: query,
     });
 
 export const getAppliedOnUSN = async (USN: string) =>
@@ -17,14 +19,7 @@ export const getAppliedOnUSN = async (USN: string) =>
         where: {
             userID: USN,
         },
-        include: {
-            user: true,
-            company: {
-                include: {
-                    eligibility: true,
-                },
-            },
-        },
+        include: query,
     });
 
 export const getAppliedOnCompany = async (companyID: string) =>
@@ -32,14 +27,7 @@ export const getAppliedOnCompany = async (companyID: string) =>
         where: {
             companyID,
         },
-        include: {
-            user: true,
-            company: {
-                include: {
-                    eligibility: true,
-                },
-            },
-        },
+        include: query,
     });
 
 export const getApplied = async (applied: IApplied) => {
@@ -52,14 +40,7 @@ export const getApplied = async (applied: IApplied) => {
                 companyID,
             },
         },
-        include: {
-            user: true,
-            company: {
-                include: {
-                    eligibility: true,
-                },
-            },
-        },
+        include: query,
     });
 };
 
