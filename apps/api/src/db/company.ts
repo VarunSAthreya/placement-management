@@ -84,3 +84,17 @@ export const deleteCompany = async (name: string) => {
 
     return res;
 };
+
+export const getAllEligibleStudents = async (name: string) => {
+    const company = await getCompany(name);
+    const { CGPA, backlogs, tenth, twelth } = company!.eligibility!;
+
+    return prisma.userDetails.findMany({
+        where: {
+            CGPA: { gte: CGPA },
+            backlogs: { lte: backlogs },
+            tenth: { gte: tenth },
+            twelth: { gte: twelth },
+        },
+    });
+};

@@ -39,6 +39,7 @@ const typeDefs = gql`
         createSelected(input: SelectedInput!): Selected!
         updateUserDetails(input: UserDetailsUpdateInput!): UserDetails!
         updateCompany(input: CompanyUpdateInput!): Company!
+        getAllEligibleStudents(input: String!): [UserDetails]!
         deleteUser(USN: ID!): User!
         deleteCompany(name: String!): Company!
         deleteApplied(input: AppliedInput!): Applied!

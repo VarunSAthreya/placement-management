@@ -6,6 +6,7 @@ export { createApplied, deleteApplied, getAllApplied } from './applied';
 export {
     createCompany,
     deleteCompany,
+    getAllEligibleStudents,
     getCompanies,
     getCompany,
     updateCompany,
