@@ -58,8 +58,8 @@ const Company = () => {
                 width={'100%'}
                 p={4}
             >
-                <Box my="22px" overflowX={{ sm: 'scroll', xl: 'hidden' }}>
-                    <Box p="6px 0px 22px 0px">
+                <Box mb="22px" overflowX={{ sm: 'scroll', xl: 'hidden' }}>
+                    <Box pb={'25px'}>
                         <Flex direction="column">
                             <Text
                                 fontSize="1.5rem"

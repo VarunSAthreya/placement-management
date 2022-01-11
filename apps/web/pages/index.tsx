@@ -12,7 +12,7 @@ const Home = () => {
             <SideBar />
             <Flex
                 flexDirection="column"
-                pt={{ base: '120px', md: '50px' }}
+                pt={{ base: '120px', md: '25px' }}
                 marginLeft={'295px'}
                 width={'100%'}
                 p={4}

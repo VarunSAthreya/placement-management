@@ -46,9 +46,12 @@ const Placed = () => {
                 width={'100%'}
                 p={4}
             >
-                <Box p="16px" overflowX={{ sm: 'scroll', xl: 'hidden' }}>
-                    <Box p="12px 12px 28px 12px" bg={'white'} my={4}>
-                        <Flex direction="column">
+                <Box
+                    p="0px 16px 16px"
+                    overflowX={{ sm: 'scroll', xl: 'hidden' }}
+                >
+                    <Box bg={'white'} mb={4} borderRadius={4}>
+                        <Flex direction="column" p={4}>
                             <Text
                                 fontSize="xl"
                                 color={'black'}

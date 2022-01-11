@@ -49,7 +49,7 @@ const Students = () => {
                 p={4}
             >
                 <Box overflowX={{ sm: 'scroll', xl: 'hidden' }}>
-                    <Box p="6px 0px 22px 0px">
+                    <Box pb={'25px'}>
                         <Text
                             fontSize="1.5rem"
                             color={'black'}

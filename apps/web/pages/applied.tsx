@@ -46,9 +46,9 @@ const Applied = () => {
                 width={'100%'}
                 p={4}
             >
-                <Box my={{ lg: '24px' }} me={{ lg: '24px' }}>
+                <Box mb={{ lg: '24px' }} me={{ lg: '24px' }}>
                     <Flex direction="column">
-                        <Box py="12px">
+                        <Box pb="12px">
                             <Text
                                 fontSize="1.5rem"
                                 color={'black'}
