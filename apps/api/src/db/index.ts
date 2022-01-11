@@ -15,6 +15,7 @@ export {
     createUser,
     deleteUser,
     getUser,
+    getUserDetails,
     getUsers,
     updateUserDetails,
 } from './user';

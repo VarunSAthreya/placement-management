@@ -1,4 +1,4 @@
-import { prisma } from '.';
+import { getCompany, getUserDetails, prisma } from '.';
 
 export const getAllApplied = async () =>
     prisma.applied.findMany({
@@ -45,7 +45,7 @@ export const getAppliedOnCompany = async (companyID: string) =>
 export const getApplied = async (applied: IApplied) => {
     const { userID, companyID } = applied;
 
-    prisma.applied.findUnique({
+    return prisma.applied.findUnique({
         where: {
             userID_companyID: {
                 userID,
@@ -66,14 +66,34 @@ export const getApplied = async (applied: IApplied) => {
 export const createApplied = async (applied: IApplied) => {
     const { userID, companyID } = applied;
 
-    await prisma.applied.create({
-        data: {
-            userID,
-            companyID,
-        },
-    });
+    const userDetails = await getUserDetails(userID);
+    const company = await getCompany(companyID);
 
-    return getApplied(applied);
+    const { CGPA, backlogs, tenth, twelth } = userDetails!;
+    const {
+        CGPA: CGPA_cutoff,
+        backlogs: backlogs_cutoff,
+        tenth: tenth_cutoff,
+        twelth: twelth_cutoff,
+    } = company!.eligibility!;
+
+    if (
+        CGPA >= CGPA_cutoff &&
+        backlogs <= backlogs_cutoff &&
+        tenth >= tenth_cutoff &&
+        twelth >= twelth_cutoff
+    ) {
+        await prisma.applied.create({
+            data: {
+                userID,
+                companyID,
+            },
+        });
+
+        return getApplied(applied);
+    } else {
+        return null;
+    }
 };
 
 export const deleteApplied = async (applied: IApplied) => {

@@ -1,4 +1,5 @@
 import { prisma } from '.';
+import { getApplied } from './applied';
 
 export const getAllSelected = async () =>
     prisma.selected.findMany({
@@ -66,11 +67,17 @@ export const getSelected = async (selected: ISelected) => {
 export const createSelected = async (selected: ISelected) => {
     const { userID, companyID } = selected;
 
-    await prisma.selected.create({
-        data: { userID, companyID },
-    });
+    const applied = await getApplied(selected);
 
-    return getSelected(selected);
+    if (applied !== null) {
+        await prisma.selected.create({
+            data: { userID, companyID },
+        });
+
+        return getSelected(selected);
+    } else {
+        return null;
+    }
 };
 
 export const deleteSelected = async (selected: ISelected) => {
