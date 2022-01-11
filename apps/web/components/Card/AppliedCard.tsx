@@ -1,6 +1,6 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 
-const CompanyAppliedCard = (props) => {
+const AppliedCard = (props) => {
     const { company, type, ctc } = props;
 
     return (
@@ -43,4 +43,4 @@ const CompanyAppliedCard = (props) => {
     );
 };
 
-export default CompanyAppliedCard;
+export default AppliedCard;
