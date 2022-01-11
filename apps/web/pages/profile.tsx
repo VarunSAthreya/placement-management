@@ -1,5 +1,5 @@
 import { Avatar, Box, Flex, Grid, Text } from '@chakra-ui/react';
-import CompanyAppliedCard from '../components/Card/CompanyAppliedCard';
+import AppliedCard from '../components/Card/AppliedCard';
 import ProfileCard from '../components/Card/profileCard';
 import SideBar from '../components/Sidebar/Sidebar';
 
@@ -150,7 +150,7 @@ const Profile = () => {
                             <Flex direction="column">
                                 {companyAppliedCardData.map((row) => {
                                     return (
-                                        <CompanyAppliedCard
+                                        <AppliedCard
                                             key={row.company}
                                             company={row.company}
                                             ctc={row.ctc}

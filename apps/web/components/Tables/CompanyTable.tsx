@@ -1,7 +1,14 @@
 import React from 'react';
-import { Tr, Td, Flex, Text, Icon, useColorModeValue } from '@chakra-ui/react';
+import {
+    Tr,
+    Td,
+    Flex,
+    Text,
+    IconButton,
+    useColorModeValue,
+    Icon,
+} from '@chakra-ui/react';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
-import IconBox from '../Icons/IconBox';
 
 const CompanyTable = (props) => {
     const { logo, name, type, date, ctc, year } = props;
@@ -73,23 +80,24 @@ const CompanyTable = (props) => {
             </Td>
             <Td>
                 <Flex justifyContent={'center'}>
-                    <IconBox
-                        as="box"
+                    <IconButton
                         h={'45px'}
                         w={'45px'}
                         color={'white'}
+                        aria-label="Student Info"
                         bg={
                             'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
                         }
-                    >
-                        <Icon
-                            fontSize="16"
-                            _groupHover={{
-                                color: 'black',
-                            }}
-                            as={BsFillInfoCircleFill}
-                        />
-                    </IconBox>
+                        _hover={{
+                            bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                        }}
+                        onClick={() => {
+                            console.log('HI');
+                        }}
+                        _focus={{ outline: 'none' }}
+                        variant="no-hover"
+                        icon={<BsFillInfoCircleFill />}
+                    />
                 </Flex>
             </Td>
         </Tr>

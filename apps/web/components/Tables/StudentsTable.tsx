@@ -1,7 +1,7 @@
 import {
     Avatar,
     Badge,
-    Icon,
+    IconButton,
     Flex,
     Td,
     Text,
@@ -9,10 +9,9 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
-import IconBox from '../Icons/IconBox';
 
 const StudentsTable = (props) => {
-    const { logo, name, email, usn, branch, section, cgpa } = props;
+    const { name, email, usn, branch, section, cgpa } = props;
     const textColor = useColorModeValue('gray.700', 'white');
     const bgStatus = useColorModeValue('gray.400', '#1a202c');
     const colorStatus = useColorModeValue('white', 'gray.400');
@@ -91,23 +90,21 @@ const StudentsTable = (props) => {
             </Td>
             <Td>
                 <Flex justifyContent={'center'}>
-                    <IconBox
-                        as="box"
+                    <IconButton
                         h={'45px'}
                         w={'45px'}
                         color={'white'}
+                        aria-label="Student Info"
                         bg={
                             'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
                         }
-                    >
-                        <Icon
-                            fontSize="16"
-                            _groupHover={{
-                                color: 'black',
-                            }}
-                            as={BsFillInfoCircleFill}
-                        />
-                    </IconBox>
+                        _hover={{
+                            bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                        }}
+                        _focus={{ outline: 'none' }}
+                        variant="no-hover"
+                        icon={<BsFillInfoCircleFill />}
+                    />
                 </Flex>
             </Td>
         </Tr>
