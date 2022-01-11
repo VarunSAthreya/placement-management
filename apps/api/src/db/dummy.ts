@@ -1,4 +1,18 @@
-export const users: IUser[] = [
+import { prisma } from '.';
+
+export const addDummyData = async () => {
+    await prisma.user.createMany({ data: users });
+
+    await prisma.userDetails.createMany({ data: userDetails });
+
+    await prisma.company.createMany({ data: companies });
+
+    await prisma.applied.createMany({ data: applied });
+
+    await prisma.selected.createMany({ data: selected });
+};
+
+const users = [
     {
         USN: '1JS19CS186',
         role: 'STUDENT',
@@ -22,7 +36,7 @@ export const users: IUser[] = [
     },
 ];
 
-export const userDetails: IUserDetails[] = [
+const userDetails = [
     {
         USN: '1JS19CS186',
         CGPA: 8.5,
@@ -85,7 +99,7 @@ export const userDetails: IUserDetails[] = [
     },
 ];
 
-export const companies: ICompany[] = [
+const companies = [
     {
         name: 'Google',
         arrival_date: new Date().toISOString(),
@@ -112,7 +126,7 @@ export const companies: ICompany[] = [
     },
 ];
 
-export const eligibility: ICompanyEligibility[] = [
+const eligibility: ICompanyEligibility[] = [
     {
         name: 'TCS',
         CGPA: 8.5,
@@ -143,7 +157,7 @@ export const eligibility: ICompanyEligibility[] = [
     },
 ];
 
-export const applied: IApplied[] = [
+const applied: IApplied[] = [
     {
         userID: '1JS19CS186',
         companyID: 'Google',
@@ -174,7 +188,7 @@ export const applied: IApplied[] = [
     },
 ];
 
-export const selected: ISelected[] = [
+const selected: ISelected[] = [
     {
         userID: '1JS19CS183',
         companyID: 'TCS',

@@ -10,14 +10,6 @@ export {
     getCompany,
     updateCompany,
 } from './company';
-export {
-    applied,
-    companies,
-    eligibility,
-    selected,
-    userDetails,
-    users,
-} from './dummy';
 export { createSelected, deleteSelected, getAllSelected } from './selected';
 export {
     createUser,
