@@ -5,8 +5,8 @@ import React from 'react';
 import { FiType, FiPackage } from 'react-icons/fi';
 import { BsCalendarEvent } from 'react-icons/bs';
 
-const CompanyInfoCard = (props) => {
-    const { name, date, type, ctc, cgpa, tenth, twelth, backlogs } = props;
+const CompanyInfoCard = ({ company }) => {
+    const { name, date, type, ctc, cgpa, tenth, twelth, backlogs } = company;
     return (
         <Box>
             <Grid

@@ -6,12 +6,13 @@ import {
     Text,
     IconButton,
     useColorModeValue,
-    Icon,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
-const CompanyTable = (props) => {
-    const { logo, name, type, date, ctc, year } = props;
+const CompanyTable = ({ company }) => {
+    const router = useRouter();
+    const { name, type, date, ctc, year } = company;
     const textColor = useColorModeValue('gray.700', 'white');
     return (
         <Tr>
@@ -23,7 +24,6 @@ const CompanyTable = (props) => {
                     flexWrap="nowrap"
                     justifyContent={'flex-start'}
                 >
-                    <Icon as={logo} h={'24px'} w={'24px'} me="5px" />
                     <Text
                         fontSize="md"
                         color={textColor}
@@ -91,11 +91,11 @@ const CompanyTable = (props) => {
                         _hover={{
                             bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
                         }}
-                        onClick={() => {
-                            console.log('HI');
-                        }}
                         _focus={{ outline: 'none' }}
                         variant="no-hover"
+                        onClick={() => {
+                            router.push(`/company/${name}`);
+                        }}
                         icon={<BsFillInfoCircleFill />}
                     />
                 </Flex>
