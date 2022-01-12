@@ -61,7 +61,7 @@ const CompanyInfoCard = ({ company }) => {
                                 >
                                     <Flex align={'center'}>
                                         <IconBox
-                                            as="box"
+                                            as="Box"
                                             h={'40px'}
                                             w={'40px'}
                                             marginRight="10px"
@@ -104,7 +104,7 @@ const CompanyInfoCard = ({ company }) => {
                         py="14px"
                     >
                         <IconBox
-                            as="box"
+                            as="Box"
                             h={'60px'}
                             w={'60px'}
                             bg={
@@ -152,7 +152,7 @@ const CompanyInfoCard = ({ company }) => {
                         py="14px"
                     >
                         <IconBox
-                            as="box"
+                            as="Box"
                             h={'60px'}
                             w={'60px'}
                             bg={
