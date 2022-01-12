@@ -1,6 +1,8 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Box, Flex, Text, Avatar } from '@chakra-ui/react';
+import Separator from '../Separator/Separator';
+import React from 'react';
 
-const StudentInfoCard = (props) => {
+const StudentInfoCard = ({ student }) => {
     const {
         name,
         usn,
@@ -12,146 +14,298 @@ const StudentInfoCard = (props) => {
         tenth,
         twelth,
         backlogs,
-    } = props;
-
+    } = student;
     return (
-        <Flex direction="column">
-            <Flex
-                align="center"
-                justifyContent="space-between"
-                mb="8px"
+        <Box>
+            <Box
+                display={'flex'}
+                flexDirection={'column'}
+                bg={'white'}
+                p={2}
+                mb={4}
                 borderRadius={8}
-                bg={'#f8f9fa'}
-                p={3}
             >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    Name:{' '}
-                </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
-                    {name}
-                </Text>
+                <Flex
+                    align="center"
+                    mb={{ sm: '10px', md: '0px' }}
+                    direction={{ sm: 'column', md: 'row' }}
+                    justify={'space-between'}
+                    p="5px"
+                    w={{ sm: '100%' }}
+                    textAlign={{ sm: 'center', md: 'start' }}
+                >
+                    <Flex
+                        direction="column"
+                        maxWidth="100%"
+                        my={{ sm: '14px' }}
+                    >
+                        <Text
+                            fontSize={{ sm: 'lg', lg: '2.3rem' }}
+                            color={'black'}
+                            fontWeight="bold"
+                            ms={{ sm: '8px', md: '0px' }}
+                        >
+                            {name}
+                        </Text>
+                        <Text
+                            fontSize={{ sm: 'sm', md: 'md' }}
+                            color={'black'}
+                            fontWeight="semibold"
+                        >
+                            {usn}
+                        </Text>
+                    </Flex>
+                    <Avatar
+                        me={{ md: '22px' }}
+                        name={name}
+                        color={'white'}
+                        bg={
+                            'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                        }
+                        w="70px"
+                        h="70px"
+                        borderRadius="15px"
+                    />
+                </Flex>
+            </Box>
+            <Flex>
+                <Box
+                    p="16px"
+                    mt="16px"
+                    bg={'white'}
+                    borderRadius={8}
+                    width={'50%'}
+                    marginRight={'15px'}
+                >
+                    <Box>
+                        <Flex
+                            justify="space-between"
+                            align="center"
+                            minHeight="60px"
+                            w="100%"
+                        >
+                            <Text
+                                fontSize="lg"
+                                color={'black'}
+                                fontWeight="bold"
+                            >
+                                General Information
+                            </Text>
+                        </Flex>
+                        <Separator />
+                    </Box>
+                    <Box>
+                        <Flex
+                            direction={{ sm: 'column', md: 'column' }}
+                            w="100%"
+                            py="1rem"
+                        >
+                            <Flex
+                                align="center"
+                                justifyContent="space-between"
+                                mb="12px"
+                                borderRadius={8}
+                                bg={'#f8f9fa'}
+                                p={3}
+                            >
+                                <Text
+                                    fontSize="md"
+                                    color={'black'}
+                                    fontWeight="bold"
+                                    me="10px"
+                                >
+                                    Email
+                                </Text>
+                                <Text
+                                    fontSize="md"
+                                    color="gray.500"
+                                    fontWeight="400"
+                                >
+                                    {email}
+                                </Text>
+                            </Flex>
+                            <Flex
+                                align="center"
+                                justifyContent="space-between"
+                                mb="12px"
+                                borderRadius={8}
+                                bg={'#f8f9fa'}
+                                p={3}
+                            >
+                                <Text
+                                    fontSize="md"
+                                    color={'black'}
+                                    fontWeight="bold"
+                                    me="10px"
+                                >
+                                    Branch & Section
+                                </Text>
+                                <Text
+                                    fontSize="md"
+                                    color="gray.500"
+                                    fontWeight="400"
+                                >
+                                    {branch} {section}
+                                </Text>
+                            </Flex>
+                            <Flex
+                                align="center"
+                                justifyContent="space-between"
+                                mb="12px"
+                                borderRadius={8}
+                                bg={'#f8f9fa'}
+                                p={3}
+                            >
+                                <Text
+                                    fontSize="md"
+                                    color={'black'}
+                                    fontWeight="bold"
+                                    me="10px"
+                                >
+                                    Year
+                                </Text>
+                                <Text
+                                    fontSize="md"
+                                    color="gray.500"
+                                    fontWeight="400"
+                                >
+                                    {year}
+                                </Text>
+                            </Flex>
+                        </Flex>
+                    </Box>
+                </Box>
+                <Box
+                    p="16px"
+                    mt="16px"
+                    bg={'white'}
+                    borderRadius={8}
+                    width={'50%'}
+                >
+                    <Box>
+                        <Flex
+                            justify="space-between"
+                            align="center"
+                            minHeight="60px"
+                            w="100%"
+                        >
+                            <Text
+                                fontSize="lg"
+                                color={'black'}
+                                fontWeight="bold"
+                            >
+                                Academic Information
+                            </Text>
+                        </Flex>
+                        <Separator />
+                    </Box>
+                    <Box>
+                        <Flex
+                            direction={{ sm: 'column', md: 'column' }}
+                            w="100%"
+                            py="1rem"
+                        >
+                            <Flex
+                                align="center"
+                                justifyContent="space-between"
+                                mb="12px"
+                                borderRadius={8}
+                                bg={'#f8f9fa'}
+                                p={3}
+                            >
+                                <Text
+                                    fontSize="md"
+                                    color={'black'}
+                                    fontWeight="bold"
+                                    me="10px"
+                                >
+                                    CGPA
+                                </Text>
+                                <Text
+                                    fontSize="md"
+                                    color="gray.500"
+                                    fontWeight="400"
+                                >
+                                    {cgpa}
+                                </Text>
+                            </Flex>
+                            <Flex
+                                align="center"
+                                justifyContent="space-between"
+                                mb="12px"
+                                borderRadius={8}
+                                bg={'#f8f9fa'}
+                                p={3}
+                            >
+                                <Text
+                                    fontSize="md"
+                                    color={'black'}
+                                    fontWeight="bold"
+                                    me="10px"
+                                >
+                                    10th Mark&apos;s Percentage
+                                </Text>
+                                <Text
+                                    fontSize="md"
+                                    color="gray.500"
+                                    fontWeight="400"
+                                >
+                                    {tenth}
+                                </Text>
+                            </Flex>
+                            <Flex
+                                align="center"
+                                justifyContent="space-between"
+                                mb="12px"
+                                borderRadius={8}
+                                bg={'#f8f9fa'}
+                                p={3}
+                            >
+                                <Text
+                                    fontSize="md"
+                                    color={'black'}
+                                    fontWeight="bold"
+                                    me="10px"
+                                >
+                                    12th Mark&apos;s Percentage
+                                </Text>
+                                <Text
+                                    fontSize="md"
+                                    color="gray.500"
+                                    fontWeight="400"
+                                >
+                                    {twelth}
+                                </Text>
+                            </Flex>
+                            <Flex
+                                align="center"
+                                justifyContent="space-between"
+                                mb="12px"
+                                borderRadius={8}
+                                bg={'#f8f9fa'}
+                                p={3}
+                            >
+                                <Text
+                                    fontSize="md"
+                                    color={'black'}
+                                    fontWeight="bold"
+                                    me="10px"
+                                >
+                                    BackLogs
+                                </Text>
+                                <Text
+                                    fontSize="md"
+                                    color="gray.500"
+                                    fontWeight="400"
+                                >
+                                    {backlogs}
+                                </Text>
+                            </Flex>
+                        </Flex>
+                    </Box>
+                </Box>
             </Flex>
-            <Flex
-                align="center"
-                justifyContent="space-between"
-                mb="8px"
-                borderRadius={8}
-                bg={'#f8f9fa'}
-                p={3}
-            >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    USN
-                </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
-                    {usn}
-                </Text>
-            </Flex>
-            <Flex
-                align="center"
-                justifyContent="space-between"
-                mb="8px"
-                borderRadius={8}
-                bg={'#f8f9fa'}
-                p={3}
-            >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    Email:{' '}
-                </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
-                    {email}
-                </Text>
-            </Flex>
-            <Flex
-                align="center"
-                justifyContent="space-between"
-                mb="8px"
-                borderRadius={8}
-                bg={'#f8f9fa'}
-                p={3}
-            >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    Branch & Section
-                </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
-                    {branch} {section}
-                </Text>
-            </Flex>
-            <Flex
-                align="center"
-                justifyContent="space-between"
-                mb="8px"
-                borderRadius={8}
-                bg={'#f8f9fa'}
-                p={3}
-            >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    Year
-                </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
-                    {year}
-                </Text>
-            </Flex>
-            <Flex
-                align="center"
-                justifyContent="space-between"
-                mb="8px"
-                borderRadius={8}
-                bg={'#f8f9fa'}
-                p={3}
-            >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    CGPA
-                </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
-                    {cgpa}
-                </Text>
-            </Flex>
-            <Flex
-                align="center"
-                justifyContent="space-between"
-                mb="8px"
-                borderRadius={8}
-                bg={'#f8f9fa'}
-                p={3}
-            >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    10th Mark&apos;s Percentage
-                </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
-                    {tenth}
-                </Text>
-            </Flex>
-            <Flex
-                align="center"
-                justifyContent="space-between"
-                mb="8px"
-                borderRadius={8}
-                bg={'#f8f9fa'}
-                p={3}
-            >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    12th Mark&apos;s Percentage
-                </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
-                    {twelth}
-                </Text>
-            </Flex>
-            <Flex
-                align="center"
-                justifyContent="space-between"
-                mb="8px"
-                borderRadius={8}
-                bg={'#f8f9fa'}
-                p={3}
-            >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    BackLogs
-                </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
-                    {backlogs}
-                </Text>
-            </Flex>
-        </Flex>
+        </Box>
     );
 };
 
