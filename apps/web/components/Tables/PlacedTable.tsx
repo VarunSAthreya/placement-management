@@ -2,16 +2,18 @@ import {
     Avatar,
     AvatarGroup,
     Flex,
-    Icon,
     Td,
     Text,
     Tr,
+    IconButton,
     useColorModeValue,
 } from '@chakra-ui/react';
-import React from 'react';
+import { useRouter } from 'next/router';
+import { BsFillInfoCircleFill } from 'react-icons/bs';
 
-const PlacedTable = (props) => {
-    const { logo, name, members, ctc } = props;
+const PlacedTable = ({ placed }) => {
+    const router = useRouter();
+    const { name, members, ctc } = placed;
     const textColor = useColorModeValue('gray.700', 'white');
     return (
         <Tr>
@@ -22,7 +24,6 @@ const PlacedTable = (props) => {
                     minWidth="100%"
                     flexWrap="nowrap"
                 >
-                    <Icon as={logo} h={'24px'} w={'24px'} pe="5px" />
                     <Text
                         fontSize="md"
                         color={textColor}
@@ -62,6 +63,28 @@ const PlacedTable = (props) => {
                 >
                     {ctc}
                 </Text>
+            </Td>
+            <Td>
+                <Flex justifyContent={'center'}>
+                    <IconButton
+                        h={'45px'}
+                        w={'45px'}
+                        color={'white'}
+                        aria-label="Student Info"
+                        bg={
+                            'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                        }
+                        _hover={{
+                            bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                        }}
+                        _focus={{ outline: 'none' }}
+                        variant="no-hover"
+                        icon={<BsFillInfoCircleFill />}
+                        onClick={() => {
+                            router.push(`/placed/${name}`);
+                        }}
+                    />
+                </Flex>
             </Td>
         </Tr>
     );
