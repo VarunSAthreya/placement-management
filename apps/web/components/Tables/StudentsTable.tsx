@@ -8,10 +8,12 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
-const StudentsTable = (props) => {
-    const { name, email, usn, branch, section, cgpa } = props;
+const StudentsTable = ({ student }) => {
+    const router = useRouter();
+    const { name, email, USN, branch, section, cgpa } = student;
     const textColor = useColorModeValue('gray.700', 'white');
     const bgStatus = useColorModeValue('gray.400', '#1a202c');
     const colorStatus = useColorModeValue('white', 'gray.400');
@@ -59,7 +61,7 @@ const StudentsTable = (props) => {
                     <Text fontSize="md" color={textColor} fontWeight="bold">
                         {branch}
                     </Text>
-                    <Text fontSize="sm" color="gray.800" fontWeight="normal">
+                    <Text fontSize="sm" color="gray.800" fontWeight="bold">
                         {section}
                     </Text>
                 </Flex>
@@ -72,7 +74,7 @@ const StudentsTable = (props) => {
                     fontWeight="bold"
                     pb=".5rem"
                 >
-                    {usn}
+                    {USN}
                 </Text>
             </Td>
             <Td>
@@ -104,6 +106,9 @@ const StudentsTable = (props) => {
                         _focus={{ outline: 'none' }}
                         variant="no-hover"
                         icon={<BsFillInfoCircleFill />}
+                        onClick={() => {
+                            router.push(`/students/${USN}`);
+                        }}
                     />
                 </Flex>
             </Td>
