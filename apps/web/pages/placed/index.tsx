@@ -1,37 +1,27 @@
 import { Table, Tbody, Text, Box, Th, Thead, Tr, Flex } from '@chakra-ui/react';
-import {
-    AdobexdLogo,
-    AtlassianLogo,
-    SlackLogo,
-    SpotifyLogo,
-} from '../components/Icons/Icons';
-import PlacedTable from '../components/Tables/PlacedTable';
-import SideBar from '../components/Sidebar/Sidebar';
+import PlacedTable from '../../components/Tables/PlacedTable';
+import SideBar from '../../components/Sidebar/Sidebar';
 
 const placedTableData = [
     {
-        logo: AdobexdLogo,
         name: 'Purity UI Version',
         members: ['1', '2'],
-        package: '8LPA',
+        ctc: '8LPA',
     },
     {
-        logo: AtlassianLogo,
         name: 'Add Progress Track',
         members: ['1', '2'],
-        package: '8LPA',
+        ctc: '8LPA',
     },
     {
-        logo: SlackLogo,
         name: 'Fix Platform Errors',
         members: ['1', '2'],
-        package: '8LPA',
+        ctc: '8LPA',
     },
     {
-        logo: SpotifyLogo,
         name: 'Launch our Mobile App',
-        members: ['1', '2', '3'],
-        package: '8LPA',
+        members: ['1', '2'],
+        ctc: '8LPA',
     },
 ];
 
@@ -85,17 +75,17 @@ const Placed = () => {
                                     <Th color="gray.400" textAlign={'center'}>
                                         Packages
                                     </Th>
+                                    <Th color="gray.400" textAlign={'center'}>
+                                        Student Details
+                                    </Th>
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                {placedTableData.map((row) => {
+                                {placedTableData.map((placed, index) => {
                                     return (
                                         <PlacedTable
-                                            key={row.name}
-                                            name={row.name}
-                                            logo={row.logo}
-                                            members={row.members}
-                                            ctc={row.package}
+                                            key={index}
+                                            placed={placed}
                                         />
                                     );
                                 })}
