@@ -1,45 +1,35 @@
 import { Table, Tbody, Text, Box, Th, Thead, Tr, Flex } from '@chakra-ui/react';
-import {
-    AdobexdLogo,
-    AtlassianLogo,
-    SlackLogo,
-    SpotifyLogo,
-} from '../components/Icons/Icons';
-import CompanyTable from '../components/Tables/CompanyTable';
-import SideBar from '../components/Sidebar/Sidebar';
+import CompanyTable from '../../components/Tables/CompanyTable';
+import SideBar from '../../components/Sidebar/Sidebar';
 
 const companyTableData = [
     {
-        logo: AdobexdLogo,
-        name: 'Purity UI Version',
-        type: 'Product Based',
+        name: 'Microsoft',
+        type: 'Product',
         date: '03-05-2021',
         eligibility: 75,
         ctc: '7.5LPA',
         year: '2021',
     },
     {
-        logo: AtlassianLogo,
         name: 'Add Progress Track',
-        type: 'Product Based',
+        type: 'Product',
         date: '03-05-2021',
         eligibility: 75,
         ctc: '7.5LPA',
         year: '2021',
     },
     {
-        logo: SlackLogo,
         name: 'Fix Platform Errors',
-        type: 'Product Based',
+        type: 'Product',
         date: '03-05-2021',
         eligibility: 75,
         ctc: '7.5LPA',
         year: '2021',
     },
     {
-        logo: SpotifyLogo,
         name: 'Launch our Mobile App',
-        type: 'Product Based',
+        type: 'Product',
         date: '03-05-2021',
         eligibility: 75,
         ctc: '7.5LPA',
@@ -103,17 +93,11 @@ const Company = () => {
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                {companyTableData.map((row) => {
+                                {companyTableData.map((company, index) => {
                                     return (
                                         <CompanyTable
-                                            key={row.name}
-                                            name={row.name}
-                                            logo={row.logo}
-                                            type={row.type}
-                                            date={row.date}
-                                            eligibility={row.eligibility}
-                                            ctc={row.ctc}
-                                            year={row.year}
+                                            key={index}
+                                            company={company}
                                         />
                                     );
                                 })}
