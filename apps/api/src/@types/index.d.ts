@@ -9,7 +9,6 @@ enum Roles {
     STUDENT = 'STUDENT',
     ADMIN = 'ADMIN',
 }
-
 interface IUserDetails {
     USN: string;
     year: number;
@@ -24,8 +23,8 @@ interface IUserDetails {
     tenth: number;
     twelth: number;
     package: number;
-    applied?: Applied[];
-    selected?: Selected[];
+    applied?: IApplied[];
+    selected?: ISelected[];
 }
 
 enum Branch {
@@ -50,8 +49,8 @@ interface ICompany {
     package: number;
     type: CompanyType;
     eligibility?: ICompanyEligibility;
-    applied?: Applied[];
-    selected?: Selected[];
+    applied?: IApplied[];
+    selected?: ISelected[];
 }
 enum CompanyType {
     SERVICE = 'SERVICE',
