@@ -12,6 +12,7 @@
     },
     "devDependencies": {
         "@types/cors": "^2.8.10",
+        "@types/jsonwebtoken": "^8.5.7",
         "@types/morgan": "^1.9.2",
         "@types/node": "^15.12.2",
         "esbuild-register": "^2.5.0",
@@ -30,6 +31,7 @@
         "cors": "^2.8.5",
         "dotenv": "^10.0.0",
         "graphql": "^16.2.0",
+        "jsonwebtoken": "^8.5.1",
         "morgan": "^1.10.0"
     }
 }
