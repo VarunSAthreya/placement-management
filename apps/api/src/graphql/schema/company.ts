@@ -30,8 +30,6 @@ const company = gql`
         package: Float
         type: CompanyType!
         eligibility: CompanyEdibilityInput!
-        applied: [AppliedInput]
-        selected: [SelectedInput]
     }
 
     input CompanyEdibilityInput {

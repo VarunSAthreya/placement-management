@@ -1,3 +1,4 @@
+import { ApolloError } from 'apollo-server';
 import { prisma } from '.';
 
 const query = {
@@ -27,22 +28,34 @@ export const getCompany = async (name: string) =>
         include: query,
     });
 
-export const createCompany = async (company: ICompany) => {
-    const { name, arrival_date, package: pkg, type, eligibility } = company;
+export const createCompany = async (company: ICompany, role: string) => {
+    try {
+        if (role !== 'ADMIN') {
+            // TODO: Add role based error for remanding
+            throw new Error('You are not authorized to create a company');
+        }
+        const { name, arrival_date, package: pkg, type, eligibility } = company;
 
-    await prisma.company.create({
-        data: {
-            name,
-            arrival_date,
-            package: pkg,
-            type,
-            eligibility: {
-                create: eligibility,
+        const res = await prisma.company.create({
+            data: {
+                name,
+                arrival_date,
+                package: pkg,
+                type,
+                eligibility: {
+                    create: eligibility,
+                },
             },
-        },
-    });
+        });
 
-    return getCompany(name);
+        if (!res) {
+            throw new Error('Error creating company');
+        }
+
+        return getCompany(name);
+    } catch (error: any) {
+        throw new ApolloError(error.message);
+    }
 };
 
 export const updateCompany = async (company: ICompany) => {

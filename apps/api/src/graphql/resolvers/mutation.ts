@@ -1,4 +1,3 @@
-import { Context } from 'apollo-server-core';
 import {
     createApplied,
     createCompany,
@@ -14,36 +13,42 @@ import {
 } from '../../db';
 
 const mutation = {
-    createUser: async (_: Context, { input }: { input: IUser }) =>
-        createUser(input),
+    createUser: async (
+        _: any,
+        { input }: { input: IUser },
+        { role }: { role: string }
+    ) => createUser(input),
 
-    createCompany: async (_: Context, { input }: { input: ICompany }) =>
-        createCompany(input),
+    createCompany: async (
+        _: any,
+        { input }: { input: ICompany },
+        { role }: { role: string }
+    ) => createCompany(input, role),
 
-    createApplied: async (_: Context, { input }: { input: IApplied }) =>
+    createApplied: async (_: any, { input }: { input: IApplied }) =>
         createApplied(input),
 
-    createSelected: async (_: Context, { input }: { input: ISelected }) =>
+    createSelected: async (_: any, { input }: { input: ISelected }) =>
         createSelected(input),
 
-    updateUserDetails: async (_: Context, { input }: { input: IUserDetails }) =>
+    updateUserDetails: async (_: any, { input }: { input: IUserDetails }) =>
         updateUserDetails(input),
 
-    updateCompany: async (_: Context, { input }: { input: ICompany }) =>
+    updateCompany: async (_: any, { input }: { input: ICompany }) =>
         updateCompany(input),
 
-    getAllEligibleStudents: async (_: Context, { input }: { input: string }) =>
+    getAllEligibleStudents: async (_: any, { input }: { input: string }) =>
         getAllEligibleStudents(input),
 
-    deleteUser: async (_: Context, { USN }: { USN: string }) => deleteUser(USN),
+    deleteUser: async (_: any, { USN }: { USN: string }) => deleteUser(USN),
 
-    deleteCompany: async (_: Context, { name }: { name: string }) =>
+    deleteCompany: async (_: any, { name }: { name: string }) =>
         deleteCompany(name),
 
-    deleteApplied: async (_: Context, { input }: { input: IApplied }) =>
+    deleteApplied: async (_: any, { input }: { input: IApplied }) =>
         deleteApplied(input),
 
-    deleteSelected: async (_: Context, { input }: { input: ISelected }) =>
+    deleteSelected: async (_: any, { input }: { input: ISelected }) =>
         deleteSelected(input),
 };
 
