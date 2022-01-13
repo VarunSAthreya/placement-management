@@ -3,7 +3,7 @@ import Separator from '../Separator/Separator';
 import IconBox from '../Icons/IconBox';
 import React from 'react';
 import { FiType, FiPackage } from 'react-icons/fi';
-import { BsCalendarEvent } from 'react-icons/bs';
+import { BsCalendarEvent, BsBuilding } from 'react-icons/bs';
 
 const CompanyInfoCard = ({ company }) => {
     const { name, date, type, ctc, cgpa, tenth, twelth, backlogs } = company;
@@ -13,7 +13,7 @@ const CompanyInfoCard = ({ company }) => {
                 templateColumns={{
                     sm: '1fr',
                     md: '1fr 1fr',
-                    xl: '1fr 1fr 1fr 1fr ',
+                    xl: '1fr 1fr 1fr 1fr 1fr',
                 }}
                 templateRows={{
                     sm: 'auto auto auto',
@@ -32,59 +32,40 @@ const CompanyInfoCard = ({ company }) => {
                     <Box h="100%" w="100%">
                         <Flex
                             direction="column"
-                            h="100%"
-                            p="0px 10px 20px 10px"
+                            align="center"
+                            justify="space-evenly"
                             w="100%"
+                            py="14px"
                         >
-                            <Box
-                                display={'flex'}
-                                flexDir={'column'}
-                                justifyContent={'space-between'}
+                            <IconBox
+                                as="Box"
+                                h={'60px'}
+                                w={'60px'}
+                                bg={
+                                    'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                }
                             >
-                                <Text
-                                    fontSize="2rem"
-                                    letterSpacing="2px"
-                                    fontWeight="bold"
-                                    mb={4}
-                                >
-                                    {name}
+                                <Icon
+                                    h={'24px'}
+                                    w={'24px'}
+                                    color="white"
+                                    as={BsBuilding}
+                                />
+                            </IconBox>
+                            <Flex
+                                direction="column"
+                                m="14px"
+                                justify="center"
+                                textAlign="center"
+                                align="center"
+                                w="100%"
+                            >
+                                <Text fontSize="lg" color="gray.500" mb={4}>
+                                    COMPANY NAME
                                 </Text>
-                                <Flex
-                                    justify={'space-between'}
-                                    align={'center'}
-                                    p={4}
-                                    color={'white'}
-                                    borderRadius={8}
-                                    bg={
-                                        'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
-                                    }
-                                >
-                                    <Flex align={'center'}>
-                                        <IconBox
-                                            as="Box"
-                                            h={'40px'}
-                                            w={'40px'}
-                                            marginRight="10px"
-                                            bg={'white'}
-                                        >
-                                            <Icon
-                                                h={'15px'}
-                                                w={'15px'}
-                                                color="black"
-                                                as={BsCalendarEvent}
-                                            />
-                                        </IconBox>
-                                        <Text
-                                            fontSize="lg"
-                                            letterSpacing="2px"
-                                            fontWeight="bold"
-                                        >
-                                            DATE OF ARRIVAL
-                                        </Text>
-                                    </Flex>
-                                    <Text>{date}</Text>
-                                </Flex>
-                            </Box>
+                                <Separator />
+                            </Flex>
+                            <Text fontSize="2rem">{name}</Text>
                         </Flex>
                     </Box>
                 </Box>
@@ -126,14 +107,12 @@ const CompanyInfoCard = ({ company }) => {
                             align="center"
                             w="100%"
                         >
-                            <Text fontSize="lg" fontWeight="bold" mb={4}>
-                                Company Type
+                            <Text fontSize="lg" color="gray.500" mb={4}>
+                                COMPANY TYPE
                             </Text>
                             <Separator />
                         </Flex>
-                        <Text fontSize="1.5rem" fontWeight="bold">
-                            {type} Based
-                        </Text>
+                        <Text fontSize="1.5rem">{type} Based</Text>
                     </Flex>
                 </Box>
                 <Box
@@ -174,14 +153,58 @@ const CompanyInfoCard = ({ company }) => {
                             align="center"
                             w="100%"
                         >
-                            <Text fontSize="lg" fontWeight="bold" mb={4}>
-                                CTC Package
+                            <Text fontSize="lg" color="gray.500" mb={4}>
+                                CTC PACKAGE
                             </Text>
                             <Separator />
                         </Flex>
-                        <Text fontSize="1.5rem" fontWeight="bold">
-                            {ctc}
-                        </Text>
+                        <Text fontSize="1.5rem">{ctc}</Text>
+                    </Flex>
+                </Box>
+                <Box
+                    p="16px"
+                    display="flex"
+                    align="center"
+                    justify="center"
+                    bg={'white'}
+                    borderRadius={8}
+                >
+                    <Flex
+                        direction="column"
+                        align="center"
+                        justify="space-evenly"
+                        w="100%"
+                        py="14px"
+                    >
+                        <IconBox
+                            as="Box"
+                            h={'60px'}
+                            w={'60px'}
+                            bg={
+                                'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                            }
+                        >
+                            <Icon
+                                h={'24px'}
+                                w={'24px'}
+                                color="white"
+                                as={BsCalendarEvent}
+                            />
+                        </IconBox>
+                        <Flex
+                            direction="column"
+                            m="14px"
+                            justify="center"
+                            textAlign="center"
+                            align="center"
+                            w="100%"
+                        >
+                            <Text fontSize="lg" mb={4} color="gray.500">
+                                DATE OF ARRIVAL
+                            </Text>
+                            <Separator />
+                        </Flex>
+                        <Text fontSize="1.5rem">{date}</Text>
                     </Flex>
                 </Box>
             </Grid>
@@ -193,8 +216,8 @@ const CompanyInfoCard = ({ company }) => {
                         minHeight="60px"
                         w="100%"
                     >
-                        <Text fontSize="lg" color={'black'} fontWeight="bold">
-                            Eligibililty Criteria
+                        <Text fontSize="lg" color={'gray.500'}>
+                            ELIGIBILITY CRITERIA
                         </Text>
                         <Button
                             bg={
@@ -226,19 +249,10 @@ const CompanyInfoCard = ({ company }) => {
                             bg={'#f8f9fa'}
                             p={3}
                         >
-                            <Text
-                                fontSize="md"
-                                color={'black'}
-                                fontWeight="bold"
-                                me="10px"
-                            >
+                            <Text fontSize="md" color={'gray.500'} me="10px">
                                 CGPA
                             </Text>
-                            <Text
-                                fontSize="md"
-                                color="gray.500"
-                                fontWeight="400"
-                            >
+                            <Text fontSize="md" color="black" fontWeight="400">
                                 {cgpa}
                             </Text>
                         </Flex>
@@ -250,19 +264,10 @@ const CompanyInfoCard = ({ company }) => {
                             bg={'#f8f9fa'}
                             p={3}
                         >
-                            <Text
-                                fontSize="md"
-                                color={'black'}
-                                fontWeight="bold"
-                                me="10px"
-                            >
-                                10th Mark&apos;s Percentage
+                            <Text fontSize="md" color={'gray.500'} me="10px">
+                                10TH MARK&apos;S PERCENTAGE
                             </Text>
-                            <Text
-                                fontSize="md"
-                                color="gray.500"
-                                fontWeight="400"
-                            >
+                            <Text fontSize="md" color="black" fontWeight="400">
                                 {tenth}
                             </Text>
                         </Flex>
@@ -274,19 +279,10 @@ const CompanyInfoCard = ({ company }) => {
                             bg={'#f8f9fa'}
                             p={3}
                         >
-                            <Text
-                                fontSize="md"
-                                color={'black'}
-                                fontWeight="bold"
-                                me="10px"
-                            >
-                                12th Mark&apos;s Percentage
+                            <Text fontSize="md" color={'gray.500'} me="10px">
+                                12TH MARK&apos;S PERCENTAGE
                             </Text>
-                            <Text
-                                fontSize="md"
-                                color="gray.500"
-                                fontWeight="400"
-                            >
+                            <Text fontSize="md" color="black" fontWeight="400">
                                 {twelth}
                             </Text>
                         </Flex>
@@ -298,19 +294,10 @@ const CompanyInfoCard = ({ company }) => {
                             bg={'#f8f9fa'}
                             p={3}
                         >
-                            <Text
-                                fontSize="md"
-                                color={'black'}
-                                fontWeight="bold"
-                                me="10px"
-                            >
-                                BackLogs
+                            <Text fontSize="md" color={'gray.500'} me="10px">
+                                BACKLOGS
                             </Text>
-                            <Text
-                                fontSize="md"
-                                color="gray.500"
-                                fontWeight="400"
-                            >
+                            <Text fontSize="md" color="black" fontWeight="400">
                                 {backlogs}
                             </Text>
                         </Flex>

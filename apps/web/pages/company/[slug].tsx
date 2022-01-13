@@ -1,4 +1,12 @@
-import { Box, Flex } from '@chakra-ui/react';
+import {
+    Box,
+    Flex,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    Text,
+} from '@chakra-ui/react';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import { GetStaticPaths, GetStaticProps, PreviewData } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import SideBar from '../../components/Sidebar/Sidebar';
@@ -50,8 +58,78 @@ const companyDetails = ({ company }) => {
                 width={'100%'}
                 px={4}
             >
-                <Box px={4} borderRadius={8}>
-                    <CompanyInfoCard company={company} />
+                <Box mb="22px" overflowX={{ sm: 'scroll', xl: 'hidden' }}>
+                    <Box pb={'25px'}>
+                        <Flex
+                            direction="column"
+                            bg={'white'}
+                            p={4}
+                            borderRadius={8}
+                            pb="1.5rem"
+                        >
+                            <Text
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="4xl"
+                                fontWeight="extrabold"
+                                textTransform={'uppercase'}
+                            >
+                                Company Details
+                            </Text>
+                            <Breadcrumb
+                                separator={
+                                    <ChevronRightIcon color="gray.500" />
+                                }
+                            >
+                                <BreadcrumbItem>
+                                    <BreadcrumbLink
+                                        href="/"
+                                        color="gray.500"
+                                        _hover={{
+                                            textDecoration: 'none',
+                                            color: '#FF0080',
+                                        }}
+                                        _focus={{ outline: 'none' }}
+                                        variant="no-hover"
+                                    >
+                                        Home
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+
+                                <BreadcrumbItem>
+                                    <BreadcrumbLink
+                                        href="/company"
+                                        color="gray.500"
+                                        _hover={{
+                                            textDecoration: 'none',
+                                            color: '#FF0080',
+                                        }}
+                                        _focus={{ outline: 'none' }}
+                                        variant="no-hover"
+                                    >
+                                        Companies
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+                                <BreadcrumbItem isCurrentPage>
+                                    <BreadcrumbLink
+                                        href="#"
+                                        color="gray.500"
+                                        _hover={{
+                                            textDecoration: 'none',
+                                            color: '#FF0080',
+                                        }}
+                                        _focus={{ outline: 'none' }}
+                                        variant="no-hover"
+                                    >
+                                        Company Details
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+                            </Breadcrumb>
+                        </Flex>
+                    </Box>
+                    <Box px={4} borderRadius={8}>
+                        <CompanyInfoCard company={company} />
+                    </Box>
                 </Box>
             </Flex>
         </Flex>

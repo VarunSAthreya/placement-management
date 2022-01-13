@@ -26,6 +26,7 @@ const CompanyTable = ({ company }) => {
                 >
                     <Text
                         fontSize="md"
+                        textAlign={'center'}
                         color={textColor}
                         fontWeight="bold"
                         minWidth="100%"

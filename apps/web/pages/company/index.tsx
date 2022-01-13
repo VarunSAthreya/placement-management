@@ -1,4 +1,17 @@
-import { Table, Tbody, Text, Box, Th, Thead, Tr, Flex } from '@chakra-ui/react';
+import {
+    Table,
+    Tbody,
+    Text,
+    Box,
+    Th,
+    Thead,
+    Tr,
+    Flex,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+} from '@chakra-ui/react';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import CompanyTable from '../../components/Tables/CompanyTable';
 import SideBar from '../../components/Sidebar/Sidebar';
 
@@ -50,44 +63,79 @@ const Company = () => {
             >
                 <Box mb="22px" overflowX={{ sm: 'scroll', xl: 'hidden' }}>
                     <Box pb={'25px'}>
-                        <Flex direction="column">
+                        <Flex
+                            direction="column"
+                            bg={'white'}
+                            p={4}
+                            borderRadius={8}
+                            pb="1.5rem"
+                        >
                             <Text
-                                fontSize="1.5rem"
-                                color={'black'}
-                                fontWeight="bold"
-                                bg={'white'}
-                                p={4}
-                                borderRadius={8}
-                                pb="1.5rem"
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="4xl"
+                                fontWeight="extrabold"
+                                textTransform={'uppercase'}
                             >
-                                Company&apos;s Visiting
+                                Company&apos;s List
                             </Text>
+                            <Breadcrumb
+                                separator={
+                                    <ChevronRightIcon color="gray.500" />
+                                }
+                            >
+                                <BreadcrumbItem>
+                                    <BreadcrumbLink
+                                        href="/"
+                                        color="gray.500"
+                                        _hover={{
+                                            textDecoration: 'none',
+                                            color: '#FF0080',
+                                        }}
+                                        _focus={{ outline: 'none' }}
+                                        variant="no-hover"
+                                    >
+                                        Home
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+
+                                <BreadcrumbItem isCurrentPage>
+                                    <BreadcrumbLink
+                                        href="/company"
+                                        color="gray.500"
+                                        _hover={{
+                                            textDecoration: 'none',
+                                            color: '#FF0080',
+                                        }}
+                                        _focus={{ outline: 'none' }}
+                                        variant="no-hover"
+                                    >
+                                        Companies
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+                            </Breadcrumb>
                         </Flex>
                     </Box>
                     <Box bg={'white'} p={4} borderRadius={8}>
-                        <Table variant="simple" color={'black'}>
+                        <Table variant="simple">
                             <Thead>
                                 <Tr my=".8rem" pl="0px">
-                                    <Th
-                                        pl="0px"
-                                        color="gray.800"
-                                        textAlign={'center'}
-                                    >
+                                    <Th color="gray.500" textAlign={'center'}>
                                         Name
                                     </Th>
-                                    <Th color="gray.800" textAlign={'center'}>
+                                    <Th color="gray.500" textAlign={'center'}>
                                         type
                                     </Th>
-                                    <Th color="gray.800" textAlign={'center'}>
+                                    <Th color="gray.500" textAlign={'center'}>
                                         Date of Arrival
                                     </Th>
-                                    <Th color="gray.800" textAlign={'center'}>
+                                    <Th color="gray.500" textAlign={'center'}>
                                         Ctc
                                     </Th>
-                                    <Th color="gray.800" textAlign={'center'}>
+                                    <Th color="gray.500" textAlign={'center'}>
                                         year
                                     </Th>
-                                    <Th color="gray.800" textAlign={'center'}>
+                                    <Th color="gray.500" textAlign={'center'}>
                                         More Info
                                     </Th>
                                 </Tr>
