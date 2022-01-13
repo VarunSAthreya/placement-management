@@ -1,3 +1,4 @@
+import bcrypt from 'bcrypt';
 import { prisma } from '.';
 
 const query = {
@@ -33,10 +34,12 @@ export const getUser = async (USN: string) =>
 export const createUser = async (user: IUser) => {
     const { USN, password, role, details } = user;
 
+    const encry_password = await bcrypt.hash(password, 10);
+
     const res = await prisma.user.create({
         data: {
             USN,
-            password,
+            password: encry_password,
             role,
             details: {
                 create: details,
