@@ -1,4 +1,17 @@
-import { Table, Tbody, Text, Box, Th, Thead, Tr, Flex } from '@chakra-ui/react';
+import {
+    Table,
+    Tbody,
+    Text,
+    Box,
+    Th,
+    Thead,
+    Tr,
+    Flex,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+} from '@chakra-ui/react';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import PlacedTable from '../../components/Tables/PlacedTable';
 import SideBar from '../../components/Sidebar/Sidebar';
 
@@ -40,28 +53,58 @@ const Placed = () => {
                     p="0px 16px 16px"
                     overflowX={{ sm: 'scroll', xl: 'hidden' }}
                 >
-                    <Box bg={'white'} mb={4} borderRadius={4}>
-                        <Flex direction="column" p={4}>
+                    <Box pb={'25px'}>
+                        <Flex
+                            direction="column"
+                            bg={'white'}
+                            p={4}
+                            borderRadius={8}
+                            pb="1.5rem"
+                        >
                             <Text
-                                fontSize="xl"
-                                color={'black'}
-                                fontWeight="bold"
-                                pb=".5rem"
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="4xl"
+                                fontWeight="extrabold"
+                                textTransform={'uppercase'}
                             >
-                                Placed Students
+                                Placed Student&apos;s List
                             </Text>
-                            <Flex align="center">
-                                <Text
-                                    fontSize="sm"
-                                    color="gray.400"
-                                    fontWeight="normal"
-                                >
-                                    <Text fontWeight="bold" as="span">
-                                        30 placed
-                                    </Text>{' '}
-                                    in Total.
-                                </Text>
-                            </Flex>
+                            <Breadcrumb
+                                separator={
+                                    <ChevronRightIcon color="gray.500" />
+                                }
+                            >
+                                <BreadcrumbItem>
+                                    <BreadcrumbLink
+                                        href="/"
+                                        color="gray.500"
+                                        _hover={{
+                                            textDecoration: 'none',
+                                            color: '#FF0080',
+                                        }}
+                                        _focus={{ outline: 'none' }}
+                                        variant="no-hover"
+                                    >
+                                        Home
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+
+                                <BreadcrumbItem isCurrentPage>
+                                    <BreadcrumbLink
+                                        href="/placed"
+                                        color="gray.500"
+                                        _hover={{
+                                            textDecoration: 'none',
+                                            color: '#FF0080',
+                                        }}
+                                        _focus={{ outline: 'none' }}
+                                        variant="no-hover"
+                                    >
+                                        Placed Students
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+                            </Breadcrumb>
                         </Flex>
                     </Box>
                     <Box bg={'white'} p={6} borderRadius={8}>

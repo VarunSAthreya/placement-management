@@ -1,4 +1,17 @@
-import { Box, Flex, Table, Tbody, Th, Thead, Tr, Text } from '@chakra-ui/react';
+import {
+    Box,
+    Flex,
+    Table,
+    Tbody,
+    Th,
+    Thead,
+    Tr,
+    Text,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+} from '@chakra-ui/react';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import { GetStaticPaths, GetStaticProps, PreviewData } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import SideBar from '../../components/Sidebar/Sidebar';
@@ -110,35 +123,93 @@ const companyDetails = ({ placed }) => {
             >
                 <Box overflowX={{ sm: 'scroll', xl: 'hidden' }}>
                     <Box pb={'25px'}>
-                        <Text
-                            fontSize="1.5rem"
-                            color={'black'}
-                            fontWeight="bold"
+                        <Flex
+                            direction="column"
                             bg={'white'}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
                         >
-                            Student&apos;s
-                        </Text>
+                            <Text
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="4xl"
+                                fontWeight="extrabold"
+                                textTransform={'uppercase'}
+                            >
+                                Student&apos;s List
+                            </Text>
+                            <Breadcrumb
+                                separator={
+                                    <ChevronRightIcon color="gray.500" />
+                                }
+                            >
+                                <BreadcrumbItem>
+                                    <BreadcrumbLink
+                                        href="/"
+                                        color="gray.500"
+                                        _hover={{
+                                            textDecoration: 'none',
+                                            color: '#FF0080',
+                                        }}
+                                        _focus={{ outline: 'none' }}
+                                        variant="no-hover"
+                                    >
+                                        Home
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+
+                                <BreadcrumbItem>
+                                    <BreadcrumbLink
+                                        href="/placed"
+                                        color="gray.500"
+                                        _hover={{
+                                            textDecoration: 'none',
+                                            color: '#FF0080',
+                                        }}
+                                        _focus={{ outline: 'none' }}
+                                        variant="no-hover"
+                                    >
+                                        Placed Students
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+                                <BreadcrumbItem isCurrentPage>
+                                    <BreadcrumbLink
+                                        href="#"
+                                        color="gray.500"
+                                        _hover={{
+                                            textDecoration: 'none',
+                                            color: '#FF0080',
+                                        }}
+                                        _focus={{ outline: 'none' }}
+                                        variant="no-hover"
+                                    >
+                                        Students List
+                                    </BreadcrumbLink>
+                                </BreadcrumbItem>
+                            </Breadcrumb>
+                        </Flex>
                     </Box>
                     <Box bg={'white'} p={4} borderRadius={8}>
                         <Table variant="simple" color={'black'}>
                             <Thead>
-                                <Tr my=".8rem" pl="0px" color="gray.800">
-                                    <Th pl="0px" color="gray.800">
+                                <Tr my=".8rem" color="gray.500">
+                                    <Th color="gray.500" textAlign={'center'}>
                                         Name
                                     </Th>
-                                    <Th color="gray.800" textAlign={'center'}>
+                                    <Th color="gray.500" textAlign={'center'}>
                                         Branch
                                     </Th>
-                                    <Th color="gray.800" textAlign={'center'}>
+                                    <Th color="gray.500" textAlign={'center'}>
+                                        Section
+                                    </Th>
+                                    <Th color="gray.500" textAlign={'center'}>
                                         USN
                                     </Th>
-                                    <Th color="gray.800" textAlign={'center'}>
+                                    <Th color="gray.500" textAlign={'center'}>
                                         CGPA
                                     </Th>
-                                    <Th color="gray.800" textAlign={'center'}>
+                                    <Th color="gray.500" textAlign={'center'}>
                                         More Info
                                     </Th>
                                 </Tr>
