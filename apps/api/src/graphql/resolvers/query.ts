@@ -1,5 +1,5 @@
-import { Context } from 'apollo-server-core';
 import {
+    authenticateUser,
     getAllApplied,
     getAllSelected,
     getCompanies,
@@ -11,15 +11,20 @@ import {
 const query = {
     users: async () => getUsers(),
 
-    user: async (_: Context, { USN }: { USN: string }) => getUser(USN),
+    user: async (_: any, { USN }: { USN: string }) => getUser(USN),
 
     companies: async () => getCompanies(),
 
-    company: async (_: Context, { name }: { name: string }) => getCompany(name),
+    company: async (_: any, { name }: { name: string }) => getCompany(name),
 
     applied: async () => getAllApplied(),
 
     selected: async () => getAllSelected(),
+
+    authenticate: async (
+        _: any,
+        { USN, password }: { USN: string; password: string }
+    ) => authenticateUser(USN, password),
 };
 
 export default query;

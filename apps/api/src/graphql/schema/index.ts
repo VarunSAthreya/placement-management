@@ -30,6 +30,12 @@ const typeDefs = gql`
         companies: [Company]!
         applied: [Applied]!
         selected: [Selected]!
+        authenticate(USN: ID!, password: String!): AuthResponse!
+    }
+
+    type AuthResponse {
+        user: User!
+        token: String!
     }
 
     type Mutation {
