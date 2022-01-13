@@ -66,8 +66,6 @@ const user = gql`
         tenth: Float!
         twelth: Float!
         package: Float
-        applied: [AppliedInput]
-        selected: [SelectedInput]
     }
 
     input UserDetailsUpdateInput {
