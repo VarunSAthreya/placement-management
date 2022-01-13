@@ -1,19 +1,20 @@
+import { gql, useQuery } from '@apollo/client';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
-    Table,
-    Tbody,
-    Text,
     Box,
-    Th,
-    Thead,
-    Tr,
-    Flex,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Flex,
+    Table,
+    Tbody,
+    Text,
+    Th,
+    Thead,
+    Tr,
 } from '@chakra-ui/react';
-import { ChevronRightIcon } from '@chakra-ui/icons';
-import CompanyTable from '../../components/Tables/CompanyTable';
 import SideBar from '../../components/Sidebar/Sidebar';
+import CompanyTable from '../../components/Tables/CompanyTable';
 
 const companyTableData = [
     {
@@ -50,7 +51,27 @@ const companyTableData = [
     },
 ];
 
+const query = gql`
+    query {
+        companies {
+            name
+            type
+            arrival_date
+            package
+            eligibility {
+                CGPA
+                backlogs
+            }
+        }
+    }
+`;
+
 const Company = () => {
+    const { loading, error, data } = useQuery(query);
+    console.log({ data });
+    if (loading) return <p>Loading...</p>;
+    if (error) return <p>Error :(</p>;
+
     return (
         <Flex flexDirection={'row'} bg={'#f8f9fa'}>
             <SideBar />
@@ -141,7 +162,7 @@ const Company = () => {
                                 </Tr>
                             </Thead>
                             <Tbody>
-                                {companyTableData.map((company, index) => {
+                                {data.companies.map((company, index) => {
                                     return (
                                         <CompanyTable
                                             key={index}

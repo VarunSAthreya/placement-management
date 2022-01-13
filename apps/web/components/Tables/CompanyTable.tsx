@@ -1,18 +1,18 @@
-import React from 'react';
 import {
-    Tr,
-    Td,
     Flex,
-    Text,
     IconButton,
+    Td,
+    Text,
+    Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import React from 'react';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
 const CompanyTable = ({ company }) => {
     const router = useRouter();
-    const { name, type, date, ctc, year } = company;
+    const { name, type, arrival_date, package: pkg, eligibility } = company;
     const textColor = useColorModeValue('gray.700', 'white');
     return (
         <Tr>
@@ -54,7 +54,7 @@ const CompanyTable = ({ company }) => {
                     fontWeight="bold"
                     pb=".5rem"
                 >
-                    {date}
+                    {arrival_date}
                 </Text>
             </Td>
             <Td>
@@ -65,7 +65,7 @@ const CompanyTable = ({ company }) => {
                     fontWeight="bold"
                     pb=".5rem"
                 >
-                    {ctc}
+                    {pkg}
                 </Text>
             </Td>
             <Td>
@@ -76,7 +76,7 @@ const CompanyTable = ({ company }) => {
                     fontWeight="bold"
                     pb=".5rem"
                 >
-                    {year}
+                    {eligibility.backlogs}
                 </Text>
             </Td>
             <Td>
