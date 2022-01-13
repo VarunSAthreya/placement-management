@@ -5,7 +5,7 @@ import React from 'react';
 const StudentInfoCard = ({ student }) => {
     const {
         name,
-        usn,
+        USN,
         email,
         branch,
         section,
@@ -16,24 +16,35 @@ const StudentInfoCard = ({ student }) => {
         backlogs,
     } = student;
     return (
-        <Box>
-            <Box
-                display={'flex'}
-                flexDirection={'column'}
-                bg={'white'}
-                p={2}
-                mb={4}
-                borderRadius={8}
-            >
+        <Box
+            bg={'white'}
+            p={2}
+            mb={4}
+            borderRadius={8}
+            display={'flex'}
+            flexDirection={'column'}
+        >
+            <Box display={'flex'} flexDirection={'column'}>
                 <Flex
                     align="center"
                     mb={{ sm: '10px', md: '0px' }}
                     direction={{ sm: 'column', md: 'row' }}
-                    justify={'space-between'}
+                    justify={'center'}
                     p="5px"
                     w={{ sm: '100%' }}
                     textAlign={{ sm: 'center', md: 'start' }}
                 >
+                    <Avatar
+                        me={{ md: '22px' }}
+                        name={name}
+                        color={'white'}
+                        bg={
+                            'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                        }
+                        w="70px"
+                        h="70px"
+                        borderRadius="15px"
+                    />
                     <Flex
                         direction="column"
                         maxWidth="100%"
@@ -52,42 +63,24 @@ const StudentInfoCard = ({ student }) => {
                             color={'black'}
                             fontWeight="semibold"
                         >
-                            {usn}
+                            {USN}
                         </Text>
                     </Flex>
-                    <Avatar
-                        me={{ md: '22px' }}
-                        name={name}
-                        color={'white'}
-                        bg={
-                            'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
-                        }
-                        w="70px"
-                        h="70px"
-                        borderRadius="15px"
-                    />
                 </Flex>
             </Box>
-            <Flex>
-                <Box
-                    p="16px"
-                    mt="16px"
-                    bg={'white'}
-                    borderRadius={8}
-                    width={'50%'}
-                    marginRight={'15px'}
-                >
+            <Flex flexDirection={'column'}>
+                <Box p="16px" marginRight={'15px'}>
                     <Box>
                         <Flex
-                            justify="space-between"
+                            justify="center"
                             align="center"
                             minHeight="60px"
                             w="100%"
                         >
                             <Text
-                                fontSize="lg"
-                                color={'black'}
-                                fontWeight="bold"
+                                fontSize="1.3rem"
+                                color={'gray.500'}
+                                textTransform={'uppercase'}
                             >
                                 General Information
                             </Text>
@@ -110,15 +103,37 @@ const StudentInfoCard = ({ student }) => {
                             >
                                 <Text
                                     fontSize="md"
-                                    color={'black'}
-                                    fontWeight="bold"
+                                    color={'gray.500'}
                                     me="10px"
                                 >
-                                    Email
+                                    USN
                                 </Text>
                                 <Text
                                     fontSize="md"
-                                    color="gray.500"
+                                    color="black"
+                                    fontWeight="400"
+                                >
+                                    {USN}
+                                </Text>
+                            </Flex>
+                            <Flex
+                                align="center"
+                                justifyContent="space-between"
+                                mb="12px"
+                                borderRadius={8}
+                                bg={'#f8f9fa'}
+                                p={3}
+                            >
+                                <Text
+                                    fontSize="md"
+                                    color={'gray.500'}
+                                    me="10px"
+                                >
+                                    EMAIL
+                                </Text>
+                                <Text
+                                    fontSize="md"
+                                    color="black"
                                     fontWeight="400"
                                 >
                                     {email}
@@ -134,15 +149,14 @@ const StudentInfoCard = ({ student }) => {
                             >
                                 <Text
                                     fontSize="md"
-                                    color={'black'}
-                                    fontWeight="bold"
+                                    color={'gray.500'}
                                     me="10px"
                                 >
-                                    Branch & Section
+                                    BRANCH & SECTION
                                 </Text>
                                 <Text
                                     fontSize="md"
-                                    color="gray.500"
+                                    color="black"
                                     fontWeight="400"
                                 >
                                     {branch} {section}
@@ -158,15 +172,14 @@ const StudentInfoCard = ({ student }) => {
                             >
                                 <Text
                                     fontSize="md"
-                                    color={'black'}
-                                    fontWeight="bold"
+                                    color={'gray.500'}
                                     me="10px"
                                 >
-                                    Year
+                                    YEAR
                                 </Text>
                                 <Text
                                     fontSize="md"
-                                    color="gray.500"
+                                    color="black"
                                     fontWeight="400"
                                 >
                                     {year}
@@ -175,24 +188,18 @@ const StudentInfoCard = ({ student }) => {
                         </Flex>
                     </Box>
                 </Box>
-                <Box
-                    p="16px"
-                    mt="16px"
-                    bg={'white'}
-                    borderRadius={8}
-                    width={'50%'}
-                >
+                <Box p="16px">
                     <Box>
                         <Flex
-                            justify="space-between"
+                            justify="center"
                             align="center"
                             minHeight="60px"
                             w="100%"
                         >
                             <Text
                                 fontSize="lg"
-                                color={'black'}
-                                fontWeight="bold"
+                                color={'gray.500'}
+                                textTransform={'uppercase'}
                             >
                                 Academic Information
                             </Text>
@@ -215,15 +222,14 @@ const StudentInfoCard = ({ student }) => {
                             >
                                 <Text
                                     fontSize="md"
-                                    color={'black'}
-                                    fontWeight="bold"
+                                    color={'gray.500'}
                                     me="10px"
                                 >
                                     CGPA
                                 </Text>
                                 <Text
                                     fontSize="md"
-                                    color="gray.500"
+                                    color="black"
                                     fontWeight="400"
                                 >
                                     {cgpa}
@@ -239,15 +245,14 @@ const StudentInfoCard = ({ student }) => {
                             >
                                 <Text
                                     fontSize="md"
-                                    color={'black'}
-                                    fontWeight="bold"
+                                    color={'gray.500'}
                                     me="10px"
                                 >
-                                    10th Mark&apos;s Percentage
+                                    10TH MARK&apos;S PERCENTAGE
                                 </Text>
                                 <Text
                                     fontSize="md"
-                                    color="gray.500"
+                                    color="black"
                                     fontWeight="400"
                                 >
                                     {tenth}
@@ -263,15 +268,14 @@ const StudentInfoCard = ({ student }) => {
                             >
                                 <Text
                                     fontSize="md"
-                                    color={'black'}
-                                    fontWeight="bold"
+                                    color={'gray.500'}
                                     me="10px"
                                 >
-                                    12th Mark&apos;s Percentage
+                                    12TH MARK&apos;S PERCENTAGE
                                 </Text>
                                 <Text
                                     fontSize="md"
-                                    color="gray.500"
+                                    color="black"
                                     fontWeight="400"
                                 >
                                     {twelth}
@@ -287,15 +291,14 @@ const StudentInfoCard = ({ student }) => {
                             >
                                 <Text
                                     fontSize="md"
-                                    color={'black'}
-                                    fontWeight="bold"
+                                    color={'gray.500'}
                                     me="10px"
                                 >
-                                    BackLogs
+                                    BACKLOGS
                                 </Text>
                                 <Text
                                     fontSize="md"
-                                    color="gray.500"
+                                    color="black"
                                     fontWeight="400"
                                 >
                                     {backlogs}

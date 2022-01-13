@@ -22,14 +22,15 @@ const StudentsTable = ({ student }) => {
         <Tr>
             <Td minWidth={{ sm: '150px' }} pl="0px">
                 <Flex
-                    align="center"
+                    align="space"
+                    justifyContent={'center'}
                     py=".8rem"
                     minWidth="100%"
-                    flexWrap="nowrap"
                 >
                     <Avatar
                         name={name}
-                        w="50px"
+                        w="55px"
+                        h="55px"
                         color={'white'}
                         bg={
                             'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
@@ -37,9 +38,9 @@ const StudentsTable = ({ student }) => {
                         borderRadius="12px"
                         me="18px"
                     />
-                    <Flex direction="column">
+                    <Flex direction="column" justifyContent={'center'}>
                         <Text
-                            fontSize="md"
+                            fontSize="1.2rem"
                             color={textColor}
                             fontWeight="bold"
                             minWidth="100%"
@@ -47,7 +48,7 @@ const StudentsTable = ({ student }) => {
                             {name}
                         </Text>
                         <Text
-                            fontSize="sm"
+                            fontSize="md"
                             color="gray.400"
                             fontWeight="normal"
                         >
@@ -57,14 +58,26 @@ const StudentsTable = ({ student }) => {
                 </Flex>
             </Td>
             <Td>
-                <Flex direction="row" justifyContent={'space-evenly'}>
-                    <Text fontSize="md" color={textColor} fontWeight="bold">
-                        {branch}
-                    </Text>
-                    <Text fontSize="sm" color="gray.800" fontWeight="bold">
-                        {section}
-                    </Text>
-                </Flex>
+                <Text
+                    textAlign={'center'}
+                    fontSize="md"
+                    color={textColor}
+                    fontWeight="bold"
+                    pb=".5rem"
+                >
+                    {branch}
+                </Text>
+            </Td>
+            <Td>
+                <Text
+                    textAlign={'center'}
+                    fontSize="md"
+                    color={textColor}
+                    fontWeight="bold"
+                    pb=".5rem"
+                >
+                    {section}
+                </Text>
             </Td>
             <Td>
                 <Text
@@ -83,7 +96,7 @@ const StudentsTable = ({ student }) => {
                         bg={cgpa === '7.5' ? '#22c55e' : bgStatus}
                         color={cgpa === '7' ? '#e11d48' : colorStatus}
                         fontSize="16px"
-                        p="3px 10px"
+                        p="10px"
                         borderRadius="8px"
                     >
                         {cgpa}
