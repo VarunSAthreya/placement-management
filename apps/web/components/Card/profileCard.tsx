@@ -24,10 +24,15 @@ const ProfileCard = (props) => {
                 bg={'#f8f9fa'}
                 p={3}
             >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    Name:{' '}
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    fontWeight="bold"
+                    me="10px"
+                >
+                    NAME:{' '}
                 </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="400">
                     {name}
                 </Text>
             </Flex>
@@ -39,10 +44,15 @@ const ProfileCard = (props) => {
                 bg={'#f8f9fa'}
                 p={3}
             >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    fontWeight="bold"
+                    me="10px"
+                >
                     USN
                 </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="400">
                     {usn}
                 </Text>
             </Flex>
@@ -54,10 +64,15 @@ const ProfileCard = (props) => {
                 bg={'#f8f9fa'}
                 p={3}
             >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    Email:{' '}
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    fontWeight="bold"
+                    me="10px"
+                >
+                    EMAIL:{' '}
                 </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="400">
                     {email}
                 </Text>
             </Flex>
@@ -69,10 +84,15 @@ const ProfileCard = (props) => {
                 bg={'#f8f9fa'}
                 p={3}
             >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    Branch & Section
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    fontWeight="bold"
+                    me="10px"
+                >
+                    BRANCH & SECTION
                 </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="400">
                     {branch} {section}
                 </Text>
             </Flex>
@@ -84,10 +104,15 @@ const ProfileCard = (props) => {
                 bg={'#f8f9fa'}
                 p={3}
             >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    Year
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    fontWeight="bold"
+                    me="10px"
+                >
+                    YEAR
                 </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="400">
                     {year}
                 </Text>
             </Flex>
@@ -99,10 +124,15 @@ const ProfileCard = (props) => {
                 bg={'#f8f9fa'}
                 p={3}
             >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    fontWeight="bold"
+                    me="10px"
+                >
                     CGPA
                 </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="400">
                     {cgpa}
                 </Text>
             </Flex>
@@ -114,10 +144,15 @@ const ProfileCard = (props) => {
                 bg={'#f8f9fa'}
                 p={3}
             >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    10th Mark&apos;s Percentage
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    fontWeight="bold"
+                    me="10px"
+                >
+                    10TH MARK&apos;S PERCENTAGE
                 </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="400">
                     {tenth}
                 </Text>
             </Flex>
@@ -129,10 +164,15 @@ const ProfileCard = (props) => {
                 bg={'#f8f9fa'}
                 p={3}
             >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    12th Mark&apos;s Percentage
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    fontWeight="bold"
+                    me="10px"
+                >
+                    12TH MARK&apos;S PERCENTAGE
                 </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="400">
                     {twelth}
                 </Text>
             </Flex>
@@ -144,10 +184,15 @@ const ProfileCard = (props) => {
                 bg={'#f8f9fa'}
                 p={3}
             >
-                <Text fontSize="md" color={'black'} fontWeight="bold" me="10px">
-                    BackLogs
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    fontWeight="bold"
+                    me="10px"
+                >
+                    BACKLOGS
                 </Text>
-                <Text fontSize="md" color="gray.500" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="400">
                     {backlogs}
                 </Text>
             </Flex>

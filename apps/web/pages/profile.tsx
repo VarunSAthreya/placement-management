@@ -1,4 +1,14 @@
-import { Avatar, Box, Flex, Grid, Text } from '@chakra-ui/react';
+import {
+    Box,
+    Avatar,
+    Flex,
+    Grid,
+    Text,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+} from '@chakra-ui/react';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import AppliedCard from '../components/Card/AppliedCard';
 import ProfileCard from '../components/Card/profileCard';
 import SideBar from '../components/Sidebar/Sidebar';
@@ -42,54 +52,56 @@ const Profile = () => {
                 width={'100%'}
                 p={4}
             >
-                <Box
-                    display={'flex'}
-                    flexDirection={'row'}
-                    justifyContent={'space-between'}
-                    alignItems={'center'}
-                    bg={'white'}
-                    p={4}
-                    mb={6}
-                    borderRadius={8}
-                >
+                <Box pb={'25px'}>
                     <Flex
-                        align="center"
-                        mb={{ sm: '10px', md: '0px' }}
-                        direction={{ sm: 'column', md: 'row' }}
-                        w={{ sm: '100%' }}
-                        textAlign={{ sm: 'center', md: 'start' }}
+                        direction="column"
+                        bg={'white'}
+                        p={4}
+                        borderRadius={8}
+                        pb="1.5rem"
                     >
-                        <Avatar
-                            me={{ md: '22px' }}
-                            name={'es'}
-                            bg={
-                                'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
-                            }
-                            w="50px"
-                            h="50px"
-                            borderRadius="15px"
-                        />
-                        <Flex
-                            direction="column"
-                            maxWidth="100%"
-                            my={{ sm: '14px' }}
+                        <Text
+                            bgGradient="linear(to-l, #7928CA, #FF0080)"
+                            bgClip="text"
+                            fontSize="4xl"
+                            fontWeight="extrabold"
+                            textTransform={'uppercase'}
                         >
-                            <Text
-                                fontSize={{ sm: 'lg', lg: 'xl' }}
-                                color={'black'}
-                                fontWeight="bold"
-                                ms={{ sm: '8px', md: '0px' }}
-                            >
-                                Esthera Jackson
-                            </Text>
-                            <Text
-                                fontSize={{ sm: 'sm', md: 'md' }}
-                                color={'black'}
-                                fontWeight="semibold"
-                            >
-                                esthera@simmmple.com
-                            </Text>
-                        </Flex>
+                            Student Profile
+                        </Text>
+                        <Breadcrumb
+                            separator={<ChevronRightIcon color="gray.500" />}
+                        >
+                            <BreadcrumbItem>
+                                <BreadcrumbLink
+                                    href="/"
+                                    color="gray.500"
+                                    _hover={{
+                                        textDecoration: 'none',
+                                        color: '#FF0080',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                    variant="no-hover"
+                                >
+                                    Home
+                                </BreadcrumbLink>
+                            </BreadcrumbItem>
+
+                            <BreadcrumbItem isCurrentPage>
+                                <BreadcrumbLink
+                                    href="/profile"
+                                    color="gray.500"
+                                    _hover={{
+                                        textDecoration: 'none',
+                                        color: '#FF0080',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                    variant="no-hover"
+                                >
+                                    Profile
+                                </BreadcrumbLink>
+                            </BreadcrumbItem>
+                        </Breadcrumb>
                     </Flex>
                 </Box>
                 <Grid
@@ -105,10 +117,10 @@ const Profile = () => {
                         <Box p="12px 5px" mb="12px">
                             <Text
                                 fontSize="lg"
-                                color={'black'}
-                                fontWeight="bold"
+                                color={'gray.500'}
+                                textTransform={'uppercase'}
                             >
-                                Profile Information
+                                General Information
                             </Text>
                         </Box>
                         <Box px="5px">
@@ -140,8 +152,8 @@ const Profile = () => {
                         <Box p="12px 5px" mb="12px">
                             <Text
                                 fontSize="lg"
-                                color={'black'}
-                                fontWeight="bold"
+                                color={'gray.500'}
+                                textTransform={'uppercase'}
                             >
                                 Company&apos;s Applied
                             </Text>

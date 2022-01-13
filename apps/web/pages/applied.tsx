@@ -1,4 +1,17 @@
-import { Table, Tbody, Text, Box, Th, Thead, Tr, Flex } from '@chakra-ui/react';
+import {
+    Table,
+    Tbody,
+    Text,
+    Box,
+    Th,
+    Thead,
+    Tr,
+    Flex,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+} from '@chakra-ui/react';
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import AppliedTable from '../components/Tables/AppliedTable';
 import SideBar from '../components/Sidebar/Sidebar';
 
@@ -48,62 +61,102 @@ const Applied = () => {
             >
                 <Box mb={{ lg: '24px' }} me={{ lg: '24px' }}>
                     <Flex direction="column">
-                        <Box pb="12px">
-                            <Text
-                                fontSize="1.5rem"
-                                color={'black'}
-                                fontWeight="bold"
+                        <Box pb={'25px'}>
+                            <Flex
+                                direction="column"
                                 bg={'white'}
                                 p={4}
                                 borderRadius={8}
                                 pb="1.5rem"
                             >
-                                Applied Student&apos;s Detail&apos;s
-                            </Text>
+                                <Text
+                                    bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                    bgClip="text"
+                                    fontSize="4xl"
+                                    fontWeight="extrabold"
+                                    textTransform={'uppercase'}
+                                >
+                                    Applied Student&apos;s List
+                                </Text>
+                                <Breadcrumb
+                                    separator={
+                                        <ChevronRightIcon color="gray.500" />
+                                    }
+                                >
+                                    <BreadcrumbItem>
+                                        <BreadcrumbLink
+                                            href="/"
+                                            color="gray.500"
+                                            _hover={{
+                                                textDecoration: 'none',
+                                                color: '#FF0080',
+                                            }}
+                                            _focus={{ outline: 'none' }}
+                                            variant="no-hover"
+                                        >
+                                            Home
+                                        </BreadcrumbLink>
+                                    </BreadcrumbItem>
+
+                                    <BreadcrumbItem isCurrentPage>
+                                        <BreadcrumbLink
+                                            href="/applied"
+                                            color="gray.500"
+                                            _hover={{
+                                                textDecoration: 'none',
+                                                color: '#FF0080',
+                                            }}
+                                            _focus={{ outline: 'none' }}
+                                            variant="no-hover"
+                                        >
+                                            Applied Students
+                                        </BreadcrumbLink>
+                                    </BreadcrumbItem>
+                                </Breadcrumb>
+                            </Flex>
                         </Box>
                         <Box bg={'white'} p={4} borderRadius={8}>
-                            <Table variant="simple" color={'black'}>
+                            <Table variant="simple">
                                 <Thead>
-                                    <Tr my=".8rem" pl="0px">
+                                    <Tr my=".8rem">
                                         <Th
-                                            pl="0px"
-                                            color="gray.800"
+                                            color="gray.500"
                                             textAlign={'center'}
                                         >
                                             Name
                                         </Th>
                                         <Th
-                                            color="gray.800"
+                                            color="gray.500"
                                             textAlign={'center'}
                                         >
                                             Email
                                         </Th>
                                         <Th
-                                            color="gray.800"
+                                            color="gray.500"
                                             textAlign={'center'}
                                         >
                                             Branch & Section
                                         </Th>
                                         <Th
-                                            color="gray.800"
+                                            color="gray.500"
                                             textAlign={'center'}
                                         >
                                             Company
                                         </Th>
                                         <Th
-                                            color="gray.800"
+                                            color="gray.500"
                                             textAlign={'center'}
                                         >
                                             Company Type
                                         </Th>
                                         <Th
-                                            color="gray.800"
+                                            color="gray.500"
                                             textAlign={'center'}
                                         >
                                             Ctc Package
                                         </Th>
                                         <Th
-                                            color="gray.800"
+                                            color="gray.500"
                                             textAlign={'center'}
                                         >
                                             Application
