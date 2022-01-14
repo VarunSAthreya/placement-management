@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react';
+import { ApexOptions } from 'apexcharts';
 import dynamic from 'next/dynamic';
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
@@ -10,7 +11,7 @@ const progressChartData = [
     },
 ];
 
-const progressChartOptions = {
+const progressChartOptions: ApexOptions = {
     chart: {
         type: 'bar',
         height: 350,

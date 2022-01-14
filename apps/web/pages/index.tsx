@@ -1,10 +1,10 @@
-import { Flex, SimpleGrid, Grid, Box, Text } from '@chakra-ui/react';
+import { Box, Flex, Grid, SimpleGrid, Text } from '@chakra-ui/react';
+import StatsCard from '../components/Card/StatsCard';
 import BarChart from '../components/Charts/BarChart';
+import DonutChart from '../components/Charts/DonutChart';
 import LineChart from '../components/Charts/LineChart';
 import ProgressChart from '../components/Charts/ProgressChart';
-import DonutChart from '../components/Charts/DonutChart';
 import SideBar from '../components/Sidebar/Sidebar';
-import StatsCard from '../components/Card/StatsCard';
 
 const Home = () => {
     return (

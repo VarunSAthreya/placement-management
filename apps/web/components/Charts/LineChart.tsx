@@ -1,5 +1,7 @@
-import React from 'react';
+import { ApexOptions } from 'apexcharts';
 import dynamic from 'next/dynamic';
+import React from 'react';
+
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
@@ -15,7 +17,7 @@ const lineChartData = [
     },
 ];
 
-const lineChartOptions = {
+const lineChartOptions: ApexOptions = {
     chart: {
         toolbar: {
             show: false,

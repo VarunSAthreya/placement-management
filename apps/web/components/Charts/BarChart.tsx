@@ -1,4 +1,5 @@
 import { Box } from '@chakra-ui/react';
+import { ApexOptions } from 'apexcharts';
 import dynamic from 'next/dynamic';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
@@ -13,7 +14,7 @@ const barChartData = [
     },
 ];
 
-const barChartOptions = {
+const barChartOptions: ApexOptions = {
     colors: ['#FF0080', '#7928CA'],
     // chart: {
     //   height: "100%"

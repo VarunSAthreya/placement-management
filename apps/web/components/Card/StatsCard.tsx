@@ -1,6 +1,6 @@
 import { Box, Flex, Stat, StatLabel, StatNumber } from '@chakra-ui/react';
 import IconBox from '../Icons/IconBox';
-import { WalletIcon } from '..//Icons/Icons.js';
+import { WalletIcon } from '../Icons/Icons';
 
 const StatsCard = () => {
     return (
