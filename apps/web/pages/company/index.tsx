@@ -1,10 +1,11 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql } from '@apollo/client';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
     Box,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Button,
     Flex,
     Table,
     Tbody,
@@ -12,12 +13,13 @@ import {
     Th,
     Thead,
     Tr,
-    Button,
 } from '@chakra-ui/react';
+import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import SideBar from '../../components/Sidebar/Sidebar';
 import CompanyTable from '../../components/Tables/CompanyTable';
+import client from '../../lib/client';
 
 const companyTableData = [
     {
@@ -69,12 +71,13 @@ const query = gql`
     }
 `;
 
-const Company = () => {
+type Props = {
+    // TODO: Add types
+    data: any;
+};
+
+const Company: NextPage<Props> = ({ data }) => {
     const router = useRouter();
-    const { loading, error, data } = useQuery(query);
-    console.log({ data });
-    if (loading) return <p>Loading...</p>;
-    if (error) return <p>Error :(</p>;
 
     return (
         <Flex flexDirection={'row'} bg={'#f8f9fa'}>
@@ -229,3 +232,12 @@ const Company = () => {
 };
 
 export default Company;
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+    const { data } = await client.query({ query });
+    return {
+        props: {
+            data,
+        },
+    };
+};
