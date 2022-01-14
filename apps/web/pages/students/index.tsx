@@ -10,7 +10,10 @@ import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Button,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { AiFillPlusCircle } from 'react-icons/ai';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import StudentsTable from '../../components/Tables/StudentsTable';
 import SideBar from '../../components/Sidebar/Sidebar';
@@ -51,6 +54,7 @@ const studentsTableData = [
 ];
 
 const Students = () => {
+    const router = useRouter();
     return (
         <Flex flexDirection={'row'} bg={'#f8f9fa'}>
             <SideBar />
@@ -117,30 +121,76 @@ const Students = () => {
                         </Flex>
                     </Box>
                     <Box bg={'white'} p={4} borderRadius={8}>
-                        <Table variant="simple">
+                        <Flex
+                            flexDirection={'row'}
+                            justifyContent={'space-between'}
+                            alignItems={'center'}
+                            mb={4}
+                            pb={4}
+                            pt={2}
+                            pl={2}
+                        >
+                            <Text
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="2xl"
+                                fontWeight="extrabold"
+                                textTransform={'uppercase'}
+                            >
+                                No.of Student&apos;s (4)
+                            </Text>
+                            <Button
+                                fontSize={'1rem'}
+                                size={'lg'}
+                                color={'white'}
+                                rightIcon={<AiFillPlusCircle />}
+                                bg={
+                                    'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                }
+                                _hover={{
+                                    bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                }}
+                                _focus={{ outline: 'none' }}
+                                variant="no-hover"
+                                type="submit"
+                                textTransform={'uppercase'}
+                                onClick={() => {
+                                    router.push(`/studentForm`);
+                                }}
+                            >
+                                Add New Student
+                            </Button>
+                        </Flex>
+                        <Table
+                            variant="simple"
+                            color="white"
+                            bgGradient={'linear(to-l, #7928CA, #FF0080)'}
+                            rounded={'md'}
+                            boxShadow={'0px 2px 3px #eee'}
+                        >
                             <Thead>
-                                <Tr my=".8rem" color="gray.500">
-                                    <Th color="gray.500" textAlign={'center'}>
+                                <Tr my=".8rem">
+                                    <Th color="white" textAlign={'center'}>
                                         Name
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         Branch
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         Section
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         USN
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         CGPA
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         More Info
                                     </Th>
                                 </Tr>
                             </Thead>
-                            <Tbody>
+                            <Tbody bg={'white'}>
                                 {studentsTableData.map((student, index) => {
                                     return (
                                         <StudentsTable

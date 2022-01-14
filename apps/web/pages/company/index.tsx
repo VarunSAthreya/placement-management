@@ -12,7 +12,10 @@ import {
     Th,
     Thead,
     Tr,
+    Button,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { AiFillPlusCircle } from 'react-icons/ai';
 import SideBar from '../../components/Sidebar/Sidebar';
 import CompanyTable from '../../components/Tables/CompanyTable';
 
@@ -67,6 +70,7 @@ const query = gql`
 `;
 
 const Company = () => {
+    const router = useRouter();
     const { loading, error, data } = useQuery(query);
     console.log({ data });
     if (loading) return <p>Loading...</p>;
@@ -138,30 +142,75 @@ const Company = () => {
                         </Flex>
                     </Box>
                     <Box bg={'white'} p={4} borderRadius={8}>
-                        <Table variant="simple">
+                        <Flex
+                            flexDirection={'row'}
+                            justifyContent={'space-between'}
+                            alignItems={'center'}
+                            mb={4}
+                            pb={4}
+                            pt={2}
+                        >
+                            <Text
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="2xl"
+                                fontWeight="extrabold"
+                                textTransform={'uppercase'}
+                            >
+                                No.of Company&apos;s (4)
+                            </Text>
+                            <Button
+                                fontSize={'1rem'}
+                                size={'lg'}
+                                color={'white'}
+                                rightIcon={<AiFillPlusCircle />}
+                                bg={
+                                    'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                }
+                                _hover={{
+                                    bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                }}
+                                _focus={{ outline: 'none' }}
+                                variant="no-hover"
+                                type="submit"
+                                textTransform={'uppercase'}
+                                onClick={() => {
+                                    router.push(`/companyForm`);
+                                }}
+                            >
+                                Add New Company
+                            </Button>
+                        </Flex>
+                        <Table
+                            variant="simple"
+                            color="white"
+                            bgGradient={'linear(to-l, #7928CA, #FF0080)'}
+                            rounded={'md'}
+                            boxShadow={'0px 2px 3px #eee'}
+                        >
                             <Thead>
                                 <Tr my=".8rem" pl="0px">
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         Name
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         type
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         Date of Arrival
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         Ctc
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         year
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         More Info
                                     </Th>
                                 </Tr>
                             </Thead>
-                            <Tbody>
+                            <Tbody bg={'white'}>
                                 {data.companies.map((company, index) => {
                                     return (
                                         <CompanyTable
