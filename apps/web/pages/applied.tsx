@@ -61,7 +61,7 @@ const Applied = () => {
             >
                 <Box mb={{ lg: '24px' }} me={{ lg: '24px' }}>
                     <Flex direction="column">
-                        <Box pb={'25px'}>
+                        <Box pb={'25px'} p={3} pt={0}>
                             <Flex
                                 direction="column"
                                 bg={'white'}
@@ -115,55 +115,40 @@ const Applied = () => {
                                 </Breadcrumb>
                             </Flex>
                         </Box>
-                        <Box bg={'white'} p={4} borderRadius={8}>
-                            <Table variant="simple">
+                        <Box p={3} borderRadius={8}>
+                            <Table
+                                variant="simple"
+                                color="white"
+                                bgGradient={'linear(to-l, #7928CA, #FF0080)'}
+                                rounded={'md'}
+                                boxShadow={'0px 2px 3px #eee'}
+                            >
                                 <Thead>
                                     <Tr my=".8rem">
-                                        <Th
-                                            color="gray.500"
-                                            textAlign={'center'}
-                                        >
+                                        <Th color="white" textAlign={'center'}>
                                             Name
                                         </Th>
-                                        <Th
-                                            color="gray.500"
-                                            textAlign={'center'}
-                                        >
+                                        <Th color="white" textAlign={'center'}>
                                             Email
                                         </Th>
-                                        <Th
-                                            color="gray.500"
-                                            textAlign={'center'}
-                                        >
+                                        <Th color="white" textAlign={'center'}>
                                             Branch & Section
                                         </Th>
-                                        <Th
-                                            color="gray.500"
-                                            textAlign={'center'}
-                                        >
+                                        <Th color="white" textAlign={'center'}>
                                             Company
                                         </Th>
-                                        <Th
-                                            color="gray.500"
-                                            textAlign={'center'}
-                                        >
+                                        <Th color="white" textAlign={'center'}>
                                             Company Type
                                         </Th>
-                                        <Th
-                                            color="gray.500"
-                                            textAlign={'center'}
-                                        >
+                                        <Th color="white" textAlign={'center'}>
                                             Ctc Package
                                         </Th>
-                                        <Th
-                                            color="gray.500"
-                                            textAlign={'center'}
-                                        >
+                                        <Th color="white" textAlign={'center'}>
                                             Application
                                         </Th>
                                     </Tr>
                                 </Thead>
-                                <Tbody>
+                                <Tbody bg={'white'}>
                                     {appliedTableData.map((row) => {
                                         return (
                                             <AppliedTable

@@ -18,40 +18,35 @@ const PlacedTable = ({ placed }) => {
     return (
         <Tr>
             <Td minWidth={{ sm: '250px' }} pl="0px">
-                <Flex
-                    align="center"
-                    py=".8rem"
+                <Text
+                    fontSize="md"
+                    textAlign={'center'}
+                    color={textColor}
+                    fontWeight="bold"
                     minWidth="100%"
-                    flexWrap="nowrap"
                 >
-                    <Text
-                        fontSize="md"
-                        color={textColor}
-                        fontWeight="bold"
-                        minWidth="100%"
-                    >
-                        {name}
-                    </Text>
-                </Flex>
+                    {name}
+                </Text>
             </Td>
-
             <Td>
-                <AvatarGroup size="sm">
-                    {members.map((member) => {
-                        return (
-                            <Avatar
-                                key={member}
-                                color="white"
-                                bg={
-                                    'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
-                                }
-                                name="Ryan Florence"
-                                src={member}
-                                _hover={{ zIndex: '3', cursor: 'pointer' }}
-                            />
-                        );
-                    })}
-                </AvatarGroup>
+                <Flex justify={'center'}>
+                    <AvatarGroup size="sm">
+                        {members.map((member) => {
+                            return (
+                                <Avatar
+                                    key={member}
+                                    color="white"
+                                    bg={
+                                        'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                    }
+                                    name="Ryan Florence"
+                                    src={member}
+                                    _hover={{ zIndex: '3', cursor: 'pointer' }}
+                                />
+                            );
+                        })}
+                    </AvatarGroup>
+                </Flex>
             </Td>
             <Td>
                 <Text
