@@ -4,13 +4,13 @@
     "private": true,
     "author": "VarunSAthreya",
     "repository": {
-      "type": "git",
-      "url": "git+https://github.com/VarunSAthreya/placement-management.git"
+        "type": "git",
+        "url": "git+https://github.com/VarunSAthreya/placement-management.git"
     },
     "keywords": [],
     "license": "MIT",
     "bugs": {
-      "url": "https://github.com/VarunSAthreya/placement-management/issues"
+        "url": "https://github.com/VarunSAthreya/placement-management/issues"
     },
     "homepage": "https://github.com/VarunSAthreya/placement-management#readme",
     "workspaces": [
@@ -25,7 +25,8 @@
         "clean": "turbo run clean && rmdir /s /q node_modules",
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "api:dev": "yarn workspace api dev",
-        "web:dev": "yarn workspace web dev"
+        "web:dev": "yarn workspace web dev",
+        "gen": "yarn workspace web gen"
     },
     "devDependencies": {
         "prettier": "^2.5.1",

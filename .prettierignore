@@ -4,5 +4,5 @@ node_modules
 .eslintignore
 .gitignore
 .prettierignore
-package.json
+generated/
 package-lock.json
