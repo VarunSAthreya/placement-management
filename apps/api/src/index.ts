@@ -9,7 +9,7 @@ dotenv.config();
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: context,
+    context,
 });
 
 server.listen().then(({ url }: { url: string }) => {

@@ -1,4 +1,3 @@
-import { AuthenticationError } from 'apollo-server';
 import { verifyToken } from '../functions';
 
 const context = async ({ req }: { req: any }) => {
@@ -14,7 +13,7 @@ const context = async ({ req }: { req: any }) => {
     console.log({ user });
 
     if (!user) {
-        throw new AuthenticationError('you must be logged in');
+        return { USN: null, role: null };
     }
     const { USN, role } = user;
     return { USN, role };
