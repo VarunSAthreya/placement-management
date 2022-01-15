@@ -5,6 +5,7 @@ import {
     BreadcrumbItem,
     BreadcrumbLink,
     Text,
+    useColorModeValue,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { GetStaticPaths, GetStaticProps, PreviewData } from 'next';
@@ -47,9 +48,12 @@ const companyData = [
     },
 ];
 
-const companyDetails = ({ company }) => {
+const CompanyDetails = ({ company }) => {
     return (
-        <Flex flexDirection={'row'} bg={'#f8f9fa'}>
+        <Flex
+            flexDirection={'row'}
+            bg={useColorModeValue('#f8f9fa', '#18191A')}
+        >
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -62,7 +66,7 @@ const companyDetails = ({ company }) => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={'white'}
+                            bg={useColorModeValue('white', '#242526')}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -160,4 +164,4 @@ export const getStaticProps: GetStaticProps = (ctx: {
     };
 };
 
-export default companyDetails;
+export default CompanyDetails;

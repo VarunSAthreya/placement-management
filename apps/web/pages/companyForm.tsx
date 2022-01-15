@@ -12,6 +12,7 @@ import {
     FormControl,
     GridItem,
     FormErrorMessage,
+    useColorModeValue,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { ChevronRightIcon } from '@chakra-ui/icons';
@@ -30,7 +31,10 @@ const CompanyForm = () => {
     };
 
     return (
-        <Flex flexDirection={'row'} bg={'#f8f9fa'}>
+        <Flex
+            flexDirection={'row'}
+            bg={useColorModeValue('#f8f9fa', '#18191A')}
+        >
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -43,7 +47,7 @@ const CompanyForm = () => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={'white'}
+                            bg={useColorModeValue('white', '#242526')}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -108,7 +112,11 @@ const CompanyForm = () => {
                             </Breadcrumb>
                         </Flex>
                     </Box>
-                    <Box bg={'white'} p={4} borderRadius={8}>
+                    <Box
+                        bg={useColorModeValue('white', '#242526')}
+                        p={4}
+                        borderRadius={8}
+                    >
                         <form onSubmit={handleSubmit(onSubmit)}>
                             {/*General Detail Fields*/}
                             <Grid templateColumns="repeat(2, 1fr)">

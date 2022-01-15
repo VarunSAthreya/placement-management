@@ -5,6 +5,7 @@ import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    useColorModeValue,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { GetStaticPaths, GetStaticProps, PreviewData } from 'next';
@@ -49,7 +50,10 @@ const studentData = [
 
 const StudentDetails = ({ student }) => {
     return (
-        <Flex flexDirection={'row'} bg={'#f8f9fa'}>
+        <Flex
+            flexDirection={'row'}
+            bg={useColorModeValue('#f8f9fa', '#18191A')}
+        >
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -62,7 +66,7 @@ const StudentDetails = ({ student }) => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={'white'}
+                            bg={useColorModeValue('white', '#242526')}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"

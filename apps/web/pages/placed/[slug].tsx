@@ -10,6 +10,7 @@ import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    useColorModeValue,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import { GetStaticPaths, GetStaticProps, PreviewData } from 'next';
@@ -108,11 +109,14 @@ const placedData = [
     },
 ];
 
-const companyDetails = ({ placed }) => {
+const CompanyDetails = ({ placed }) => {
     const placedStudentDetails = placed.members;
     console.log(placedStudentDetails);
     return (
-        <Flex flexDirection={'row'} bg={'#f8f9fa'}>
+        <Flex
+            flexDirection={'row'}
+            bg={useColorModeValue('#f8f9fa', '#18191A')}
+        >
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -125,7 +129,7 @@ const companyDetails = ({ placed }) => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={'white'}
+                            bg={useColorModeValue('white', '#242526')}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -196,7 +200,10 @@ const companyDetails = ({ placed }) => {
                             color="white"
                             bgGradient={'linear(to-l, #7928CA, #FF0080)'}
                             rounded={'md'}
-                            boxShadow={'0px 2px 3px #eee'}
+                            boxShadow={useColorModeValue(
+                                '0px 2px 3px #eee',
+                                '0px'
+                            )}
                         >
                             <Thead>
                                 <Tr my=".8rem">
@@ -220,7 +227,7 @@ const companyDetails = ({ placed }) => {
                                     </Th>
                                 </Tr>
                             </Thead>
-                            <Tbody bg={'white'}>
+                            <Tbody bg={useColorModeValue('white', '#242526')}>
                                 {placedStudentDetails.map(
                                     (placedStudent, index) => {
                                         return (
@@ -264,4 +271,4 @@ export const getStaticProps: GetStaticProps = (ctx: {
     };
 };
 
-export default companyDetails;
+export default CompanyDetails;

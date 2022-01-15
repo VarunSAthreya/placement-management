@@ -13,6 +13,7 @@ import {
     Th,
     Thead,
     Tr,
+    useColorModeValue,
 } from '@chakra-ui/react';
 import { GetServerSideProps, NextPage } from 'next';
 import { useRouter } from 'next/router';
@@ -80,7 +81,10 @@ const Company: NextPage<Props> = ({ data }) => {
     const router = useRouter();
 
     return (
-        <Flex flexDirection={'row'} bg={'#f8f9fa'}>
+        <Flex
+            flexDirection={'row'}
+            bg={useColorModeValue('#f8f9fa', '#18191A')}
+        >
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -93,7 +97,7 @@ const Company: NextPage<Props> = ({ data }) => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={'white'}
+                            bg={useColorModeValue('white', '#242526')}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -144,7 +148,11 @@ const Company: NextPage<Props> = ({ data }) => {
                             </Breadcrumb>
                         </Flex>
                     </Box>
-                    <Box bg={'white'} p={4} borderRadius={8}>
+                    <Box
+                        bg={useColorModeValue('white', '#242526')}
+                        p={4}
+                        borderRadius={8}
+                    >
                         <Flex
                             flexDirection={'row'}
                             justifyContent={'space-between'}
@@ -189,7 +197,10 @@ const Company: NextPage<Props> = ({ data }) => {
                             color="white"
                             bgGradient={'linear(to-l, #7928CA, #FF0080)'}
                             rounded={'md'}
-                            boxShadow={'0px 2px 3px #eee'}
+                            boxShadow={useColorModeValue(
+                                '0px 2px 3px #eee',
+                                '0px'
+                            )}
                         >
                             <Thead>
                                 <Tr my=".8rem" pl="0px">
@@ -213,7 +224,7 @@ const Company: NextPage<Props> = ({ data }) => {
                                     </Th>
                                 </Tr>
                             </Thead>
-                            <Tbody bg={'white'}>
+                            <Tbody bg={useColorModeValue('white', '#242526')}>
                                 {data.companies.map((company, index) => {
                                     return (
                                         <CompanyTable

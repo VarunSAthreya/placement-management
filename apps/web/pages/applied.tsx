@@ -10,6 +10,7 @@ import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    useColorModeValue,
 } from '@chakra-ui/react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import AppliedTable from '../components/Tables/AppliedTable';
@@ -50,7 +51,10 @@ const appliedTableData = [
 
 const Applied = () => {
     return (
-        <Flex flexDirection={'row'} bg={'#f8f9fa'}>
+        <Flex
+            flexDirection={'row'}
+            bg={useColorModeValue('#f8f9fa', '#18191A')}
+        >
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -64,7 +68,7 @@ const Applied = () => {
                         <Box pb={'25px'}>
                             <Flex
                                 direction="column"
-                                bg={'white'}
+                                bg={useColorModeValue('white', '#242526')}
                                 p={4}
                                 borderRadius={8}
                                 pb="1.5rem"
@@ -121,7 +125,10 @@ const Applied = () => {
                                 color="white"
                                 bgGradient={'linear(to-l, #7928CA, #FF0080)'}
                                 rounded={'md'}
-                                boxShadow={'0px 2px 3px #eee'}
+                                boxShadow={useColorModeValue(
+                                    '0px 2px 3px #eee',
+                                    '0px'
+                                )}
                             >
                                 <Thead>
                                     <Tr my=".8rem">
@@ -148,7 +155,9 @@ const Applied = () => {
                                         </Th>
                                     </Tr>
                                 </Thead>
-                                <Tbody bg={'white'}>
+                                <Tbody
+                                    bg={useColorModeValue('white', '#242526')}
+                                >
                                     {appliedTableData.map((row) => {
                                         return (
                                             <AppliedTable

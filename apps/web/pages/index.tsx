@@ -1,4 +1,11 @@
-import { Box, Flex, Grid, SimpleGrid, Text } from '@chakra-ui/react';
+import {
+    Box,
+    Flex,
+    Grid,
+    SimpleGrid,
+    Text,
+    useColorModeValue,
+} from '@chakra-ui/react';
 import StatsCard from '../components/Card/StatsCard';
 import BarChart from '../components/Charts/BarChart';
 import DonutChart from '../components/Charts/DonutChart';
@@ -8,7 +15,10 @@ import SideBar from '../components/Sidebar/Sidebar';
 
 const Home = () => {
     return (
-        <Flex flexDirection={'row'} bg={'#f8f9fa'}>
+        <Flex
+            flexDirection={'row'}
+            bg={useColorModeValue('#f8f9fa', '#18191A')}
+        >
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -33,7 +43,11 @@ const Home = () => {
                     gap="24px"
                     my={{ lg: '26px' }}
                 >
-                    <Box p="16px" bg="white" borderRadius={16}>
+                    <Box
+                        p="16px"
+                        bg={useColorModeValue('white', '#242526')}
+                        borderRadius={16}
+                    >
                         <Box>
                             <Flex direction="column" w="100%">
                                 <BarChart />
@@ -43,7 +57,7 @@ const Home = () => {
                     <Box
                         p="28px 10px 16px 0px"
                         mb={{ sm: '26px', lg: '0px' }}
-                        bg="white"
+                        bg={useColorModeValue('white', '#242526')}
                         borderRadius={16}
                     >
                         <Box mb="20px" pl="22px">
@@ -76,7 +90,11 @@ const Home = () => {
                     gap="24px"
                     my={{ lg: '26px' }}
                 >
-                    <Box p="16px" bg="white" borderRadius={16}>
+                    <Box
+                        p="16px"
+                        bg={useColorModeValue('white', '#242526')}
+                        borderRadius={16}
+                    >
                         <Box>
                             <Flex direction="column" w="100%">
                                 <ProgressChart />
@@ -86,7 +104,7 @@ const Home = () => {
                     <Box
                         p="28px 10px 16px 0px"
                         mb={{ sm: '26px', lg: '0px' }}
-                        bg="white"
+                        bg={useColorModeValue('white', '#242526')}
                         borderRadius={16}
                     >
                         <Box w="100%" h={{ sm: '300px' }} ps="8px">

@@ -11,6 +11,7 @@ import {
     BreadcrumbItem,
     BreadcrumbLink,
     Button,
+    useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { AiFillPlusCircle } from 'react-icons/ai';
@@ -56,7 +57,10 @@ const studentsTableData = [
 const Students = () => {
     const router = useRouter();
     return (
-        <Flex flexDirection={'row'} bg={'#f8f9fa'}>
+        <Flex
+            flexDirection={'row'}
+            bg={useColorModeValue('#f8f9fa', '#18191A')}
+        >
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -69,7 +73,7 @@ const Students = () => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={'white'}
+                            bg={useColorModeValue('white', '#242526')}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -120,7 +124,11 @@ const Students = () => {
                             </Breadcrumb>
                         </Flex>
                     </Box>
-                    <Box bg={'white'} p={4} borderRadius={8}>
+                    <Box
+                        bg={useColorModeValue('white', '#242526')}
+                        p={4}
+                        borderRadius={8}
+                    >
                         <Flex
                             flexDirection={'row'}
                             justifyContent={'space-between'}
@@ -166,7 +174,10 @@ const Students = () => {
                             color="white"
                             bgGradient={'linear(to-l, #7928CA, #FF0080)'}
                             rounded={'md'}
-                            boxShadow={'0px 2px 3px #eee'}
+                            boxShadow={useColorModeValue(
+                                '0px 2px 3px #eee',
+                                '0px'
+                            )}
                         >
                             <Thead>
                                 <Tr my=".8rem">
@@ -190,7 +201,7 @@ const Students = () => {
                                     </Th>
                                 </Tr>
                             </Thead>
-                            <Tbody bg={'white'}>
+                            <Tbody bg={useColorModeValue('white', '#242526')}>
                                 {studentsTableData.map((student, index) => {
                                     return (
                                         <StudentsTable
