@@ -15,6 +15,9 @@ const progressChartOptions: ApexOptions = {
     chart: {
         type: 'bar',
         height: 350,
+        toolbar: {
+            show: false,
+        },
     },
     plotOptions: {
         bar: {
@@ -38,6 +41,23 @@ const progressChartOptions: ApexOptions = {
             'China',
             'Germany',
         ],
+        labels: {
+            style: {
+                colors: '#c8cfca',
+                fontSize: '12px',
+            },
+        },
+    },
+    yaxis: {
+        labels: {
+            style: {
+                colors: '#c8cfca',
+                fontSize: '12px',
+            },
+        },
+    },
+    legend: {
+        show: false,
     },
     colors: ['#7928CA'],
 };

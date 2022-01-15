@@ -16,9 +16,15 @@ const barChartData = [
 
 const barChartOptions: ApexOptions = {
     colors: ['#FF0080', '#7928CA'],
-    // chart: {
-    //   height: "100%"
-    // },
+    chart: {
+        toolbar: {
+            show: false,
+        },
+        foreColor: '#c8cfca',
+    },
+    tooltip: {
+        theme: 'dark',
+    },
     plotOptions: {
         bar: {
             horizontal: false,
@@ -42,6 +48,20 @@ const barChartOptions: ApexOptions = {
     },
     xaxis: {
         categories: ['a', 'b', 'c', 'd', 'f', 'h', 'i', 'j', 'k', 'l'],
+        labels: {
+            style: {
+                colors: '#c8cfca',
+                fontSize: '12px',
+            },
+        },
+    },
+    yaxis: {
+        labels: {
+            style: {
+                colors: '#c8cfca',
+                fontSize: '12px',
+            },
+        },
     },
     legend: {
         position: 'right',

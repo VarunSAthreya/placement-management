@@ -11,6 +11,7 @@ const donutChartData = [44, 55, 17];
 const donutChartOptions: ApexOptions = {
     chart: {
         type: 'donut',
+        foreColor: '#c8cfca',
     },
     responsive: [
         {
