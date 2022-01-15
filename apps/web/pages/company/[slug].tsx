@@ -127,7 +127,7 @@ const companyDetails = ({ company }) => {
                             </Breadcrumb>
                         </Flex>
                     </Box>
-                    <Box px={4} borderRadius={8}>
+                    <Box borderRadius={8}>
                         <CompanyInfoCard company={company} />
                     </Box>
                 </Box>

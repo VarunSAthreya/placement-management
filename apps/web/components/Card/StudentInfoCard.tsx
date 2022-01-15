@@ -18,7 +18,6 @@ const StudentInfoCard = ({ student }) => {
     return (
         <Box
             bg={'white'}
-            p={2}
             mb={4}
             borderRadius={8}
             display={'flex'}
@@ -60,7 +59,7 @@ const StudentInfoCard = ({ student }) => {
                         </Text>
                         <Text
                             fontSize={{ sm: 'sm', md: 'md' }}
-                            color={'black'}
+                            color={'gray.500'}
                             fontWeight="semibold"
                         >
                             {USN}
@@ -69,20 +68,22 @@ const StudentInfoCard = ({ student }) => {
                 </Flex>
             </Box>
             <Flex flexDirection={'column'}>
-                <Box p="16px" marginRight={'15px'}>
+                <Box p="16px" margin={2}>
                     <Box>
                         <Flex
-                            justify="center"
+                            justify="flex-start"
                             align="center"
                             minHeight="60px"
                             w="100%"
                         >
                             <Text
-                                fontSize="1.3rem"
-                                color={'gray.500'}
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="3xl"
+                                fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
-                                General Information
+                                General Details
                             </Text>
                         </Flex>
                         <Separator />
@@ -105,13 +106,14 @@ const StudentInfoCard = ({ student }) => {
                                     fontSize="md"
                                     color={'gray.500'}
                                     me="10px"
+                                    fontWeight={'semibold'}
                                 >
                                     USN
                                 </Text>
                                 <Text
                                     fontSize="md"
                                     color="black"
-                                    fontWeight="400"
+                                    fontWeight={'semibold'}
                                 >
                                     {USN}
                                 </Text>
@@ -128,13 +130,14 @@ const StudentInfoCard = ({ student }) => {
                                     fontSize="md"
                                     color={'gray.500'}
                                     me="10px"
+                                    fontWeight={'semibold'}
                                 >
                                     EMAIL
                                 </Text>
                                 <Text
                                     fontSize="md"
                                     color="black"
-                                    fontWeight="400"
+                                    fontWeight={'semibold'}
                                 >
                                     {email}
                                 </Text>
@@ -151,13 +154,14 @@ const StudentInfoCard = ({ student }) => {
                                     fontSize="md"
                                     color={'gray.500'}
                                     me="10px"
+                                    fontWeight={'semibold'}
                                 >
                                     BRANCH & SECTION
                                 </Text>
                                 <Text
                                     fontSize="md"
                                     color="black"
-                                    fontWeight="400"
+                                    fontWeight={'semibold'}
                                 >
                                     {branch} {section}
                                 </Text>
@@ -174,13 +178,14 @@ const StudentInfoCard = ({ student }) => {
                                     fontSize="md"
                                     color={'gray.500'}
                                     me="10px"
+                                    fontWeight={'semibold'}
                                 >
                                     YEAR
                                 </Text>
                                 <Text
                                     fontSize="md"
                                     color="black"
-                                    fontWeight="400"
+                                    fontWeight={'semibold'}
                                 >
                                     {year}
                                 </Text>
@@ -188,20 +193,22 @@ const StudentInfoCard = ({ student }) => {
                         </Flex>
                     </Box>
                 </Box>
-                <Box p="16px">
+                <Box p="16px" margin={2}>
                     <Box>
                         <Flex
-                            justify="center"
+                            justify="flex-start"
                             align="center"
                             minHeight="60px"
                             w="100%"
                         >
                             <Text
-                                fontSize="lg"
-                                color={'gray.500'}
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="3xl"
+                                fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
-                                Academic Information
+                                Academic Details
                             </Text>
                         </Flex>
                         <Separator />
@@ -224,13 +231,14 @@ const StudentInfoCard = ({ student }) => {
                                     fontSize="md"
                                     color={'gray.500'}
                                     me="10px"
+                                    fontWeight={'semibold'}
                                 >
                                     CGPA
                                 </Text>
                                 <Text
                                     fontSize="md"
                                     color="black"
-                                    fontWeight="400"
+                                    fontWeight={'semibold'}
                                 >
                                     {cgpa}
                                 </Text>
@@ -247,13 +255,14 @@ const StudentInfoCard = ({ student }) => {
                                     fontSize="md"
                                     color={'gray.500'}
                                     me="10px"
+                                    fontWeight={'semibold'}
                                 >
                                     10TH MARK&apos;S PERCENTAGE
                                 </Text>
                                 <Text
                                     fontSize="md"
                                     color="black"
-                                    fontWeight="400"
+                                    fontWeight={'semibold'}
                                 >
                                     {tenth}
                                 </Text>
@@ -270,13 +279,14 @@ const StudentInfoCard = ({ student }) => {
                                     fontSize="md"
                                     color={'gray.500'}
                                     me="10px"
+                                    fontWeight={'semibold'}
                                 >
                                     12TH MARK&apos;S PERCENTAGE
                                 </Text>
                                 <Text
                                     fontSize="md"
                                     color="black"
-                                    fontWeight="400"
+                                    fontWeight={'semibold'}
                                 >
                                     {twelth}
                                 </Text>
@@ -293,13 +303,14 @@ const StudentInfoCard = ({ student }) => {
                                     fontSize="md"
                                     color={'gray.500'}
                                     me="10px"
+                                    fontWeight={'semibold'}
                                 >
                                     BACKLOGS
                                 </Text>
                                 <Text
                                     fontSize="md"
                                     color="black"
-                                    fontWeight="400"
+                                    fontWeight={'semibold'}
                                 >
                                     {backlogs}
                                 </Text>

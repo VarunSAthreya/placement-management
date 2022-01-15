@@ -7,18 +7,18 @@ const AppliedCard = (props) => {
         <Box p="15px" bg={'#f8f9fa'} my="8px" borderRadius="12px">
             <Flex justify="space-between" w="100%" alignItems={'center'}>
                 <Flex direction="column" maxWidth="70%">
-                    <Text color={'black'} fontSize="lg" fontWeight="bold">
+                    <Text color={'black'} fontSize="xl" fontWeight="bold">
                         {company}
                     </Text>
-                    <Text color="gray.400" fontSize="sm" fontWeight="semibold">
+                    <Text color="gray.500" fontSize="sm" fontWeight="semibold">
                         Type:{' '}
-                        <Text as="span" color="gray.500">
+                        <Text as="span" color="black">
                             {type}
                         </Text>
                     </Text>
-                    <Text color="gray.400" fontSize="sm" fontWeight="semibold">
+                    <Text color="gray.500" fontSize="sm" fontWeight="semibold">
                         CTC:{' '}
-                        <Text as="span" color="gray.500">
+                        <Text as="span" color="black">
                             {ctc}
                         </Text>
                     </Text>

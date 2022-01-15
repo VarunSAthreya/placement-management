@@ -27,12 +27,12 @@ const ProfileCard = (props) => {
                 <Text
                     fontSize="md"
                     color={'gray.500'}
-                    fontWeight="bold"
                     me="10px"
+                    fontWeight={'semibold'}
                 >
                     NAME:{' '}
                 </Text>
-                <Text fontSize="md" color="black" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="semibold">
                     {name}
                 </Text>
             </Flex>
@@ -47,12 +47,12 @@ const ProfileCard = (props) => {
                 <Text
                     fontSize="md"
                     color={'gray.500'}
-                    fontWeight="bold"
                     me="10px"
+                    fontWeight={'semibold'}
                 >
                     USN
                 </Text>
-                <Text fontSize="md" color="black" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="semibold">
                     {usn}
                 </Text>
             </Flex>
@@ -67,12 +67,12 @@ const ProfileCard = (props) => {
                 <Text
                     fontSize="md"
                     color={'gray.500'}
-                    fontWeight="bold"
                     me="10px"
+                    fontWeight={'semibold'}
                 >
                     EMAIL:{' '}
                 </Text>
-                <Text fontSize="md" color="black" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="semibold">
                     {email}
                 </Text>
             </Flex>
@@ -87,12 +87,12 @@ const ProfileCard = (props) => {
                 <Text
                     fontSize="md"
                     color={'gray.500'}
-                    fontWeight="bold"
                     me="10px"
+                    fontWeight={'semibold'}
                 >
                     BRANCH & SECTION
                 </Text>
-                <Text fontSize="md" color="black" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="semibold">
                     {branch} {section}
                 </Text>
             </Flex>
@@ -107,12 +107,12 @@ const ProfileCard = (props) => {
                 <Text
                     fontSize="md"
                     color={'gray.500'}
-                    fontWeight="bold"
                     me="10px"
+                    fontWeight={'semibold'}
                 >
                     YEAR
                 </Text>
-                <Text fontSize="md" color="black" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="semibold">
                     {year}
                 </Text>
             </Flex>
@@ -127,12 +127,12 @@ const ProfileCard = (props) => {
                 <Text
                     fontSize="md"
                     color={'gray.500'}
-                    fontWeight="bold"
                     me="10px"
+                    fontWeight={'semibold'}
                 >
                     CGPA
                 </Text>
-                <Text fontSize="md" color="black" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="semibold">
                     {cgpa}
                 </Text>
             </Flex>
@@ -147,12 +147,12 @@ const ProfileCard = (props) => {
                 <Text
                     fontSize="md"
                     color={'gray.500'}
-                    fontWeight="bold"
                     me="10px"
+                    fontWeight={'semibold'}
                 >
                     10TH MARK&apos;S PERCENTAGE
                 </Text>
-                <Text fontSize="md" color="black" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="semibold">
                     {tenth}
                 </Text>
             </Flex>
@@ -167,12 +167,12 @@ const ProfileCard = (props) => {
                 <Text
                     fontSize="md"
                     color={'gray.500'}
-                    fontWeight="bold"
                     me="10px"
+                    fontWeight={'semibold'}
                 >
                     12TH MARK&apos;S PERCENTAGE
                 </Text>
-                <Text fontSize="md" color="black" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="semibold">
                     {twelth}
                 </Text>
             </Flex>
@@ -187,12 +187,12 @@ const ProfileCard = (props) => {
                 <Text
                     fontSize="md"
                     color={'gray.500'}
-                    fontWeight="bold"
                     me="10px"
+                    fontWeight={'semibold'}
                 >
                     BACKLOGS
                 </Text>
-                <Text fontSize="md" color="black" fontWeight="400">
+                <Text fontSize="md" color="black" fontWeight="semibold">
                     {backlogs}
                 </Text>
             </Flex>

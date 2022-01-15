@@ -61,7 +61,7 @@ const Applied = () => {
             >
                 <Box mb={{ lg: '24px' }} me={{ lg: '24px' }}>
                     <Flex direction="column">
-                        <Box pb={'25px'} p={3} pt={0}>
+                        <Box pb={'25px'}>
                             <Flex
                                 direction="column"
                                 bg={'white'}
@@ -115,7 +115,7 @@ const Applied = () => {
                                 </Breadcrumb>
                             </Flex>
                         </Box>
-                        <Box p={3} borderRadius={8}>
+                        <Box borderRadius={8}>
                             <Table
                                 variant="simple"
                                 color="white"
@@ -129,7 +129,7 @@ const Applied = () => {
                                             Name
                                         </Th>
                                         <Th color="white" textAlign={'center'}>
-                                            Email
+                                            USN
                                         </Th>
                                         <Th color="white" textAlign={'center'}>
                                             Branch & Section

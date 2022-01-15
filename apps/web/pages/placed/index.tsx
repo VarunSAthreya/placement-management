@@ -51,7 +51,7 @@ const Placed = () => {
             >
                 <Box mb={{ lg: '24px' }} me={{ lg: '24px' }}>
                     <Flex direction="column">
-                        <Box pb={'25px'} p={3} pt={0}>
+                        <Box pb={'25px'}>
                             <Flex
                                 direction="column"
                                 bg={'white'}
@@ -105,7 +105,7 @@ const Placed = () => {
                                 </Breadcrumb>
                             </Flex>
                         </Box>
-                        <Box p={3} borderRadius={8}>
+                        <Box borderRadius={8}>
                             <Table
                                 variant="simple"
                                 color="white"

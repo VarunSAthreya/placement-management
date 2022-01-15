@@ -137,7 +137,7 @@ const companyDetails = ({ placed }) => {
                                 fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
-                                Student&apos;s List
+                                Placed Student&apos;s List
                             </Text>
                             <Breadcrumb
                                 separator={
@@ -190,31 +190,37 @@ const companyDetails = ({ placed }) => {
                             </Breadcrumb>
                         </Flex>
                     </Box>
-                    <Box bg={'white'} p={4} borderRadius={8}>
-                        <Table variant="simple" color={'black'}>
+                    <Box borderRadius={8}>
+                        <Table
+                            variant="simple"
+                            color="white"
+                            bgGradient={'linear(to-l, #7928CA, #FF0080)'}
+                            rounded={'md'}
+                            boxShadow={'0px 2px 3px #eee'}
+                        >
                             <Thead>
-                                <Tr my=".8rem" color="gray.500">
-                                    <Th color="gray.500" textAlign={'center'}>
+                                <Tr my=".8rem">
+                                    <Th color="white" textAlign={'center'}>
                                         Name
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         Branch
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         Section
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         USN
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         CGPA
                                     </Th>
-                                    <Th color="gray.500" textAlign={'center'}>
+                                    <Th color="white" textAlign={'center'}>
                                         More Info
                                     </Th>
                                 </Tr>
                             </Thead>
-                            <Tbody>
+                            <Tbody bg={'white'}>
                                 {placedStudentDetails.map(
                                     (placedStudent, index) => {
                                         return (

@@ -19,12 +19,11 @@ const AppliedTable = (props) => {
                     </Text>
                     <Text
                         fontSize="xs"
-                        color={'black'}
+                        color={'gray.500'}
                         textAlign={'center'}
-                        fontWeight="bold"
                         minWidth="100%"
                     >
-                        {usn}
+                        {email}
                     </Text>
                 </Flex>
             </Td>
@@ -36,7 +35,7 @@ const AppliedTable = (props) => {
                     fontWeight="bold"
                     pb=".5rem"
                 >
-                    {email}
+                    {usn}
                 </Text>
             </Td>
             <Td>

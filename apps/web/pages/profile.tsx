@@ -116,8 +116,10 @@ const Profile = () => {
                     >
                         <Box p="12px 5px" mb="12px">
                             <Text
-                                fontSize="lg"
-                                color={'gray.500'}
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="2xl"
+                                fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
                                 General Information
@@ -151,8 +153,10 @@ const Profile = () => {
                     >
                         <Box p="12px 5px" mb="12px">
                             <Text
-                                fontSize="lg"
-                                color={'gray.500'}
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="2xl"
+                                fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
                                 Company&apos;s Applied

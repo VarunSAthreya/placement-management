@@ -60,12 +60,19 @@ const CompanyInfoCard = ({ company }) => {
                                 align="center"
                                 w="100%"
                             >
-                                <Text fontSize="lg" color="gray.500" mb={4}>
+                                <Text
+                                    fontSize="lg"
+                                    color="gray.500"
+                                    mb={4}
+                                    fontWeight={'semibold'}
+                                >
                                     COMPANY NAME
                                 </Text>
                                 <Separator />
                             </Flex>
-                            <Text fontSize="2rem">{name}</Text>
+                            <Text fontSize="2rem" fontWeight={'semibold'}>
+                                {name}
+                            </Text>
                         </Flex>
                     </Box>
                 </Box>
@@ -107,12 +114,19 @@ const CompanyInfoCard = ({ company }) => {
                             align="center"
                             w="100%"
                         >
-                            <Text fontSize="lg" color="gray.500" mb={4}>
+                            <Text
+                                fontSize="lg"
+                                color="gray.500"
+                                mb={4}
+                                fontWeight={'semibold'}
+                            >
                                 COMPANY TYPE
                             </Text>
                             <Separator />
                         </Flex>
-                        <Text fontSize="1.5rem">{type} Based</Text>
+                        <Text fontSize="1.5rem" fontWeight={'semibold'}>
+                            {type} Based
+                        </Text>
                     </Flex>
                 </Box>
                 <Box
@@ -153,12 +167,19 @@ const CompanyInfoCard = ({ company }) => {
                             align="center"
                             w="100%"
                         >
-                            <Text fontSize="lg" color="gray.500" mb={4}>
+                            <Text
+                                fontSize="lg"
+                                color="gray.500"
+                                mb={4}
+                                fontWeight={'semibold'}
+                            >
                                 CTC PACKAGE
                             </Text>
                             <Separator />
                         </Flex>
-                        <Text fontSize="1.5rem">{ctc}</Text>
+                        <Text fontSize="1.5rem" fontWeight={'semibold'}>
+                            {ctc}
+                        </Text>
                     </Flex>
                 </Box>
                 <Box
@@ -199,12 +220,19 @@ const CompanyInfoCard = ({ company }) => {
                             align="center"
                             w="100%"
                         >
-                            <Text fontSize="lg" mb={4} color="gray.500">
+                            <Text
+                                fontSize="lg"
+                                mb={4}
+                                color="gray.500"
+                                fontWeight={'semibold'}
+                            >
                                 DATE OF ARRIVAL
                             </Text>
                             <Separator />
                         </Flex>
-                        <Text fontSize="1.5rem">{date}</Text>
+                        <Text fontSize="1.5rem" fontWeight={'semibold'}>
+                            {date}
+                        </Text>
                     </Flex>
                 </Box>
             </Grid>
@@ -216,7 +244,13 @@ const CompanyInfoCard = ({ company }) => {
                         minHeight="60px"
                         w="100%"
                     >
-                        <Text fontSize="lg" color={'gray.500'}>
+                        <Text
+                            bgGradient="linear(to-l, #7928CA, #FF0080)"
+                            bgClip="text"
+                            fontSize="3xl"
+                            fontWeight="extrabold"
+                            textTransform={'uppercase'}
+                        >
                             ELIGIBILITY CRITERIA
                         </Text>
                         <Button
@@ -249,10 +283,19 @@ const CompanyInfoCard = ({ company }) => {
                             bg={'#f8f9fa'}
                             p={3}
                         >
-                            <Text fontSize="md" color={'gray.500'} me="10px">
+                            <Text
+                                fontSize="md"
+                                color={'gray.500'}
+                                me="10px"
+                                fontWeight={'semibold'}
+                            >
                                 CGPA
                             </Text>
-                            <Text fontSize="md" color="black" fontWeight="400">
+                            <Text
+                                fontSize="md"
+                                color="black"
+                                fontWeight={'semibold'}
+                            >
                                 {cgpa}
                             </Text>
                         </Flex>
@@ -264,10 +307,19 @@ const CompanyInfoCard = ({ company }) => {
                             bg={'#f8f9fa'}
                             p={3}
                         >
-                            <Text fontSize="md" color={'gray.500'} me="10px">
+                            <Text
+                                fontSize="md"
+                                color={'gray.500'}
+                                me="10px"
+                                fontWeight={'semibold'}
+                            >
                                 10TH MARK&apos;S PERCENTAGE
                             </Text>
-                            <Text fontSize="md" color="black" fontWeight="400">
+                            <Text
+                                fontSize="md"
+                                color="black"
+                                fontWeight={'semibold'}
+                            >
                                 {tenth}
                             </Text>
                         </Flex>
@@ -279,10 +331,19 @@ const CompanyInfoCard = ({ company }) => {
                             bg={'#f8f9fa'}
                             p={3}
                         >
-                            <Text fontSize="md" color={'gray.500'} me="10px">
+                            <Text
+                                fontSize="md"
+                                color={'gray.500'}
+                                me="10px"
+                                fontWeight={'semibold'}
+                            >
                                 12TH MARK&apos;S PERCENTAGE
                             </Text>
-                            <Text fontSize="md" color="black" fontWeight="400">
+                            <Text
+                                fontSize="md"
+                                color="black"
+                                fontWeight={'semibold'}
+                            >
                                 {twelth}
                             </Text>
                         </Flex>
@@ -294,10 +355,19 @@ const CompanyInfoCard = ({ company }) => {
                             bg={'#f8f9fa'}
                             p={3}
                         >
-                            <Text fontSize="md" color={'gray.500'} me="10px">
+                            <Text
+                                fontSize="md"
+                                color={'gray.500'}
+                                me="10px"
+                                fontWeight={'semibold'}
+                            >
                                 BACKLOGS
                             </Text>
-                            <Text fontSize="md" color="black" fontWeight="400">
+                            <Text
+                                fontSize="md"
+                                color="black"
+                                fontWeight={'semibold'}
+                            >
                                 {backlogs}
                             </Text>
                         </Flex>

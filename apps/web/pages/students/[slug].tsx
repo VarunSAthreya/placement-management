@@ -68,7 +68,7 @@ const StudentDetails = ({ student }) => {
                             pb="1.5rem"
                         >
                             <Text
-                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgGradient="linear-gradient(to left, #7928CA, #FF0080)"
                                 bgClip="text"
                                 fontSize="4xl"
                                 fontWeight="extrabold"
@@ -127,7 +127,7 @@ const StudentDetails = ({ student }) => {
                             </Breadcrumb>
                         </Flex>
                     </Box>
-                    <Box px={4} borderRadius={8}>
+                    <Box borderRadius={8}>
                         <StudentInfoCard student={student} />
                     </Box>
                 </Box>
