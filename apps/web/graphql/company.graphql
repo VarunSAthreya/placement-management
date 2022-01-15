@@ -1,0 +1,12 @@
+query GetCompany {
+    companies {
+        name
+        type
+        arrival_date
+        package
+        eligibility {
+            CGPA
+            backlogs
+        }
+    }
+}

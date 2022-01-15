@@ -1,0 +1,13 @@
+mutation Auth($usn: ID!, $password: String!) {
+    authenticate(USN: $usn, password: $password) {
+        user {
+            role
+            details {
+                name
+                backlogs
+                email
+            }
+        }
+        token
+    }
+}
