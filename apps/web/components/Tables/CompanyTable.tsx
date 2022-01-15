@@ -6,14 +6,18 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
 const CompanyTable = ({ company }) => {
     const router = useRouter();
+
     const { name, type, arrival_date, package: pkg, eligibility } = company;
+
     const textColor = useColorModeValue('gray.700', 'white');
+
     return (
         <Tr>
             <Td minWidth={{ sm: '150px' }} pl="0px">
@@ -54,7 +58,7 @@ const CompanyTable = ({ company }) => {
                     fontWeight="bold"
                     pb=".5rem"
                 >
-                    {arrival_date}
+                    {format(new Date(Number(arrival_date)), 'dd MMM yyyy')}
                 </Text>
             </Td>
             <Td>
