@@ -56,6 +56,9 @@ const progressChartOptions: ApexOptions = {
             },
         },
     },
+    tooltip: {
+        theme: 'dark',
+    },
     legend: {
         show: false,
     },

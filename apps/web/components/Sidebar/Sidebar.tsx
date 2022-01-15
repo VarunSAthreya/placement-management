@@ -79,24 +79,20 @@ const SidebarContent = ({ onClose, ...rest }) => {
             <Flex
                 h="20"
                 alignItems="center"
-                mx="8"
+                mx="6"
                 justifyContent="space-between"
             >
                 <Box pt={'25px'} mb="12px">
-                    <Box
-                        display="flex"
-                        lineHeight="100%"
-                        mb="10px"
-                        fontWeight="bold"
-                        justifyContent="center"
-                        alignItems="center"
-                        fontSize="11px"
+                    <Text
+                        fontSize="1.3rem"
+                        mt="3px"
+                        bgGradient="linear(to-l, #7928CA, #FF0080)"
+                        bgClip="text"
+                        fontWeight="extrabold"
+                        textTransform={'uppercase'}
                     >
-                        {/* <CreativeTimLogo w="32px" h="32px" me="10px" /> */}
-                        <Text fontSize="lg" mt="3px">
-                            PLACEMENT PORTAL
-                        </Text>
-                    </Box>
+                        PLACEMENT PORTAL
+                    </Text>
                     <Separator></Separator>
                 </Box>
                 <CloseButton
