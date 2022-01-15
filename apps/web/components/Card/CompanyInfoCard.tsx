@@ -1,4 +1,12 @@
-import { Box, Button, Flex, Grid, Icon, Text } from '@chakra-ui/react';
+import {
+    Box,
+    Button,
+    Flex,
+    Grid,
+    Icon,
+    Text,
+    useColorModeValue,
+} from '@chakra-ui/react';
 import Separator from '../Separator/Separator';
 import IconBox from '../Icons/IconBox';
 import React from 'react';
@@ -23,7 +31,7 @@ const CompanyInfoCard = ({ company }) => {
                 gap="26px"
             >
                 <Box
-                    bg={'white'}
+                    bg={useColorModeValue('white', '#242526')}
                     borderRadius={8}
                     p="16px"
                     h={{ sm: '220px', xl: '100%' }}
@@ -81,7 +89,7 @@ const CompanyInfoCard = ({ company }) => {
                     display="flex"
                     align="center"
                     justify="center"
-                    bg={'white'}
+                    bg={useColorModeValue('white', '#242526')}
                     borderRadius={8}
                 >
                     <Flex
@@ -134,7 +142,7 @@ const CompanyInfoCard = ({ company }) => {
                     display="flex"
                     align="center"
                     justify="center"
-                    bg={'white'}
+                    bg={useColorModeValue('white', '#242526')}
                     borderRadius={8}
                 >
                     <Flex
@@ -187,7 +195,7 @@ const CompanyInfoCard = ({ company }) => {
                     display="flex"
                     align="center"
                     justify="center"
-                    bg={'white'}
+                    bg={useColorModeValue('white', '#242526')}
                     borderRadius={8}
                 >
                     <Flex
@@ -236,7 +244,12 @@ const CompanyInfoCard = ({ company }) => {
                     </Flex>
                 </Box>
             </Grid>
-            <Box p="16px" mt="32px" bg={'white'} borderRadius={8}>
+            <Box
+                p="16px"
+                mt="32px"
+                bg={useColorModeValue('white', '#242526')}
+                borderRadius={8}
+            >
                 <Box>
                     <Flex
                         justify="space-between"

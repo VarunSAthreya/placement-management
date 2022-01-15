@@ -16,7 +16,7 @@ const StudentsTable = ({ student }) => {
     const { name, email, USN, branch, section, cgpa } = student;
     const textColor = useColorModeValue('gray.700', 'white');
     const bgStatus = useColorModeValue('gray.400', '#1a202c');
-    const colorStatus = useColorModeValue('white', 'gray.400');
+    const colorStatus = useColorModeValue('white', 'white');
 
     return (
         <Tr>

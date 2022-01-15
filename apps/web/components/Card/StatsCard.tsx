@@ -1,10 +1,22 @@
-import { Box, Flex, Stat, StatLabel, StatNumber } from '@chakra-ui/react';
+import {
+    Box,
+    Flex,
+    Stat,
+    StatLabel,
+    StatNumber,
+    useColorModeValue,
+} from '@chakra-ui/react';
 import IconBox from '../Icons/IconBox';
 import { WalletIcon } from '../Icons/Icons';
 
 const StatsCard = () => {
     return (
-        <Box minH="83px" bg="white" p={4} borderRadius={8}>
+        <Box
+            minH="83px"
+            bg={useColorModeValue('white', '#242526')}
+            p={4}
+            borderRadius={8}
+        >
             <Flex flexDirection="row" align="center" justify="space-evenly">
                 <Stat me="auto">
                     <StatLabel
@@ -15,7 +27,10 @@ const StatsCard = () => {
                     >
                         No of Students
                     </StatLabel>
-                    <StatNumber fontSize="md" color="black">
+                    <StatNumber
+                        fontSize="md"
+                        color={useColorModeValue('black', 'white')}
+                    >
                         53,000
                     </StatNumber>
                 </Stat>

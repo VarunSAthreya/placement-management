@@ -1,4 +1,4 @@
-import { Box, Flex, Text, Avatar } from '@chakra-ui/react';
+import { Box, Flex, Text, Avatar, useColorModeValue } from '@chakra-ui/react';
 import Separator from '../Separator/Separator';
 import React from 'react';
 
@@ -17,7 +17,7 @@ const StudentInfoCard = ({ student }) => {
     } = student;
     return (
         <Box
-            bg={'white'}
+            bg={useColorModeValue('white', '#242526')}
             mb={4}
             borderRadius={8}
             display={'flex'}
@@ -51,7 +51,7 @@ const StudentInfoCard = ({ student }) => {
                     >
                         <Text
                             fontSize={{ sm: 'lg', lg: '2.3rem' }}
-                            color={'black'}
+                            color={useColorModeValue('black', 'white')}
                             fontWeight="bold"
                             ms={{ sm: '8px', md: '0px' }}
                         >

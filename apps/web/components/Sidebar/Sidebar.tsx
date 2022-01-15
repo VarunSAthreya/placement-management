@@ -10,8 +10,9 @@ import {
     Text,
     useColorModeValue,
     useDisclosure,
+    useColorMode,
+    Button,
 } from '@chakra-ui/react';
-import { CreativeTimLogo } from '../Icons/Icons';
 import IconBox from '../Icons/IconBox';
 import Separator from '../Separator/Separator';
 import React from 'react';
@@ -23,6 +24,7 @@ import {
     BsPersonPlus,
     BsPersonCircle,
 } from 'react-icons/bs';
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 const routes = [
     { name: 'Home', link: '/', icon: FiHome },
@@ -39,7 +41,7 @@ const SideBar = () => {
         <Box minH="100vh">
             <SidebarContent
                 onClose={() => onClose}
-                display={{ base: 'none', md: 'block' }}
+                display={{ base: 'none', md: 'flex' }}
             />
             <Drawer
                 autoFocus={false}
@@ -61,13 +63,15 @@ const SideBar = () => {
 };
 
 const SidebarContent = ({ onClose, ...rest }) => {
+    const { colorMode, toggleColorMode } = useColorMode();
     return (
         <Box
-            bg={useColorModeValue('white', 'gray.900')}
+            bg={useColorModeValue('white', '#242526')}
             w={{ base: 'full', md: 72 }}
             pos={'fixed'}
             borderRadius={8}
             left={2}
+            flexDirection={'column'}
             top={6}
             h="95%"
             {...rest}
@@ -100,11 +104,29 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     onClick={onClose}
                 />
             </Flex>
-            {routes.map((link) => (
-                <NavItem key={link.name} icon={link.icon} link={link.link}>
-                    {link.name}
-                </NavItem>
-            ))}
+            <Flex flexDirection={'column'}>
+                {routes.map((link) => (
+                    <NavItem key={link.name} icon={link.icon} link={link.link}>
+                        {link.name}
+                    </NavItem>
+                ))}
+            </Flex>
+            <Flex justify={'center'} pos={'relative'} top={160}>
+                <Button
+                    onClick={toggleColorMode}
+                    _focus={{ outline: 'none' }}
+                    variant="no-hover"
+                    rightIcon={
+                        colorMode === 'light' ? <MoonIcon /> : <SunIcon />
+                    }
+                >
+                    {colorMode === 'light' ? (
+                        <Text mr={4}>DARK MODE</Text>
+                    ) : (
+                        <Text mr={4}>LIGHT MODE</Text>
+                    )}
+                </Button>
+            </Flex>
         </Box>
     );
 };
@@ -118,12 +140,12 @@ const NavItem = ({ icon, link, children, ...rest }) => {
         >
             <Flex
                 align="center"
-                p="4"
-                mx="4"
+                p="2"
+                mx="2"
                 borderRadius="lg"
                 role="group"
                 cursor="pointer"
-                bg={'white'}
+                bg={useColorModeValue('white', '#242526')}
                 my={2}
                 _hover={{
                     bg: 'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)',
@@ -176,7 +198,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
             px={{ base: 4, md: 24 }}
             height="20"
             alignItems="center"
-            bg={useColorModeValue('white', 'gray.900')}
+            bg={useColorModeValue('white', '#242526')}
             borderBottomWidth="1px"
             borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
             justifyContent="space-between"
