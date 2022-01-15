@@ -1,20 +1,39 @@
+import { gql, useMutation } from '@apollo/client';
 import {
-    Flex,
     Button,
+    Flex,
     FormControl,
+    FormErrorMessage,
     FormLabel,
-    Heading,
-    Input,
-    Icon,
-    InputGroup,
-    InputLeftElement,
     Grid,
     GridItem,
-    FormErrorMessage,
+    Heading,
+    Icon,
+    Input,
+    InputGroup,
+    InputLeftElement,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { AiOutlineMail, AiFillLock } from 'react-icons/ai';
 import { useForm } from 'react-hook-form';
+import { AiFillLock, AiOutlineMail } from 'react-icons/ai';
+
+// TODO: Create separate file for queries
+
+const query = gql`
+    mutation ($usn: ID!, $password: String!) {
+        authenticate(USN: $usn, password: $password) {
+            user {
+                role
+                details {
+                    name
+                    backlogs
+                    email
+                }
+            }
+            token
+        }
+    }
+`;
 
 const Login = () => {
     const {
@@ -22,9 +41,26 @@ const Login = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const onSubmit = (data) => {
-        console.log(data);
+    const [login] = useMutation(query);
+
+    const onSubmit = async (values: { email: string; password: string }) => {
+        const { email, password } = values;
+        login({
+            variables: { usn: email.toUpperCase(), password },
+        })
+            .then(({ data }) => {
+                console.log({ data });
+                localStorage.setItem(
+                    'token',
+                    data.authenticate.token.split(' ')[1]
+                );
+            })
+            .catch((err) => {
+                console.error(err);
+                localStorage.clear();
+            });
     };
+
     return (
         <Flex position="relative" mb="40px">
             <Flex
@@ -59,7 +95,7 @@ const Login = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Grid templateColumns="1fr">
                             <GridItem>
-                                <FormControl isInvalid={errors.Email}>
+                                <FormControl isInvalid={errors.email}>
                                     <FormLabel
                                         ms="4px"
                                         fontSize="md"
@@ -107,24 +143,24 @@ const Login = () => {
                                             type="text"
                                             placeholder="Your email address"
                                             size="lg"
-                                            {...register('Email', {
+                                            {...register('email', {
                                                 required:
                                                     'Please Enter Your Email Address',
-                                                pattern: {
-                                                    value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                                                    message:
-                                                        'Please Enter a Valid Email Address',
-                                                },
+                                                // pattern: {
+                                                //     value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                                                //     message:
+                                                //         'Please Enter a Valid Email Address',
+                                                // },
                                             })}
                                         />
                                     </InputGroup>
                                     <FormErrorMessage color="red">
-                                        {errors.Email && errors.Email.message}
+                                        {errors.email && errors.email.message}
                                     </FormErrorMessage>
                                 </FormControl>
                             </GridItem>
                             <GridItem mt={4}>
-                                <FormControl isInvalid={errors.Password}>
+                                <FormControl isInvalid={errors.password}>
                                     <FormLabel
                                         ms="4px"
                                         fontSize="md"
@@ -171,7 +207,7 @@ const Login = () => {
                                                 ),
                                             }}
                                             size="lg"
-                                            {...register('Password', {
+                                            {...register('password', {
                                                 required:
                                                     'Please Enter Valid Password',
                                                 minLength: {
@@ -180,16 +216,16 @@ const Login = () => {
                                                         'Minimum Password length should be 3',
                                                 },
                                                 maxLength: {
-                                                    value: 8,
+                                                    value: 20,
                                                     message:
-                                                        'Maximum Password length should be 8',
+                                                        'Maximum Password length should be 20',
                                                 },
                                             })}
                                         />
                                     </InputGroup>
                                     <FormErrorMessage color="red">
-                                        {errors.Password &&
-                                            errors.Password.message}
+                                        {errors.password &&
+                                            errors.password.message}
                                     </FormErrorMessage>
                                 </FormControl>
                             </GridItem>

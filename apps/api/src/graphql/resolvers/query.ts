@@ -1,5 +1,4 @@
 import {
-    authenticateUser,
     getAllApplied,
     getAllSelected,
     getCompanies,
@@ -20,11 +19,6 @@ const query = {
     applied: async () => getAllApplied(),
 
     selected: async () => getAllSelected(),
-
-    authenticate: async (
-        _: any,
-        { USN, password }: { USN: string; password: string }
-    ) => authenticateUser(USN, password),
 };
 
 export default query;
