@@ -1,30 +1,30 @@
+import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
     Box,
+    Button,
+    CloseButton,
     Drawer,
     DrawerContent,
     Flex,
-    Link,
     Icon,
     IconButton,
-    CloseButton,
+    Link,
     Text,
+    useColorMode,
     useColorModeValue,
     useDisclosure,
-    useColorMode,
-    Button,
 } from '@chakra-ui/react';
-import IconBox from '../Icons/IconBox';
-import Separator from '../Separator/Separator';
 import React from 'react';
-import { FiHome, FiMenu } from 'react-icons/fi';
 import {
     BsBuilding,
     BsFillPersonLinesFill,
     BsPeople,
-    BsPersonPlus,
     BsPersonCircle,
+    BsPersonPlus,
 } from 'react-icons/bs';
-import { MoonIcon, SunIcon } from '@chakra-ui/icons';
+import { FiHome, FiMenu } from 'react-icons/fi';
+import IconBox from '../Icons/IconBox';
+import Separator from '../Separator/Separator';
 
 const routes = [
     { name: 'Home', link: '/', icon: FiHome },
@@ -107,7 +107,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                     </NavItem>
                 ))}
             </Flex>
-            <Flex justify={'center'} pos={'relative'} top={160}>
+            <Flex justify={'center'} pos={'relative'} bottom={0}>
                 <Button
                     onClick={toggleColorMode}
                     _focus={{ outline: 'none' }}
