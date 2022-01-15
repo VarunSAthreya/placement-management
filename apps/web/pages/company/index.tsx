@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql, useQuery } from '@apollo/client';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
     Box,
@@ -15,12 +15,11 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { GetServerSideProps, NextPage } from 'next';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import SideBar from '../../components/Sidebar/Sidebar';
 import CompanyTable from '../../components/Tables/CompanyTable';
-import client from '../../lib/client';
 
 const companyTableData = [
     {
@@ -77,14 +76,19 @@ type Props = {
     data: any;
 };
 
-const Company: NextPage<Props> = ({ data }) => {
+const Company: NextPage<Props> = () => {
     const router = useRouter();
 
+    const { data, loading, error } = useQuery(query);
+
+    const primary = useColorModeValue('#f8f9fa', '#18191A');
+    const secondary = useColorModeValue('white', '#242526');
+    const tableBoxShadow = useColorModeValue('0px 2px 3px #eee', '0px');
+
+    if (loading) return <p>Loading...</p>;
+
     return (
-        <Flex
-            flexDirection={'row'}
-            bg={useColorModeValue('#f8f9fa', '#18191A')}
-        >
+        <Flex flexDirection={'row'} bg={primary}>
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -97,7 +101,7 @@ const Company: NextPage<Props> = ({ data }) => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={useColorModeValue('white', '#242526')}
+                            bg={secondary}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -148,11 +152,7 @@ const Company: NextPage<Props> = ({ data }) => {
                             </Breadcrumb>
                         </Flex>
                     </Box>
-                    <Box
-                        bg={useColorModeValue('white', '#242526')}
-                        p={4}
-                        borderRadius={8}
-                    >
+                    <Box bg={secondary} p={4} borderRadius={8}>
                         <Flex
                             flexDirection={'row'}
                             justifyContent={'space-between'}
@@ -197,10 +197,7 @@ const Company: NextPage<Props> = ({ data }) => {
                             color="white"
                             bgGradient={'linear(to-l, #7928CA, #FF0080)'}
                             rounded={'md'}
-                            boxShadow={useColorModeValue(
-                                '0px 2px 3px #eee',
-                                '0px'
-                            )}
+                            boxShadow={tableBoxShadow}
                         >
                             <Thead>
                                 <Tr my=".8rem" pl="0px">
@@ -224,7 +221,7 @@ const Company: NextPage<Props> = ({ data }) => {
                                     </Th>
                                 </Tr>
                             </Thead>
-                            <Tbody bg={useColorModeValue('white', '#242526')}>
+                            <Tbody bg={secondary}>
                                 {data.companies.map((company, index) => {
                                     return (
                                         <CompanyTable
@@ -244,11 +241,11 @@ const Company: NextPage<Props> = ({ data }) => {
 
 export default Company;
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-    const { data } = await client.query({ query });
-    return {
-        props: {
-            data,
-        },
-    };
-};
+// export const getServerSideProps: GetServerSideProps = async (ctx) => {
+//     const { data } = await client.query({ query });
+//     return {
+//         props: {
+//             data,
+//         },
+//     };
+// };

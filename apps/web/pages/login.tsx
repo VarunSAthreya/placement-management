@@ -41,20 +41,24 @@ const Login = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const [login, { data, loading, error }] = useMutation(query);
+    const [login] = useMutation(query);
 
-    const onSubmit = async (values) => {
-        console.log(localStorage);
-
+    const onSubmit = async (values: { email: string; password: string }) => {
         const { email, password } = values;
-        await login({ variables: { usn: email, password } });
-
-        if (error || !data) {
-            console.log(error);
-            return;
-        }
-        localStorage.setItem('token', data.authenticate.token.split(' ')[1]);
-        console.log(data);
+        login({
+            variables: { usn: email.toUpperCase(), password },
+        })
+            .then(({ data }) => {
+                console.log({ data });
+                localStorage.setItem(
+                    'token',
+                    data.authenticate.token.split(' ')[1]
+                );
+            })
+            .catch((err) => {
+                console.error(err);
+                localStorage.clear();
+            });
     };
 
     return (
