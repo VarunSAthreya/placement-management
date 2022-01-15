@@ -26,7 +26,7 @@
         "format": "prettier --write \"**/*.{ts,tsx,md}\"",
         "api:dev": "yarn workspace api dev",
         "web:dev": "yarn workspace web dev",
-        "gen": "yarn workspace web gen"
+        "gen": "turbo run gen"
     },
     "devDependencies": {
         "prettier": "^2.5.1",
@@ -53,6 +53,9 @@
                 "cache": false
             },
             "clean": {
+                "cache": false
+            },
+            "gen": {
                 "cache": false
             }
         }
