@@ -30,7 +30,6 @@ const typeDefs = gql`
         companies: [Company]!
         applied: [Applied]!
         selected: [Selected]!
-        authenticate(USN: ID!, password: String!): AuthResponse!
     }
 
     type AuthResponse {
@@ -50,6 +49,7 @@ const typeDefs = gql`
         deleteCompany(name: String!): Company!
         deleteApplied(input: AppliedInput!): Applied!
         deleteSelected(input: SelectedInput!): Selected!
+        authenticate(USN: ID!, password: String!): AuthResponse!
     }
 `;
 

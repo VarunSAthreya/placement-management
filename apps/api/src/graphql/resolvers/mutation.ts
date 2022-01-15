@@ -1,4 +1,5 @@
 import {
+    authenticateUser,
     createApplied,
     createCompany,
     createSelected,
@@ -18,6 +19,11 @@ const mutation = {
         { input }: { input: IUser },
         { role }: { role: string }
     ) => createUser(input),
+
+    authenticate: async (
+        _: any,
+        { USN, password }: { USN: string; password: string }
+    ) => authenticateUser(USN, password),
 
     createCompany: async (
         _: any,

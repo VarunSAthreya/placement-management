@@ -8,6 +8,8 @@ const context = async ({ req }: { req: any }) => {
     // }
 
     const token = req.headers.authorization || '';
+    console.log(token);
+
     const user = await verifyToken(token);
     console.log({ user });
 
