@@ -1,22 +1,22 @@
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
     Box,
-    Flex,
-    Table,
-    Tbody,
-    Th,
-    Thead,
-    Tr,
-    Text,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Flex,
+    Table,
+    Tbody,
+    Text,
+    Th,
+    Thead,
+    Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { ChevronRightIcon } from '@chakra-ui/icons';
 import { GetStaticPaths, GetStaticProps, PreviewData } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import SideBar from '../../components/Sidebar/Sidebar';
-import StudentsTable from '../../components/Tables/StudentsTable';
+import { SideBar } from '../../components/Sidebar';
+import { StudentsTable } from '../../components/Tables';
 
 const placedData = [
     {

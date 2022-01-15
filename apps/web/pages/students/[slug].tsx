@@ -1,17 +1,17 @@
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
     Box,
-    Flex,
-    Text,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Flex,
+    Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { ChevronRightIcon } from '@chakra-ui/icons';
 import { GetStaticPaths, GetStaticProps, PreviewData } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import SideBar from '../../components/Sidebar/Sidebar';
-import StudentInfoCard from '../../components/Card/StudentInfoCard';
+import { StudentInfoCard } from '../../components/Card';
+import { SideBar } from '../../components/Sidebar';
 
 const studentData = [
     {

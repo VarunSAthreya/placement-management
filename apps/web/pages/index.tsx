@@ -6,12 +6,14 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import StatsCard from '../components/Card/StatsCard';
-import BarChart from '../components/Charts/BarChart';
-import DonutChart from '../components/Charts/DonutChart';
-import LineChart from '../components/Charts/LineChart';
-import ProgressChart from '../components/Charts/ProgressChart';
-import SideBar from '../components/Sidebar/Sidebar';
+import { StatsCard } from '../components/Card';
+import {
+    BarChart,
+    DonutChart,
+    LineChart,
+    ProgressChart,
+} from '../components/Charts';
+import { SideBar } from '../components/Sidebar';
 
 const Home = () => {
     return (

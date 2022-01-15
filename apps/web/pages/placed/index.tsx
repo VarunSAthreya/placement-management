@@ -1,20 +1,20 @@
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
-    Table,
-    Tbody,
-    Text,
     Box,
-    Th,
-    Thead,
-    Tr,
-    Flex,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Flex,
+    Table,
+    Tbody,
+    Text,
+    Th,
+    Thead,
+    Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { ChevronRightIcon } from '@chakra-ui/icons';
-import PlacedTable from '../../components/Tables/PlacedTable';
-import SideBar from '../../components/Sidebar/Sidebar';
+import { SideBar } from '../../components/Sidebar';
+import { PlacedTable } from '../../components/Tables';
 
 const placedTableData = [
     {

@@ -1,17 +1,17 @@
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
     Box,
-    Flex,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Flex,
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { ChevronRightIcon } from '@chakra-ui/icons';
 import { GetStaticPaths, GetStaticProps, PreviewData } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import SideBar from '../../components/Sidebar/Sidebar';
-import CompanyInfoCard from '../../components/Card/CompanyInfoCard';
+import { CompanyInfoCard } from '../../components/Card';
+import { SideBar } from '../../components/Sidebar';
 
 const companyData = [
     {

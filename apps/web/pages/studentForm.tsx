@@ -1,23 +1,22 @@
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
-    Text,
     Box,
-    Flex,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     Button,
-    Input,
-    Grid,
+    Flex,
     FormControl,
-    GridItem,
     FormErrorMessage,
+    Grid,
+    GridItem,
+    Input,
+    Text,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
-import { ChevronRightIcon } from '@chakra-ui/icons';
-import SideBar from '../components/Sidebar/Sidebar';
-import React from 'react';
-import Separator from '../components/Separator/Separator';
+import { Separator } from '../components/Separator';
+import { SideBar } from '../components/Sidebar';
 
 const StudentForm = () => {
     const {

@@ -1,23 +1,23 @@
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
-    Table,
-    Tbody,
-    Text,
     Box,
-    Th,
-    Thead,
-    Tr,
-    Flex,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
     Button,
+    Flex,
+    Table,
+    Tbody,
+    Text,
+    Th,
+    Thead,
+    Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { AiFillPlusCircle } from 'react-icons/ai';
-import { ChevronRightIcon } from '@chakra-ui/icons';
-import StudentsTable from '../../components/Tables/StudentsTable';
-import SideBar from '../../components/Sidebar/Sidebar';
+import { SideBar } from '../../components/Sidebar';
+import { StudentsTable } from '../../components/Tables';
 
 const studentsTableData = [
     {

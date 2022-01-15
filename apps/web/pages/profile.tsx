@@ -1,16 +1,15 @@
+import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
     Box,
-    Flex,
-    Grid,
-    Text,
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Flex,
+    Grid,
+    Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { ChevronRightIcon } from '@chakra-ui/icons';
-import AppliedCard from '../components/Card/AppliedCard';
-import ProfileCard from '../components/Card/profileCard';
+import { AppliedCard, ProfileCard } from '../components/Card';
 import SideBar from '../components/Sidebar/Sidebar';
 
 const companyAppliedCardData = [

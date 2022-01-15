@@ -17,8 +17,8 @@ import {
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { AiFillPlusCircle } from 'react-icons/ai';
-import SideBar from '../../components/Sidebar/Sidebar';
-import CompanyTable from '../../components/Tables/CompanyTable';
+import { SideBar } from '../../components/Sidebar';
+import { CompanyTable } from '../../components/Tables';
 import { useGetCompanyQuery } from '../../generated/graphql';
 
 const Company: NextPage = () => {
