@@ -1,4 +1,3 @@
-import { gql, useQuery } from '@apollo/client';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
     Box,
@@ -20,66 +19,12 @@ import { useRouter } from 'next/router';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import SideBar from '../../components/Sidebar/Sidebar';
 import CompanyTable from '../../components/Tables/CompanyTable';
+import { useGetCompanyQuery } from '../../generated/graphql';
 
-const companyTableData = [
-    {
-        name: 'Microsoft',
-        type: 'Product',
-        date: '03-05-2021',
-        eligibility: 75,
-        ctc: '7.5LPA',
-        year: '2021',
-    },
-    {
-        name: 'Add Progress Track',
-        type: 'Product',
-        date: '03-05-2021',
-        eligibility: 75,
-        ctc: '7.5LPA',
-        year: '2021',
-    },
-    {
-        name: 'Fix Platform Errors',
-        type: 'Product',
-        date: '03-05-2021',
-        eligibility: 75,
-        ctc: '7.5LPA',
-        year: '2021',
-    },
-    {
-        name: 'Launch our Mobile App',
-        type: 'Product',
-        date: '03-05-2021',
-        eligibility: 75,
-        ctc: '7.5LPA',
-        year: '2021',
-    },
-];
-
-const query = gql`
-    query {
-        companies {
-            name
-            type
-            arrival_date
-            package
-            eligibility {
-                CGPA
-                backlogs
-            }
-        }
-    }
-`;
-
-type Props = {
-    // TODO: Add types
-    data: any;
-};
-
-const Company: NextPage<Props> = () => {
+const Company: NextPage = () => {
     const router = useRouter();
 
-    const { data, loading, error } = useQuery(query);
+    const { data, loading, error } = useGetCompanyQuery();
 
     const primary = useColorModeValue('#f8f9fa', '#18191A');
     const secondary = useColorModeValue('white', '#242526');
@@ -240,12 +185,3 @@ const Company: NextPage<Props> = () => {
 };
 
 export default Company;
-
-// export const getServerSideProps: GetServerSideProps = async (ctx) => {
-//     const { data } = await client.query({ query });
-//     return {
-//         props: {
-//             data,
-//         },
-//     };
-// };

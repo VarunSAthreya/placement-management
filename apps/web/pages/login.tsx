@@ -1,4 +1,3 @@
-import { gql, useMutation } from '@apollo/client';
 import {
     Button,
     Flex,
@@ -16,24 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { useForm } from 'react-hook-form';
 import { AiFillLock, AiOutlineMail } from 'react-icons/ai';
-
-// TODO: Create separate file for queries
-
-const query = gql`
-    mutation ($usn: ID!, $password: String!) {
-        authenticate(USN: $usn, password: $password) {
-            user {
-                role
-                details {
-                    name
-                    backlogs
-                    email
-                }
-            }
-            token
-        }
-    }
-`;
+import { useAuthMutation } from '../generated/graphql';
 
 const Login = () => {
     const {
@@ -41,7 +23,7 @@ const Login = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
-    const [login] = useMutation(query);
+    const [login] = useAuthMutation();
 
     const onSubmit = async (values: { email: string; password: string }) => {
         const { email, password } = values;
@@ -51,7 +33,7 @@ const Login = () => {
             .then(({ data }) => {
                 console.log({ data });
                 localStorage.setItem(
-                    'token',
+                    'yo',
                     data.authenticate.token.split(' ')[1]
                 );
             })
