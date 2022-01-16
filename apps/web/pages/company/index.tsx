@@ -19,12 +19,12 @@ import { useRouter } from 'next/router';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { SideBar } from '../../components/Sidebar';
 import { CompanyTable } from '../../components/Tables';
-import { useGetCompanyQuery } from '../../generated/graphql';
+import { useGetCompaniesQuery } from '../../generated/graphql';
 
 const Company: NextPage = () => {
     const router = useRouter();
 
-    const { data, loading, error } = useGetCompanyQuery();
+    const { data, loading, error } = useGetCompaniesQuery();
 
     const primary = useColorModeValue('#f8f9fa', '#18191A');
     const secondary = useColorModeValue('white', '#242526');

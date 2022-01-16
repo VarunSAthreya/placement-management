@@ -8,52 +8,27 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { GetStaticPaths, GetStaticProps, PreviewData } from 'next';
-import { ParsedUrlQuery } from 'querystring';
+import { useRouter } from 'next/router';
 import { CompanyInfoCard } from '../../components/Card';
 import { SideBar } from '../../components/Sidebar';
+import { useGetCompanyDetailsQuery } from '../../generated/graphql';
 
-const companyData = [
-    {
-        name: 'Microsoft',
-        type: 'Product',
-        date: '03-05-2021',
-        eligibility: 75,
-        ctc: '7.5LPA',
-        year: '2021',
-    },
-    {
-        name: 'Add Progress Track',
-        type: 'Product',
-        date: '03-05-2021',
-        eligibility: 75,
-        ctc: '7.5LPA',
-        year: '2021',
-    },
-    {
-        name: 'Fix Platform Errors',
-        type: 'Product',
-        date: '03-05-2021',
-        eligibility: 75,
-        ctc: '7.5LPA',
-        year: '2021',
-    },
-    {
-        name: 'Launch our Mobile App',
-        type: 'Product',
-        date: '03-05-2021',
-        eligibility: 75,
-        ctc: '7.5LPA',
-        year: '2021',
-    },
-];
+const CompanyDetails = () => {
+    const { asPath } = useRouter();
+    const slug = asPath.split('/')[2];
+    console.log({ slug });
 
-const CompanyDetails = ({ company }) => {
+    const { data, loading, error } = useGetCompanyDetailsQuery({
+        variables: { name: slug },
+    });
+
+    const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
+    const secondaryBG = useColorModeValue('white', '#242526');
+
+    if (loading) return <p>Loading...</p>;
+
     return (
-        <Flex
-            flexDirection={'row'}
-            bg={useColorModeValue('#f8f9fa', '#18191A')}
-        >
+        <Flex flexDirection={'row'} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -66,7 +41,7 @@ const CompanyDetails = ({ company }) => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={useColorModeValue('white', '#242526')}
+                            bg={secondaryBG}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -132,36 +107,12 @@ const CompanyDetails = ({ company }) => {
                         </Flex>
                     </Box>
                     <Box borderRadius={8}>
-                        <CompanyInfoCard company={company} />
+                        <CompanyInfoCard company={data.company} />
                     </Box>
                 </Box>
             </Flex>
         </Flex>
     );
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-    const paths = companyData.map((company) => ({
-        params: { slug: company.name },
-    }));
-
-    return {
-        paths,
-        fallback: false,
-    };
-};
-
-export const getStaticProps: GetStaticProps = (ctx: {
-    params?: ParsedUrlQuery;
-    preview?: boolean;
-    previewData?: PreviewData;
-}) => {
-    const name = ctx.params?.slug as string;
-    return {
-        props: {
-            company: companyData.find((company) => company.name === name),
-        },
-    };
 };
 
 export default CompanyDetails;

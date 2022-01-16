@@ -7,14 +7,17 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import Separator from '../Separator/Separator';
-import IconBox from '../Icons/IconBox';
+import { format } from 'date-fns';
 import React from 'react';
-import { FiType, FiPackage } from 'react-icons/fi';
-import { BsCalendarEvent, BsBuilding } from 'react-icons/bs';
+import { BsBuilding, BsCalendarEvent } from 'react-icons/bs';
+import { FiPackage, FiType } from 'react-icons/fi';
+import IconBox from '../Icons/IconBox';
+import Separator from '../Separator/Separator';
 
 const CompanyInfoCard = ({ company }) => {
-    const { name, date, type, ctc, cgpa, tenth, twelth, backlogs } = company;
+    const { name, type, package: CTC, arrival_date } = company;
+    const { CGPA, backlogs, tenth, twelth } = company.eligibility;
+
     return (
         <Box>
             <Grid
@@ -186,7 +189,7 @@ const CompanyInfoCard = ({ company }) => {
                             <Separator />
                         </Flex>
                         <Text fontSize="1.5rem" fontWeight={'semibold'}>
-                            {ctc}
+                            {CTC}
                         </Text>
                     </Flex>
                 </Box>
@@ -239,7 +242,10 @@ const CompanyInfoCard = ({ company }) => {
                             <Separator />
                         </Flex>
                         <Text fontSize="1.5rem" fontWeight={'semibold'}>
-                            {date}
+                            {format(
+                                new Date(Number(arrival_date)),
+                                'dd MMM yyyy'
+                            )}
                         </Text>
                     </Flex>
                 </Box>
@@ -309,7 +315,7 @@ const CompanyInfoCard = ({ company }) => {
                                 color="black"
                                 fontWeight={'semibold'}
                             >
-                                {cgpa}
+                                {CGPA}
                             </Text>
                         </Flex>
                         <Flex

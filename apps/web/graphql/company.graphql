@@ -1,4 +1,4 @@
-query GetCompany {
+query GetCompanies {
     companies {
         name
         type
@@ -8,6 +8,21 @@ query GetCompany {
         eligibility {
             CGPA
             backlogs
+        }
+    }
+}
+
+query GetCompanyDetails($name: String!) {
+    company(name: $name) {
+        name
+        type
+        package
+        arrival_date
+        eligibility {
+            CGPA
+            backlogs
+            tenth
+            twelth
         }
     }
 }
