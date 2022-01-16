@@ -20,6 +20,7 @@ const query = {
 export const getCompanies = async () =>
     prisma.company.findMany({
         include: query,
+        orderBy: { name: 'asc' },
     });
 
 export const getCompany = async (name: string) =>
@@ -97,5 +98,6 @@ export const getAllEligibleStudents = async (name: string) => {
             tenth: { gte: tenth },
             twelth: { gte: twelth },
         },
+        orderBy: { USN: 'asc' },
     });
 };

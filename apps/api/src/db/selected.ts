@@ -13,6 +13,7 @@ const query = {
 export const getAllSelected = async () =>
     prisma.selected.findMany({
         include: query,
+        orderBy: { userID: 'asc' },
     });
 
 export const getSelectedOnUSN = async (USN: string) =>
@@ -21,6 +22,7 @@ export const getSelectedOnUSN = async (USN: string) =>
             userID: USN,
         },
         include: query,
+        orderBy: { companyID: 'asc' },
     });
 
 export const getSelectedOnCompany = async (companyID: string) =>
@@ -29,6 +31,7 @@ export const getSelectedOnCompany = async (companyID: string) =>
             companyID,
         },
         include: query,
+        orderBy: { userID: 'asc' },
     });
 
 export const getSelected = async (selected: ISelected) => {

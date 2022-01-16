@@ -12,6 +12,7 @@ const query = {
 export const getAllApplied = async () =>
     prisma.applied.findMany({
         include: query,
+        orderBy: { userID: 'asc' },
     });
 
 export const getAppliedOnUSN = async (USN: string) =>
@@ -20,6 +21,7 @@ export const getAppliedOnUSN = async (USN: string) =>
             userID: USN,
         },
         include: query,
+        orderBy: { companyID: 'asc' },
     });
 
 export const getAppliedOnCompany = async (companyID: string) =>
@@ -28,6 +30,7 @@ export const getAppliedOnCompany = async (companyID: string) =>
             companyID,
         },
         include: query,
+        orderBy: { userID: 'asc' },
     });
 
 export const getApplied = async (applied: IApplied) => {

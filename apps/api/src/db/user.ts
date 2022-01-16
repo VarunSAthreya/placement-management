@@ -26,6 +26,7 @@ const userQuery = {
 export const getUsers = async () =>
     prisma.user.findMany({
         include: userQuery,
+        orderBy: { USN: 'asc' },
     });
 
 export const getUser = async (USN: string) =>
@@ -56,6 +57,7 @@ export const createUser = async (user: IUser) => {
 export const getAllUserDetails = async () =>
     prisma.userDetails.findMany({
         include: detailsQuery,
+        orderBy: { USN: 'asc' },
     });
 
 export const getUserDetails = async (USN: string) =>
