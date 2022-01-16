@@ -4,6 +4,7 @@ query GetCompany {
         type
         arrival_date
         package
+        year
         eligibility {
             CGPA
             backlogs

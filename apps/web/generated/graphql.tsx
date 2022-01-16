@@ -286,7 +286,7 @@ export type UserInput = {
 export type GetCompanyQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetCompanyQuery = { __typename?: 'Query', companies: Array<{ __typename?: 'Company', name: string, type: CompanyType, arrival_date?: string | null | undefined, package?: number | null | undefined, eligibility: { __typename?: 'CompanyEdibility', CGPA: number, backlogs: number } } | null | undefined> };
+export type GetCompanyQuery = { __typename?: 'Query', companies: Array<{ __typename?: 'Company', name: string, type: CompanyType, arrival_date?: string | null | undefined, package?: number | null | undefined, year: number, eligibility: { __typename?: 'CompanyEdibility', CGPA: number, backlogs: number } } | null | undefined> };
 
 export type AuthMutationVariables = Exact<{
   usn: Scalars['ID'];
@@ -304,6 +304,7 @@ export const GetCompanyDocument = gql`
     type
     arrival_date
     package
+    year
     eligibility {
       CGPA
       backlogs

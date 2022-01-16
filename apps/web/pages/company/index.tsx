@@ -156,7 +156,7 @@ const Company: NextPage = () => {
                                         Date of Arrival
                                     </Th>
                                     <Th color="white" textAlign={'center'}>
-                                        Ctc
+                                        CTC
                                     </Th>
                                     <Th color="white" textAlign={'center'}>
                                         year

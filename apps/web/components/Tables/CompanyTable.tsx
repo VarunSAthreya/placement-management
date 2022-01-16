@@ -14,7 +14,7 @@ import { BsFillInfoCircleFill } from 'react-icons/bs';
 const CompanyTable = ({ company }) => {
     const router = useRouter();
 
-    const { name, type, arrival_date, package: pkg, eligibility } = company;
+    const { name, type, arrival_date, package: pkg, year } = company;
 
     const textColor = useColorModeValue('gray.700', 'white');
 
@@ -80,7 +80,7 @@ const CompanyTable = ({ company }) => {
                     fontWeight="bold"
                     pb=".5rem"
                 >
-                    {eligibility.backlogs}
+                    {year}
                 </Text>
             </Td>
             <Td>
