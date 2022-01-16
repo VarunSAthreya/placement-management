@@ -128,7 +128,9 @@ const Profile: NextPage = () => {
                             </Text>
                         </Box>
                         <Box px="5px">
-                            <ProfileCard data={data.user.details} />;
+                            {usn.current && (
+                                <ProfileCard data={data.user.details} />
+                            )}
                         </Box>
                     </Box>
                     <Box
@@ -150,14 +152,15 @@ const Profile: NextPage = () => {
                         </Box>
                         <Box px="5px">
                             <Flex direction="column">
-                                {data.user.details.applied.map((row) => {
-                                    return (
-                                        <AppliedCard
-                                            key={row.company.name}
-                                            data={row.company}
-                                        />
-                                    );
-                                })}
+                                {usn.current &&
+                                    data.user.details.applied.map((row) => {
+                                        return (
+                                            <AppliedCard
+                                                key={row.company.name}
+                                                data={row.company}
+                                            />
+                                        );
+                                    })}
                             </Flex>
                         </Box>
                     </Box>
