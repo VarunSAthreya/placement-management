@@ -11,3 +11,14 @@ mutation Auth($usn: ID!, $password: String!) {
         token
     }
 }
+
+query GetAllStudentsCard {
+    studentDetails {
+        USN
+        email
+        name
+        branch
+        section
+        CGPA
+    }
+}

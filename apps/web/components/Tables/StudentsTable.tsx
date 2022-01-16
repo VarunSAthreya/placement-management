@@ -1,8 +1,8 @@
 import {
     Avatar,
     Badge,
-    IconButton,
     Flex,
+    IconButton,
     Td,
     Text,
     Tr,
@@ -13,7 +13,7 @@ import { BsFillInfoCircleFill } from 'react-icons/bs';
 
 const StudentsTable = ({ student }) => {
     const router = useRouter();
-    const { name, email, USN, branch, section, cgpa } = student;
+    const { USN, name, email, branch, section, CGPA } = student;
     const textColor = useColorModeValue('gray.700', 'white');
     const bgStatus = useColorModeValue('gray.400', '#1a202c');
     const colorStatus = useColorModeValue('white', 'white');
@@ -93,13 +93,13 @@ const StudentsTable = ({ student }) => {
             <Td>
                 <Flex justifyContent={'center'}>
                     <Badge
-                        bg={cgpa === '7.5' ? '#22c55e' : bgStatus}
-                        color={cgpa === '7' ? '#e11d48' : colorStatus}
+                        bg={CGPA === '7.5' ? '#22c55e' : bgStatus}
+                        color={CGPA === '7' ? '#e11d48' : colorStatus}
                         fontSize="16px"
                         p="10px"
                         borderRadius="8px"
                     >
-                        {cgpa}
+                        {CGPA}
                     </Badge>
                 </Flex>
             </Td>

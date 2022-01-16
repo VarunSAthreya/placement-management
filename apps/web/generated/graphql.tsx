@@ -183,6 +183,7 @@ export type Query = {
   companies: Array<Maybe<Company>>;
   company: Company;
   selected: Array<Maybe<Selected>>;
+  studentDetails: Array<Maybe<UserDetails>>;
   user: User;
   users: Array<Maybe<User>>;
 };
@@ -296,6 +297,11 @@ export type AuthMutationVariables = Exact<{
 
 export type AuthMutation = { __typename?: 'Mutation', authenticate: { __typename?: 'AuthResponse', token: string, user: { __typename?: 'User', role: Roles, details?: { __typename?: 'UserDetails', name: string, backlogs: number, email: string } | null | undefined } } };
 
+export type GetAllStudentsCardQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllStudentsCardQuery = { __typename?: 'Query', studentDetails: Array<{ __typename?: 'UserDetails', USN: string, email: string, name: string, branch: Branch, section: Section, CGPA: number } | null | undefined> };
+
 
 export const GetCompanyDocument = gql`
     query GetCompany {
@@ -381,3 +387,42 @@ export function useAuthMutation(baseOptions?: Apollo.MutationHookOptions<AuthMut
 export type AuthMutationHookResult = ReturnType<typeof useAuthMutation>;
 export type AuthMutationResult = Apollo.MutationResult<AuthMutation>;
 export type AuthMutationOptions = Apollo.BaseMutationOptions<AuthMutation, AuthMutationVariables>;
+export const GetAllStudentsCardDocument = gql`
+    query GetAllStudentsCard {
+  studentDetails {
+    USN
+    email
+    name
+    branch
+    section
+    CGPA
+  }
+}
+    `;
+
+/**
+ * __useGetAllStudentsCardQuery__
+ *
+ * To run a query within a React component, call `useGetAllStudentsCardQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllStudentsCardQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllStudentsCardQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllStudentsCardQuery(baseOptions?: Apollo.QueryHookOptions<GetAllStudentsCardQuery, GetAllStudentsCardQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllStudentsCardQuery, GetAllStudentsCardQueryVariables>(GetAllStudentsCardDocument, options);
+      }
+export function useGetAllStudentsCardLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllStudentsCardQuery, GetAllStudentsCardQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllStudentsCardQuery, GetAllStudentsCardQueryVariables>(GetAllStudentsCardDocument, options);
+        }
+export type GetAllStudentsCardQueryHookResult = ReturnType<typeof useGetAllStudentsCardQuery>;
+export type GetAllStudentsCardLazyQueryHookResult = ReturnType<typeof useGetAllStudentsCardLazyQuery>;
+export type GetAllStudentsCardQueryResult = Apollo.QueryResult<GetAllStudentsCardQuery, GetAllStudentsCardQueryVariables>;

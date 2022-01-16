@@ -18,49 +18,20 @@ import { useRouter } from 'next/router';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { SideBar } from '../../components/Sidebar';
 import { StudentsTable } from '../../components/Tables';
-
-const studentsTableData = [
-    {
-        USN: '1JS19CS186',
-        name: 'Varun S Athreya',
-        email: '1js19cs186@jssateb.ac.in',
-        branch: 'CSE',
-        section: 'C',
-        cgpa: '7.5',
-    },
-    {
-        USN: '1JS19CS146',
-        name: 'Sandeep M',
-        email: '1js19cs146@jssateb.ac.in',
-        branch: 'CSE',
-        section: 'C',
-        cgpa: '7.5',
-    },
-    {
-        USN: '1JS19CS183',
-        name: 'Ullas HP',
-        email: '1js19cs183@jssateb.ac.in',
-        branch: 'CSE',
-        section: 'C',
-        cgpa: '7.5',
-    },
-    {
-        USN: '1JS19CS157',
-        name: 'Shithin Shetty',
-        email: '1js19cs157@jssateb.ac.in',
-        branch: 'CSE',
-        section: 'C',
-        cgpa: '7.5',
-    },
-];
+import { useGetAllStudentsCardQuery } from '../../generated/graphql';
 
 const Students = () => {
     const router = useRouter();
+
+    const { data, loading, error } = useGetAllStudentsCardQuery();
+
+    const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
+    const secondaryBG = useColorModeValue('white', '#242526');
+    const tableBoxShadow = useColorModeValue('0px 2px 3px #eee', '0px');
+
+    if (loading) return <p>Loading...</p>;
     return (
-        <Flex
-            flexDirection={'row'}
-            bg={useColorModeValue('#f8f9fa', '#18191A')}
-        >
+        <Flex flexDirection={'row'} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -73,7 +44,7 @@ const Students = () => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={useColorModeValue('white', '#242526')}
+                            bg={secondaryBG}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -124,11 +95,7 @@ const Students = () => {
                             </Breadcrumb>
                         </Flex>
                     </Box>
-                    <Box
-                        bg={useColorModeValue('white', '#242526')}
-                        p={4}
-                        borderRadius={8}
-                    >
+                    <Box bg={secondaryBG} p={4} borderRadius={8}>
                         <Flex
                             flexDirection={'row'}
                             justifyContent={'space-between'}
@@ -174,10 +141,7 @@ const Students = () => {
                             color="white"
                             bgGradient={'linear(to-l, #7928CA, #FF0080)'}
                             rounded={'md'}
-                            boxShadow={useColorModeValue(
-                                '0px 2px 3px #eee',
-                                '0px'
-                            )}
+                            boxShadow={tableBoxShadow}
                         >
                             <Thead>
                                 <Tr my=".8rem">
@@ -201,8 +165,8 @@ const Students = () => {
                                     </Th>
                                 </Tr>
                             </Thead>
-                            <Tbody bg={useColorModeValue('white', '#242526')}>
-                                {studentsTableData.map((student, index) => {
+                            <Tbody bg={secondaryBG}>
+                                {data.studentDetails.map((student, index) => {
                                     return (
                                         <StudentsTable
                                             key={index}
