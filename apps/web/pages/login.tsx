@@ -13,6 +13,7 @@ import {
     InputLeftElement,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { AiFillLock, AiOutlineMail } from 'react-icons/ai';
 import { useAuthMutation } from '../generated/graphql';
@@ -23,7 +24,9 @@ const Login = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
+
     const [login] = useAuthMutation();
+    const router = useRouter();
 
     const onSubmit = async (values: { email: string; password: string }) => {
         const { email, password } = values;
@@ -33,9 +36,10 @@ const Login = () => {
             .then(({ data }) => {
                 console.log({ data });
                 localStorage.setItem(
-                    'yo',
+                    'token',
                     data.authenticate.token.split(' ')[1]
                 );
+                router.replace('/');
             })
             .catch((err) => {
                 console.error(err);
