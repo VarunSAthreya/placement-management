@@ -51,6 +51,7 @@ export type Company = {
   package?: Maybe<Scalars['Float']>;
   selected: Array<Maybe<Selected>>;
   type: CompanyType;
+  year: Scalars['Int'];
 };
 
 export type CompanyEdibility = {
@@ -82,6 +83,7 @@ export type CompanyInput = {
   name: Scalars['String'];
   package?: InputMaybe<Scalars['Float']>;
   type: CompanyType;
+  year: Scalars['Int'];
 };
 
 export enum CompanyType {
@@ -95,6 +97,7 @@ export type CompanyUpdateInput = {
   name: Scalars['String'];
   package?: InputMaybe<Scalars['Float']>;
   type?: InputMaybe<CompanyType>;
+  year?: InputMaybe<Scalars['Int']>;
 };
 
 export type Mutation = {
