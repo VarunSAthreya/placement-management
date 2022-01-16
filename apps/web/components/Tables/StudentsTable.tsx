@@ -93,8 +93,8 @@ const StudentsTable = ({ student }) => {
             <Td>
                 <Flex justifyContent={'center'}>
                     <Badge
-                        bg={CGPA === '7.5' ? '#22c55e' : bgStatus}
-                        color={CGPA === '7' ? '#e11d48' : colorStatus}
+                        bg={CGPA >= '7.5' ? '#22c55e' : bgStatus}
+                        color={CGPA < '7.5' ? '#e11d48' : colorStatus}
                         fontSize="16px"
                         p="10px"
                         borderRadius="8px"

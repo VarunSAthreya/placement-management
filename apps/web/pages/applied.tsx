@@ -15,46 +15,19 @@ import {
 } from '@chakra-ui/react';
 import { SideBar } from '../components/Sidebar';
 import { AppliedTable } from '../components/Tables';
-
-const appliedTableData = [
-    {
-        name: 'Oliver Liam',
-        usn: '1JS19CS157',
-        email: 'oliver@burrito.com',
-        branch: 'CSE',
-        section: 'C',
-        company: 'Microsoft',
-        type: 'Product',
-        ctc: '7.5LPA',
-    },
-    {
-        name: 'Oliver Liam',
-        usn: '1JS19CS157',
-        email: 'oliver@burrito.com',
-        branch: 'CSE',
-        section: 'C',
-        company: 'Microsoft',
-        type: 'Product',
-        ctc: '7.5LPA',
-    },
-    {
-        name: 'Oliver Liam',
-        usn: '1JS19CS157',
-        email: 'oliver@burrito.com',
-        branch: 'CSE',
-        section: 'C',
-        company: 'Microsoft',
-        type: 'Product',
-        ctc: '7.5LPA',
-    },
-];
+import { useGetAllAppliedQuery } from '../generated/graphql';
 
 const Applied = () => {
+    const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
+    const secondaryBG = useColorModeValue('white', '#242526');
+    const tableBoxShadow = useColorModeValue('0px 2px 3px #eee', '0px');
+
+    const { data, loading, error } = useGetAllAppliedQuery();
+
+    if (loading) return <p>Loading...</p>;
+
     return (
-        <Flex
-            flexDirection={'row'}
-            bg={useColorModeValue('#f8f9fa', '#18191A')}
-        >
+        <Flex flexDirection={'row'} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -68,7 +41,7 @@ const Applied = () => {
                         <Box pb={'25px'}>
                             <Flex
                                 direction="column"
-                                bg={useColorModeValue('white', '#242526')}
+                                bg={secondaryBG}
                                 p={4}
                                 borderRadius={8}
                                 pb="1.5rem"
@@ -125,10 +98,7 @@ const Applied = () => {
                                 color="white"
                                 bgGradient={'linear(to-l, #7928CA, #FF0080)'}
                                 rounded={'md'}
-                                boxShadow={useColorModeValue(
-                                    '0px 2px 3px #eee',
-                                    '0px'
-                                )}
+                                boxShadow={tableBoxShadow}
                             >
                                 <Thead>
                                     <Tr my=".8rem">
@@ -155,21 +125,12 @@ const Applied = () => {
                                         </Th>
                                     </Tr>
                                 </Thead>
-                                <Tbody
-                                    bg={useColorModeValue('white', '#242526')}
-                                >
-                                    {appliedTableData.map((row) => {
+                                <Tbody bg={secondaryBG}>
+                                    {data.applied.map((row, index) => {
                                         return (
                                             <AppliedTable
-                                                key={row.usn}
-                                                name={row.name}
-                                                branch={row.branch}
-                                                section={row.section}
-                                                usn={row.usn}
-                                                email={row.email}
-                                                company={row.company}
-                                                ctc={row.ctc}
-                                                type={row.type}
+                                                key={index}
+                                                data={row}
                                             />
                                         );
                                     })}

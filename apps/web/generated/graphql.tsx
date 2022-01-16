@@ -284,6 +284,11 @@ export type UserInput = {
   role: Roles;
 };
 
+export type GetAllAppliedQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllAppliedQuery = { __typename?: 'Query', applied: Array<{ __typename?: 'Applied', user: { __typename?: 'UserDetails', USN: string, branch: Branch, section: Section, name: string, email: string }, company: { __typename?: 'Company', name: string, package?: number | null | undefined, type: CompanyType } } | null | undefined> };
+
 export type GetCompanyQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -303,6 +308,51 @@ export type GetAllStudentsCardQueryVariables = Exact<{ [key: string]: never; }>;
 export type GetAllStudentsCardQuery = { __typename?: 'Query', studentDetails: Array<{ __typename?: 'UserDetails', USN: string, email: string, name: string, branch: Branch, section: Section, CGPA: number } | null | undefined> };
 
 
+export const GetAllAppliedDocument = gql`
+    query getAllApplied {
+  applied {
+    user {
+      USN
+      branch
+      section
+      name
+      email
+    }
+    company {
+      name
+      package
+      type
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetAllAppliedQuery__
+ *
+ * To run a query within a React component, call `useGetAllAppliedQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllAppliedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllAppliedQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllAppliedQuery(baseOptions?: Apollo.QueryHookOptions<GetAllAppliedQuery, GetAllAppliedQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllAppliedQuery, GetAllAppliedQueryVariables>(GetAllAppliedDocument, options);
+      }
+export function useGetAllAppliedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllAppliedQuery, GetAllAppliedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllAppliedQuery, GetAllAppliedQueryVariables>(GetAllAppliedDocument, options);
+        }
+export type GetAllAppliedQueryHookResult = ReturnType<typeof useGetAllAppliedQuery>;
+export type GetAllAppliedLazyQueryHookResult = ReturnType<typeof useGetAllAppliedLazyQuery>;
+export type GetAllAppliedQueryResult = Apollo.QueryResult<GetAllAppliedQuery, GetAllAppliedQueryVariables>;
 export const GetCompanyDocument = gql`
     query GetCompany {
   companies {

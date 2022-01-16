@@ -1,8 +1,9 @@
+import { Flex, Td, Text, Tr, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
-import { Tr, Td, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 
-const AppliedTable = (props) => {
-    const { name, email, branch, section, usn, company, type, ctc } = props;
+const AppliedTable = ({ data }) => {
+    const { USN, branch, section, name: userName, email } = data.user;
+    const { name: companyName, package: CTC, type } = data.company;
     const textColor = useColorModeValue('gray.700', 'white');
     return (
         <Tr>
@@ -15,7 +16,7 @@ const AppliedTable = (props) => {
                         fontWeight="bold"
                         minWidth="100%"
                     >
-                        {name}
+                        {userName}
                     </Text>
                     <Text
                         fontSize="xs"
@@ -35,7 +36,7 @@ const AppliedTable = (props) => {
                     fontWeight="bold"
                     pb=".5rem"
                 >
-                    {usn}
+                    {USN}
                 </Text>
             </Td>
             <Td>
@@ -57,7 +58,7 @@ const AppliedTable = (props) => {
                     fontWeight="bold"
                     pb=".5rem"
                 >
-                    {company}
+                    {companyName}
                 </Text>
             </Td>
             <Td>
@@ -79,7 +80,7 @@ const AppliedTable = (props) => {
                     fontWeight="bold"
                     pb=".5rem"
                 >
-                    {ctc}
+                    {CTC}
                 </Text>
             </Td>
             <Td>

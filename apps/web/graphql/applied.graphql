@@ -1,0 +1,16 @@
+query getAllApplied {
+    applied {
+        user {
+            USN
+            branch
+            section
+            name
+            email
+        }
+        company {
+            name
+            package
+            type
+        }
+    }
+}
