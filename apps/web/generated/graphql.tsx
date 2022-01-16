@@ -179,11 +179,12 @@ export type MutationUpdateUserDetailsArgs = {
 
 export type Query = {
   __typename?: 'Query';
+  allStudentDetails: Array<Maybe<UserDetails>>;
   applied: Array<Maybe<Applied>>;
   companies: Array<Maybe<Company>>;
   company: Company;
   selected: Array<Maybe<Selected>>;
-  studentDetails: Array<Maybe<UserDetails>>;
+  studentDetails: UserDetails;
   user: User;
   users: Array<Maybe<User>>;
 };
@@ -191,6 +192,11 @@ export type Query = {
 
 export type QueryCompanyArgs = {
   name: Scalars['String'];
+};
+
+
+export type QueryStudentDetailsArgs = {
+  USN: Scalars['ID'];
 };
 
 
@@ -312,7 +318,14 @@ export type AuthMutation = { __typename?: 'Mutation', authenticate: { __typename
 export type GetAllStudentsCardQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetAllStudentsCardQuery = { __typename?: 'Query', studentDetails: Array<{ __typename?: 'UserDetails', USN: string, email: string, name: string, branch: Branch, section: Section, CGPA: number } | null | undefined> };
+export type GetAllStudentsCardQuery = { __typename?: 'Query', allStudentDetails: Array<{ __typename?: 'UserDetails', USN: string, email: string, name: string, branch: Branch, section: Section, CGPA: number } | null | undefined> };
+
+export type GetStudentDetailsQueryVariables = Exact<{
+  usn: Scalars['ID'];
+}>;
+
+
+export type GetStudentDetailsQuery = { __typename?: 'Query', studentDetails: { __typename?: 'UserDetails', name: string, email: string, USN: string, branch: Branch, section: Section, year: number, CGPA: number, tenth: number, twelth: number, backlogs: number } };
 
 
 export const GetAllAppliedDocument = gql`
@@ -490,7 +503,7 @@ export type AuthMutationResult = Apollo.MutationResult<AuthMutation>;
 export type AuthMutationOptions = Apollo.BaseMutationOptions<AuthMutation, AuthMutationVariables>;
 export const GetAllStudentsCardDocument = gql`
     query GetAllStudentsCard {
-  studentDetails {
+  allStudentDetails {
     USN
     email
     name
@@ -527,3 +540,47 @@ export function useGetAllStudentsCardLazyQuery(baseOptions?: Apollo.LazyQueryHoo
 export type GetAllStudentsCardQueryHookResult = ReturnType<typeof useGetAllStudentsCardQuery>;
 export type GetAllStudentsCardLazyQueryHookResult = ReturnType<typeof useGetAllStudentsCardLazyQuery>;
 export type GetAllStudentsCardQueryResult = Apollo.QueryResult<GetAllStudentsCardQuery, GetAllStudentsCardQueryVariables>;
+export const GetStudentDetailsDocument = gql`
+    query GetStudentDetails($usn: ID!) {
+  studentDetails(USN: $usn) {
+    name
+    email
+    USN
+    branch
+    section
+    year
+    CGPA
+    tenth
+    twelth
+    backlogs
+  }
+}
+    `;
+
+/**
+ * __useGetStudentDetailsQuery__
+ *
+ * To run a query within a React component, call `useGetStudentDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStudentDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStudentDetailsQuery({
+ *   variables: {
+ *      usn: // value for 'usn'
+ *   },
+ * });
+ */
+export function useGetStudentDetailsQuery(baseOptions: Apollo.QueryHookOptions<GetStudentDetailsQuery, GetStudentDetailsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetStudentDetailsQuery, GetStudentDetailsQueryVariables>(GetStudentDetailsDocument, options);
+      }
+export function useGetStudentDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetStudentDetailsQuery, GetStudentDetailsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetStudentDetailsQuery, GetStudentDetailsQueryVariables>(GetStudentDetailsDocument, options);
+        }
+export type GetStudentDetailsQueryHookResult = ReturnType<typeof useGetStudentDetailsQuery>;
+export type GetStudentDetailsLazyQueryHookResult = ReturnType<typeof useGetStudentDetailsLazyQuery>;
+export type GetStudentDetailsQueryResult = Apollo.QueryResult<GetStudentDetailsQuery, GetStudentDetailsQueryVariables>;

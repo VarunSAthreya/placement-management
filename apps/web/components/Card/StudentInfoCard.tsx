@@ -1,6 +1,6 @@
-import { Box, Flex, Text, Avatar, useColorModeValue } from '@chakra-ui/react';
-import Separator from '../Separator/Separator';
+import { Avatar, Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
+import Separator from '../Separator/Separator';
 
 const StudentInfoCard = ({ student }) => {
     const {
@@ -10,11 +10,12 @@ const StudentInfoCard = ({ student }) => {
         branch,
         section,
         year,
-        cgpa,
+        CGPA,
         tenth,
         twelth,
         backlogs,
     } = student;
+
     return (
         <Box
             bg={useColorModeValue('white', '#242526')}
@@ -240,7 +241,7 @@ const StudentInfoCard = ({ student }) => {
                                     color="black"
                                     fontWeight={'semibold'}
                                 >
-                                    {cgpa}
+                                    {CGPA}
                                 </Text>
                             </Flex>
                             <Flex

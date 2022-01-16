@@ -8,10 +8,10 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { GetStaticPaths, GetStaticProps, PreviewData } from 'next';
-import { ParsedUrlQuery } from 'querystring';
+import { useRouter } from 'next/router';
 import { StudentInfoCard } from '../../components/Card';
 import { SideBar } from '../../components/Sidebar';
+import { useGetStudentDetailsQuery } from '../../generated/graphql';
 
 const studentData = [
     {
@@ -48,12 +48,21 @@ const studentData = [
     },
 ];
 
-const StudentDetails = ({ student }) => {
+const StudentDetails = () => {
+    const { asPath } = useRouter();
+    const slug = asPath.split('/')[2];
+
+    const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
+    const secondaryBG = useColorModeValue('white', '#242526');
+
+    const { data, loading, error } = useGetStudentDetailsQuery({
+        variables: { usn: slug },
+    });
+
+    if (loading) return <p>Loading...</p>;
+
     return (
-        <Flex
-            flexDirection={'row'}
-            bg={useColorModeValue('#f8f9fa', '#18191A')}
-        >
+        <Flex flexDirection={'row'} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -66,7 +75,7 @@ const StudentDetails = ({ student }) => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={useColorModeValue('white', '#242526')}
+                            bg={secondaryBG}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -132,36 +141,12 @@ const StudentDetails = ({ student }) => {
                         </Flex>
                     </Box>
                     <Box borderRadius={8}>
-                        <StudentInfoCard student={student} />
+                        <StudentInfoCard student={data.studentDetails} />
                     </Box>
                 </Box>
             </Flex>
         </Flex>
     );
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-    const paths = studentData.map((student) => ({
-        params: { slug: student.USN },
-    }));
-
-    return {
-        paths,
-        fallback: false,
-    };
-};
-
-export const getStaticProps: GetStaticProps = (ctx: {
-    params?: ParsedUrlQuery;
-    preview?: boolean;
-    previewData?: PreviewData;
-}) => {
-    const usn = ctx.params?.slug as string;
-    return {
-        props: {
-            student: studentData.find((student) => student.USN === usn),
-        },
-    };
 };
 
 export default StudentDetails;

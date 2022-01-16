@@ -5,6 +5,7 @@ import {
     getCompanies,
     getCompany,
     getUser,
+    getUserDetails,
     getUsers,
 } from '../../db';
 
@@ -13,7 +14,10 @@ const query = {
 
     user: async (_: any, { USN }: { USN: string }) => getUser(USN),
 
-    studentDetails: async () => getAllUserDetails(),
+    studentDetails: async (_: any, { USN }: { USN: string }) =>
+        getUserDetails(USN),
+
+    allStudentDetails: async () => getAllUserDetails(),
 
     companies: async () => getCompanies(),
 

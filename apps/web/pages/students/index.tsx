@@ -166,10 +166,10 @@ const Students = () => {
                                 </Tr>
                             </Thead>
                             <Tbody bg={secondaryBG}>
-                                {data.studentDetails.map((student, index) => {
+                                {data.allStudentDetails.map((student) => {
                                     return (
                                         <StudentsTable
-                                            key={index}
+                                            key={student.USN}
                                             student={student}
                                         />
                                     );
