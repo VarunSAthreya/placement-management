@@ -37,3 +37,28 @@ query GetStudentDetails($usn: ID!) {
         backlogs
     }
 }
+
+query GetProfileDetails($usn: ID!) {
+    user(USN: $usn) {
+        role
+        details {
+            name
+            USN
+            branch
+            section
+            email
+            year
+            CGPA
+            tenth
+            twelth
+            backlogs
+            applied {
+                company {
+                    name
+                    package
+                    type
+                }
+            }
+        }
+    }
+}

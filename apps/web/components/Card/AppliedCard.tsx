@@ -1,14 +1,14 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
 
-const AppliedCard = (props) => {
-    const { company, type, ctc } = props;
+const AppliedCard = ({ data }) => {
+    const { name, type, package: CTC } = data;
 
     return (
         <Box p="15px" bg={'#f8f9fa'} my="8px" borderRadius="12px">
             <Flex justify="space-between" w="100%" alignItems={'center'}>
                 <Flex direction="column" maxWidth="70%">
                     <Text color={'black'} fontSize="xl" fontWeight="bold">
-                        {company}
+                        {name}
                     </Text>
                     <Text color="gray.500" fontSize="sm" fontWeight="semibold">
                         Type:{' '}
@@ -19,7 +19,7 @@ const AppliedCard = (props) => {
                     <Text color="gray.500" fontSize="sm" fontWeight="semibold">
                         CTC:{' '}
                         <Text as="span" color="black">
-                            {ctc}
+                            {CTC}
                         </Text>
                     </Text>
                 </Flex>

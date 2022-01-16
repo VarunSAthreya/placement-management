@@ -327,6 +327,13 @@ export type GetStudentDetailsQueryVariables = Exact<{
 
 export type GetStudentDetailsQuery = { __typename?: 'Query', studentDetails: { __typename?: 'UserDetails', name: string, email: string, USN: string, branch: Branch, section: Section, year: number, CGPA: number, tenth: number, twelth: number, backlogs: number } };
 
+export type GetProfileDetailsQueryVariables = Exact<{
+  usn: Scalars['ID'];
+}>;
+
+
+export type GetProfileDetailsQuery = { __typename?: 'Query', user: { __typename?: 'User', role: Roles, details?: { __typename?: 'UserDetails', name: string, USN: string, branch: Branch, section: Section, email: string, year: number, CGPA: number, tenth: number, twelth: number, backlogs: number, applied: Array<{ __typename?: 'Applied', company: { __typename?: 'Company', name: string, package?: number | null | undefined, type: CompanyType } } | null | undefined> } | null | undefined } };
+
 
 export const GetAllAppliedDocument = gql`
     query getAllApplied {
@@ -584,3 +591,57 @@ export function useGetStudentDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHook
 export type GetStudentDetailsQueryHookResult = ReturnType<typeof useGetStudentDetailsQuery>;
 export type GetStudentDetailsLazyQueryHookResult = ReturnType<typeof useGetStudentDetailsLazyQuery>;
 export type GetStudentDetailsQueryResult = Apollo.QueryResult<GetStudentDetailsQuery, GetStudentDetailsQueryVariables>;
+export const GetProfileDetailsDocument = gql`
+    query GetProfileDetails($usn: ID!) {
+  user(USN: $usn) {
+    role
+    details {
+      name
+      USN
+      branch
+      section
+      email
+      year
+      CGPA
+      tenth
+      twelth
+      backlogs
+      applied {
+        company {
+          name
+          package
+          type
+        }
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetProfileDetailsQuery__
+ *
+ * To run a query within a React component, call `useGetProfileDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProfileDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetProfileDetailsQuery({
+ *   variables: {
+ *      usn: // value for 'usn'
+ *   },
+ * });
+ */
+export function useGetProfileDetailsQuery(baseOptions: Apollo.QueryHookOptions<GetProfileDetailsQuery, GetProfileDetailsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetProfileDetailsQuery, GetProfileDetailsQueryVariables>(GetProfileDetailsDocument, options);
+      }
+export function useGetProfileDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetProfileDetailsQuery, GetProfileDetailsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetProfileDetailsQuery, GetProfileDetailsQueryVariables>(GetProfileDetailsDocument, options);
+        }
+export type GetProfileDetailsQueryHookResult = ReturnType<typeof useGetProfileDetailsQuery>;
+export type GetProfileDetailsLazyQueryHookResult = ReturnType<typeof useGetProfileDetailsLazyQuery>;
+export type GetProfileDetailsQueryResult = Apollo.QueryResult<GetProfileDetailsQuery, GetProfileDetailsQueryVariables>;

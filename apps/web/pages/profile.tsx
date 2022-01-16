@@ -9,43 +9,43 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import jwt_decode from 'jwt-decode';
+import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+import { useEffect, useRef } from 'react';
 import { AppliedCard, ProfileCard } from '../components/Card';
 import SideBar from '../components/Sidebar/Sidebar';
+import { useGetProfileDetailsQuery } from '../generated/graphql';
 
-const companyAppliedCardData = [
-    {
-        company: 'Microsoft',
-        type: 'Product',
-        ctc: '7.5LPA',
-    },
-    {
-        company: 'Microsoft',
-        type: 'Product',
-        ctc: '7.5LPA',
-    },
-];
+const Profile: NextPage = () => {
+    const router = useRouter();
+    const usn = useRef('');
 
-const profileData = [
-    {
-        name: 'Ester',
-        usn: '1JS19CS196',
-        email: 'esterWhite@gmail.com',
-        branch: 'CSE',
-        section: 'C',
-        year: '3rd year',
-        cgpa: '8.5',
-        tenth: '80%',
-        twelth: '95%',
-        backlogs: 'None',
-    },
-];
+    useEffect(() => {
+        let token;
+        if (typeof window !== 'undefined') {
+            token = localStorage.getItem('token');
+        }
+        if (!token) {
+            router.push('/login');
+        } else {
+            console.log({ token });
+            const decode: { USN: string; role: string } = jwt_decode(token);
+            usn.current = decode.USN;
+        }
+    }, []);
 
-const Profile = () => {
+    const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
+    const secondaryBG = useColorModeValue('white', '#242526');
+
+    const { data, loading, error } = useGetProfileDetailsQuery({
+        variables: { usn: usn.current },
+    });
+
+    if (loading) return <p>Loading...</p>;
+
     return (
-        <Flex
-            flexDirection={'row'}
-            bg={useColorModeValue('#f8f9fa', '#18191A')}
-        >
+        <Flex flexDirection={'row'} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -57,7 +57,7 @@ const Profile = () => {
                 <Box pb={'25px'}>
                     <Flex
                         direction="column"
-                        bg={useColorModeValue('white', '#242526')}
+                        bg={secondaryBG}
                         p={4}
                         borderRadius={8}
                         pb="1.5rem"
@@ -113,7 +113,7 @@ const Profile = () => {
                     <Box
                         p="16px"
                         my={{ sm: '24px', xl: '0px' }}
-                        bg={useColorModeValue('white', '#242526')}
+                        bg={secondaryBG}
                         borderRadius={8}
                     >
                         <Box p="12px 5px" mb="12px">
@@ -128,29 +128,13 @@ const Profile = () => {
                             </Text>
                         </Box>
                         <Box px="5px">
-                            {profileData.map((i) => {
-                                return (
-                                    <ProfileCard
-                                        key={i.usn}
-                                        name={i.name}
-                                        usn={i.usn}
-                                        email={i.email}
-                                        branch={i.branch}
-                                        section={i.section}
-                                        year={i.year}
-                                        tenth={i.tenth}
-                                        twelth={i.twelth}
-                                        cgpa={i.cgpa}
-                                        backlogs={i.backlogs}
-                                    />
-                                );
-                            })}
+                            <ProfileCard data={data.user.details} />;
                         </Box>
                     </Box>
                     <Box
                         p="16px"
                         my={{ sm: '24px', xl: '0px' }}
-                        bg={useColorModeValue('white', '#242526')}
+                        bg={secondaryBG}
                         borderRadius={8}
                     >
                         <Box p="12px 5px" mb="12px">
@@ -166,13 +150,11 @@ const Profile = () => {
                         </Box>
                         <Box px="5px">
                             <Flex direction="column">
-                                {companyAppliedCardData.map((row) => {
+                                {data.user.details.applied.map((row) => {
                                     return (
                                         <AppliedCard
-                                            key={row.company}
-                                            company={row.company}
-                                            ctc={row.ctc}
-                                            type={row.type}
+                                            key={row.company.name}
+                                            data={row.company}
                                         />
                                     );
                                 })}

@@ -1,18 +1,18 @@
 import { Flex, Text } from '@chakra-ui/react';
 
-const ProfileCard = (props) => {
+const ProfileCard = ({ data }) => {
     const {
         name,
-        usn,
+        USN,
         email,
         branch,
         section,
         year,
-        cgpa,
+        CGPA,
         tenth,
         twelth,
         backlogs,
-    } = props;
+    } = data;
 
     return (
         <Flex direction="column">
@@ -53,7 +53,7 @@ const ProfileCard = (props) => {
                     USN
                 </Text>
                 <Text fontSize="md" color="black" fontWeight="semibold">
-                    {usn}
+                    {USN}
                 </Text>
             </Flex>
             <Flex
@@ -133,7 +133,7 @@ const ProfileCard = (props) => {
                     CGPA
                 </Text>
                 <Text fontSize="md" color="black" fontWeight="semibold">
-                    {cgpa}
+                    {CGPA}
                 </Text>
             </Flex>
             <Flex
