@@ -1,6 +1,7 @@
 import {
     getAllApplied,
     getAllSelected,
+    getAllUserDetails,
     getCompanies,
     getCompany,
     getUser,
@@ -11,6 +12,8 @@ const query = {
     users: async () => getUsers(),
 
     user: async (_: any, { USN }: { USN: string }) => getUser(USN),
+
+    studentDetails: async () => getAllUserDetails(),
 
     companies: async () => getCompanies(),
 

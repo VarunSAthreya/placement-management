@@ -2,45 +2,47 @@ import { AuthenticationError } from 'apollo-server';
 import { prisma } from '.';
 import { comparePassword, encryptPassword, issueToken } from '../functions';
 
-const query = {
-    details: {
+const detailsQuery = {
+    applied: {
         include: {
-            applied: {
-                include: {
-                    user: true,
-                    company: true,
-                },
-            },
-            selected: {
-                include: {
-                    user: true,
-                    company: true,
-                },
-            },
+            user: true,
+            company: true,
         },
+    },
+    selected: {
+        include: {
+            user: true,
+            company: true,
+        },
+    },
+};
+
+const userQuery = {
+    details: {
+        include: detailsQuery,
     },
 };
 
 export const getUsers = async () =>
     prisma.user.findMany({
-        include: query,
+        include: userQuery,
     });
 
 export const getUser = async (USN: string) =>
     prisma.user.findUnique({
         where: { USN },
-        include: query,
+        include: userQuery,
     });
 
 export const createUser = async (user: IUser) => {
     const { USN, password, role, details } = user;
 
-    const encrypted_password = await encryptPassword(password);
+    const hashedPassword = await encryptPassword(password);
 
     const res = await prisma.user.create({
         data: {
             USN,
-            password: encrypted_password,
+            password: hashedPassword,
             role,
             details: {
                 create: details,
@@ -51,8 +53,16 @@ export const createUser = async (user: IUser) => {
     return getUser(res.USN);
 };
 
+export const getAllUserDetails = async () =>
+    prisma.userDetails.findMany({
+        include: detailsQuery,
+    });
+
 export const getUserDetails = async (USN: string) =>
-    prisma.userDetails.findUnique({ where: { USN } });
+    prisma.userDetails.findUnique({
+        where: { USN },
+        include: detailsQuery,
+    });
 
 export const updateUserDetails = async (userDetails: IUserDetails) => {
     const { USN, ...rest } = userDetails;

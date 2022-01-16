@@ -26,6 +26,7 @@ const typeDefs = gql`
     type Query {
         users: [User]!
         user(USN: ID!): User!
+        studentDetails: [UserDetails]!
         company(name: String!): Company!
         companies: [Company]!
         applied: [Applied]!
