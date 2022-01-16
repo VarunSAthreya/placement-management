@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Company" ADD COLUMN     "year" INTEGER NOT NULL DEFAULT 2023;

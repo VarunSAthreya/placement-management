@@ -5,6 +5,7 @@ const company = gql`
         name: String!
         arrival_date: String
         package: Float
+        year: Int!
         type: CompanyType!
         eligibility: CompanyEdibility!
         applied: [Applied]!
@@ -28,6 +29,7 @@ const company = gql`
         name: String!
         arrival_date: String
         package: Float
+        year: Int!
         type: CompanyType!
         eligibility: CompanyEdibilityInput!
     }
@@ -43,6 +45,7 @@ const company = gql`
         name: String!
         arrival_date: String
         package: Float
+        year: Int
         type: CompanyType
         eligibility: CompanyEdibilityUpdateInput
     }
