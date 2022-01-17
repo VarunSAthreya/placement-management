@@ -32,6 +32,7 @@ const typeDefs = gql`
         companies: [Company]!
         applied: [Applied]!
         selected: [Selected]!
+        getSelectedByCompany(name: String!): [Selected]!
     }
 
     type AuthResponse {

@@ -16,7 +16,7 @@ export const getAllSelected = async () =>
         orderBy: { userID: 'asc' },
     });
 
-export const getSelectedOnUSN = async (USN: string) =>
+export const getSelectedByUSN = async (USN: string) =>
     prisma.selected.findMany({
         where: {
             userID: USN,
@@ -25,7 +25,7 @@ export const getSelectedOnUSN = async (USN: string) =>
         orderBy: { companyID: 'asc' },
     });
 
-export const getSelectedOnCompany = async (companyID: string) =>
+export const getSelectedByCompany = async (companyID: string) =>
     prisma.selected.findMany({
         where: {
             companyID,

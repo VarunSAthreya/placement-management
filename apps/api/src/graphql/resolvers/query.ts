@@ -4,6 +4,7 @@ import {
     getAllUserDetails,
     getCompanies,
     getCompany,
+    getSelectedByCompany,
     getUser,
     getUserDetails,
     getUsers,
@@ -26,6 +27,9 @@ const query = {
     applied: async () => getAllApplied(),
 
     selected: async () => getAllSelected(),
+
+    getSelectedByCompany: async (_: any, { name }: { name: string }) =>
+        getSelectedByCompany(name),
 };
 
 export default query;
