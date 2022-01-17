@@ -14,25 +14,56 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+import { Loader } from '../components/Loader';
 import { Separator } from '../components/Separator';
 import { SideBar } from '../components/Sidebar';
+import { useCreateSelectedMutation } from '../generated/graphql';
+
+type FormData = {
+    name: string;
+    USN: string;
+    company: string;
+    package: number;
+};
 
 const PlacedForm = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
-    const onSubmit = (data) => {
-        console.log(data);
+    } = useForm<FormData>();
+
+    const [create, { loading }] = useCreateSelectedMutation();
+    const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
+    const secondaryBG = useColorModeValue('white', '#242526');
+
+    const router = useRouter();
+
+    const onSubmit = (data: FormData) => {
+        console.log({ data });
+        const { company, USN, package: pkg } = data;
+
+        create({
+            variables: {
+                input: {
+                    userID: USN.toUpperCase(),
+                    companyID: company,
+                    package: Number(pkg),
+                },
+            },
+        })
+            .then(() => {
+                router.push('/');
+            })
+            .catch((err) => console.log(err));
     };
 
+    if (loading) return <Loader />;
+
     return (
-        <Flex
-            flexDirection={'row'}
-            bg={useColorModeValue('#f8f9fa', '#18191A')}
-        >
+        <Flex flexDirection={'row'} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -45,7 +76,7 @@ const PlacedForm = () => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={useColorModeValue('white', '#242526')}
+                            bg={secondaryBG}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -109,11 +140,7 @@ const PlacedForm = () => {
                             </Breadcrumb>
                         </Flex>
                     </Box>
-                    <Box
-                        bg={useColorModeValue('white', '#242526')}
-                        p={4}
-                        borderRadius={8}
-                    >
+                    <Box bg={secondaryBG} p={4} borderRadius={8}>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             {/*General Detail Fields*/}
                             <Grid templateColumns="repeat(2, 1fr)">
@@ -130,22 +157,26 @@ const PlacedForm = () => {
                                     <Separator />
                                 </GridItem>
                                 <GridItem p={4}>
-                                    <FormControl isInvalid={errors.Name}>
+                                    <FormControl
+                                        isInvalid={errors.name !== undefined}
+                                    >
                                         <Input
                                             type="text"
                                             placeholder="Student Name"
-                                            {...register('Name', {
+                                            {...register('name', {
                                                 required:
                                                     'Please enter The Student Name',
                                             })}
                                         />
                                         <FormErrorMessage>
-                                            {errors.Name && errors.Name.message}
+                                            {errors.name && errors.name.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
                                 <GridItem p={4}>
-                                    <FormControl isInvalid={errors.USN}>
+                                    <FormControl
+                                        isInvalid={errors.USN !== undefined}
+                                    >
                                         <Input
                                             type="text"
                                             placeholder="USN"
@@ -175,34 +206,38 @@ const PlacedForm = () => {
                                     <Separator />
                                 </GridItem>
                                 <GridItem p={4} colSpan={2}>
-                                    <FormControl isInvalid={errors.Company}>
+                                    <FormControl
+                                        isInvalid={errors.company !== undefined}
+                                    >
                                         <Input
                                             type="text"
                                             placeholder="Company Name"
-                                            {...register('Company', {
+                                            {...register('company', {
                                                 required:
                                                     'Please enter The Company Name',
                                             })}
                                         />
                                         <FormErrorMessage>
-                                            {errors.Company &&
-                                                errors.Company.message}
+                                            {errors.company &&
+                                                errors.company.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
                                 <GridItem p={4} colSpan={2}>
-                                    <FormControl isInvalid={errors.Package}>
+                                    <FormControl
+                                        isInvalid={errors.package !== undefined}
+                                    >
                                         <Input
                                             type="text"
                                             placeholder="Enter Package Detail"
-                                            {...register('Package', {
+                                            {...register('package', {
                                                 required:
                                                     'Please Enter The Package Detail',
                                             })}
                                         />
                                         <FormErrorMessage>
-                                            {errors.Package &&
-                                                errors.Package.message}
+                                            {errors.package &&
+                                                errors.package.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>

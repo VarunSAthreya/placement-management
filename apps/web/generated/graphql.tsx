@@ -229,6 +229,7 @@ export type Selected = {
 
 export type SelectedInput = {
   companyID: Scalars['String'];
+  package: Scalars['Float'];
   userID: Scalars['String'];
 };
 
@@ -338,6 +339,13 @@ export type GetSelectedByCompanyQueryVariables = Exact<{
 
 
 export type GetSelectedByCompanyQuery = { __typename?: 'Query', getSelectedByCompany: Array<{ __typename?: 'Selected', company: { __typename?: 'Company', name: string, package?: number | null | undefined }, user: { __typename?: 'UserDetails', name: string, USN: string, email: string, branch: Branch, section: Section, CGPA: number } } | null | undefined> };
+
+export type CreateSelectedMutationVariables = Exact<{
+  input: SelectedInput;
+}>;
+
+
+export type CreateSelectedMutation = { __typename?: 'Mutation', createSelected: { __typename?: 'Selected', user: { __typename?: 'UserDetails', USN: string } } };
 
 export type AuthMutationVariables = Exact<{
   usn: Scalars['ID'];
@@ -671,6 +679,41 @@ export function useGetSelectedByCompanyLazyQuery(baseOptions?: Apollo.LazyQueryH
 export type GetSelectedByCompanyQueryHookResult = ReturnType<typeof useGetSelectedByCompanyQuery>;
 export type GetSelectedByCompanyLazyQueryHookResult = ReturnType<typeof useGetSelectedByCompanyLazyQuery>;
 export type GetSelectedByCompanyQueryResult = Apollo.QueryResult<GetSelectedByCompanyQuery, GetSelectedByCompanyQueryVariables>;
+export const CreateSelectedDocument = gql`
+    mutation CreateSelected($input: SelectedInput!) {
+  createSelected(input: $input) {
+    user {
+      USN
+    }
+  }
+}
+    `;
+export type CreateSelectedMutationFn = Apollo.MutationFunction<CreateSelectedMutation, CreateSelectedMutationVariables>;
+
+/**
+ * __useCreateSelectedMutation__
+ *
+ * To run a mutation, you first call `useCreateSelectedMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateSelectedMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createSelectedMutation, { data, loading, error }] = useCreateSelectedMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateSelectedMutation(baseOptions?: Apollo.MutationHookOptions<CreateSelectedMutation, CreateSelectedMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateSelectedMutation, CreateSelectedMutationVariables>(CreateSelectedDocument, options);
+      }
+export type CreateSelectedMutationHookResult = ReturnType<typeof useCreateSelectedMutation>;
+export type CreateSelectedMutationResult = Apollo.MutationResult<CreateSelectedMutation>;
+export type CreateSelectedMutationOptions = Apollo.BaseMutationOptions<CreateSelectedMutation, CreateSelectedMutationVariables>;
 export const AuthDocument = gql`
     mutation Auth($usn: ID!, $password: String!) {
   authenticate(USN: $usn, password: $password) {

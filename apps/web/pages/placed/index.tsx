@@ -135,7 +135,7 @@ const Placed = () => {
                                         router.push(`/placedForm`);
                                     }}
                                 >
-                                    Add New Student
+                                    Add New Placed Detail
                                 </Button>
                             </Flex>
                             <Table
@@ -166,12 +166,12 @@ const Placed = () => {
                                 </Thead>
                                 <Tbody bg={secondaryBG}>
                                     {data.companies.map((placed, index) => {
-                                        return (
+                                        return placed.selected.length > 0 ? (
                                             <PlacedTable
                                                 key={index}
                                                 placed={placed}
                                             />
-                                        );
+                                        ) : null;
                                     })}
                                 </Tbody>
                             </Table>
