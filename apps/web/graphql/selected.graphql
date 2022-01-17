@@ -1,0 +1,16 @@
+query GetSelectedByCompany($name: String!) {
+    getSelectedByCompany(name: $name) {
+        company {
+            name
+            package
+        }
+        user {
+            name
+            USN
+            email
+            branch
+            section
+            CGPA
+        }
+    }
+}

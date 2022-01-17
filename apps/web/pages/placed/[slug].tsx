@@ -13,110 +13,26 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { GetStaticPaths, GetStaticProps, PreviewData } from 'next';
-import { ParsedUrlQuery } from 'querystring';
+import { useRouter } from 'next/router';
 import { SideBar } from '../../components/Sidebar';
 import { StudentsTable } from '../../components/Tables';
+import { useGetSelectedPerCompanyQuery } from '../../generated/graphql';
 
-const placedData = [
-    {
-        name: 'Purity UI Version',
-        members: [
-            {
-                USN: '1JS19CS186',
-                name: 'Varun S Athreya',
-                email: '1js19cs186@jssateb.ac.in',
-                branch: 'CSE',
-                section: 'C',
-                cgpa: '7.5',
-            },
-            {
-                USN: '1JS19CS146',
-                name: 'Sandeep M',
-                email: '1js19cs146@jssateb.ac.in',
-                branch: 'CSE',
-                section: 'C',
-                cgpa: '7.5',
-            },
-        ],
-        ctc: '8LPA',
-    },
-    {
-        name: 'Add Progress Track',
-        members: [
-            {
-                USN: '1JS19CS183',
-                name: 'Ullas HP',
-                email: '1js19cs183@jssateb.ac.in',
-                branch: 'CSE',
-                section: 'C',
-                cgpa: '7.5',
-            },
-            {
-                USN: '1JS19CS157',
-                name: 'Shithin Shetty',
-                email: '1js19cs157@jssateb.ac.in',
-                branch: 'CSE',
-                section: 'C',
-                cgpa: '7.5',
-            },
-        ],
-        ctc: '8LPA',
-    },
-    {
-        name: 'Fix Platform Errors',
-        members: [
-            {
-                USN: '1JS19CS183',
-                name: 'Ullas HP',
-                email: '1js19cs183@jssateb.ac.in',
-                branch: 'CSE',
-                section: 'C',
-                cgpa: '7.5',
-            },
-            {
-                USN: '1JS19CS157',
-                name: 'Shithin Shetty',
-                email: '1js19cs157@jssateb.ac.in',
-                branch: 'CSE',
-                section: 'C',
-                cgpa: '7.5',
-            },
-        ],
-        ctc: '8LPA',
-    },
-    {
-        name: 'Launch our Mobile App',
-        members: [
-            {
-                USN: '1JS19CS186',
-                name: 'Varun S Athreya',
-                email: '1js19cs186@jssateb.ac.in',
-                branch: 'CSE',
-                section: 'C',
-                cgpa: '7.5',
-            },
-            {
-                USN: '1JS19CS146',
-                name: 'Sandeep M',
-                email: '1js19cs146@jssateb.ac.in',
-                branch: 'CSE',
-                section: 'C',
-                cgpa: '7.5',
-            },
-        ],
-        ctc: '8LPA',
-    },
-];
+const CompanyDetails = () => {
+    const { asPath } = useRouter();
+    const slug = asPath.split('/')[2].replace(/%20/g, ' ');
 
-const CompanyDetails = ({ placed }) => {
-    const placedStudentDetails = placed.members;
-    console.log(placedStudentDetails);
+    const { data, loading, error } = useGetSelectedPerCompanyQuery({
+        variables: { name: slug },
+    });
+    const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
+    const secondaryBG = useColorModeValue('white', '#242526');
+    const tableBoxShadow = useColorModeValue('0px 2px 3px #eee', '0px');
+
+    if (loading) return <p>Loading...</p>;
+
     return (
-        <Flex
-            flexDirection={'row'}
-            bg={useColorModeValue('#f8f9fa', '#18191A')}
-        >
+        <Flex flexDirection={'row'} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -129,7 +45,7 @@ const CompanyDetails = ({ placed }) => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={useColorModeValue('white', '#242526')}
+                            bg={secondaryBG}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -200,10 +116,7 @@ const CompanyDetails = ({ placed }) => {
                             color="white"
                             bgGradient={'linear(to-l, #7928CA, #FF0080)'}
                             rounded={'md'}
-                            boxShadow={useColorModeValue(
-                                '0px 2px 3px #eee',
-                                '0px'
-                            )}
+                            boxShadow={tableBoxShadow}
                         >
                             <Thead>
                                 <Tr my=".8rem">
@@ -227,17 +140,15 @@ const CompanyDetails = ({ placed }) => {
                                     </Th>
                                 </Tr>
                             </Thead>
-                            <Tbody bg={useColorModeValue('white', '#242526')}>
-                                {placedStudentDetails.map(
-                                    (placedStudent, index) => {
-                                        return (
-                                            <StudentsTable
-                                                key={index}
-                                                student={placedStudent}
-                                            />
-                                        );
-                                    }
-                                )}
+                            <Tbody bg={secondaryBG}>
+                                {data.company.selected.map((placedStudent) => {
+                                    return (
+                                        <StudentsTable
+                                            key={placedStudent.user.USN}
+                                            student={placedStudent.user}
+                                        />
+                                    );
+                                })}
                             </Tbody>
                         </Table>
                     </Box>
@@ -245,30 +156,6 @@ const CompanyDetails = ({ placed }) => {
             </Flex>
         </Flex>
     );
-};
-
-export const getStaticPaths: GetStaticPaths = async () => {
-    const paths = placedData.map((placed) => ({
-        params: { slug: placed.name },
-    }));
-
-    return {
-        paths,
-        fallback: false,
-    };
-};
-
-export const getStaticProps: GetStaticProps = (ctx: {
-    params?: ParsedUrlQuery;
-    preview?: boolean;
-    previewData?: PreviewData;
-}) => {
-    const name = ctx.params?.slug as string;
-    return {
-        props: {
-            placed: placedData.find((placed) => placed.name === name),
-        },
-    };
 };
 
 export default CompanyDetails;

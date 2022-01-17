@@ -15,33 +15,10 @@ import {
 } from '@chakra-ui/react';
 import { SideBar } from '../../components/Sidebar';
 import { PlacedTable } from '../../components/Tables';
-import { useGetSelectedBaseOnCompanyQuery } from '../../generated/graphql';
-
-const placedTableData = [
-    {
-        name: 'Purity UI Version',
-        members: ['1', '2'],
-        ctc: '8LPA',
-    },
-    {
-        name: 'Add Progress Track',
-        members: ['1', '2'],
-        ctc: '8LPA',
-    },
-    {
-        name: 'Fix Platform Errors',
-        members: ['1', '2'],
-        ctc: '8LPA',
-    },
-    {
-        name: 'Launch our Mobile App',
-        members: ['1', '2'],
-        ctc: '8LPA',
-    },
-];
+import { useGetSelectedForAllCompaniesQuery } from '../../generated/graphql';
 
 const Placed = () => {
-    const { data, loading, error } = useGetSelectedBaseOnCompanyQuery();
+    const { data, loading, error } = useGetSelectedForAllCompaniesQuery();
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');

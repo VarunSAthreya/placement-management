@@ -183,6 +183,7 @@ export type Query = {
   applied: Array<Maybe<Applied>>;
   companies: Array<Maybe<Company>>;
   company: Company;
+  getSelectedByCompany: Array<Maybe<Selected>>;
   selected: Array<Maybe<Selected>>;
   studentDetails: UserDetails;
   user: User;
@@ -191,6 +192,11 @@ export type Query = {
 
 
 export type QueryCompanyArgs = {
+  name: Scalars['String'];
+};
+
+
+export type QueryGetSelectedByCompanyArgs = {
   name: Scalars['String'];
 };
 
@@ -314,10 +320,24 @@ export type CreateCompanyMutationVariables = Exact<{
 
 export type CreateCompanyMutation = { __typename?: 'Mutation', createCompany: { __typename?: 'Company', name: string } };
 
-export type GetSelectedBaseOnCompanyQueryVariables = Exact<{ [key: string]: never; }>;
+export type GetSelectedForAllCompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetSelectedBaseOnCompanyQuery = { __typename?: 'Query', companies: Array<{ __typename?: 'Company', name: string, package?: number | null | undefined, selected: Array<{ __typename?: 'Selected', user: { __typename?: 'UserDetails', USN: string, name: string } } | null | undefined> } | null | undefined> };
+export type GetSelectedForAllCompaniesQuery = { __typename?: 'Query', companies: Array<{ __typename?: 'Company', name: string, package?: number | null | undefined, selected: Array<{ __typename?: 'Selected', user: { __typename?: 'UserDetails', USN: string, name: string } } | null | undefined> } | null | undefined> };
+
+export type GetSelectedPerCompanyQueryVariables = Exact<{
+  name: Scalars['String'];
+}>;
+
+
+export type GetSelectedPerCompanyQuery = { __typename?: 'Query', company: { __typename?: 'Company', name: string, package?: number | null | undefined, selected: Array<{ __typename?: 'Selected', user: { __typename?: 'UserDetails', name: string, USN: string, email: string, branch: Branch, section: Section, CGPA: number } } | null | undefined> } };
+
+export type GetSelectedByCompanyQueryVariables = Exact<{
+  name: Scalars['String'];
+}>;
+
+
+export type GetSelectedByCompanyQuery = { __typename?: 'Query', getSelectedByCompany: Array<{ __typename?: 'Selected', company: { __typename?: 'Company', name: string, package?: number | null | undefined }, user: { __typename?: 'UserDetails', name: string, USN: string, email: string, branch: Branch, section: Section, CGPA: number } } | null | undefined> };
 
 export type AuthMutationVariables = Exact<{
   usn: Scalars['ID'];
@@ -511,8 +531,8 @@ export function useCreateCompanyMutation(baseOptions?: Apollo.MutationHookOption
 export type CreateCompanyMutationHookResult = ReturnType<typeof useCreateCompanyMutation>;
 export type CreateCompanyMutationResult = Apollo.MutationResult<CreateCompanyMutation>;
 export type CreateCompanyMutationOptions = Apollo.BaseMutationOptions<CreateCompanyMutation, CreateCompanyMutationVariables>;
-export const GetSelectedBaseOnCompanyDocument = gql`
-    query GetSelectedBaseOnCompany {
+export const GetSelectedForAllCompaniesDocument = gql`
+    query GetSelectedForAllCompanies {
   companies {
     name
     package
@@ -527,31 +547,123 @@ export const GetSelectedBaseOnCompanyDocument = gql`
     `;
 
 /**
- * __useGetSelectedBaseOnCompanyQuery__
+ * __useGetSelectedForAllCompaniesQuery__
  *
- * To run a query within a React component, call `useGetSelectedBaseOnCompanyQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetSelectedBaseOnCompanyQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * To run a query within a React component, call `useGetSelectedForAllCompaniesQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSelectedForAllCompaniesQuery` returns an object from Apollo Client that contains loading, error, and data properties
  * you can use to render your UI.
  *
  * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
  *
  * @example
- * const { data, loading, error } = useGetSelectedBaseOnCompanyQuery({
+ * const { data, loading, error } = useGetSelectedForAllCompaniesQuery({
  *   variables: {
  *   },
  * });
  */
-export function useGetSelectedBaseOnCompanyQuery(baseOptions?: Apollo.QueryHookOptions<GetSelectedBaseOnCompanyQuery, GetSelectedBaseOnCompanyQueryVariables>) {
+export function useGetSelectedForAllCompaniesQuery(baseOptions?: Apollo.QueryHookOptions<GetSelectedForAllCompaniesQuery, GetSelectedForAllCompaniesQueryVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetSelectedBaseOnCompanyQuery, GetSelectedBaseOnCompanyQueryVariables>(GetSelectedBaseOnCompanyDocument, options);
+        return Apollo.useQuery<GetSelectedForAllCompaniesQuery, GetSelectedForAllCompaniesQueryVariables>(GetSelectedForAllCompaniesDocument, options);
       }
-export function useGetSelectedBaseOnCompanyLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSelectedBaseOnCompanyQuery, GetSelectedBaseOnCompanyQueryVariables>) {
+export function useGetSelectedForAllCompaniesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSelectedForAllCompaniesQuery, GetSelectedForAllCompaniesQueryVariables>) {
           const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetSelectedBaseOnCompanyQuery, GetSelectedBaseOnCompanyQueryVariables>(GetSelectedBaseOnCompanyDocument, options);
+          return Apollo.useLazyQuery<GetSelectedForAllCompaniesQuery, GetSelectedForAllCompaniesQueryVariables>(GetSelectedForAllCompaniesDocument, options);
         }
-export type GetSelectedBaseOnCompanyQueryHookResult = ReturnType<typeof useGetSelectedBaseOnCompanyQuery>;
-export type GetSelectedBaseOnCompanyLazyQueryHookResult = ReturnType<typeof useGetSelectedBaseOnCompanyLazyQuery>;
-export type GetSelectedBaseOnCompanyQueryResult = Apollo.QueryResult<GetSelectedBaseOnCompanyQuery, GetSelectedBaseOnCompanyQueryVariables>;
+export type GetSelectedForAllCompaniesQueryHookResult = ReturnType<typeof useGetSelectedForAllCompaniesQuery>;
+export type GetSelectedForAllCompaniesLazyQueryHookResult = ReturnType<typeof useGetSelectedForAllCompaniesLazyQuery>;
+export type GetSelectedForAllCompaniesQueryResult = Apollo.QueryResult<GetSelectedForAllCompaniesQuery, GetSelectedForAllCompaniesQueryVariables>;
+export const GetSelectedPerCompanyDocument = gql`
+    query GetSelectedPerCompany($name: String!) {
+  company(name: $name) {
+    name
+    package
+    selected {
+      user {
+        name
+        USN
+        email
+        branch
+        section
+        CGPA
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetSelectedPerCompanyQuery__
+ *
+ * To run a query within a React component, call `useGetSelectedPerCompanyQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSelectedPerCompanyQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSelectedPerCompanyQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useGetSelectedPerCompanyQuery(baseOptions: Apollo.QueryHookOptions<GetSelectedPerCompanyQuery, GetSelectedPerCompanyQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSelectedPerCompanyQuery, GetSelectedPerCompanyQueryVariables>(GetSelectedPerCompanyDocument, options);
+      }
+export function useGetSelectedPerCompanyLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSelectedPerCompanyQuery, GetSelectedPerCompanyQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSelectedPerCompanyQuery, GetSelectedPerCompanyQueryVariables>(GetSelectedPerCompanyDocument, options);
+        }
+export type GetSelectedPerCompanyQueryHookResult = ReturnType<typeof useGetSelectedPerCompanyQuery>;
+export type GetSelectedPerCompanyLazyQueryHookResult = ReturnType<typeof useGetSelectedPerCompanyLazyQuery>;
+export type GetSelectedPerCompanyQueryResult = Apollo.QueryResult<GetSelectedPerCompanyQuery, GetSelectedPerCompanyQueryVariables>;
+export const GetSelectedByCompanyDocument = gql`
+    query GetSelectedByCompany($name: String!) {
+  getSelectedByCompany(name: $name) {
+    company {
+      name
+      package
+    }
+    user {
+      name
+      USN
+      email
+      branch
+      section
+      CGPA
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetSelectedByCompanyQuery__
+ *
+ * To run a query within a React component, call `useGetSelectedByCompanyQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSelectedByCompanyQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSelectedByCompanyQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *   },
+ * });
+ */
+export function useGetSelectedByCompanyQuery(baseOptions: Apollo.QueryHookOptions<GetSelectedByCompanyQuery, GetSelectedByCompanyQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSelectedByCompanyQuery, GetSelectedByCompanyQueryVariables>(GetSelectedByCompanyDocument, options);
+      }
+export function useGetSelectedByCompanyLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSelectedByCompanyQuery, GetSelectedByCompanyQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSelectedByCompanyQuery, GetSelectedByCompanyQueryVariables>(GetSelectedByCompanyDocument, options);
+        }
+export type GetSelectedByCompanyQueryHookResult = ReturnType<typeof useGetSelectedByCompanyQuery>;
+export type GetSelectedByCompanyLazyQueryHookResult = ReturnType<typeof useGetSelectedByCompanyLazyQuery>;
+export type GetSelectedByCompanyQueryResult = Apollo.QueryResult<GetSelectedByCompanyQuery, GetSelectedByCompanyQueryVariables>;
 export const AuthDocument = gql`
     mutation Auth($usn: ID!, $password: String!) {
   authenticate(USN: $usn, password: $password) {

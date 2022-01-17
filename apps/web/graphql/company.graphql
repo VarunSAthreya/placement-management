@@ -33,7 +33,7 @@ mutation CreateCompany($input: CompanyInput!) {
     }
 }
 
-query GetSelectedBaseOnCompany {
+query GetSelectedForAllCompanies {
     companies {
         name
         package
@@ -41,6 +41,23 @@ query GetSelectedBaseOnCompany {
             user {
                 USN
                 name
+            }
+        }
+    }
+}
+
+query GetSelectedPerCompany($name: String!) {
+    company(name: $name) {
+        name
+        package
+        selected {
+            user {
+                name
+                USN
+                email
+                branch
+                section
+                CGPA
             }
         }
     }

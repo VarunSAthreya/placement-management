@@ -50,7 +50,7 @@ const studentData = [
 
 const StudentDetails = () => {
     const { asPath } = useRouter();
-    const slug = asPath.split('/')[2];
+    const slug = asPath.split('/')[2].replace(/%20/g, ' ');
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
