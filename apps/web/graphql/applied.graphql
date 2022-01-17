@@ -14,3 +14,14 @@ query getAllApplied {
         }
     }
 }
+
+mutation CreateApplied($input: AppliedInput!) {
+    createApplied(input: $input) {
+        user {
+            USN
+        }
+        company {
+            name
+        }
+    }
+}

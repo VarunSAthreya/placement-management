@@ -8,15 +8,43 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { format } from 'date-fns';
-import React from 'react';
+import { useRouter } from 'next/router';
+import React, { FC } from 'react';
 import { BsBuilding, BsCalendarEvent } from 'react-icons/bs';
 import { FiPackage, FiType } from 'react-icons/fi';
+import { useCreateAppliedMutation } from '../../generated/graphql';
 import IconBox from '../Icons/IconBox';
+import { Loader } from '../Loader';
 import Separator from '../Separator/Separator';
 
-const CompanyInfoCard = ({ company }) => {
+type Props = {
+    company: any;
+    user: string;
+};
+
+const CompanyInfoCard: FC<Props> = ({ company, user }) => {
+    const router = useRouter();
     const { name, type, package: CTC, arrival_date } = company;
     const { CGPA, backlogs, tenth, twelth } = company.eligibility;
+
+    const [create, { loading }] = useCreateAppliedMutation();
+
+    const primaryBG = useColorModeValue('white', '#242526');
+
+    const onApply = () => {
+        create({
+            variables: {
+                input: {
+                    userID: user,
+                    companyID: name,
+                },
+            },
+        })
+            .then(() => router.push('/'))
+            .catch((err) => console.log(err));
+    };
+
+    if (loading) return <Loader />;
 
     return (
         <Box>
@@ -34,7 +62,7 @@ const CompanyInfoCard = ({ company }) => {
                 gap="26px"
             >
                 <Box
-                    bg={useColorModeValue('white', '#242526')}
+                    bg={primaryBG}
                     borderRadius={8}
                     p="16px"
                     h={{ sm: '220px', xl: '100%' }}
@@ -92,7 +120,7 @@ const CompanyInfoCard = ({ company }) => {
                     display="flex"
                     align="center"
                     justify="center"
-                    bg={useColorModeValue('white', '#242526')}
+                    bg={primaryBG}
                     borderRadius={8}
                 >
                     <Flex
@@ -145,7 +173,7 @@ const CompanyInfoCard = ({ company }) => {
                     display="flex"
                     align="center"
                     justify="center"
-                    bg={useColorModeValue('white', '#242526')}
+                    bg={primaryBG}
                     borderRadius={8}
                 >
                     <Flex
@@ -198,7 +226,7 @@ const CompanyInfoCard = ({ company }) => {
                     display="flex"
                     align="center"
                     justify="center"
-                    bg={useColorModeValue('white', '#242526')}
+                    bg={primaryBG}
                     borderRadius={8}
                 >
                     <Flex
@@ -250,12 +278,7 @@ const CompanyInfoCard = ({ company }) => {
                     </Flex>
                 </Box>
             </Grid>
-            <Box
-                p="16px"
-                mt="32px"
-                bg={useColorModeValue('white', '#242526')}
-                borderRadius={8}
-            >
+            <Box p="16px" mt="32px" bg={primaryBG} borderRadius={8}>
                 <Box>
                     <Flex
                         justify="space-between"
@@ -283,6 +306,7 @@ const CompanyInfoCard = ({ company }) => {
                             color="white"
                             fontSize="md"
                             variant="no-hover"
+                            onClick={onApply}
                         >
                             APPLY
                         </Button>

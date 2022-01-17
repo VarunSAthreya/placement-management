@@ -186,3 +186,6 @@ const Company: NextPage = () => {
 };
 
 export default Company;
+function jwt_decode(token: any): { USN: string; role: string } {
+    throw new Error('Function not implemented.');
+}

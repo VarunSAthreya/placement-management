@@ -302,6 +302,13 @@ export type GetAllAppliedQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetAllAppliedQuery = { __typename?: 'Query', applied: Array<{ __typename?: 'Applied', user: { __typename?: 'UserDetails', USN: string, branch: Branch, section: Section, name: string, email: string }, company: { __typename?: 'Company', name: string, package?: number | null | undefined, type: CompanyType } } | null | undefined> };
 
+export type CreateAppliedMutationVariables = Exact<{
+  input: AppliedInput;
+}>;
+
+
+export type CreateAppliedMutation = { __typename?: 'Mutation', createApplied: { __typename?: 'Applied', user: { __typename?: 'UserDetails', USN: string }, company: { __typename?: 'Company', name: string } } };
+
 export type GetCompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -427,6 +434,44 @@ export function useGetAllAppliedLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetAllAppliedQueryHookResult = ReturnType<typeof useGetAllAppliedQuery>;
 export type GetAllAppliedLazyQueryHookResult = ReturnType<typeof useGetAllAppliedLazyQuery>;
 export type GetAllAppliedQueryResult = Apollo.QueryResult<GetAllAppliedQuery, GetAllAppliedQueryVariables>;
+export const CreateAppliedDocument = gql`
+    mutation CreateApplied($input: AppliedInput!) {
+  createApplied(input: $input) {
+    user {
+      USN
+    }
+    company {
+      name
+    }
+  }
+}
+    `;
+export type CreateAppliedMutationFn = Apollo.MutationFunction<CreateAppliedMutation, CreateAppliedMutationVariables>;
+
+/**
+ * __useCreateAppliedMutation__
+ *
+ * To run a mutation, you first call `useCreateAppliedMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateAppliedMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createAppliedMutation, { data, loading, error }] = useCreateAppliedMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateAppliedMutation(baseOptions?: Apollo.MutationHookOptions<CreateAppliedMutation, CreateAppliedMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateAppliedMutation, CreateAppliedMutationVariables>(CreateAppliedDocument, options);
+      }
+export type CreateAppliedMutationHookResult = ReturnType<typeof useCreateAppliedMutation>;
+export type CreateAppliedMutationResult = Apollo.MutationResult<CreateAppliedMutation>;
+export type CreateAppliedMutationOptions = Apollo.BaseMutationOptions<CreateAppliedMutation, CreateAppliedMutationVariables>;
 export const GetCompaniesDocument = gql`
     query GetCompanies {
   companies {
