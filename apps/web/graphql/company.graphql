@@ -26,3 +26,9 @@ query GetCompanyDetails($name: String!) {
         }
     }
 }
+
+mutation CreateCompany($input: CompanyInput!) {
+    createCompany(input: $input) {
+        name
+    }
+}
