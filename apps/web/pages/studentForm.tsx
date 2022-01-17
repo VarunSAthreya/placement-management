@@ -11,6 +11,7 @@ import {
     Grid,
     GridItem,
     Input,
+    Select,
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
@@ -18,13 +19,31 @@ import { useForm } from 'react-hook-form';
 import { Separator } from '../components/Separator';
 import { SideBar } from '../components/Sidebar';
 
+type FormData = {
+    name: string;
+    email: string;
+    USN: string;
+    branch: string;
+    section: string;
+    tenth: number;
+    twelth: number;
+    CGPA: number;
+    backlogs: number;
+    password: string;
+    year: number;
+};
+
 const StudentForm = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
-    const onSubmit = (data) => {
+    } = useForm<FormData>();
+
+    const branches = ['CSE', 'ECE', 'ISE', 'ME', 'CV', 'EIE', 'IEM'];
+    const sections = ['A', 'B', 'C'];
+
+    const onSubmit = (data: FormData) => {
         console.log(data);
     };
 
@@ -131,22 +150,26 @@ const StudentForm = () => {
                                     <Separator />
                                 </GridItem>
                                 <GridItem p={4}>
-                                    <FormControl isInvalid={errors.Name}>
+                                    <FormControl
+                                        isInvalid={errors.name !== undefined}
+                                    >
                                         <Input
                                             type="text"
                                             placeholder="Student Name"
-                                            {...register('Name', {
+                                            {...register('name', {
                                                 required:
                                                     'Please enter The Student Name',
                                             })}
                                         />
                                         <FormErrorMessage>
-                                            {errors.Name && errors.Name.message}
+                                            {errors.name && errors.name.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
                                 <GridItem p={4}>
-                                    <FormControl isInvalid={errors.USN}>
+                                    <FormControl
+                                        isInvalid={errors.USN !== undefined}
+                                    >
                                         <Input
                                             type="text"
                                             placeholder="USN"
@@ -160,49 +183,93 @@ const StudentForm = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4} colSpan={2}>
-                                    <FormControl isInvalid={errors.USN}>
+                                <GridItem p={4}>
+                                    <FormControl
+                                        isInvalid={errors.email !== undefined}
+                                    >
                                         <Input
                                             type="email"
                                             placeholder="Email ID"
-                                            {...register('Email', {
+                                            {...register('email', {
                                                 required:
                                                     'Please Enter The Email Id of the Student',
                                             })}
                                         />
                                         <FormErrorMessage>
-                                            {errors.Email &&
-                                                errors.Email.message}
+                                            {errors.email &&
+                                                errors.email.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
                                 <GridItem p={4}>
-                                    <FormControl isInvalid={errors.Branch}>
+                                    <FormControl
+                                        isInvalid={
+                                            errors.password !== undefined
+                                        }
+                                    >
                                         <Input
-                                            type="text"
-                                            placeholder="Branch"
-                                            {...register('Branch', {
+                                            type="password"
+                                            placeholder="Temporary Password"
+                                            {...register('password', {
                                                 required:
-                                                    'Please Enter The Branch of the Student',
+                                                    'Please Enter the temporary password of the Student',
                                             })}
                                         />
                                         <FormErrorMessage>
-                                            {errors.USN && errors.USN.message}
+                                            {errors.password &&
+                                                errors.password.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
                                 <GridItem p={4}>
-                                    <FormControl isInvalid={errors.Section}>
-                                        <Input
-                                            type="text"
-                                            placeholder="Section"
-                                            {...register('Section', {
+                                    <FormControl
+                                        isInvalid={errors.branch !== undefined}
+                                    >
+                                        <Select
+                                            placeholder="Select Branch"
+                                            {...register('branch', {
                                                 required:
-                                                    'Please Enter The Section of the Student',
+                                                    'Please Enter The Branch',
                                             })}
-                                        />
+                                        >
+                                            {branches.map((branch) => (
+                                                <option
+                                                    value={branch}
+                                                    key={branch}
+                                                >
+                                                    {branch}
+                                                </option>
+                                            ))}
+                                        </Select>
                                         <FormErrorMessage>
-                                            {errors.USN && errors.USN.message}
+                                            {errors.branch &&
+                                                errors.branch.message}
+                                        </FormErrorMessage>
+                                    </FormControl>
+                                </GridItem>
+                                <GridItem p={4}>
+                                    <FormControl
+                                        isInvalid={errors.section !== undefined}
+                                    >
+                                        <Select
+                                            placeholder="Select Section"
+                                            {...register('section', {
+                                                required:
+                                                    'Please Enter The Section',
+                                            })}
+                                        >
+                                            {sections.map((section) => (
+                                                <option
+                                                    value={section}
+                                                    key={section}
+                                                >
+                                                    {section}
+                                                </option>
+                                            ))}
+                                        </Select>
+                                        <FormErrorMessage>
+                                            {errors.section &&
+                                                errors.section.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
@@ -222,65 +289,105 @@ const StudentForm = () => {
                                     <Separator />
                                 </GridItem>
                                 <GridItem p={4}>
-                                    <FormControl isInvalid={errors.Tenth}>
+                                    <FormControl
+                                        isInvalid={errors.tenth !== undefined}
+                                    >
                                         <Input
-                                            type="text"
+                                            type="number"
+                                            step="0.01"
                                             placeholder="10th Marks Percentage"
-                                            {...register('Tenth', {
+                                            {...register('tenth', {
                                                 required:
                                                     'Please Enter Eligibile Criteria Based On 10Th Marks',
+                                                max: 100,
+                                                min: 0,
                                             })}
                                         />
                                         <FormErrorMessage>
-                                            {errors.Tenth &&
-                                                errors.Tenth.message}
+                                            {errors.tenth &&
+                                                errors.tenth.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
                                 <GridItem p={4}>
-                                    <FormControl isInvalid={errors.Twelth}>
+                                    <FormControl
+                                        isInvalid={errors.twelth !== undefined}
+                                    >
                                         <Input
-                                            type="text"
+                                            type="number"
+                                            step="0.01"
                                             placeholder="12Th Marks Percentage"
-                                            {...register('Twelth', {
+                                            {...register('twelth', {
                                                 required:
                                                     'Please Enter Eligibile Criteria Based On 12Th Marks',
+                                                max: 100,
+                                                min: 0,
                                             })}
                                         />
                                         <FormErrorMessage>
-                                            {errors.Twelth &&
-                                                errors.Twelth.message}
+                                            {errors.twelth &&
+                                                errors.twelth.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
                                 <GridItem p={4}>
-                                    <FormControl isInvalid={errors.Cgpa}>
+                                    <FormControl
+                                        isInvalid={errors.CGPA !== undefined}
+                                    >
                                         <Input
                                             type="number"
+                                            step="0.01"
                                             placeholder="CGPA Detail"
-                                            {...register('Cgpa', {
+                                            {...register('CGPA', {
                                                 required:
-                                                    'Please Enter Eligibile Criteria Based On cgpa',
+                                                    'Please Enter Eligibile Criteria Based On CGPA',
+                                                max: 10,
+                                                min: 0,
                                             })}
                                         />
                                         <FormErrorMessage>
-                                            {errors.Cgpa && errors.Cgpa.message}
+                                            {errors.CGPA && errors.CGPA.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
                                 <GridItem p={4}>
-                                    <FormControl isInvalid={errors.Backlogs}>
+                                    <FormControl
+                                        isInvalid={errors.year !== undefined}
+                                    >
                                         <Input
                                             type="number"
-                                            placeholder="No of Backlogs"
-                                            {...register('Backlogs', {
+                                            placeholder="Passing Year"
+                                            {...register('year', {
+                                                required:
+                                                    'Please Enter Passing Year',
+                                                max: 2050,
+                                                min: 2015,
+                                            })}
+                                        />
+                                        <FormErrorMessage>
+                                            {errors.year && errors.year.message}
+                                        </FormErrorMessage>
+                                    </FormControl>
+                                </GridItem>
+                                <GridItem p={4} colSpan={2}>
+                                    <FormControl
+                                        isInvalid={
+                                            errors.backlogs !== undefined
+                                        }
+                                    >
+                                        <Input
+                                            type="number"
+                                            placeholder="No of backlogs"
+                                            {...register('backlogs', {
                                                 required:
                                                     'Please Enter Eligibile Criteria Based On backlogs',
+                                                max: 10,
+                                                min: 0,
                                             })}
                                         />
                                         <FormErrorMessage>
-                                            {errors.Backlogs &&
-                                                errors.Backlogs.message}
+                                            {errors.backlogs &&
+                                                errors.backlogs.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
