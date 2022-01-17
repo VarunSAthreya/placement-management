@@ -32,3 +32,16 @@ mutation CreateCompany($input: CompanyInput!) {
         name
     }
 }
+
+query GetSelectedBaseOnCompany {
+    companies {
+        name
+        package
+        selected {
+            user {
+                USN
+                name
+            }
+        }
+    }
+}

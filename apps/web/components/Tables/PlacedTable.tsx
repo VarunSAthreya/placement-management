@@ -2,10 +2,10 @@ import {
     Avatar,
     AvatarGroup,
     Flex,
+    IconButton,
     Td,
     Text,
     Tr,
-    IconButton,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
@@ -13,8 +13,10 @@ import { BsFillInfoCircleFill } from 'react-icons/bs';
 
 const PlacedTable = ({ placed }) => {
     const router = useRouter();
-    const { name, members, ctc } = placed;
+    const { name, package: CTC, selected } = placed;
+
     const textColor = useColorModeValue('gray.700', 'white');
+
     return (
         <Tr>
             <Td minWidth={{ sm: '250px' }} pl="0px">
@@ -31,16 +33,16 @@ const PlacedTable = ({ placed }) => {
             <Td>
                 <Flex justify={'center'}>
                     <AvatarGroup size="sm">
-                        {members.map((member) => {
+                        {selected.map((student) => {
                             return (
                                 <Avatar
-                                    key={member}
+                                    key={student.user.USN}
                                     color="white"
                                     bg={
                                         'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
                                     }
-                                    name="Ryan Florence"
-                                    src={member}
+                                    name={student.user.name}
+                                    src={student.user.name}
                                     _hover={{ zIndex: '3', cursor: 'pointer' }}
                                 />
                             );
@@ -56,7 +58,18 @@ const PlacedTable = ({ placed }) => {
                     fontWeight="bold"
                     pb=".5rem"
                 >
-                    {ctc}
+                    {selected.length}
+                </Text>
+            </Td>
+            <Td>
+                <Text
+                    textAlign={'center'}
+                    fontSize="md"
+                    color={textColor}
+                    fontWeight="bold"
+                    pb=".5rem"
+                >
+                    {CTC}
                 </Text>
             </Td>
             <Td>
