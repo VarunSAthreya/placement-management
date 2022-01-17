@@ -56,7 +56,7 @@ const CompanyForm = () => {
             year,
             type,
         } = data;
-        console.log({ date, name });
+
         const variables = {
             input: {
                 name,
