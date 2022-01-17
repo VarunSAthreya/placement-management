@@ -4,6 +4,7 @@ import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Button,
     Flex,
     Table,
     Tbody,
@@ -13,11 +14,14 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { AiFillPlusCircle } from 'react-icons/ai';
 import { SideBar } from '../../components/Sidebar';
 import { PlacedTable } from '../../components/Tables';
 import { useGetSelectedForAllCompaniesQuery } from '../../generated/graphql';
 
 const Placed = () => {
+    const router = useRouter();
     const { data, loading, error } = useGetSelectedForAllCompaniesQuery();
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
@@ -92,7 +96,47 @@ const Placed = () => {
                                 </Breadcrumb>
                             </Flex>
                         </Box>
-                        <Box borderRadius={8}>
+                        <Box bg={secondaryBG} p={4} borderRadius={8}>
+                            <Flex
+                                flexDirection={'row'}
+                                justifyContent={'space-between'}
+                                alignItems={'center'}
+                                mb={4}
+                                pb={4}
+                                pt={2}
+                                pl={2}
+                            >
+                                <Text
+                                    bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                    bgClip="text"
+                                    fontSize="2xl"
+                                    fontWeight="extrabold"
+                                    textTransform={'uppercase'}
+                                >
+                                    Student&apos;s Placed(4)
+                                </Text>
+                                <Button
+                                    fontSize={'1rem'}
+                                    size={'lg'}
+                                    color={'white'}
+                                    rightIcon={<AiFillPlusCircle />}
+                                    bg={
+                                        'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                    }
+                                    _hover={{
+                                        bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                    variant="no-hover"
+                                    type="submit"
+                                    textTransform={'uppercase'}
+                                    onClick={() => {
+                                        router.push(`/placedForm`);
+                                    }}
+                                >
+                                    Add New Student
+                                </Button>
+                            </Flex>
                             <Table
                                 variant="simple"
                                 color="white"
