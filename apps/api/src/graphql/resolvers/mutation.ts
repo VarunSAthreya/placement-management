@@ -34,7 +34,7 @@ const mutation = {
     createApplied: async (_: any, { input }: { input: IApplied }) =>
         createApplied(input),
 
-    createSelected: async (_: any, { input }: { input: ISelected }) =>
+    createSelected: async (_: any, { input }: { input: ISelectedInput }) =>
         createSelected(input),
 
     updateUserDetails: async (_: any, { input }: { input: IUserDetails }) =>

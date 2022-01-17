@@ -74,3 +74,7 @@ interface ISelected {
     userID: string;
     companyID: string;
 }
+
+interface ISelectedInput extends ISelected {
+    package: number;
+}

@@ -1,4 +1,7 @@
-import { getCompany, getUserDetails, prisma } from '.';
+import { ApolloError } from 'apollo-server';
+import { prisma } from '.';
+import { getCompany } from './company';
+import { getUserDetails } from './user';
 
 const query = {
     user: true,
@@ -48,35 +51,43 @@ export const getApplied = async (applied: IApplied) => {
 };
 
 export const createApplied = async (applied: IApplied) => {
-    const { userID, companyID } = applied;
+    try {
+        const { userID, companyID } = applied;
 
-    const userDetails = await getUserDetails(userID);
-    const company = await getCompany(companyID);
+        const userDetails = await getUserDetails(userID);
+        if (!userDetails) throw new Error('User not found');
 
-    const { CGPA, backlogs, tenth, twelth } = userDetails!;
-    const {
-        CGPA: CGPA_cutoff,
-        backlogs: backlogs_cutoff,
-        tenth: tenth_cutoff,
-        twelth: twelth_cutoff,
-    } = company!.eligibility!;
+        const company = await getCompany(companyID);
+        if (!company) throw new Error('Company not found');
 
-    if (
-        CGPA >= CGPA_cutoff &&
-        backlogs <= backlogs_cutoff &&
-        tenth >= tenth_cutoff &&
-        twelth >= twelth_cutoff
-    ) {
-        await prisma.applied.create({
+        const { CGPA, backlogs, tenth, twelth } = userDetails!;
+        const {
+            CGPA: CGPA_cutoff,
+            backlogs: backlogs_cutoff,
+            tenth: tenth_cutoff,
+            twelth: twelth_cutoff,
+        } = company!.eligibility!;
+
+        if (
+            CGPA < CGPA_cutoff ||
+            backlogs >= backlogs_cutoff ||
+            tenth < tenth_cutoff ||
+            twelth < twelth_cutoff
+        )
+            throw new Error('User not eligible');
+
+        const res = await prisma.applied.create({
             data: {
                 userID,
                 companyID,
             },
         });
 
+        if (!res) throw new Error('Application failed');
+
         return getApplied(applied);
-    } else {
-        return null;
+    } catch (err: any) {
+        return new ApolloError(err.message);
     }
 };
 

@@ -1,5 +1,5 @@
-import { prisma } from '.';
-import { getApplied } from './applied';
+import { ApolloError } from 'apollo-server';
+import { getApplied, prisma } from '.';
 
 const query = {
     user: true,
@@ -48,19 +48,45 @@ export const getSelected = async (selected: ISelected) => {
     });
 };
 
-export const createSelected = async (selected: ISelected) => {
-    const { userID, companyID } = selected;
+export const createSelected = async (selected: ISelectedInput) => {
+    try {
+        const { userID, companyID } = selected;
 
-    const applied = await getApplied(selected);
+        const user = await prisma.userDetails.findUnique({
+            where: { USN: userID },
+        });
+        if (!user) throw new Error('User not found');
 
-    if (applied !== null) {
-        await prisma.selected.create({
+        const company = await prisma.company.findUnique({
+            where: { name: companyID },
+        });
+        if (!company) throw new Error('Company not found');
+
+        const applied = await getApplied(selected);
+        if (!applied) throw new Error('Student not applied');
+
+        const update = await prisma.userDetails.update({
+            where: { USN: userID },
+            data: {
+                package:
+                    selected.package > user.package
+                        ? selected.package
+                        : user.package,
+                placed: true,
+            },
+        });
+
+        if (!update) throw new Error('Update failed');
+
+        const res = await prisma.selected.create({
             data: { userID, companyID },
         });
 
+        if (!res) throw new Error('Update failed');
+
         return getSelected(selected);
-    } else {
-        return null;
+    } catch (error: any) {
+        return new ApolloError(error.message);
     }
 };
 

@@ -21,6 +21,7 @@ const typeDefs = gql`
     input SelectedInput {
         userID: String!
         companyID: String!
+        package: Float!
     }
 
     type Query {
