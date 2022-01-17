@@ -14,6 +14,7 @@ import {
     useColorModeValue,
     useDisclosure,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import React from 'react';
 import {
     BsBuilding,
@@ -128,6 +129,11 @@ const SidebarContent = ({ onClose, ...rest }) => {
 };
 
 const NavItem = ({ icon, link, children, ...rest }) => {
+    const router = useRouter();
+    const defaultColor = useColorModeValue('white', '#242526');
+    console.log(router.asPath);
+    console.log({ link });
+
     return (
         <Link
             style={{ textDecoration: 'none' }}
@@ -141,7 +147,11 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                 borderRadius="lg"
                 role="group"
                 cursor="pointer"
-                bg={useColorModeValue('white', '#242526')}
+                bg={
+                    router.asPath === link
+                        ? 'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                        : defaultColor
+                }
                 my={2}
                 _hover={{
                     bg: 'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)',
