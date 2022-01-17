@@ -16,22 +16,33 @@ import {
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { AiFillLock, AiOutlineMail } from 'react-icons/ai';
+import { Loader } from '../components/Loader';
 import { useAuthMutation } from '../generated/graphql';
+
+type FormData = {
+    USN: string;
+    password: string;
+};
 
 const Login = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm();
+    } = useForm<FormData>();
 
-    const [login] = useAuthMutation();
+    const [login, { loading }] = useAuthMutation();
     const router = useRouter();
 
-    const onSubmit = async (values: { email: string; password: string }) => {
-        const { email, password } = values;
+    const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
+    const blackToWhite = useColorModeValue('black', 'white');
+    const whiteToBlack = useColorModeValue('white', 'black');
+    const buttonHover = useColorModeValue('#000000e0', '#e2e2e2');
+
+    const onSubmit = async (values: FormData) => {
+        const { USN, password } = values;
         login({
-            variables: { usn: email.toUpperCase(), password },
+            variables: { usn: USN.toUpperCase(), password },
         })
             .then(({ data }) => {
                 console.log({ data });
@@ -46,6 +57,8 @@ const Login = () => {
                 localStorage.clear();
             });
     };
+
+    if (loading) return <Loader />;
 
     return (
         <Flex position="relative" mb="40px">
@@ -67,13 +80,13 @@ const Login = () => {
                     justifyContent={'center'}
                     color="black"
                     borderRadius={8}
-                    bg={useColorModeValue('#f8f9fa', '#18191A')}
+                    bg={primaryBG}
                 >
                     <Heading
                         fontSize="48px"
                         mb="20px"
                         p={1}
-                        color={useColorModeValue('black', 'white')}
+                        color={blackToWhite}
                         textAlign={'center'}
                     >
                         Placement Portal
@@ -81,26 +94,22 @@ const Login = () => {
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Grid templateColumns="1fr">
                             <GridItem>
-                                <FormControl isInvalid={errors.email}>
+                                <FormControl
+                                    isInvalid={errors.USN !== undefined}
+                                >
                                     <FormLabel
                                         ms="4px"
                                         fontSize="md"
                                         fontWeight="normal"
-                                        color={useColorModeValue(
-                                            'black',
-                                            'white'
-                                        )}
+                                        color={blackToWhite}
                                     >
-                                        Email
+                                        USN
                                     </FormLabel>
                                     <InputGroup>
                                         <InputLeftElement pointerEvents="none">
                                             <Icon
                                                 as={AiOutlineMail}
-                                                color={useColorModeValue(
-                                                    'black',
-                                                    'white'
-                                                )}
+                                                color={blackToWhite}
                                                 w={6}
                                                 h={6}
                                                 mt={'3px'}
@@ -111,50 +120,35 @@ const Login = () => {
                                             borderRadius="15px"
                                             variant={'filled'}
                                             mb="4px"
-                                            focusBorderColor={useColorModeValue(
-                                                'black',
-                                                'white'
-                                            )}
+                                            focusBorderColor={blackToWhite}
                                             _placeholder={{
-                                                color: useColorModeValue(
-                                                    'black',
-                                                    'white'
-                                                ),
+                                                color: blackToWhite,
                                             }}
                                             fontSize="md"
-                                            color={useColorModeValue(
-                                                'black',
-                                                'white'
-                                            )}
+                                            color={blackToWhite}
                                             type="text"
-                                            placeholder="Your email address"
+                                            placeholder="Your USN"
                                             size="lg"
-                                            {...register('email', {
+                                            {...register('USN', {
                                                 required:
-                                                    'Please Enter Your Email Address',
-                                                // pattern: {
-                                                //     value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                                                //     message:
-                                                //         'Please Enter a Valid Email Address',
-                                                // },
+                                                    'Please Enter Your USN',
                                             })}
                                         />
                                     </InputGroup>
                                     <FormErrorMessage color="red">
-                                        {errors.email && errors.email.message}
+                                        {errors.USN && errors.USN.message}
                                     </FormErrorMessage>
                                 </FormControl>
                             </GridItem>
                             <GridItem mt={4}>
-                                <FormControl isInvalid={errors.password}>
+                                <FormControl
+                                    isInvalid={errors.password !== undefined}
+                                >
                                     <FormLabel
                                         ms="4px"
                                         fontSize="md"
                                         fontWeight="normal"
-                                        color={useColorModeValue(
-                                            'black',
-                                            'white'
-                                        )}
+                                        color={blackToWhite}
                                     >
                                         Password
                                     </FormLabel>
@@ -162,10 +156,7 @@ const Login = () => {
                                         <InputLeftElement pointerEvents="none">
                                             <Icon
                                                 as={AiFillLock}
-                                                color={useColorModeValue(
-                                                    'black',
-                                                    'white'
-                                                )}
+                                                color={blackToWhite}
                                                 w={6}
                                                 h={6}
                                                 mt={'3px'}
@@ -176,21 +167,12 @@ const Login = () => {
                                             variant={'filled'}
                                             mb="4px"
                                             fontSize="md"
-                                            focusBorderColor={useColorModeValue(
-                                                'black',
-                                                'white'
-                                            )}
-                                            color={useColorModeValue(
-                                                'black',
-                                                'white'
-                                            )}
+                                            focusBorderColor={blackToWhite}
+                                            color={blackToWhite}
                                             type="password"
                                             placeholder="Password"
                                             _placeholder={{
-                                                color: useColorModeValue(
-                                                    'black',
-                                                    'white'
-                                                ),
+                                                color: blackToWhite,
                                             }}
                                             size="lg"
                                             {...register('password', {
@@ -219,17 +201,14 @@ const Login = () => {
                                 <Button
                                     fontSize="10px"
                                     type="submit"
-                                    bg={useColorModeValue('black', 'white')}
+                                    bg={blackToWhite}
                                     w="100%"
                                     h="45"
                                     mb="20px"
-                                    color={useColorModeValue('white', 'black')}
+                                    color={whiteToBlack}
                                     mt="20px"
                                     _hover={{
-                                        bg: useColorModeValue(
-                                            '#000000e0',
-                                            '#e2e2e2'
-                                        ),
+                                        bg: buttonHover,
                                     }}
                                 >
                                     SIGN IN
