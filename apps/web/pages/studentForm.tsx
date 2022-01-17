@@ -15,9 +15,17 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+import { Loader } from '../components/Loader';
 import { Separator } from '../components/Separator';
 import { SideBar } from '../components/Sidebar';
+import {
+    Branch,
+    Roles,
+    Section,
+    useCreateUserMutation,
+} from '../generated/graphql';
 
 type FormData = {
     name: string;
@@ -31,6 +39,7 @@ type FormData = {
     backlogs: number;
     password: string;
     year: number;
+    eligible: boolean;
 };
 
 const StudentForm = () => {
@@ -43,15 +52,51 @@ const StudentForm = () => {
     const branches = ['CSE', 'ECE', 'ISE', 'ME', 'CV', 'EIE', 'IEM'];
     const sections = ['A', 'B', 'C'];
 
+    const [create, { loading }] = useCreateUserMutation();
+
+    const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
+    const secondaryBG = useColorModeValue('white', '#242526');
+    const router = useRouter();
+
     const onSubmit = (data: FormData) => {
-        console.log(data);
+        const variables = {
+            input: {
+                USN: data.USN.toUpperCase(),
+                role: 'STUDENT' as Roles,
+                password: data.password,
+                details: {
+                    name: data.name,
+                    email: data.email,
+                    branch: data.branch as Branch,
+                    section: data.section as Section,
+                    backlogs: Number(data.backlogs),
+                    tenth: Number(data.tenth),
+                    twelth: Number(data.twelth),
+                    CGPA: Number(data.CGPA),
+                    year: Number(data.year),
+                    eligible: Boolean(data.eligible),
+                    placed: false,
+                },
+            },
+        };
+
+        console.log({ variables });
+
+        create({
+            variables,
+        })
+            .then(() => {
+                router.push('/');
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     };
 
+    if (loading) return <Loader />;
+
     return (
-        <Flex
-            flexDirection={'row'}
-            bg={useColorModeValue('#f8f9fa', '#18191A')}
-        >
+        <Flex flexDirection={'row'} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -64,7 +109,7 @@ const StudentForm = () => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={useColorModeValue('white', '#242526')}
+                            bg={secondaryBG}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -129,11 +174,7 @@ const StudentForm = () => {
                             </Breadcrumb>
                         </Flex>
                     </Box>
-                    <Box
-                        bg={useColorModeValue('white', '#242526')}
-                        p={4}
-                        borderRadius={8}
-                    >
+                    <Box bg={secondaryBG} p={4} borderRadius={8}>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             {/*General Detail Fields*/}
                             <Grid templateColumns="repeat(2, 1fr)">
@@ -350,7 +391,7 @@ const StudentForm = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4} colSpan={2}>
+                                <GridItem p={4}>
                                     <FormControl
                                         isInvalid={
                                             errors.backlogs !== undefined
@@ -369,6 +410,30 @@ const StudentForm = () => {
                                         <FormErrorMessage>
                                             {errors.backlogs &&
                                                 errors.backlogs.message}
+                                        </FormErrorMessage>
+                                    </FormControl>
+                                </GridItem>
+                                <GridItem p={4}>
+                                    <FormControl
+                                        isInvalid={
+                                            errors.eligible !== undefined
+                                        }
+                                    >
+                                        <Select
+                                            placeholder="Is Eligible"
+                                            {...register('eligible', {
+                                                required:
+                                                    'Please Select if Eligible or Not',
+                                            })}
+                                        >
+                                            <option value={'true'}>True</option>
+                                            <option value={'false'}>
+                                                False
+                                            </option>
+                                        </Select>
+                                        <FormErrorMessage>
+                                            {errors.eligible &&
+                                                errors.eligible.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>

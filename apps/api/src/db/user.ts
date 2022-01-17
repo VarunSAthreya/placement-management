@@ -36,6 +36,8 @@ export const getUser = async (USN: string) =>
     });
 
 export const createUser = async (user: IUser) => {
+    console.log({ user });
+
     const { USN, password, role, details } = user;
 
     const hashedPassword = await encryptPassword(password);

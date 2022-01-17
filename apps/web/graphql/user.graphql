@@ -62,3 +62,9 @@ query GetProfileDetails($usn: ID!) {
         }
     }
 }
+
+mutation CreateUser($input: UserInput!) {
+    createUser(input: $input) {
+        USN
+    }
+}
