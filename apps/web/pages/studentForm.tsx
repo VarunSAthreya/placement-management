@@ -183,7 +183,7 @@ const StudentForm = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={2}>
                                     <FormControl
                                         isInvalid={errors.email !== undefined}
                                     >
@@ -201,26 +201,7 @@ const StudentForm = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
-                                    <FormControl
-                                        isInvalid={
-                                            errors.password !== undefined
-                                        }
-                                    >
-                                        <Input
-                                            type="password"
-                                            placeholder="Temporary Password"
-                                            {...register('password', {
-                                                required:
-                                                    'Please Enter the temporary password of the Student',
-                                            })}
-                                        />
-                                        <FormErrorMessage>
-                                            {errors.password &&
-                                                errors.password.message}
-                                        </FormErrorMessage>
-                                    </FormControl>
-                                </GridItem>
+
                                 <GridItem p={4}>
                                     <FormControl
                                         isInvalid={errors.branch !== undefined}
@@ -406,18 +387,22 @@ const StudentForm = () => {
                                     <Separator />
                                 </GridItem>
                                 <GridItem p={4} colSpan={2}>
-                                    <FormControl isInvalid={errors.Password}>
+                                    <FormControl
+                                        isInvalid={
+                                            errors.password !== undefined
+                                        }
+                                    >
                                         <Input
                                             type="password"
                                             placeholder="Enter Default Password"
-                                            {...register('Password', {
+                                            {...register('password', {
                                                 required:
                                                     'Please Enter A Default Password',
                                             })}
                                         />
                                         <FormErrorMessage>
-                                            {errors.Password &&
-                                                errors.Password.message}
+                                            {errors.password &&
+                                                errors.password.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
