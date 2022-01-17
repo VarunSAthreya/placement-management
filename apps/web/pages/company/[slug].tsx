@@ -15,7 +15,8 @@ import { useGetCompanyDetailsQuery } from '../../generated/graphql';
 
 const CompanyDetails = () => {
     const { asPath } = useRouter();
-    const slug = asPath.split('/')[2];
+    const slug = asPath.split('/')[2].replace(/%20/g, ' ');
+    console.log({ slug });
 
     const { data, loading, error } = useGetCompanyDetailsQuery({
         variables: { name: slug },

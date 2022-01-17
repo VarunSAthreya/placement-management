@@ -26,3 +26,22 @@ query GetCompanyDetails($name: String!) {
         }
     }
 }
+
+mutation CreateCompany($input: CompanyInput!) {
+    createCompany(input: $input) {
+        name
+    }
+}
+
+query GetSelectedBaseOnCompany {
+    companies {
+        name
+        package
+        selected {
+            user {
+                USN
+                name
+            }
+        }
+    }
+}

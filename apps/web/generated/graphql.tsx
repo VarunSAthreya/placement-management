@@ -307,6 +307,18 @@ export type GetCompanyDetailsQueryVariables = Exact<{
 
 export type GetCompanyDetailsQuery = { __typename?: 'Query', company: { __typename?: 'Company', name: string, type: CompanyType, package?: number | null | undefined, arrival_date?: string | null | undefined, eligibility: { __typename?: 'CompanyEdibility', CGPA: number, backlogs: number, tenth: number, twelth: number } } };
 
+export type CreateCompanyMutationVariables = Exact<{
+  input: CompanyInput;
+}>;
+
+
+export type CreateCompanyMutation = { __typename?: 'Mutation', createCompany: { __typename?: 'Company', name: string } };
+
+export type GetSelectedBaseOnCompanyQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetSelectedBaseOnCompanyQuery = { __typename?: 'Query', companies: Array<{ __typename?: 'Company', name: string, package?: number | null | undefined, selected: Array<{ __typename?: 'Selected', user: { __typename?: 'UserDetails', USN: string, name: string } } | null | undefined> } | null | undefined> };
+
 export type AuthMutationVariables = Exact<{
   usn: Scalars['ID'];
   password: Scalars['String'];
@@ -466,6 +478,80 @@ export function useGetCompanyDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHook
 export type GetCompanyDetailsQueryHookResult = ReturnType<typeof useGetCompanyDetailsQuery>;
 export type GetCompanyDetailsLazyQueryHookResult = ReturnType<typeof useGetCompanyDetailsLazyQuery>;
 export type GetCompanyDetailsQueryResult = Apollo.QueryResult<GetCompanyDetailsQuery, GetCompanyDetailsQueryVariables>;
+export const CreateCompanyDocument = gql`
+    mutation CreateCompany($input: CompanyInput!) {
+  createCompany(input: $input) {
+    name
+  }
+}
+    `;
+export type CreateCompanyMutationFn = Apollo.MutationFunction<CreateCompanyMutation, CreateCompanyMutationVariables>;
+
+/**
+ * __useCreateCompanyMutation__
+ *
+ * To run a mutation, you first call `useCreateCompanyMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateCompanyMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [createCompanyMutation, { data, loading, error }] = useCreateCompanyMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCreateCompanyMutation(baseOptions?: Apollo.MutationHookOptions<CreateCompanyMutation, CreateCompanyMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<CreateCompanyMutation, CreateCompanyMutationVariables>(CreateCompanyDocument, options);
+      }
+export type CreateCompanyMutationHookResult = ReturnType<typeof useCreateCompanyMutation>;
+export type CreateCompanyMutationResult = Apollo.MutationResult<CreateCompanyMutation>;
+export type CreateCompanyMutationOptions = Apollo.BaseMutationOptions<CreateCompanyMutation, CreateCompanyMutationVariables>;
+export const GetSelectedBaseOnCompanyDocument = gql`
+    query GetSelectedBaseOnCompany {
+  companies {
+    name
+    package
+    selected {
+      user {
+        USN
+        name
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetSelectedBaseOnCompanyQuery__
+ *
+ * To run a query within a React component, call `useGetSelectedBaseOnCompanyQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetSelectedBaseOnCompanyQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetSelectedBaseOnCompanyQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetSelectedBaseOnCompanyQuery(baseOptions?: Apollo.QueryHookOptions<GetSelectedBaseOnCompanyQuery, GetSelectedBaseOnCompanyQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetSelectedBaseOnCompanyQuery, GetSelectedBaseOnCompanyQueryVariables>(GetSelectedBaseOnCompanyDocument, options);
+      }
+export function useGetSelectedBaseOnCompanyLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetSelectedBaseOnCompanyQuery, GetSelectedBaseOnCompanyQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetSelectedBaseOnCompanyQuery, GetSelectedBaseOnCompanyQueryVariables>(GetSelectedBaseOnCompanyDocument, options);
+        }
+export type GetSelectedBaseOnCompanyQueryHookResult = ReturnType<typeof useGetSelectedBaseOnCompanyQuery>;
+export type GetSelectedBaseOnCompanyLazyQueryHookResult = ReturnType<typeof useGetSelectedBaseOnCompanyLazyQuery>;
+export type GetSelectedBaseOnCompanyQueryResult = Apollo.QueryResult<GetSelectedBaseOnCompanyQuery, GetSelectedBaseOnCompanyQueryVariables>;
 export const AuthDocument = gql`
     mutation Auth($usn: ID!, $password: String!) {
   authenticate(USN: $usn, password: $password) {
