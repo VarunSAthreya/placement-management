@@ -14,12 +14,13 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import { AppliedCard, ProfileCard } from '../components/Card';
+import { Loader } from '../components/Loader';
 import SideBar from '../components/Sidebar/Sidebar';
 import { useGetProfileDetailsQuery } from '../generated/graphql';
 
 const Profile: NextPage = () => {
     const router = useRouter();
-    const usn = useRef('');
+    const usn = useRef(null);
 
     useEffect(() => {
         let token;
@@ -42,7 +43,9 @@ const Profile: NextPage = () => {
         variables: { usn: usn.current },
     });
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader />;
+
+    if (error) router.push('/login');
 
     return (
         <Flex flexDirection={'row'} bg={primaryBG}>
@@ -128,7 +131,7 @@ const Profile: NextPage = () => {
                             </Text>
                         </Box>
                         <Box px="5px">
-                            {usn.current && (
+                            {!loading && (
                                 <ProfileCard data={data.user.details} />
                             )}
                         </Box>
@@ -152,7 +155,7 @@ const Profile: NextPage = () => {
                         </Box>
                         <Box px="5px">
                             <Flex direction="column">
-                                {usn.current &&
+                                {!loading &&
                                     data.user.details.applied.map((row) => {
                                         return (
                                             <AppliedCard
