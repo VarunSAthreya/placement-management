@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { CompanyInfoCard } from '../../components/Card';
+import { Loader } from '../../components/Loader';
 import { SideBar } from '../../components/Sidebar';
 import { useGetCompanyDetailsQuery } from '../../generated/graphql';
 
@@ -25,7 +26,7 @@ const CompanyDetails = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader />;
 
     return (
         <Flex flexDirection={'row'} bg={primaryBG}>

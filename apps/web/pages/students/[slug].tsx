@@ -10,43 +10,9 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { StudentInfoCard } from '../../components/Card';
+import { Loader } from '../../components/Loader';
 import { SideBar } from '../../components/Sidebar';
 import { useGetStudentDetailsQuery } from '../../generated/graphql';
-
-const studentData = [
-    {
-        USN: '1JS19CS186',
-        name: 'Varun S Athreya',
-        email: '1js19cs186@jssateb.ac.in',
-        branch: 'CSE',
-        section: 'C',
-        cgpa: '7.5',
-    },
-    {
-        USN: '1JS19CS146',
-        name: 'Sandeep M',
-        email: '1js19cs146@jssateb.ac.in',
-        branch: 'CSE',
-        section: 'C',
-        cgpa: '7.5',
-    },
-    {
-        USN: '1JS19CS183',
-        name: 'Ullas HP',
-        email: '1js19cs183@jssateb.ac.in',
-        branch: 'CSE',
-        section: 'C',
-        cgpa: '7.5',
-    },
-    {
-        USN: '1JS19CS157',
-        name: 'Shithin Shetty',
-        email: '1js19cs157@jssateb.ac.in',
-        branch: 'CSE',
-        section: 'C',
-        cgpa: '7.5',
-    },
-];
 
 const StudentDetails = () => {
     const { asPath } = useRouter();
@@ -59,7 +25,7 @@ const StudentDetails = () => {
         variables: { usn: slug },
     });
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader />;
 
     return (
         <Flex flexDirection={'row'} bg={primaryBG}>

@@ -13,6 +13,7 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { Loader } from '../components/Loader';
 import { SideBar } from '../components/Sidebar';
 import { AppliedTable } from '../components/Tables';
 import { useGetAllAppliedQuery } from '../generated/graphql';
@@ -24,7 +25,7 @@ const Applied = () => {
 
     const { data, loading, error } = useGetAllAppliedQuery();
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader />;
 
     return (
         <Flex flexDirection={'row'} bg={primaryBG}>

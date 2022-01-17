@@ -17,6 +17,7 @@ import {
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { AiFillPlusCircle } from 'react-icons/ai';
+import { Loader } from '../../components/Loader';
 import { SideBar } from '../../components/Sidebar';
 import { CompanyTable } from '../../components/Tables';
 import { useGetCompaniesQuery } from '../../generated/graphql';
@@ -30,7 +31,7 @@ const Company: NextPage = () => {
     const secondary = useColorModeValue('white', '#242526');
     const tableBoxShadow = useColorModeValue('0px 2px 3px #eee', '0px');
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader />;
 
     return (
         <Flex flexDirection={'row'} bg={primary}>

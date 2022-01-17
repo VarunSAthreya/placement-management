@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
+import { Loader } from '../components/Loader';
 import { Separator } from '../components/Separator';
 import { SideBar } from '../components/Sidebar';
 import { CompanyType, useCreateCompanyMutation } from '../generated/graphql';
@@ -42,33 +43,24 @@ const CompanyForm = () => {
     } = useForm<FormData>();
 
     const router = useRouter();
-    const [createCompany] = useCreateCompanyMutation();
+    const [createCompany, { loading }] = useCreateCompanyMutation();
+
+    const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
+    const secondaryBG = useColorModeValue('white', '#242526');
 
     const onSubmit = (data: FormData) => {
-        const {
-            CGPA,
-            backlogs,
-            date,
-            name,
-            package: pkg,
-            tenth,
-            twelth,
-            year,
-            type,
-        } = data;
-
         const variables = {
             input: {
-                name,
-                type: type as CompanyType,
-                package: Number(pkg),
-                year: Number(year),
-                arrival_date: new Date(date).toISOString(),
+                name: data.name,
+                type: data.type as CompanyType,
+                package: Number(data.package),
+                year: Number(data.year),
+                arrival_date: new Date(data.date).toISOString(),
                 eligibility: {
-                    backlogs: Number(backlogs),
-                    CGPA: Number(CGPA),
-                    tenth: Number(tenth),
-                    twelth: Number(twelth),
+                    backlogs: Number(data.backlogs),
+                    CGPA: Number(data.CGPA),
+                    tenth: Number(data.tenth),
+                    twelth: Number(data.twelth),
                 },
             },
         };
@@ -89,11 +81,10 @@ const CompanyForm = () => {
             });
     };
 
+    if (loading) return <Loader />;
+
     return (
-        <Flex
-            flexDirection={'row'}
-            bg={useColorModeValue('#f8f9fa', '#18191A')}
-        >
+        <Flex flexDirection={'row'} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
@@ -106,7 +97,7 @@ const CompanyForm = () => {
                     <Box pb={'25px'}>
                         <Flex
                             direction="column"
-                            bg={useColorModeValue('white', '#242526')}
+                            bg={secondaryBG}
                             p={4}
                             borderRadius={8}
                             pb="1.5rem"
@@ -171,11 +162,7 @@ const CompanyForm = () => {
                             </Breadcrumb>
                         </Flex>
                     </Box>
-                    <Box
-                        bg={useColorModeValue('white', '#242526')}
-                        p={4}
-                        borderRadius={8}
-                    >
+                    <Box bg={secondaryBG} p={4} borderRadius={8}>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             {/*General Detail Fields*/}
                             <Grid templateColumns="repeat(2, 1fr)">

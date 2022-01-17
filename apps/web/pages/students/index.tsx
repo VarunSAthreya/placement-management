@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { AiFillPlusCircle } from 'react-icons/ai';
+import { Loader } from '../../components/Loader';
 import { SideBar } from '../../components/Sidebar';
 import { StudentsTable } from '../../components/Tables';
 import { useGetAllStudentsCardQuery } from '../../generated/graphql';
@@ -29,7 +30,7 @@ const Students = () => {
     const secondaryBG = useColorModeValue('white', '#242526');
     const tableBoxShadow = useColorModeValue('0px 2px 3px #eee', '0px');
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Loader />;
     return (
         <Flex flexDirection={'row'} bg={primaryBG}>
             <SideBar />
