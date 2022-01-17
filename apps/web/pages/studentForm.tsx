@@ -284,6 +284,36 @@ const StudentForm = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
+                            </Grid>
+                            <Grid templateColumns="repeat(2, 1fr)">
+                                <GridItem p={4} colSpan={2}>
+                                    <Text
+                                        bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                        bgClip="text"
+                                        fontSize="3xl"
+                                        fontWeight="extrabold"
+                                        textTransform={'uppercase'}
+                                    >
+                                        Password
+                                    </Text>
+                                    <Separator />
+                                </GridItem>
+                                <GridItem p={4} colSpan={2}>
+                                    <FormControl isInvalid={errors.Password}>
+                                        <Input
+                                            type="password"
+                                            placeholder="Enter Default Password"
+                                            {...register('Password', {
+                                                required:
+                                                    'Please Enter A Default Password',
+                                            })}
+                                        />
+                                        <FormErrorMessage>
+                                            {errors.Password &&
+                                                errors.Password.message}
+                                        </FormErrorMessage>
+                                    </FormControl>
+                                </GridItem>
                                 <GridItem p={4} colSpan={2} mt={4}>
                                     <Flex justify={'center'}>
                                         <Button
