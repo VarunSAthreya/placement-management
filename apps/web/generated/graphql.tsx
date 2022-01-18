@@ -181,10 +181,14 @@ export type Query = {
   __typename?: 'Query';
   allStudentDetails: Array<Maybe<UserDetails>>;
   applied: Array<Maybe<Applied>>;
+  appliedCount: Scalars['Int'];
   companies: Array<Maybe<Company>>;
   company: Company;
+  companyCount: Scalars['Int'];
   getSelectedByCompany: Array<Maybe<Selected>>;
   selected: Array<Maybe<Selected>>;
+  selectedCount: Scalars['Int'];
+  studentCount: Scalars['Int'];
   studentDetails: UserDetails;
   user: User;
   users: Array<Maybe<User>>;
@@ -339,6 +343,11 @@ export type GetSelectedPerCompanyQueryVariables = Exact<{
 
 
 export type GetSelectedPerCompanyQuery = { __typename?: 'Query', company: { __typename?: 'Company', name: string, package?: number | null | undefined, selected: Array<{ __typename?: 'Selected', user: { __typename?: 'UserDetails', name: string, USN: string, email: string, branch: Branch, section: Section, CGPA: number } } | null | undefined> } };
+
+export type GetTableCountQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetTableCountQuery = { __typename?: 'Query', companyCount: number, studentCount: number, appliedCount: number, selectedCount: number };
 
 export type GetSelectedByCompanyQueryVariables = Exact<{
   name: Scalars['String'];
@@ -678,6 +687,41 @@ export function useGetSelectedPerCompanyLazyQuery(baseOptions?: Apollo.LazyQuery
 export type GetSelectedPerCompanyQueryHookResult = ReturnType<typeof useGetSelectedPerCompanyQuery>;
 export type GetSelectedPerCompanyLazyQueryHookResult = ReturnType<typeof useGetSelectedPerCompanyLazyQuery>;
 export type GetSelectedPerCompanyQueryResult = Apollo.QueryResult<GetSelectedPerCompanyQuery, GetSelectedPerCompanyQueryVariables>;
+export const GetTableCountDocument = gql`
+    query GetTableCount {
+  companyCount
+  studentCount
+  appliedCount
+  selectedCount
+}
+    `;
+
+/**
+ * __useGetTableCountQuery__
+ *
+ * To run a query within a React component, call `useGetTableCountQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetTableCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetTableCountQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetTableCountQuery(baseOptions?: Apollo.QueryHookOptions<GetTableCountQuery, GetTableCountQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetTableCountQuery, GetTableCountQueryVariables>(GetTableCountDocument, options);
+      }
+export function useGetTableCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTableCountQuery, GetTableCountQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetTableCountQuery, GetTableCountQueryVariables>(GetTableCountDocument, options);
+        }
+export type GetTableCountQueryHookResult = ReturnType<typeof useGetTableCountQuery>;
+export type GetTableCountLazyQueryHookResult = ReturnType<typeof useGetTableCountLazyQuery>;
+export type GetTableCountQueryResult = Apollo.QueryResult<GetTableCountQuery, GetTableCountQueryVariables>;
 export const GetSelectedByCompanyDocument = gql`
     query GetSelectedByCompany($name: String!) {
   getSelectedByCompany(name: $name) {

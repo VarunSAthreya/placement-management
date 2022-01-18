@@ -1,0 +1,6 @@
+query GetTableCount {
+    companyCount
+    studentCount
+    appliedCount
+    selectedCount
+}

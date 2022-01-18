@@ -107,3 +107,5 @@ export const deleteApplied = async (applied: IApplied) => {
 
     return res;
 };
+
+export const getAppliedCount = async () => prisma.applied.count();

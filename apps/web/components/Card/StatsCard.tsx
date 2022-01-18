@@ -9,7 +9,7 @@ import {
 import IconBox from '../Icons/IconBox';
 import { WalletIcon } from '../Icons/Icons';
 
-const StatsCard = () => {
+const StatsCard = ({ title, count }) => {
     return (
         <Box
             minH="83px"
@@ -25,13 +25,13 @@ const StatsCard = () => {
                         fontWeight="bold"
                         pb=".1rem"
                     >
-                        No of Students
+                        {title}
                     </StatLabel>
                     <StatNumber
                         fontSize="md"
                         color={useColorModeValue('black', 'white')}
                     >
-                        53,000
+                        {count}
                     </StatNumber>
                 </Stat>
                 <IconBox

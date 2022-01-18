@@ -14,8 +14,11 @@ import {
     ProgressChart,
 } from '../components/Charts';
 import { SideBar } from '../components/Sidebar';
+import { useGetTableCountQuery } from '../generated/graphql';
 
 const Home = () => {
+    const { data, loading, error } = useGetTableCountQuery();
+
     return (
         <Flex
             flexDirection={'row'}
@@ -34,10 +37,30 @@ const Home = () => {
                     spacing={24}
                     mb={4}
                 >
-                    <StatsCard />
-                    <StatsCard />
-                    <StatsCard />
-                    <StatsCard />
+                    {!loading && (
+                        <StatsCard
+                            title={'Students'}
+                            count={data.studentCount}
+                        />
+                    )}
+                    {!loading && (
+                        <StatsCard
+                            title={'Companies'}
+                            count={data.companyCount}
+                        />
+                    )}
+                    {!loading && (
+                        <StatsCard
+                            title={'Applications'}
+                            count={data.appliedCount}
+                        />
+                    )}
+                    {!loading && (
+                        <StatsCard
+                            title={'Offers Given'}
+                            count={data.selectedCount}
+                        />
+                    )}
                 </SimpleGrid>
                 <Grid
                     templateColumns={{ sm: '1fr', lg: '1.3fr 1.7fr' }}

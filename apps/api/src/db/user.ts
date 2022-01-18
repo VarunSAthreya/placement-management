@@ -108,3 +108,12 @@ export const authenticateUser = async (USN: string, password: string) => {
         throw new AuthenticationError(error.message);
     }
 };
+
+export const getStudentCount = async () => {
+    const students = await prisma.user.count({
+        where: { role: 'STUDENT' },
+    });
+    console.log({ students });
+
+    return students;
+};
