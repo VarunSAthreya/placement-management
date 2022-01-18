@@ -131,8 +131,9 @@ const SidebarContent = ({ onClose, ...rest }) => {
 const NavItem = ({ icon, link, children, ...rest }) => {
     const router = useRouter();
     const defaultColor = useColorModeValue('white', '#242526');
-    console.log(router.asPath);
-    console.log({ link });
+    const textColor = useColorModeValue('#242526', 'white');
+    // console.log(router.asPath);
+    // console.log({ link });
 
     return (
         <Link
@@ -162,11 +163,13 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                 {icon && (
                     <IconBox
                         bg={
-                            'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                            router.asPath === link
+                                ? 'white'
+                                : 'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
                         }
                         h="40px"
                         w="40px"
-                        color="white"
+                        color={router.asPath === link ? 'black' : 'white'}
                         me="12px"
                         _groupHover={{
                             bg: 'white',
@@ -183,7 +186,7 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                     </IconBox>
                 )}
                 <Text
-                    color={useColorModeValue('gray.700', 'white')}
+                    color={router.asPath === link ? 'white' : textColor}
                     my="auto"
                     fontSize="sm"
                     _groupHover={{
