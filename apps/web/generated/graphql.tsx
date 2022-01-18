@@ -390,7 +390,7 @@ export type GetProfileDetailsQueryVariables = Exact<{
 }>;
 
 
-export type GetProfileDetailsQuery = { __typename?: 'Query', user: { __typename?: 'User', role: Roles, details?: { __typename?: 'UserDetails', name: string, USN: string, branch: Branch, section: Section, email: string, year: number, CGPA: number, tenth: number, twelth: number, backlogs: number, applied: Array<{ __typename?: 'Applied', company: { __typename?: 'Company', name: string, package?: number | null | undefined, type: CompanyType } } | null | undefined> } | null | undefined } };
+export type GetProfileDetailsQuery = { __typename?: 'Query', user: { __typename?: 'User', role: Roles, details?: { __typename?: 'UserDetails', name: string, USN: string, branch: Branch, section: Section, email: string, year: number, CGPA: number, tenth: number, twelth: number, backlogs: number, eligible: boolean, placed: boolean, package?: number | null | undefined, applied: Array<{ __typename?: 'Applied', company: { __typename?: 'Company', name: string, package?: number | null | undefined, type: CompanyType } } | null | undefined>, selected: Array<{ __typename?: 'Selected', company: { __typename?: 'Company', name: string, package?: number | null | undefined, type: CompanyType } } | null | undefined> } | null | undefined } };
 
 export type CreateUserMutationVariables = Exact<{
   input: UserInput;
@@ -947,7 +947,17 @@ export const GetProfileDetailsDocument = gql`
       tenth
       twelth
       backlogs
+      eligible
+      placed
+      package
       applied {
+        company {
+          name
+          package
+          type
+        }
+      }
+      selected {
         company {
           name
           package

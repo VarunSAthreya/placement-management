@@ -6,8 +6,6 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 
-const donutChartData = [44, 55, 17];
-
 const donutChartOptions: ApexOptions = {
     chart: {
         type: 'donut',

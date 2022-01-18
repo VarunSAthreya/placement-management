@@ -180,7 +180,15 @@ const Profile: NextPage = () => {
                         </Box>
                         <Box px="5px">
                             <Flex direction="column">
-                                <p>PLACED COMPANY DETAILS</p>
+                                {!loading &&
+                                    data.user.details.selected.map((row) => {
+                                        return (
+                                            <AppliedCard
+                                                key={row.company.name}
+                                                data={row.company}
+                                            />
+                                        );
+                                    })}
                             </Flex>
                         </Box>
                     </Box>

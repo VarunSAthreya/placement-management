@@ -52,7 +52,17 @@ query GetProfileDetails($usn: ID!) {
             tenth
             twelth
             backlogs
+            eligible
+            placed
+            package
             applied {
+                company {
+                    name
+                    package
+                    type
+                }
+            }
+            selected {
                 company {
                     name
                     package

@@ -12,6 +12,9 @@ const ProfileCard = ({ data }) => {
         tenth,
         twelth,
         backlogs,
+        eligible,
+        placed,
+        package: pkg,
     } = data;
 
     return (
@@ -194,6 +197,66 @@ const ProfileCard = ({ data }) => {
                 </Text>
                 <Text fontSize="md" color="black" fontWeight="semibold">
                     {backlogs}
+                </Text>
+            </Flex>
+            <Flex
+                align="center"
+                justifyContent="space-between"
+                mb="8px"
+                borderRadius={8}
+                bg={'#f8f9fa'}
+                p={3}
+            >
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    me="10px"
+                    fontWeight={'semibold'}
+                >
+                    ELIGIBLE
+                </Text>
+                <Text fontSize="md" color="black" fontWeight="semibold">
+                    {eligible ? 'YES' : 'NO'}
+                </Text>
+            </Flex>
+            <Flex
+                align="center"
+                justifyContent="space-between"
+                mb="8px"
+                borderRadius={8}
+                bg={'#f8f9fa'}
+                p={3}
+            >
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    me="10px"
+                    fontWeight={'semibold'}
+                >
+                    PLACED
+                </Text>
+                <Text fontSize="md" color="black" fontWeight="semibold">
+                    {placed ? 'YES' : 'NO'}
+                </Text>
+            </Flex>
+            <Flex
+                align="center"
+                justifyContent="space-between"
+                mb="8px"
+                borderRadius={8}
+                bg={'#f8f9fa'}
+                p={3}
+            >
+                <Text
+                    fontSize="md"
+                    color={'gray.500'}
+                    me="10px"
+                    fontWeight={'semibold'}
+                >
+                    PACKAGE
+                </Text>
+                <Text fontSize="md" color="black" fontWeight="semibold">
+                    {pkg}
                 </Text>
             </Flex>
         </Flex>
