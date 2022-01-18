@@ -2,9 +2,13 @@ import {
     getAllApplied,
     getAllSelected,
     getAllUserDetails,
+    getAppliedCount,
     getCompanies,
     getCompany,
+    getCompanyCount,
     getSelectedByCompany,
+    getSelectedCount,
+    getStudentCount,
     getUser,
     getUserDetails,
     getUsers,
@@ -30,6 +34,14 @@ const query = {
 
     getSelectedByCompany: async (_: any, { name }: { name: string }) =>
         getSelectedByCompany(name),
+
+    studentCount: async () => getStudentCount(),
+
+    companyCount: async () => getCompanyCount(),
+
+    appliedCount: async () => getAppliedCount(),
+
+    selectedCount: async () => getSelectedCount(),
 };
 
 export default query;

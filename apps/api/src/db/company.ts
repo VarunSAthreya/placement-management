@@ -101,3 +101,5 @@ export const getAllEligibleStudents = async (name: string) => {
         orderBy: { USN: 'asc' },
     });
 };
+
+export const getCompanyCount = async () => prisma.company.count();

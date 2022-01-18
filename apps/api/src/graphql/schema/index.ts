@@ -34,6 +34,10 @@ const typeDefs = gql`
         applied: [Applied]!
         selected: [Selected]!
         getSelectedByCompany(name: String!): [Selected]!
+        studentCount: Int!
+        companyCount: Int!
+        appliedCount: Int!
+        selectedCount: Int!
     }
 
     type AuthResponse {
