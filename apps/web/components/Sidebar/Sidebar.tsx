@@ -131,8 +131,6 @@ const SidebarContent = ({ onClose, ...rest }) => {
 const NavItem = ({ icon, link, children, ...rest }) => {
     const router = useRouter();
     const defaultColor = useColorModeValue('white', '#242526');
-    console.log(router.asPath);
-    console.log({ link });
 
     return (
         <Link
