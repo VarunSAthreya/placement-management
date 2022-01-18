@@ -6,6 +6,8 @@ import {
     getCompanies,
     getCompany,
     getCompanyCount,
+    getEligibleStudentsCount,
+    getPlacedStudentsCount,
     getSelectedByCompany,
     getSelectedCount,
     getStudentCount,
@@ -42,6 +44,10 @@ const query = {
     appliedCount: async () => getAppliedCount(),
 
     selectedCount: async () => getSelectedCount(),
+
+    eligibleCount: async () => getEligibleStudentsCount(),
+
+    placedStudentCount: async () => getPlacedStudentsCount(),
 };
 
 export default query;

@@ -117,3 +117,27 @@ export const getStudentCount = async () => {
 
     return students;
 };
+
+export const getEligibleStudentsCount = async () => {
+    const res = await prisma.userDetails.count({
+        where: {
+            eligible: true,
+        },
+    });
+
+    console.log({ res });
+
+    return res;
+};
+
+export const getPlacedStudentsCount = async () => {
+    const res = await prisma.userDetails.count({
+        where: {
+            placed: true,
+        },
+    });
+
+    console.log({ res });
+
+    return res;
+};

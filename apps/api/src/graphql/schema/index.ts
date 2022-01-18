@@ -38,6 +38,8 @@ const typeDefs = gql`
         companyCount: Int!
         appliedCount: Int!
         selectedCount: Int!
+        eligibleCount: Int!
+        placedStudentCount: Int!
     }
 
     type AuthResponse {
