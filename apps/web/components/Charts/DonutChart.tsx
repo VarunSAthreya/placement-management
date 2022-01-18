@@ -27,7 +27,7 @@ const donutChartOptions: ApexOptions = {
         },
     ],
     colors: ['#FF0080', '#7928CA', '#000'],
-    labels: ['Total Students', 'Eligible', 'Placed'],
+    labels: ['Not Eligible', 'Eligible', 'Placed'],
 };
 
 const DonutChart = ({ data }) => {

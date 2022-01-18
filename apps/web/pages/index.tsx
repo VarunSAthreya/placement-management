@@ -146,7 +146,7 @@ const Home = () => {
                             {!loading && (
                                 <DonutChart
                                     data={[
-                                        data.studentCount,
+                                        data.studentCount - data.eligibleCount,
                                         data.eligibleCount,
                                         data.placedStudentCount,
                                     ]}
