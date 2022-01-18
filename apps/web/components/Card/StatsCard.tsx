@@ -5,11 +5,11 @@ import {
     StatLabel,
     StatNumber,
     useColorModeValue,
+    Icon,
 } from '@chakra-ui/react';
 import IconBox from '../Icons/IconBox';
-import { WalletIcon } from '../Icons/Icons';
 
-const StatsCard = ({ title, count }) => {
+const StatsCard = ({ title, count, icon }) => {
     return (
         <Box
             minH="83px"
@@ -40,7 +40,7 @@ const StatsCard = ({ title, count }) => {
                     w={'45px'}
                     bg={'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'}
                 >
-                    <WalletIcon h={'24px'} w={'24px'} color="white" />
+                    <Icon h={'24px'} w={'24px'} color="white" as={icon} />
                 </IconBox>
             </Flex>
         </Box>

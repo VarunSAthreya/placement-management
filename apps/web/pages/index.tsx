@@ -6,6 +6,12 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import {
+    BsBuilding,
+    BsFillPersonLinesFill,
+    BsPeople,
+    BsPersonPlus,
+} from 'react-icons/bs';
 import { StatsCard } from '../components/Card';
 import {
     BarChart,
@@ -34,31 +40,35 @@ const Home = () => {
             >
                 <SimpleGrid
                     columns={{ sm: 1, md: 2, xl: 4 }}
-                    spacing={24}
+                    spacing={12}
                     mb={4}
                 >
                     {!loading && (
                         <StatsCard
-                            title={'Students'}
+                            title={'No.of Students'}
                             count={data.studentCount}
+                            icon={BsPeople}
                         />
                     )}
                     {!loading && (
                         <StatsCard
-                            title={'Companies'}
+                            title={'No.of Companies'}
                             count={data.companyCount}
+                            icon={BsBuilding}
                         />
                     )}
                     {!loading && (
                         <StatsCard
-                            title={'Applications'}
+                            title={'No.of Applications'}
                             count={data.appliedCount}
+                            icon={BsFillPersonLinesFill}
                         />
                     )}
                     {!loading && (
                         <StatsCard
-                            title={'Offers Given'}
+                            title={'No.of Offers Given'}
                             count={data.selectedCount}
+                            icon={BsPersonPlus}
                         />
                     )}
                 </SimpleGrid>
