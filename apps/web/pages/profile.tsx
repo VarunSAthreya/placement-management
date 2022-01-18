@@ -43,6 +43,7 @@ const Profile: NextPage = () => {
         variables: { usn: usn.current },
     });
 
+    console.log(data);
     if (loading) return <Loader />;
 
     if (error) router.push('/login');
@@ -164,6 +165,22 @@ const Profile: NextPage = () => {
                                             />
                                         );
                                     })}
+                            </Flex>
+                        </Box>
+                        <Box p="12px 5px" my="12px">
+                            <Text
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="2xl"
+                                fontWeight="extrabold"
+                                textTransform={'uppercase'}
+                            >
+                                Company Placed
+                            </Text>
+                        </Box>
+                        <Box px="5px">
+                            <Flex direction="column">
+                                <p>PLACED COMPANY DETAILS</p>
                             </Flex>
                         </Box>
                     </Box>
