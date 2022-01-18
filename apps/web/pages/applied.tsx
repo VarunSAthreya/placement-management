@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { ChevronRightIcon } from '@chakra-ui/icons';
 import {
     Box,
@@ -5,6 +6,10 @@ import {
     BreadcrumbItem,
     BreadcrumbLink,
     Flex,
+    Icon,
+    Input,
+    InputGroup,
+    InputRightElement,
     Table,
     Tbody,
     Text,
@@ -13,19 +18,30 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { SearchIcon } from '@chakra-ui/icons';
 import { Loader } from '../components/Loader';
 import { SideBar } from '../components/Sidebar';
 import { AppliedTable } from '../components/Tables';
 import { useGetAllAppliedQuery } from '../generated/graphql';
 
 const Applied = () => {
+    const [inputData, setInputData] = useState('');
+    const [filteredTable, setFilteredTable] = useState([]);
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
     const tableBoxShadow = useColorModeValue('0px 2px 3px #eee', '0px');
 
     const { data, loading, error } = useGetAllAppliedQuery();
-
     if (loading) return <Loader />;
+
+    const onChangeHandler = (e) => {
+        setInputData(e.target.value);
+        const filteredData = data.applied.filter(
+            (d) => d.company.name.toLowerCase() === e.target.value.toLowerCase()
+        );
+        console.log(filteredData);
+        setFilteredTable(filteredData);
+    };
 
     return (
         <Flex flexDirection={'row'} bg={primaryBG}>
@@ -93,7 +109,39 @@ const Applied = () => {
                                 </Breadcrumb>
                             </Flex>
                         </Box>
-                        <Box borderRadius={8}>
+                        <Box bg={secondaryBG} p={4} borderRadius={8}>
+                            <Flex
+                                flexDirection={'row'}
+                                alignItems={'center'}
+                                justifyContent={'space-between'}
+                                mb={4}
+                                pb={4}
+                                pt={2}
+                            >
+                                <Text
+                                    bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                    bgClip="text"
+                                    fontSize="2xl"
+                                    fontWeight="extrabold"
+                                    textTransform={'uppercase'}
+                                >
+                                    No.of Applied Students&apos;s (4)
+                                </Text>
+                                <InputGroup
+                                    justifyContent={'flex-end'}
+                                    w={'50%'}
+                                >
+                                    <Input
+                                        type="text"
+                                        placeholder="Search Company"
+                                        variant={'filled'}
+                                        onChange={onChangeHandler}
+                                    />
+                                    <InputRightElement>
+                                        <Icon as={SearchIcon} />
+                                    </InputRightElement>
+                                </InputGroup>
+                            </Flex>
                             <Table
                                 variant="simple"
                                 color="white"
@@ -127,16 +175,30 @@ const Applied = () => {
                                     </Tr>
                                 </Thead>
                                 <Tbody bg={secondaryBG}>
-                                    {data.applied.map((row, index) => {
-                                        return (
-                                            <AppliedTable
-                                                key={index}
-                                                data={row}
-                                            />
-                                        );
-                                    })}
+                                    {!loading &&
+                                    filteredTable.length === 0 &&
+                                    inputData.trim() === ''
+                                        ? data.applied.map((row, index) => {
+                                              return (
+                                                  <AppliedTable
+                                                      key={index}
+                                                      data={row}
+                                                  />
+                                              );
+                                          })
+                                        : filteredTable.map((row, index) => {
+                                              return (
+                                                  <AppliedTable
+                                                      key={index}
+                                                      data={row}
+                                                  />
+                                              );
+                                          })}
                                 </Tbody>
                             </Table>
+                            {!loading &&
+                                filteredTable.length === 0 &&
+                                inputData.trim() !== '' && <Loader />}
                         </Box>
                     </Flex>
                 </Box>
