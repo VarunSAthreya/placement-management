@@ -133,7 +133,15 @@ const Home = () => {
                         borderRadius={16}
                     >
                         <Box w="100%" h={{ sm: '300px' }} ps="8px">
-                            <DonutChart />
+                            {!loading && (
+                                <DonutChart
+                                    data={[
+                                        data.studentCount,
+                                        data.eligibleCount,
+                                        data.placedStudentCount,
+                                    ]}
+                                />
+                            )}
                         </Box>
                     </Box>
                 </Grid>

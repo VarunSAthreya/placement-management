@@ -185,7 +185,9 @@ export type Query = {
   companies: Array<Maybe<Company>>;
   company: Company;
   companyCount: Scalars['Int'];
+  eligibleCount: Scalars['Int'];
   getSelectedByCompany: Array<Maybe<Selected>>;
+  placedStudentCount: Scalars['Int'];
   selected: Array<Maybe<Selected>>;
   selectedCount: Scalars['Int'];
   studentCount: Scalars['Int'];
@@ -347,7 +349,7 @@ export type GetSelectedPerCompanyQuery = { __typename?: 'Query', company: { __ty
 export type GetTableCountQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetTableCountQuery = { __typename?: 'Query', companyCount: number, studentCount: number, appliedCount: number, selectedCount: number };
+export type GetTableCountQuery = { __typename?: 'Query', companyCount: number, studentCount: number, appliedCount: number, selectedCount: number, eligibleCount: number, placedStudentCount: number };
 
 export type GetSelectedByCompanyQueryVariables = Exact<{
   name: Scalars['String'];
@@ -693,6 +695,8 @@ export const GetTableCountDocument = gql`
   studentCount
   appliedCount
   selectedCount
+  eligibleCount
+  placedStudentCount
 }
     `;
 

@@ -27,14 +27,15 @@ const donutChartOptions: ApexOptions = {
         },
     ],
     colors: ['#FF0080', '#7928CA', '#000'],
+    labels: ['Total Students', 'Eligible', 'Placed'],
 };
 
-const DonutChart = () => {
+const DonutChart = ({ data }) => {
     return (
         <Box py="1rem" height={{ sm: '200px' }} width="70%" position="relative">
             <ReactApexChart
                 options={donutChartOptions}
-                series={donutChartData}
+                series={data}
                 type="donut"
                 height={250}
             />

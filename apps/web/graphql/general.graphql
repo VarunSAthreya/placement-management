@@ -3,4 +3,6 @@ query GetTableCount {
     studentCount
     appliedCount
     selectedCount
+    eligibleCount
+    placedStudentCount
 }
