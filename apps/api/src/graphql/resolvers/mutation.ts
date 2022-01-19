@@ -1,5 +1,6 @@
 import {
     authenticateUser,
+    changePassword,
     createApplied,
     createCompany,
     createSelected,
@@ -52,6 +53,16 @@ const mutation = {
 
     deleteSelected: async (_: any, { input }: { input: ISelected }) =>
         deleteSelected(input),
+
+    changePassword: async (
+        _: any,
+        {
+            USN,
+            oldPassword,
+            newPassword,
+        }: { USN: string; oldPassword: string; newPassword: string },
+        { USN: senderUSN, role }: { USN: string; role: string }
+    ) => changePassword(USN, oldPassword, newPassword, senderUSN, role),
 };
 
 export default mutation;

@@ -1,6 +1,6 @@
-import { ApolloError, AuthenticationError } from 'apollo-server';
+import { ApolloError } from 'apollo-server';
 import { prisma } from '.';
-import { comparePassword, encryptPassword, issueToken } from '../functions';
+import { encryptPassword } from '../functions';
 
 const detailsQuery = {
     applied: {
@@ -17,7 +17,7 @@ const detailsQuery = {
     },
 };
 
-const userQuery = {
+export const userQuery = {
     details: {
         include: detailsQuery,
     },
@@ -87,26 +87,6 @@ export const deleteUser = async (USN: string) => {
     const res = await getUser(USN);
     await prisma.user.delete({ where: { USN } });
     return res;
-};
-
-export const authenticateUser = async (USN: string, password: string) => {
-    try {
-        const user: any = await getUser(USN);
-        if (!user) {
-            return new Error('User not found');
-        }
-
-        const isMatch = await comparePassword(password, user.password);
-        if (!isMatch) {
-            return new Error('Incorrect password');
-        }
-
-        const token = await issueToken(user);
-
-        return { user, token };
-    } catch (error: any) {
-        throw new AuthenticationError(error.message);
-    }
 };
 
 export const getStudentCount = async (): Promise<number> => {

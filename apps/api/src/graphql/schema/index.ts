@@ -62,6 +62,11 @@ const typeDefs = gql`
         deleteApplied(input: AppliedInput!): Applied!
         deleteSelected(input: SelectedInput!): Selected!
         authenticate(USN: ID!, password: String!): AuthResponse!
+        changePassword(
+            USN: ID!
+            oldPassword: String!
+            newPassword: String!
+        ): User!
     }
 `;
 
