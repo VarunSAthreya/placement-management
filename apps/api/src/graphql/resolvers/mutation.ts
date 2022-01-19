@@ -8,7 +8,6 @@ import {
     deleteCompany,
     deleteSelected,
     deleteUser,
-    getAllEligibleStudents,
     updateCompany,
     updateUserDetails,
 } from '../../db';
@@ -42,9 +41,6 @@ const mutation = {
 
     updateCompany: async (_: any, { input }: { input: ICompany }) =>
         updateCompany(input),
-
-    getAllEligibleStudents: async (_: any, { input }: { input: string }) =>
-        getAllEligibleStudents(input),
 
     deleteUser: async (_: any, { USN }: { USN: string }) => deleteUser(USN),
 

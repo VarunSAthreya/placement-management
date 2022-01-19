@@ -87,7 +87,7 @@ export const deleteCompany = async (name: string) => {
     return res;
 };
 
-export const getAllEligibleStudents = async (name: string) => {
+export const getAllEligibleStudentsForCompany = async (name: string) => {
     const company = await getCompany(name);
     const { CGPA, backlogs, tenth, twelth } = company!.eligibility!;
 
@@ -102,4 +102,5 @@ export const getAllEligibleStudents = async (name: string) => {
     });
 };
 
-export const getCompanyCount = async () => prisma.company.count();
+export const getCompanyCount = async (): Promise<number> =>
+    prisma.company.count();

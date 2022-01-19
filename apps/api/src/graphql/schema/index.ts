@@ -41,6 +41,7 @@ const typeDefs = gql`
         eligibleCount: Int!
         placedStudentCount: Int!
         isStudentEligible(USN: ID!, company: String!): Boolean!
+        getAllEligibleStudentsForCompany(company: String!): [UserDetails]!
     }
 
     type AuthResponse {
@@ -55,7 +56,6 @@ const typeDefs = gql`
         createSelected(input: SelectedInput!): Selected!
         updateUserDetails(input: UserDetailsUpdateInput!): UserDetails!
         updateCompany(input: CompanyUpdateInput!): Company!
-        getAllEligibleStudents(input: String!): [UserDetails]!
         deleteUser(USN: ID!): User!
         deleteCompany(name: String!): Company!
         deleteApplied(input: AppliedInput!): Applied!

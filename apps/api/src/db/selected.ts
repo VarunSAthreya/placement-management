@@ -103,4 +103,5 @@ export const deleteSelected = async (selected: ISelected) => {
     return res;
 };
 
-export const getSelectedCount = async () => prisma.selected.count();
+export const getSelectedCount = async (): Promise<number> =>
+    prisma.selected.count();

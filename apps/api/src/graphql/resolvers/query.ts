@@ -1,5 +1,6 @@
 import {
     getAllApplied,
+    getAllEligibleStudentsForCompany,
     getAllSelected,
     getAllUserDetails,
     getAppliedCount,
@@ -54,6 +55,11 @@ const query = {
         _: any,
         { USN, company }: { USN: string; company: string }
     ) => isStudentEligible(USN, company),
+
+    getAllEligibleStudentsForCompany: async (
+        _: any,
+        { company }: { company: string }
+    ) => getAllEligibleStudentsForCompany(company),
 };
 
 export default query;
