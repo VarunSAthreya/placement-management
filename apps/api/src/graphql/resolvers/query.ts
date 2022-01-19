@@ -15,6 +15,7 @@ import {
     getUser,
     getUserDetails,
     getUsers,
+    hasStudentApplied,
     isStudentEligible,
 } from '../../db';
 
@@ -60,6 +61,11 @@ const query = {
         _: any,
         { company }: { company: string }
     ) => getAllEligibleStudentsForCompany(company),
+
+    hasStudentApplied: async (
+        _: any,
+        { USN, company }: { USN: string; company: string }
+    ) => hasStudentApplied(USN, company),
 };
 
 export default query;

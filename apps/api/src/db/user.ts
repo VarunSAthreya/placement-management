@@ -187,3 +187,19 @@ export const isStudentEligible = async (
         throw new ApolloError(error.message);
     }
 };
+
+export const hasStudentApplied = async (
+    USN: string,
+    name: string
+): Promise<boolean> => {
+    const res = await prisma.applied.findUnique({
+        where: {
+            userID_companyID: {
+                userID: USN,
+                companyID: name,
+            },
+        },
+    });
+
+    return res !== null;
+};
