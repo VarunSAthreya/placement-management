@@ -78,3 +78,11 @@ mutation CreateUser($input: UserInput!) {
         USN
     }
 }
+
+query IsStudentEligible($usn: ID!, $company: String!) {
+    isStudentEligible(USN: $usn, company: $company)
+}
+
+query HasStudentApplied($usn: ID!, $company: String!) {
+    hasStudentApplied(USN: $usn, company: $company)
+}

@@ -9,31 +9,21 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import jwt_decode from 'jwt-decode';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
-import { AppliedCard, ProfileCard, PlacedCard } from '../components/Card';
+import { AppliedCard, PlacedCard, ProfileCard } from '../components/Card';
 import { Loader } from '../components/Loader';
 import SideBar from '../components/Sidebar/Sidebar';
 import { useGetProfileDetailsQuery } from '../generated/graphql';
+import { getUSNAndRole } from '../lib/functions';
 
 const Profile: NextPage = () => {
     const router = useRouter();
     const usn = useRef(null);
 
     useEffect(() => {
-        let token;
-        if (typeof window !== 'undefined') {
-            token = localStorage.getItem('token');
-        }
-        if (!token) {
-            router.push('/login');
-        } else {
-            console.log({ token });
-            const decode: { USN: string; role: string } = jwt_decode(token);
-            usn.current = decode.USN;
-        }
+        usn.current = getUSNAndRole().USN;
     }, []);
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
@@ -43,7 +33,6 @@ const Profile: NextPage = () => {
         variables: { usn: usn.current },
     });
 
-    // console.log(data);
     if (loading) return <Loader />;
 
     if (error) router.push('/login');

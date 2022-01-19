@@ -111,7 +111,6 @@ export type Mutation = {
   deleteCompany: Company;
   deleteSelected: Selected;
   deleteUser: User;
-  getAllEligibleStudents: Array<Maybe<UserDetails>>;
   updateCompany: Company;
   updateUserDetails: UserDetails;
 };
@@ -163,11 +162,6 @@ export type MutationDeleteUserArgs = {
 };
 
 
-export type MutationGetAllEligibleStudentsArgs = {
-  input: Scalars['String'];
-};
-
-
 export type MutationUpdateCompanyArgs = {
   input: CompanyUpdateInput;
 };
@@ -186,7 +180,10 @@ export type Query = {
   company: Company;
   companyCount: Scalars['Int'];
   eligibleCount: Scalars['Int'];
+  getAllEligibleStudentsForCompany: Array<Maybe<UserDetails>>;
   getSelectedByCompany: Array<Maybe<Selected>>;
+  hasStudentApplied: Scalars['Boolean'];
+  isStudentEligible: Scalars['Boolean'];
   placedStudentCount: Scalars['Int'];
   selected: Array<Maybe<Selected>>;
   selectedCount: Scalars['Int'];
@@ -202,8 +199,25 @@ export type QueryCompanyArgs = {
 };
 
 
+export type QueryGetAllEligibleStudentsForCompanyArgs = {
+  company: Scalars['String'];
+};
+
+
 export type QueryGetSelectedByCompanyArgs = {
   name: Scalars['String'];
+};
+
+
+export type QueryHasStudentAppliedArgs = {
+  USN: Scalars['ID'];
+  company: Scalars['String'];
+};
+
+
+export type QueryIsStudentEligibleArgs = {
+  USN: Scalars['ID'];
+  company: Scalars['String'];
 };
 
 
@@ -322,10 +336,11 @@ export type GetCompaniesQuery = { __typename?: 'Query', companies: Array<{ __typ
 
 export type GetCompanyDetailsQueryVariables = Exact<{
   name: Scalars['String'];
+  usn: Scalars['ID'];
 }>;
 
 
-export type GetCompanyDetailsQuery = { __typename?: 'Query', company: { __typename?: 'Company', name: string, type: CompanyType, package?: number | null | undefined, arrival_date?: string | null | undefined, eligibility: { __typename?: 'CompanyEdibility', CGPA: number, backlogs: number, tenth: number, twelth: number } } };
+export type GetCompanyDetailsQuery = { __typename?: 'Query', isStudentEligible: boolean, company: { __typename?: 'Company', name: string, type: CompanyType, package?: number | null | undefined, arrival_date?: string | null | undefined, eligibility: { __typename?: 'CompanyEdibility', CGPA: number, backlogs: number, tenth: number, twelth: number } } };
 
 export type CreateCompanyMutationVariables = Exact<{
   input: CompanyInput;
@@ -398,6 +413,22 @@ export type CreateUserMutationVariables = Exact<{
 
 
 export type CreateUserMutation = { __typename?: 'Mutation', createUser: { __typename?: 'User', USN: string } };
+
+export type IsStudentEligibleQueryVariables = Exact<{
+  usn: Scalars['ID'];
+  company: Scalars['String'];
+}>;
+
+
+export type IsStudentEligibleQuery = { __typename?: 'Query', isStudentEligible: boolean };
+
+export type HasStudentAppliedQueryVariables = Exact<{
+  usn: Scalars['ID'];
+  company: Scalars['String'];
+}>;
+
+
+export type HasStudentAppliedQuery = { __typename?: 'Query', hasStudentApplied: boolean };
 
 
 export const GetAllAppliedDocument = gql`
@@ -526,7 +557,7 @@ export type GetCompaniesQueryHookResult = ReturnType<typeof useGetCompaniesQuery
 export type GetCompaniesLazyQueryHookResult = ReturnType<typeof useGetCompaniesLazyQuery>;
 export type GetCompaniesQueryResult = Apollo.QueryResult<GetCompaniesQuery, GetCompaniesQueryVariables>;
 export const GetCompanyDetailsDocument = gql`
-    query GetCompanyDetails($name: String!) {
+    query GetCompanyDetails($name: String!, $usn: ID!) {
   company(name: $name) {
     name
     type
@@ -539,6 +570,7 @@ export const GetCompanyDetailsDocument = gql`
       twelth
     }
   }
+  isStudentEligible(USN: $usn, company: $name)
 }
     `;
 
@@ -555,6 +587,7 @@ export const GetCompanyDetailsDocument = gql`
  * const { data, loading, error } = useGetCompanyDetailsQuery({
  *   variables: {
  *      name: // value for 'name'
+ *      usn: // value for 'usn'
  *   },
  * });
  */
@@ -1029,3 +1062,71 @@ export function useCreateUserMutation(baseOptions?: Apollo.MutationHookOptions<C
 export type CreateUserMutationHookResult = ReturnType<typeof useCreateUserMutation>;
 export type CreateUserMutationResult = Apollo.MutationResult<CreateUserMutation>;
 export type CreateUserMutationOptions = Apollo.BaseMutationOptions<CreateUserMutation, CreateUserMutationVariables>;
+export const IsStudentEligibleDocument = gql`
+    query IsStudentEligible($usn: ID!, $company: String!) {
+  isStudentEligible(USN: $usn, company: $company)
+}
+    `;
+
+/**
+ * __useIsStudentEligibleQuery__
+ *
+ * To run a query within a React component, call `useIsStudentEligibleQuery` and pass it any options that fit your needs.
+ * When your component renders, `useIsStudentEligibleQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useIsStudentEligibleQuery({
+ *   variables: {
+ *      usn: // value for 'usn'
+ *      company: // value for 'company'
+ *   },
+ * });
+ */
+export function useIsStudentEligibleQuery(baseOptions: Apollo.QueryHookOptions<IsStudentEligibleQuery, IsStudentEligibleQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<IsStudentEligibleQuery, IsStudentEligibleQueryVariables>(IsStudentEligibleDocument, options);
+      }
+export function useIsStudentEligibleLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<IsStudentEligibleQuery, IsStudentEligibleQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<IsStudentEligibleQuery, IsStudentEligibleQueryVariables>(IsStudentEligibleDocument, options);
+        }
+export type IsStudentEligibleQueryHookResult = ReturnType<typeof useIsStudentEligibleQuery>;
+export type IsStudentEligibleLazyQueryHookResult = ReturnType<typeof useIsStudentEligibleLazyQuery>;
+export type IsStudentEligibleQueryResult = Apollo.QueryResult<IsStudentEligibleQuery, IsStudentEligibleQueryVariables>;
+export const HasStudentAppliedDocument = gql`
+    query HasStudentApplied($usn: ID!, $company: String!) {
+  hasStudentApplied(USN: $usn, company: $company)
+}
+    `;
+
+/**
+ * __useHasStudentAppliedQuery__
+ *
+ * To run a query within a React component, call `useHasStudentAppliedQuery` and pass it any options that fit your needs.
+ * When your component renders, `useHasStudentAppliedQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useHasStudentAppliedQuery({
+ *   variables: {
+ *      usn: // value for 'usn'
+ *      company: // value for 'company'
+ *   },
+ * });
+ */
+export function useHasStudentAppliedQuery(baseOptions: Apollo.QueryHookOptions<HasStudentAppliedQuery, HasStudentAppliedQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<HasStudentAppliedQuery, HasStudentAppliedQueryVariables>(HasStudentAppliedDocument, options);
+      }
+export function useHasStudentAppliedLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<HasStudentAppliedQuery, HasStudentAppliedQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<HasStudentAppliedQuery, HasStudentAppliedQueryVariables>(HasStudentAppliedDocument, options);
+        }
+export type HasStudentAppliedQueryHookResult = ReturnType<typeof useHasStudentAppliedQuery>;
+export type HasStudentAppliedLazyQueryHookResult = ReturnType<typeof useHasStudentAppliedLazyQuery>;
+export type HasStudentAppliedQueryResult = Apollo.QueryResult<HasStudentAppliedQuery, HasStudentAppliedQueryVariables>;

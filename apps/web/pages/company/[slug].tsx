@@ -8,13 +8,13 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import jwt_decode from 'jwt-decode';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import { CompanyInfoCard } from '../../components/Card';
 import { Loader } from '../../components/Loader';
 import { SideBar } from '../../components/Sidebar';
 import { useGetCompanyDetailsQuery } from '../../generated/graphql';
+import { getUSNAndRole } from '../../lib/functions';
 
 const CompanyDetails = () => {
     const { asPath } = useRouter();
@@ -23,24 +23,17 @@ const CompanyDetails = () => {
     const slug = asPath.split('/')[2].replace(/%20/g, ' ');
     console.log({ slug });
 
+    const role = useRef(null);
     const usn = useRef(null);
 
     useEffect(() => {
-        let token;
-        if (typeof window !== 'undefined') {
-            token = localStorage.getItem('token');
-        }
-        if (!token) {
-            router.push('/login');
-        } else {
-            console.log({ token });
-            const decode: { USN: string; role: string } = jwt_decode(token);
-            usn.current = decode.USN;
-        }
+        const { USN, role: rol } = getUSNAndRole();
+        usn.current = USN;
+        role.current = rol;
     }, []);
 
     const { data, loading, error } = useGetCompanyDetailsQuery({
-        variables: { name: slug },
+        variables: { name: slug, usn: getUSNAndRole().USN ?? '' },
     });
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
@@ -132,6 +125,7 @@ const CompanyDetails = () => {
                             <CompanyInfoCard
                                 company={data.company}
                                 user={usn.current}
+                                isEligible={data.isStudentEligible}
                             />
                         )}
                     </Box>

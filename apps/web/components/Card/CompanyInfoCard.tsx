@@ -12,7 +12,10 @@ import { useRouter } from 'next/router';
 import React, { FC } from 'react';
 import { BsBuilding, BsCalendarEvent } from 'react-icons/bs';
 import { FiPackage, FiType } from 'react-icons/fi';
-import { useCreateAppliedMutation } from '../../generated/graphql';
+import {
+    useCreateAppliedMutation,
+    useHasStudentAppliedQuery,
+} from '../../generated/graphql';
 import IconBox from '../Icons/IconBox';
 import { Loader } from '../Loader';
 import Separator from '../Separator/Separator';
@@ -20,16 +23,22 @@ import Separator from '../Separator/Separator';
 type Props = {
     company: any;
     user: string;
+    isEligible: boolean;
 };
 
-const CompanyInfoCard: FC<Props> = ({ company, user }) => {
+const CompanyInfoCard: FC<Props> = ({ company, user, isEligible }) => {
     const router = useRouter();
     const { name, type, package: CTC, arrival_date } = company;
     const { CGPA, backlogs, tenth, twelth } = company.eligibility;
 
     const [create, { loading }] = useCreateAppliedMutation();
+    const { data, loading: queryLoading } = useHasStudentAppliedQuery({
+        variables: { company: name, usn: user },
+    });
 
     const primaryBG = useColorModeValue('white', '#242526');
+
+    console.log({ user, isEligible });
 
     const onApply = () => {
         create({
@@ -44,7 +53,7 @@ const CompanyInfoCard: FC<Props> = ({ company, user }) => {
             .catch((err) => console.log(err));
     };
 
-    if (loading) return <Loader />;
+    if (loading || queryLoading) return <Loader />;
 
     return (
         <Box>
@@ -295,21 +304,24 @@ const CompanyInfoCard: FC<Props> = ({ company, user }) => {
                         >
                             ELIGIBILITY CRITERIA
                         </Text>
-                        <Button
-                            bg={
-                                'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
-                            }
-                            _hover={{
-                                bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
-                            }}
-                            _focus={{ outline: 'none' }}
-                            color="white"
-                            fontSize="md"
-                            variant="no-hover"
-                            onClick={onApply}
-                        >
-                            APPLY
-                        </Button>
+                        {isEligible && (
+                            <Button
+                                bg={
+                                    'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                }
+                                _hover={{
+                                    bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                }}
+                                _focus={{ outline: 'none' }}
+                                color="white"
+                                fontSize="md"
+                                variant="no-hover"
+                                onClick={onApply}
+                                disabled={data.hasStudentApplied}
+                            >
+                                {data.hasStudentApplied ? 'APPLIED' : 'APPLY'}
+                            </Button>
+                        )}
                     </Flex>
                 </Box>
                 <Box>

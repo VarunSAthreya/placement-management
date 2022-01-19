@@ -12,7 +12,7 @@ query GetCompanies {
     }
 }
 
-query GetCompanyDetails($name: String!) {
+query GetCompanyDetails($name: String!, $usn: ID!) {
     company(name: $name) {
         name
         type
@@ -25,6 +25,7 @@ query GetCompanyDetails($name: String!) {
             twelth
         }
     }
+    isStudentEligible(USN: $usn, company: $name)
 }
 
 mutation CreateCompany($input: CompanyInput!) {
