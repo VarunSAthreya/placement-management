@@ -1,4 +1,4 @@
-import { AuthenticationError } from 'apollo-server';
+import { ApolloError, AuthenticationError } from 'apollo-server';
 import { prisma } from '.';
 import { comparePassword, encryptPassword, issueToken } from '../functions';
 
@@ -109,7 +109,7 @@ export const authenticateUser = async (USN: string, password: string) => {
     }
 };
 
-export const getStudentCount = async () => {
+export const getStudentCount = async (): Promise<number> => {
     const students = await prisma.user.count({
         where: { role: 'STUDENT' },
     });
@@ -118,7 +118,7 @@ export const getStudentCount = async () => {
     return students;
 };
 
-export const getEligibleStudentsCount = async () => {
+export const getEligibleStudentsCount = async (): Promise<number> => {
     const res = await prisma.userDetails.count({
         where: {
             eligible: true,
@@ -130,7 +130,7 @@ export const getEligibleStudentsCount = async () => {
     return res;
 };
 
-export const getPlacedStudentsCount = async () => {
+export const getPlacedStudentsCount = async (): Promise<number> => {
     const res = await prisma.userDetails.count({
         where: {
             placed: true,
@@ -140,4 +140,44 @@ export const getPlacedStudentsCount = async () => {
     console.log({ res });
 
     return res;
+};
+
+export const isStudentEligible = async (
+    USN: string,
+    company: string
+): Promise<boolean> => {
+    try {
+        const userDetails: any = await prisma.userDetails.findUnique({
+            where: { USN },
+        });
+        if (!userDetails) {
+            throw new Error('Student not found');
+        }
+
+        const eligibility: any = await prisma.companyEligibility.findUnique({
+            where: { name: company },
+        });
+        if (!eligibility) {
+            throw new Error('Company not found');
+        }
+
+        const { CGPA, backlogs, tenth, twelth, package: pkg } = userDetails!;
+        const {
+            CGPA: CGPA_cutoff,
+            backlogs: backlogs_cutoff,
+            tenth: tenth_cutoff,
+            twelth: twelth_cutoff,
+            package: CTC,
+        } = eligibility!;
+
+        return (
+            CGPA > CGPA_cutoff &&
+            backlogs <= backlogs_cutoff &&
+            tenth > tenth_cutoff &&
+            twelth > twelth_cutoff &&
+            pkg * 1.3 >= CTC
+        );
+    } catch (error: any) {
+        throw new ApolloError(error.message);
+    }
 };

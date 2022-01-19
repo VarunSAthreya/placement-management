@@ -14,6 +14,7 @@ import {
     getUser,
     getUserDetails,
     getUsers,
+    isStudentEligible,
 } from '../../db';
 
 const query = {
@@ -48,6 +49,11 @@ const query = {
     eligibleCount: async () => getEligibleStudentsCount(),
 
     placedStudentCount: async () => getPlacedStudentsCount(),
+
+    isStudentEligible: async (
+        _: any,
+        { USN, company }: { USN: string; company: string }
+    ) => isStudentEligible(USN, company),
 };
 
 export default query;

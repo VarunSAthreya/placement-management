@@ -40,6 +40,7 @@ const typeDefs = gql`
         selectedCount: Int!
         eligibleCount: Int!
         placedStudentCount: Int!
+        isStudentEligible(USN: ID!, company: String!): Boolean!
     }
 
     type AuthResponse {
