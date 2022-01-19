@@ -13,7 +13,7 @@ import jwt_decode from 'jwt-decode';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
-import { AppliedCard, ProfileCard } from '../components/Card';
+import { AppliedCard, ProfileCard, PlacedCard } from '../components/Card';
 import { Loader } from '../components/Loader';
 import SideBar from '../components/Sidebar/Sidebar';
 import { useGetProfileDetailsQuery } from '../generated/graphql';
@@ -43,7 +43,7 @@ const Profile: NextPage = () => {
         variables: { usn: usn.current },
     });
 
-    console.log(data);
+    // console.log(data);
     if (loading) return <Loader />;
 
     if (error) router.push('/login');
@@ -182,8 +182,9 @@ const Profile: NextPage = () => {
                             <Flex direction="column">
                                 {!loading &&
                                     data.user.details.selected.map((row) => {
+                                        console.log(row);
                                         return (
-                                            <AppliedCard
+                                            <PlacedCard
                                                 key={row.company.name}
                                                 data={row.company}
                                             />
