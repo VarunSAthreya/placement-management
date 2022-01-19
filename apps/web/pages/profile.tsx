@@ -15,7 +15,7 @@ import { useEffect, useRef } from 'react';
 import { AppliedCard, PlacedCard, ProfileCard } from '../components/Card';
 import { Loader } from '../components/Loader';
 import SideBar from '../components/Sidebar/Sidebar';
-import { useGetProfileDetailsQuery } from '../generated/graphql';
+import { useGetProfileDetailsLazyQuery } from '../generated/graphql';
 import { getUSNAndRole } from '../lib/functions';
 
 const Profile: NextPage = () => {
@@ -23,17 +23,20 @@ const Profile: NextPage = () => {
     const usn = useRef(null);
 
     useEffect(() => {
-        usn.current = getUSNAndRole().USN;
+        usn.current = getUSNAndRole()?.USN;
+        if (!usn.current) router.replace('/login');
+
+        profile({
+            variables: { usn: usn.current },
+        });
     }, []);
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
 
-    const { data, loading, error } = useGetProfileDetailsQuery({
-        variables: { usn: usn.current },
-    });
+    const [profile, { data, loading, error }] = useGetProfileDetailsLazyQuery();
 
-    if (loading) return <Loader />;
+    if (loading || !data) return <Loader />;
 
     if (error) router.push('/login');
 

@@ -1,4 +1,5 @@
-import { Flex, Text } from '@chakra-ui/react';
+import { Button, Flex, Text } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 
 const ProfileCard = ({ data }) => {
     const {
@@ -16,6 +17,12 @@ const ProfileCard = ({ data }) => {
         placed,
         package: pkg,
     } = data;
+    const router = useRouter();
+
+    const logout = () => {
+        localStorage.removeItem('token');
+        router.replace('/login');
+    };
 
     return (
         <Flex direction="column">
@@ -258,6 +265,40 @@ const ProfileCard = ({ data }) => {
                 <Text fontSize="md" color="black" fontWeight="semibold">
                     {pkg}
                 </Text>
+            </Flex>
+            <Flex
+                align="center"
+                justifyContent="space-between"
+                mb="8px"
+                borderRadius={8}
+                bg={'#f8f9fa'}
+                p={3}
+            >
+                <Button
+                    bg={'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'}
+                    _hover={{
+                        bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                    }}
+                    _focus={{ outline: 'none' }}
+                    color="white"
+                    fontSize="md"
+                    variant="no-hover"
+                >
+                    Change Password
+                </Button>
+                <Button
+                    bg={'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'}
+                    _hover={{
+                        bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                    }}
+                    _focus={{ outline: 'none' }}
+                    color="white"
+                    fontSize="md"
+                    variant="no-hover"
+                    onClick={logout}
+                >
+                    LOGOUT
+                </Button>
             </Flex>
         </Flex>
     );
