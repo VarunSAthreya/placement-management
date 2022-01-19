@@ -144,20 +144,23 @@ export const getPlacedStudentsCount = async (): Promise<number> => {
 
 export const isStudentEligible = async (
     USN: string,
-    company: string
+    name: string
 ): Promise<boolean> => {
     try {
-        const userDetails: any = await prisma.userDetails.findUnique({
+        const userDetails = await prisma.userDetails.findUnique({
             where: { USN },
         });
         if (!userDetails) {
             throw new Error('Student not found');
         }
 
-        const eligibility: any = await prisma.companyEligibility.findUnique({
-            where: { name: company },
+        const company = await prisma.company.findUnique({
+            where: { name },
+            include: {
+                eligibility: true,
+            },
         });
-        if (!eligibility) {
+        if (!company) {
             throw new Error('Company not found');
         }
 
@@ -167,15 +170,18 @@ export const isStudentEligible = async (
             backlogs: backlogs_cutoff,
             tenth: tenth_cutoff,
             twelth: twelth_cutoff,
-            package: CTC,
-        } = eligibility!;
+        } = company!.eligibility!;
+
+        const { package: CTC } = company!;
+
+        console.log({ userDetails, company });
 
         return (
             CGPA > CGPA_cutoff &&
             backlogs <= backlogs_cutoff &&
             tenth > tenth_cutoff &&
             twelth > twelth_cutoff &&
-            pkg * 1.3 >= CTC
+            pkg * 1.3 <= CTC!
         );
     } catch (error: any) {
         throw new ApolloError(error.message);
