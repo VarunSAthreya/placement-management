@@ -1,6 +1,7 @@
 import { ApolloError, AuthenticationError } from 'apollo-server';
-import { getUser, prisma, userQuery } from '.';
+import { prisma } from '.';
 import { comparePassword, encryptPassword, issueToken } from '../functions';
+import { getUser, userQuery } from './user';
 
 export const authenticateUser = async (USN: string, password: string) => {
     try {

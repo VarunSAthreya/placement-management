@@ -1,0 +1,24 @@
+mutation Auth($usn: ID!, $password: String!) {
+    authenticate(USN: $usn, password: $password) {
+        user {
+            role
+            details {
+                name
+                backlogs
+                email
+            }
+        }
+        token
+    }
+}
+
+mutation ($usn: ID!, $oldPassword: String!, $newPassword: String!) {
+    changePassword(
+        USN: $usn
+        oldPassword: $oldPassword
+        newPassword: $newPassword
+    ) {
+        USN
+        role
+    }
+}
