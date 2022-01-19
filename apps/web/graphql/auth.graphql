@@ -12,7 +12,11 @@ mutation Auth($usn: ID!, $password: String!) {
     }
 }
 
-mutation ($usn: ID!, $oldPassword: String!, $newPassword: String!) {
+mutation ChangePassword(
+    $usn: ID!
+    $oldPassword: String!
+    $newPassword: String!
+) {
     changePassword(
         USN: $usn
         oldPassword: $oldPassword
