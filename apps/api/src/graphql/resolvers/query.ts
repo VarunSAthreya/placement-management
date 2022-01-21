@@ -12,6 +12,7 @@ import {
     getSelectedByCompany,
     getSelectedCount,
     getStudentCount,
+    getUpcomingCompanies,
     getUser,
     getUserDetails,
     getUsers,
@@ -67,6 +68,8 @@ const query = {
         _: any,
         { USN, company }: { USN: string; company: string }
     ) => hasStudentApplied(USN, company),
+
+    getUpcomingCompanies: async () => getUpcomingCompanies(),
 };
 
 export default query;

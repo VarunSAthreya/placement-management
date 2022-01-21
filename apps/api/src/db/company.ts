@@ -1,3 +1,4 @@
+import { Company } from '@prisma/client';
 import { ApolloError } from 'apollo-server';
 import { prisma } from '.';
 
@@ -104,3 +105,18 @@ export const getAllEligibleStudentsForCompany = async (name: string) => {
 
 export const getCompanyCount = async (): Promise<number> =>
     prisma.company.count();
+
+export const getUpcomingCompanies = async (): Promise<Company[] | []> => {
+    const companies = await prisma.company.findMany({
+        where: {
+            arrival_date: {
+                gt: new Date(),
+            },
+        },
+        orderBy: { arrival_date: 'asc' },
+        include: query,
+    });
+    console.log({ companies });
+
+    return companies ?? [];
+};

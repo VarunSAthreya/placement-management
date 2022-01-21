@@ -43,6 +43,7 @@ const typeDefs = gql`
         isStudentEligible(USN: ID!, company: String!): Boolean!
         getAllEligibleStudentsForCompany(company: String!): [UserDetails]!
         hasStudentApplied(USN: ID!, company: String!): Boolean!
+        getUpcomingCompanies: [Company]!
     }
 
     type AuthResponse {
