@@ -15,13 +15,17 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { useRef } from 'react';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { Loader } from '../../components/Loader';
 import { SideBar } from '../../components/Sidebar';
 import { PlacedTable } from '../../components/Tables';
 import { useGetSelectedForAllCompaniesQuery } from '../../generated/graphql';
+import { getUSNAndRole } from '../../lib/functions';
 
 const Placed = () => {
+    const role = useRef(getUSNAndRole().role);
+
     const router = useRouter();
     const { data, loading, error } = useGetSelectedForAllCompaniesQuery();
 
@@ -116,27 +120,29 @@ const Placed = () => {
                                 >
                                     Student&apos;s Placed(4)
                                 </Text>
-                                <Button
-                                    fontSize={'1rem'}
-                                    size={'lg'}
-                                    color={'white'}
-                                    rightIcon={<AiFillPlusCircle />}
-                                    bg={
-                                        'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
-                                    }
-                                    _hover={{
-                                        bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
-                                    }}
-                                    _focus={{ outline: 'none' }}
-                                    variant="no-hover"
-                                    type="submit"
-                                    textTransform={'uppercase'}
-                                    onClick={() => {
-                                        router.push(`/placedForm`);
-                                    }}
-                                >
-                                    Add New Placed Detail
-                                </Button>
+                                {role.current === 'ADMIN' && (
+                                    <Button
+                                        fontSize={'1rem'}
+                                        size={'lg'}
+                                        color={'white'}
+                                        rightIcon={<AiFillPlusCircle />}
+                                        bg={
+                                            'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                        }
+                                        _hover={{
+                                            bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                        }}
+                                        _focus={{ outline: 'none' }}
+                                        variant="no-hover"
+                                        type="submit"
+                                        textTransform={'uppercase'}
+                                        onClick={() => {
+                                            router.push(`/placedForm`);
+                                        }}
+                                    >
+                                        Add New Placed Detail
+                                    </Button>
+                                )}
                             </Flex>
                             <Table
                                 variant="simple"

@@ -14,12 +14,16 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { useRef } from 'react';
 import { Loader } from '../../components/Loader';
 import { SideBar } from '../../components/Sidebar';
 import { StudentsTable } from '../../components/Tables';
 import { useGetSelectedPerCompanyQuery } from '../../generated/graphql';
+import { getUSNAndRole } from '../../lib/functions';
 
 const CompanyDetails = () => {
+    const role = useRef(getUSNAndRole().role);
+
     const { asPath } = useRouter();
     const slug = asPath.split('/')[2].replace(/%20/g, ' ');
 
@@ -136,9 +140,11 @@ const CompanyDetails = () => {
                                     <Th color="white" textAlign={'center'}>
                                         CGPA
                                     </Th>
-                                    <Th color="white" textAlign={'center'}>
-                                        More Info
-                                    </Th>
+                                    {role.current === 'ADMIN' && (
+                                        <Th color="white" textAlign={'center'}>
+                                            More Info
+                                        </Th>
+                                    )}
                                 </Tr>
                             </Thead>
                             <Tbody bg={secondaryBG}>
@@ -147,6 +153,7 @@ const CompanyDetails = () => {
                                         <StudentsTable
                                             key={placedStudent.user.USN}
                                             student={placedStudent.user}
+                                            role={role.current}
                                         />
                                     );
                                 })}

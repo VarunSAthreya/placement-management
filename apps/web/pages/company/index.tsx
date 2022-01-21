@@ -16,14 +16,17 @@ import {
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
+import { useRef } from 'react';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { Loader } from '../../components/Loader';
 import { SideBar } from '../../components/Sidebar';
 import { CompanyTable } from '../../components/Tables';
 import { useGetCompaniesQuery } from '../../generated/graphql';
+import { getUSNAndRole } from '../../lib/functions';
 
 const Company: NextPage = () => {
     const router = useRouter();
+    const role = useRef(getUSNAndRole().role);
 
     const { data, loading, error } = useGetCompaniesQuery();
 
@@ -116,27 +119,29 @@ const Company: NextPage = () => {
                             >
                                 No.of Company&apos;s (4)
                             </Text>
-                            <Button
-                                fontSize={'1rem'}
-                                size={'lg'}
-                                color={'white'}
-                                rightIcon={<AiFillPlusCircle />}
-                                bg={
-                                    'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
-                                }
-                                _hover={{
-                                    bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
-                                }}
-                                _focus={{ outline: 'none' }}
-                                variant="no-hover"
-                                type="submit"
-                                textTransform={'uppercase'}
-                                onClick={() => {
-                                    router.push(`/companyForm`);
-                                }}
-                            >
-                                Add New Company
-                            </Button>
+                            {role.current === 'ADMIN' && (
+                                <Button
+                                    fontSize={'1rem'}
+                                    size={'lg'}
+                                    color={'white'}
+                                    rightIcon={<AiFillPlusCircle />}
+                                    bg={
+                                        'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                    }
+                                    _hover={{
+                                        bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                    variant="no-hover"
+                                    type="submit"
+                                    textTransform={'uppercase'}
+                                    onClick={() => {
+                                        router.push(`/companyForm`);
+                                    }}
+                                >
+                                    Add New Company
+                                </Button>
+                            )}
                         </Flex>
                         <Table
                             variant="simple"

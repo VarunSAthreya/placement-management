@@ -11,7 +11,7 @@ import {
 import { useRouter } from 'next/router';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
-const StudentsTable = ({ student }) => {
+const StudentsTable = ({ student, role }) => {
     const router = useRouter();
     const { USN, name, email, branch, section, CGPA } = student;
     const textColor = useColorModeValue('gray.700', 'white');
@@ -103,28 +103,30 @@ const StudentsTable = ({ student }) => {
                     </Badge>
                 </Flex>
             </Td>
-            <Td>
-                <Flex justifyContent={'center'}>
-                    <IconButton
-                        h={'45px'}
-                        w={'45px'}
-                        color={'white'}
-                        aria-label="Student Info"
-                        bg={
-                            'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
-                        }
-                        _hover={{
-                            bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
-                        }}
-                        _focus={{ outline: 'none' }}
-                        variant="no-hover"
-                        icon={<BsFillInfoCircleFill />}
-                        onClick={() => {
-                            router.push(`/students/${USN}`);
-                        }}
-                    />
-                </Flex>
-            </Td>
+            {role === 'ADMIN' && (
+                <Td>
+                    <Flex justifyContent={'center'}>
+                        <IconButton
+                            h={'45px'}
+                            w={'45px'}
+                            color={'white'}
+                            aria-label="Student Info"
+                            bg={
+                                'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                            }
+                            _hover={{
+                                bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                            }}
+                            _focus={{ outline: 'none' }}
+                            variant="no-hover"
+                            icon={<BsFillInfoCircleFill />}
+                            onClick={() => {
+                                router.push(`/students/${USN}`);
+                            }}
+                        />
+                    </Flex>
+                </Td>
+            )}
         </Tr>
     );
 };

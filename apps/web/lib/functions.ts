@@ -6,7 +6,7 @@ export const getUSNAndRole = (): ILocalStorageData => {
         token = localStorage.getItem('token');
     }
 
-    if (!token) return null;
+    if (!token) return { USN: null, role: null };
 
     const { USN, role }: ILocalStorageData = jwt_decode(token);
 

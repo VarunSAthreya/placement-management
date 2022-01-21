@@ -15,14 +15,17 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { useRef } from 'react';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { Loader } from '../../components/Loader';
 import { SideBar } from '../../components/Sidebar';
 import { StudentsTable } from '../../components/Tables';
 import { useGetAllStudentsCardQuery } from '../../generated/graphql';
+import { getUSNAndRole } from '../../lib/functions';
 
 const Students = () => {
     const router = useRouter();
+    const role = useRef(getUSNAndRole().role);
 
     const { data, loading, error } = useGetAllStudentsCardQuery();
 
@@ -115,27 +118,29 @@ const Students = () => {
                             >
                                 No.of Student&apos;s (4)
                             </Text>
-                            <Button
-                                fontSize={'1rem'}
-                                size={'lg'}
-                                color={'white'}
-                                rightIcon={<AiFillPlusCircle />}
-                                bg={
-                                    'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
-                                }
-                                _hover={{
-                                    bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
-                                }}
-                                _focus={{ outline: 'none' }}
-                                variant="no-hover"
-                                type="submit"
-                                textTransform={'uppercase'}
-                                onClick={() => {
-                                    router.push(`/studentForm`);
-                                }}
-                            >
-                                Add New Student
-                            </Button>
+                            {role.current === 'ADMIN' && (
+                                <Button
+                                    fontSize={'1rem'}
+                                    size={'lg'}
+                                    color={'white'}
+                                    rightIcon={<AiFillPlusCircle />}
+                                    bg={
+                                        'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                    }
+                                    _hover={{
+                                        bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                    variant="no-hover"
+                                    type="submit"
+                                    textTransform={'uppercase'}
+                                    onClick={() => {
+                                        router.push(`/studentForm`);
+                                    }}
+                                >
+                                    Add New Student
+                                </Button>
+                            )}
                         </Flex>
                         <Table
                             variant="simple"
@@ -161,9 +166,11 @@ const Students = () => {
                                     <Th color="white" textAlign={'center'}>
                                         CGPA
                                     </Th>
-                                    <Th color="white" textAlign={'center'}>
-                                        More Info
-                                    </Th>
+                                    {role.current === 'ADMIN' && (
+                                        <Th color="white" textAlign={'center'}>
+                                            More Info
+                                        </Th>
+                                    )}
                                 </Tr>
                             </Thead>
                             <Tbody bg={secondaryBG}>
@@ -172,6 +179,7 @@ const Students = () => {
                                         <StudentsTable
                                             key={student.USN}
                                             student={student}
+                                            role={role.current}
                                         />
                                     );
                                 })}
