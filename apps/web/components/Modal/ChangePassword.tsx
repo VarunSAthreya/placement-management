@@ -12,6 +12,7 @@ import {
     ModalOverlay,
     useColorModeValue,
 } from '@chakra-ui/react';
+import Router from 'next/router';
 import { FC, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useChangePasswordMutation } from '../../generated/graphql';
@@ -56,29 +57,30 @@ const ChangePassword: FC<Props> = ({ isOpen, onClose, usn }) => {
                 type: 'manual',
                 message: 'Passwords do not match',
             });
-        }
+        } else {
+            try {
+                const res = await changePassword({
+                    variables: {
+                        usn,
+                        oldPassword,
+                        newPassword,
+                    },
+                });
 
-        try {
-            const res = await changePassword({
-                variables: {
-                    usn,
-                    oldPassword,
-                    newPassword,
-                },
-            });
-
-            if (res.data.changePassword.USN === usn) {
-                setTitle('Password Changed');
-                reset();
-                setTimeout(() => {
-                    onClose();
-                }, 1000);
+                if (res.data.changePassword.USN === usn) {
+                    setTitle('Password Changed');
+                    reset();
+                    setTimeout(() => {
+                        onClose();
+                        Router.reload();
+                    }, 1000);
+                }
+            } catch (error) {
+                setError('oldPassword', {
+                    type: 'manual',
+                    message: error.message,
+                });
             }
-        } catch (error) {
-            setError('oldPassword', {
-                type: 'manual',
-                message: error.message,
-            });
         }
     };
 
@@ -109,8 +111,8 @@ const ChangePassword: FC<Props> = ({ isOpen, onClose, usn }) => {
                                 })}
                             />
                             <FormErrorMessage>
-                                {errors.newPassword &&
-                                    errors.newPassword.message}
+                                {errors.oldPassword &&
+                                    errors.oldPassword.message}
                             </FormErrorMessage>
                         </FormControl>
                         <FormControl
