@@ -1,5 +1,6 @@
-import { Button, Flex, Text } from '@chakra-ui/react';
+import { Button, Flex, Text, useDisclosure } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import ChangePassword from '../Modal/ChangePassword';
 
 const ProfileCard = ({ data }) => {
     const {
@@ -18,6 +19,8 @@ const ProfileCard = ({ data }) => {
         package: pkg,
     } = data;
     const router = useRouter();
+
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const logout = () => {
         localStorage.removeItem('token');
@@ -283,6 +286,7 @@ const ProfileCard = ({ data }) => {
                     color="white"
                     fontSize="md"
                     variant="no-hover"
+                    onClick={onOpen}
                 >
                     Change Password
                 </Button>
@@ -300,6 +304,7 @@ const ProfileCard = ({ data }) => {
                     LOGOUT
                 </Button>
             </Flex>
+            <ChangePassword isOpen={isOpen} onClose={onClose} usn={USN} />
         </Flex>
     );
 };
