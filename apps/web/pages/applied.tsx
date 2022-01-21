@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { ChevronRightIcon } from '@chakra-ui/icons';
+import { ChevronRightIcon, SearchIcon } from '@chakra-ui/icons';
 import {
     Box,
     Breadcrumb,
@@ -18,7 +17,7 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons';
+import React, { useState } from 'react';
 import { Loader } from '../components/Loader';
 import { SideBar } from '../components/Sidebar';
 import { AppliedTable } from '../components/Tables';
@@ -36,10 +35,11 @@ const Applied = () => {
 
     const onChangeHandler = (e) => {
         setInputData(e.target.value);
-        const filteredData = data.applied.filter(
-            (d) => d.company.name.toLowerCase() === e.target.value.toLowerCase()
+        const regex = new RegExp('.*' + e.target.value + '.*', 'i');
+
+        const filteredData = data.applied.filter((d) =>
+            d.company.name.match(regex)
         );
-        console.log(filteredData);
         setFilteredTable(filteredData);
     };
 
