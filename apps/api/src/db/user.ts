@@ -124,8 +124,12 @@ export const getPlacedStudentsCount = async (): Promise<number> => {
 
 export const isStudentEligible = async (
     USN: string,
-    name: string
+    name: string,
+    role: string
 ): Promise<boolean> => {
+    if (role == 'ADMIN') {
+        return false;
+    }
     try {
         const userDetails = await prisma.userDetails.findUnique({
             where: { USN },

@@ -54,8 +54,9 @@ const query = {
 
     isStudentEligible: async (
         _: any,
-        { USN, company }: { USN: string; company: string }
-    ) => isStudentEligible(USN, company),
+        { USN, company }: { USN: string; company: string },
+        { role }: { role: string }
+    ) => isStudentEligible(USN, company, role),
 
     getAllEligibleStudentsForCompany: async (
         _: any,
