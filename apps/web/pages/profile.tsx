@@ -21,9 +21,12 @@ import { getUSNAndRole } from '../lib/functions';
 const Profile: NextPage = () => {
     const router = useRouter();
     const usn = useRef(null);
+    const role = useRef(null);
 
     useEffect(() => {
-        usn.current = getUSNAndRole()?.USN;
+        const { USN, role: rol } = getUSNAndRole();
+        usn.current = USN;
+        role.current = rol;
         if (!usn.current) router.replace('/login');
 
         profile({
@@ -65,7 +68,7 @@ const Profile: NextPage = () => {
                             fontWeight="extrabold"
                             textTransform={'uppercase'}
                         >
-                            Student Profile
+                            {role.current} Profile
                         </Text>
                         <Breadcrumb
                             separator={<ChevronRightIcon color="gray.500" />}
@@ -102,90 +105,93 @@ const Profile: NextPage = () => {
                         </Breadcrumb>
                     </Flex>
                 </Box>
-                <Grid
-                    templateColumns={{ sm: '1fr', xl: 'repeat(2, 1fr)' }}
-                    gap="22px"
-                >
-                    <Box
-                        p="16px"
-                        my={{ sm: '24px', xl: '0px' }}
-                        bg={secondaryBG}
-                        borderRadius={8}
+                {role.current === 'STUDENT' && (
+                    <Grid
+                        templateColumns={{ sm: '1fr', xl: 'repeat(2, 1fr)' }}
+                        gap="22px"
                     >
-                        <Box p="12px 5px" mb="12px">
-                            <Text
-                                bgGradient="linear(to-l, #7928CA, #FF0080)"
-                                bgClip="text"
-                                fontSize="2xl"
-                                fontWeight="extrabold"
-                                textTransform={'uppercase'}
-                            >
-                                General Information
-                            </Text>
+                        <Box
+                            p="16px"
+                            my={{ sm: '24px', xl: '0px' }}
+                            bg={secondaryBG}
+                            borderRadius={8}
+                        >
+                            <Box p="12px 5px" mb="12px">
+                                <Text
+                                    bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                    bgClip="text"
+                                    fontSize="2xl"
+                                    fontWeight="extrabold"
+                                    textTransform={'uppercase'}
+                                >
+                                    General Information
+                                </Text>
+                            </Box>
+                            <Box px="5px">
+                                {!loading && <ProfileCard data={data.user} />}
+                            </Box>
                         </Box>
-                        <Box px="5px">
-                            {!loading && (
-                                <ProfileCard data={data.user.details} />
-                            )}
+
+                        <Box
+                            p="16px"
+                            my={{ sm: '24px', xl: '0px' }}
+                            bg={secondaryBG}
+                            borderRadius={8}
+                        >
+                            <Box p="12px 5px" mb="12px">
+                                <Text
+                                    bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                    bgClip="text"
+                                    fontSize="2xl"
+                                    fontWeight="extrabold"
+                                    textTransform={'uppercase'}
+                                >
+                                    Company&apos;s Applied
+                                </Text>
+                            </Box>
+                            <Box px="5px">
+                                <Flex direction="column">
+                                    {!loading &&
+                                        data.user.details.applied.map((row) => {
+                                            return (
+                                                <AppliedCard
+                                                    key={row.company.name}
+                                                    data={row.company}
+                                                />
+                                            );
+                                        })}
+                                </Flex>
+                            </Box>
+                            <Box p="12px 5px" my="12px">
+                                <Text
+                                    bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                    bgClip="text"
+                                    fontSize="2xl"
+                                    fontWeight="extrabold"
+                                    textTransform={'uppercase'}
+                                >
+                                    Company Placed
+                                </Text>
+                            </Box>
+                            <Box px="5px">
+                                <Flex direction="column">
+                                    {!loading &&
+                                        data.user.details.selected.map(
+                                            (row) => {
+                                                console.log(row);
+                                                return (
+                                                    <PlacedCard
+                                                        key={row.company.name}
+                                                        data={row.company}
+                                                    />
+                                                );
+                                            }
+                                        )}
+                                </Flex>
+                            </Box>
                         </Box>
-                    </Box>
-                    <Box
-                        p="16px"
-                        my={{ sm: '24px', xl: '0px' }}
-                        bg={secondaryBG}
-                        borderRadius={8}
-                    >
-                        <Box p="12px 5px" mb="12px">
-                            <Text
-                                bgGradient="linear(to-l, #7928CA, #FF0080)"
-                                bgClip="text"
-                                fontSize="2xl"
-                                fontWeight="extrabold"
-                                textTransform={'uppercase'}
-                            >
-                                Company&apos;s Applied
-                            </Text>
-                        </Box>
-                        <Box px="5px">
-                            <Flex direction="column">
-                                {!loading &&
-                                    data.user.details.applied.map((row) => {
-                                        return (
-                                            <AppliedCard
-                                                key={row.company.name}
-                                                data={row.company}
-                                            />
-                                        );
-                                    })}
-                            </Flex>
-                        </Box>
-                        <Box p="12px 5px" my="12px">
-                            <Text
-                                bgGradient="linear(to-l, #7928CA, #FF0080)"
-                                bgClip="text"
-                                fontSize="2xl"
-                                fontWeight="extrabold"
-                                textTransform={'uppercase'}
-                            >
-                                Company Placed
-                            </Text>
-                        </Box>
-                        <Box px="5px">
-                            <Flex direction="column">
-                                {!loading &&
-                                    data.user.details.selected.map((row) => {
-                                        console.log(row);
-                                        return (
-                                            <PlacedCard
-                                                key={row.company.name}
-                                                data={row.company}
-                                            />
-                                        );
-                                    })}
-                            </Flex>
-                        </Box>
-                    </Box>
-                </Grid>
+                    </Grid>
+                )}
             </Flex>
         </Flex>
     );

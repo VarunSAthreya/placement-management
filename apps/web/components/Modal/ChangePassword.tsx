@@ -10,6 +10,7 @@ import {
     ModalFooter,
     ModalHeader,
     ModalOverlay,
+    Text,
     useColorModeValue,
 } from '@chakra-ui/react';
 import Router from 'next/router';
@@ -94,7 +95,17 @@ const ChangePassword: FC<Props> = ({ isOpen, onClose, usn }) => {
         >
             <ModalOverlay />
             <ModalContent bg={secondaryBG}>
-                <ModalHeader>{title}</ModalHeader>
+                <ModalHeader>
+                    <Text
+                        bgGradient="linear(to-l, #7928CA, #FF0080)"
+                        bgClip="text"
+                        fontWeight="bold"
+                        fontSize="2xl"
+                        textTransform={'uppercase'}
+                    >
+                        {title}
+                    </Text>
+                </ModalHeader>
                 <ModalCloseButton />
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
