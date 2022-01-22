@@ -9,11 +9,11 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
-import { AppliedCard, PlacedCard, UpcomingCard } from '../components/Card';
-import { Loader } from '../components/Loader';
-import { SideBar } from '../components/Sidebar';
-import { useGetStudentHomeDetailsQuery } from '../generated/graphql';
-import { getUSNAndRole } from '../lib/functions';
+import { useGetStudentHomeDetailsQuery } from '../../generated/graphql';
+import { getUSNAndRole } from '../../lib/functions';
+import { AppliedCard, PlacedCard, UpcomingCard } from '../Card';
+import { Loader } from '../Loader';
+import { SideBar } from '../Sidebar';
 
 const StudentHome: NextPage = () => {
     const usn = getUSNAndRole().USN;
