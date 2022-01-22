@@ -128,7 +128,9 @@ const Profile: NextPage = () => {
                                 </Text>
                             </Box>
                             <Box px="5px">
-                                {!loading && <ProfileCard data={data.user} />}
+                                {!loading && (
+                                    <ProfileCard data={data.user.details} />
+                                )}
                             </Box>
                         </Box>
 

@@ -24,9 +24,10 @@ type Props = {
     company: any;
     user: string;
     isEligible: boolean;
+    role: string;
 };
 
-const CompanyInfoCard: FC<Props> = ({ company, user, isEligible }) => {
+const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
     const router = useRouter();
     const { name, type, package: CTC, arrival_date } = company;
     const { CGPA, backlogs, tenth, twelth } = company.eligibility;
@@ -38,7 +39,7 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible }) => {
 
     const primaryBG = useColorModeValue('white', '#242526');
 
-    console.log({ user, isEligible });
+    console.log({ user, isEligible, role });
 
     const onApply = () => {
         create({
@@ -304,6 +305,25 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible }) => {
                         >
                             ELIGIBILITY CRITERIA
                         </Text>
+                        {role === 'ADMIN' && (
+                            <Button
+                                bg={
+                                    'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                }
+                                _hover={{
+                                    bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                }}
+                                _focus={{ outline: 'none' }}
+                                color="white"
+                                fontSize="md"
+                                variant="no-hover"
+                                onClick={() =>
+                                    router.push(`/company/update/${name}`)
+                                }
+                            >
+                                EDIT
+                            </Button>
+                        )}
                         {isEligible && (
                             <Button
                                 bg={

@@ -127,6 +127,7 @@ const CompanyDetails = () => {
                                 company={data.company}
                                 user={usn.current}
                                 isEligible={data.isStudentEligible}
+                                role={role.current}
                             />
                         )}
                     </Box>

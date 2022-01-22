@@ -498,7 +498,7 @@ const CompanyForm: NextPage = () => {
                                             type="submit"
                                             textTransform={'uppercase'}
                                         >
-                                            Enlist Company
+                                            Update Company
                                         </Button>
                                     </Flex>
                                 </GridItem>
