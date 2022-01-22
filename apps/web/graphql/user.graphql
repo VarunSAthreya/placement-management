@@ -21,6 +21,9 @@ query GetStudentDetails($usn: ID!) {
         tenth
         twelth
         backlogs
+        eligible
+        placed
+        package
     }
 }
 
@@ -71,4 +74,10 @@ query IsStudentEligible($usn: ID!, $company: String!) {
 
 query HasStudentApplied($usn: ID!, $company: String!) {
     hasStudentApplied(USN: $usn, company: $company)
+}
+
+mutation UpdateStudent($input: UserDetailsUpdateInput!) {
+    updateUserDetails(input: $input) {
+        USN
+    }
 }

@@ -11,21 +11,24 @@ import {
     Grid,
     GridItem,
     Input,
+    InputGroup,
+    InputLeftAddon,
     Select,
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { Loader } from '../components/Loader';
-import { Separator } from '../components/Separator';
-import { SideBar } from '../components/Sidebar';
+import { Loader } from '../../components/Loader';
+import { Separator } from '../../components/Separator';
+import { SideBar } from '../../components/Sidebar';
 import {
     Branch,
     Roles,
     Section,
     useCreateUserMutation,
-} from '../generated/graphql';
+} from '../../generated/graphql';
 
 type FormData = {
     name: string;
@@ -42,7 +45,7 @@ type FormData = {
     eligible: boolean;
 };
 
-const StudentForm = () => {
+const StudentForm: NextPage = () => {
     const {
         register,
         handleSubmit,
@@ -194,14 +197,19 @@ const StudentForm = () => {
                                     <FormControl
                                         isInvalid={errors.name !== undefined}
                                     >
-                                        <Input
-                                            type="text"
-                                            placeholder="Student Name"
-                                            {...register('name', {
-                                                required:
-                                                    'Please enter The Student Name',
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Name:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="text"
+                                                placeholder="Student Name"
+                                                {...register('name', {
+                                                    required:
+                                                        'Please enter The Student Name',
+                                                })}
+                                            />
+                                        </InputGroup>
                                         <FormErrorMessage>
                                             {errors.name && errors.name.message}
                                         </FormErrorMessage>
@@ -211,14 +219,21 @@ const StudentForm = () => {
                                     <FormControl
                                         isInvalid={errors.USN !== undefined}
                                     >
-                                        <Input
-                                            type="text"
-                                            placeholder="USN"
-                                            {...register('USN', {
-                                                required:
-                                                    'Please Enter The USN of the Student',
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                USN:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="text"
+                                                disabled
+                                                placeholder="USN"
+                                                {...register('USN', {
+                                                    required:
+                                                        'Please Enter The USN of the Student',
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.USN && errors.USN.message}
                                         </FormErrorMessage>
@@ -228,14 +243,20 @@ const StudentForm = () => {
                                     <FormControl
                                         isInvalid={errors.email !== undefined}
                                     >
-                                        <Input
-                                            type="email"
-                                            placeholder="Email ID"
-                                            {...register('email', {
-                                                required:
-                                                    'Please Enter The Email Id of the Student',
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Email:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="email"
+                                                placeholder="Email ID"
+                                                {...register('email', {
+                                                    required:
+                                                        'Please Enter The Email Id of the Student',
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.email &&
                                                 errors.email.message}
@@ -247,22 +268,24 @@ const StudentForm = () => {
                                     <FormControl
                                         isInvalid={errors.branch !== undefined}
                                     >
-                                        <Select
-                                            placeholder="Select Branch"
-                                            {...register('branch', {
-                                                required:
-                                                    'Please Enter The Branch',
-                                            })}
-                                        >
-                                            {branches.map((branch) => (
-                                                <option
-                                                    value={branch}
-                                                    key={branch}
-                                                >
-                                                    {branch}
-                                                </option>
-                                            ))}
-                                        </Select>
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Branch:
+                                            </InputLeftAddon>
+                                            <Select
+                                                placeholder="Select Branch"
+                                                {...register('branch', {
+                                                    required:
+                                                        'Please Enter The Branch',
+                                                })}
+                                            >
+                                                {branches.map((br) => (
+                                                    <option value={br} key={br}>
+                                                        {br}
+                                                    </option>
+                                                ))}
+                                            </Select>
+                                        </InputGroup>
                                         <FormErrorMessage>
                                             {errors.branch &&
                                                 errors.branch.message}
@@ -273,22 +296,28 @@ const StudentForm = () => {
                                     <FormControl
                                         isInvalid={errors.section !== undefined}
                                     >
-                                        <Select
-                                            placeholder="Select Section"
-                                            {...register('section', {
-                                                required:
-                                                    'Please Enter The Section',
-                                            })}
-                                        >
-                                            {sections.map((section) => (
-                                                <option
-                                                    value={section}
-                                                    key={section}
-                                                >
-                                                    {section}
-                                                </option>
-                                            ))}
-                                        </Select>
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Section:
+                                            </InputLeftAddon>
+                                            <Select
+                                                placeholder="Select Section"
+                                                {...register('section', {
+                                                    required:
+                                                        'Please Enter The Section',
+                                                })}
+                                            >
+                                                {sections.map((sec) => (
+                                                    <option
+                                                        value={sec}
+                                                        key={sec}
+                                                    >
+                                                        {sec}
+                                                    </option>
+                                                ))}
+                                            </Select>
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.section &&
                                                 errors.section.message}
@@ -314,17 +343,23 @@ const StudentForm = () => {
                                     <FormControl
                                         isInvalid={errors.tenth !== undefined}
                                     >
-                                        <Input
-                                            type="number"
-                                            step="0.01"
-                                            placeholder="10th Marks Percentage"
-                                            {...register('tenth', {
-                                                required:
-                                                    'Please Enter Eligibile Criteria Based On 10Th Marks',
-                                                max: 100,
-                                                min: 0,
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                10 <sup>th</sup>:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="number"
+                                                step="0.01"
+                                                placeholder="10th Marks Percentage"
+                                                {...register('tenth', {
+                                                    required:
+                                                        'Please Enter Eligibile Criteria Based On 10Th Marks',
+                                                    max: 100,
+                                                    min: 0,
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.tenth &&
                                                 errors.tenth.message}
@@ -335,17 +370,23 @@ const StudentForm = () => {
                                     <FormControl
                                         isInvalid={errors.twelth !== undefined}
                                     >
-                                        <Input
-                                            type="number"
-                                            step="0.01"
-                                            placeholder="12Th Marks Percentage"
-                                            {...register('twelth', {
-                                                required:
-                                                    'Please Enter Eligibile Criteria Based On 12Th Marks',
-                                                max: 100,
-                                                min: 0,
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                12 <sup>th</sup>:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="number"
+                                                step="0.01"
+                                                placeholder="12Th Marks Percentage"
+                                                {...register('twelth', {
+                                                    required:
+                                                        'Please Enter Eligibile Criteria Based On 12Th Marks',
+                                                    max: 100,
+                                                    min: 0,
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.twelth &&
                                                 errors.twelth.message}
@@ -356,17 +397,23 @@ const StudentForm = () => {
                                     <FormControl
                                         isInvalid={errors.CGPA !== undefined}
                                     >
-                                        <Input
-                                            type="number"
-                                            step="0.01"
-                                            placeholder="CGPA Detail"
-                                            {...register('CGPA', {
-                                                required:
-                                                    'Please Enter Eligibile Criteria Based On CGPA',
-                                                max: 10,
-                                                min: 0,
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                CGPA:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="number"
+                                                step="0.01"
+                                                placeholder="CGPA Detail"
+                                                {...register('CGPA', {
+                                                    required:
+                                                        'Please Enter Eligibile Criteria Based On CGPA',
+                                                    max: 10,
+                                                    min: 0,
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.CGPA && errors.CGPA.message}
                                         </FormErrorMessage>
@@ -376,16 +423,22 @@ const StudentForm = () => {
                                     <FormControl
                                         isInvalid={errors.year !== undefined}
                                     >
-                                        <Input
-                                            type="number"
-                                            placeholder="Passing Year"
-                                            {...register('year', {
-                                                required:
-                                                    'Please Enter Passing Year',
-                                                max: 2050,
-                                                min: 2015,
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Year:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="number"
+                                                placeholder="Passing Year"
+                                                {...register('year', {
+                                                    required:
+                                                        'Please Enter Passing Year',
+                                                    max: 2050,
+                                                    min: 2015,
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.year && errors.year.message}
                                         </FormErrorMessage>
@@ -397,16 +450,22 @@ const StudentForm = () => {
                                             errors.backlogs !== undefined
                                         }
                                     >
-                                        <Input
-                                            type="number"
-                                            placeholder="No of backlogs"
-                                            {...register('backlogs', {
-                                                required:
-                                                    'Please Enter Eligibile Criteria Based On backlogs',
-                                                max: 10,
-                                                min: 0,
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Backlogs:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="number"
+                                                placeholder="No of backlogs"
+                                                {...register('backlogs', {
+                                                    required:
+                                                        'Please Enter Eligibile Criteria Based On backlogs',
+                                                    max: 10,
+                                                    min: 0,
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.backlogs &&
                                                 errors.backlogs.message}
@@ -419,18 +478,26 @@ const StudentForm = () => {
                                             errors.eligible !== undefined
                                         }
                                     >
-                                        <Select
-                                            placeholder="Is Eligible"
-                                            {...register('eligible', {
-                                                required:
-                                                    'Please Select if Eligible or Not',
-                                            })}
-                                        >
-                                            <option value={'true'}>True</option>
-                                            <option value={'false'}>
-                                                False
-                                            </option>
-                                        </Select>
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Eligible:
+                                            </InputLeftAddon>
+                                            <Select
+                                                placeholder="Is Eligible"
+                                                {...register('eligible', {
+                                                    required:
+                                                        'Please Select if Eligible or Not',
+                                                })}
+                                            >
+                                                <option value={'true'}>
+                                                    True
+                                                </option>
+                                                <option value={'false'}>
+                                                    False
+                                                </option>
+                                            </Select>
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.eligible &&
                                                 errors.eligible.message}
@@ -457,14 +524,20 @@ const StudentForm = () => {
                                             errors.password !== undefined
                                         }
                                     >
-                                        <Input
-                                            type="password"
-                                            placeholder="Enter Default Password"
-                                            {...register('password', {
-                                                required:
-                                                    'Please Enter A Default Password',
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Password:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="password"
+                                                placeholder="Enter Default Password"
+                                                {...register('password', {
+                                                    required:
+                                                        'Please Enter A Default Password',
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.password &&
                                                 errors.password.message}

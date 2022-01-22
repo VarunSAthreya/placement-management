@@ -190,6 +190,7 @@ export type Query = {
   eligibleCount: Scalars['Int'];
   getAllEligibleStudentsForCompany: Array<Maybe<UserDetails>>;
   getSelectedByCompany: Array<Maybe<Selected>>;
+  getUpcomingCompanies: Array<Maybe<Company>>;
   hasStudentApplied: Scalars['Boolean'];
   isStudentEligible: Scalars['Boolean'];
   placedStudentCount: Scalars['Int'];
@@ -415,7 +416,7 @@ export type GetStudentDetailsQueryVariables = Exact<{
 }>;
 
 
-export type GetStudentDetailsQuery = { __typename?: 'Query', studentDetails: { __typename?: 'UserDetails', name: string, email: string, USN: string, branch: Branch, section: Section, year: number, CGPA: number, tenth: number, twelth: number, backlogs: number } };
+export type GetStudentDetailsQuery = { __typename?: 'Query', studentDetails: { __typename?: 'UserDetails', name: string, email: string, USN: string, branch: Branch, section: Section, year: number, CGPA: number, tenth: number, twelth: number, backlogs: number, eligible: boolean, placed: boolean, package?: number | null | undefined } };
 
 export type GetProfileDetailsQueryVariables = Exact<{
   usn: Scalars['ID'];
@@ -446,6 +447,13 @@ export type HasStudentAppliedQueryVariables = Exact<{
 
 
 export type HasStudentAppliedQuery = { __typename?: 'Query', hasStudentApplied: boolean };
+
+export type UpdateStudentMutationVariables = Exact<{
+  input: UserDetailsUpdateInput;
+}>;
+
+
+export type UpdateStudentMutation = { __typename?: 'Mutation', updateUserDetails: { __typename?: 'UserDetails', USN: string } };
 
 
 export const GetAllAppliedDocument = gql`
@@ -987,6 +995,9 @@ export const GetStudentDetailsDocument = gql`
     tenth
     twelth
     backlogs
+    eligible
+    placed
+    package
   }
 }
     `;
@@ -1183,3 +1194,36 @@ export function useHasStudentAppliedLazyQuery(baseOptions?: Apollo.LazyQueryHook
 export type HasStudentAppliedQueryHookResult = ReturnType<typeof useHasStudentAppliedQuery>;
 export type HasStudentAppliedLazyQueryHookResult = ReturnType<typeof useHasStudentAppliedLazyQuery>;
 export type HasStudentAppliedQueryResult = Apollo.QueryResult<HasStudentAppliedQuery, HasStudentAppliedQueryVariables>;
+export const UpdateStudentDocument = gql`
+    mutation UpdateStudent($input: UserDetailsUpdateInput!) {
+  updateUserDetails(input: $input) {
+    USN
+  }
+}
+    `;
+export type UpdateStudentMutationFn = Apollo.MutationFunction<UpdateStudentMutation, UpdateStudentMutationVariables>;
+
+/**
+ * __useUpdateStudentMutation__
+ *
+ * To run a mutation, you first call `useUpdateStudentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateStudentMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [updateStudentMutation, { data, loading, error }] = useUpdateStudentMutation({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useUpdateStudentMutation(baseOptions?: Apollo.MutationHookOptions<UpdateStudentMutation, UpdateStudentMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UpdateStudentMutation, UpdateStudentMutationVariables>(UpdateStudentDocument, options);
+      }
+export type UpdateStudentMutationHookResult = ReturnType<typeof useUpdateStudentMutation>;
+export type UpdateStudentMutationResult = Apollo.MutationResult<UpdateStudentMutation>;
+export type UpdateStudentMutationOptions = Apollo.BaseMutationOptions<UpdateStudentMutation, UpdateStudentMutationVariables>;
