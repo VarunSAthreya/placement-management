@@ -16,10 +16,10 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { Loader } from '../components/Loader';
-import { Separator } from '../components/Separator';
-import { SideBar } from '../components/Sidebar';
-import { useCreateSelectedMutation } from '../generated/graphql';
+import { Loader } from '../../components/Loader';
+import { Separator } from '../../components/Separator';
+import { SideBar } from '../../components/Sidebar';
+import { useCreateSelectedMutation } from '../../generated/graphql';
 
 type FormValues = {
     name: string;

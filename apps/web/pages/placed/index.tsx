@@ -137,7 +137,7 @@ const Placed = () => {
                                         type="submit"
                                         textTransform={'uppercase'}
                                         onClick={() => {
-                                            router.push(`/placedForm`);
+                                            router.push(`/placed/add`);
                                         }}
                                     >
                                         Add New Placed Detail
