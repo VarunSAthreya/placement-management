@@ -360,7 +360,7 @@ const UpdateStudent: NextPage = () => {
                                     >
                                         <InputGroup>
                                             <InputLeftAddon>
-                                                Tenth:
+                                                10 <sup>th</sup>:
                                             </InputLeftAddon>
                                             <Input
                                                 type="number"
@@ -387,7 +387,7 @@ const UpdateStudent: NextPage = () => {
                                     >
                                         <InputGroup>
                                             <InputLeftAddon>
-                                                Twelth:
+                                                12 <sup>th</sup>:
                                             </InputLeftAddon>
                                             <Input
                                                 type="number"
