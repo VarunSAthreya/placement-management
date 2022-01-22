@@ -136,7 +136,7 @@ const Company: NextPage = () => {
                                     type="submit"
                                     textTransform={'uppercase'}
                                     onClick={() => {
-                                        router.push(`/companyForm`);
+                                        router.push(`/company/add`);
                                     }}
                                 >
                                     Add New Company

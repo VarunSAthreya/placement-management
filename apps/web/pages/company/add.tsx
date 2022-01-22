@@ -8,20 +8,21 @@ import {
     Flex,
     FormControl,
     FormErrorMessage,
-    FormLabel,
     Grid,
     GridItem,
     Input,
+    InputGroup,
+    InputLeftAddon,
     Select,
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { Loader } from '../components/Loader';
-import { Separator } from '../components/Separator';
-import { SideBar } from '../components/Sidebar';
-import { CompanyType, useCreateCompanyMutation } from '../generated/graphql';
+import { Loader } from '../../components/Loader';
+import { Separator } from '../../components/Separator';
+import { SideBar } from '../../components/Sidebar';
+import { CompanyType, useCreateCompanyMutation } from '../../generated/graphql';
 
 type FormData = {
     CGPA: number;
@@ -182,14 +183,20 @@ const CompanyForm = () => {
                                     <FormControl
                                         isInvalid={errors.name !== undefined}
                                     >
-                                        <Input
-                                            type="text"
-                                            placeholder="Company Name"
-                                            {...register('name', {
-                                                required:
-                                                    'Please Enter The Company Name',
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Name:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="text"
+                                                placeholder="Company Name"
+                                                {...register('name', {
+                                                    required:
+                                                        'Please Enter The Company Name',
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.name && errors.name.message}
                                         </FormErrorMessage>
@@ -199,20 +206,26 @@ const CompanyForm = () => {
                                     <FormControl
                                         isInvalid={errors.type !== undefined}
                                     >
-                                        <Select
-                                            placeholder="Select Company Type"
-                                            {...register('type', {
-                                                required:
-                                                    'Please Enter The Company Type',
-                                            })}
-                                        >
-                                            <option value="SERVICE">
-                                                Service
-                                            </option>
-                                            <option value="PRODUCT">
-                                                Product
-                                            </option>
-                                        </Select>
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Type:
+                                            </InputLeftAddon>
+                                            <Select
+                                                placeholder="Select Company Type"
+                                                {...register('type', {
+                                                    required:
+                                                        'Please Enter The Company Type',
+                                                })}
+                                            >
+                                                <option value="SERVICE">
+                                                    Service
+                                                </option>
+                                                <option value="PRODUCT">
+                                                    Product
+                                                </option>
+                                            </Select>
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.type && errors.type.message}
                                         </FormErrorMessage>
@@ -222,17 +235,29 @@ const CompanyForm = () => {
                                     <FormControl
                                         isInvalid={errors.year !== undefined}
                                     >
-                                        <Select
-                                            placeholder="Select Year"
-                                            {...register('year', {
-                                                required:
-                                                    'Please Enter The Year',
-                                            })}
-                                        >
-                                            <option value="2022">2022</option>
-                                            <option value="2023">2023</option>
-                                            <option value="2024">2024</option>
-                                        </Select>
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Year:
+                                            </InputLeftAddon>
+                                            <Select
+                                                placeholder="Select Year"
+                                                {...register('year', {
+                                                    required:
+                                                        'Please Enter The Year',
+                                                })}
+                                            >
+                                                <option value="2022">
+                                                    2022
+                                                </option>
+                                                <option value="2023">
+                                                    2023
+                                                </option>
+                                                <option value="2024">
+                                                    2024
+                                                </option>
+                                            </Select>
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.year && errors.year.message}
                                         </FormErrorMessage>
@@ -242,35 +267,44 @@ const CompanyForm = () => {
                                     <FormControl
                                         isInvalid={errors.package !== undefined}
                                     >
-                                        <Input
-                                            type="number"
-                                            placeholder="Enter Package Detail"
-                                            {...register('package', {
-                                                required:
-                                                    'Please Enter The Package Detail',
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Package:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="number"
+                                                placeholder="Enter Package Detail"
+                                                {...register('package', {
+                                                    required:
+                                                        'Please Enter The Package Detail',
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.package &&
                                                 errors.package.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4} pt={0} colSpan={2}>
+                                <GridItem p={4} colSpan={2}>
                                     <FormControl
                                         isInvalid={errors.date !== undefined}
                                     >
-                                        <FormLabel m={0} color="gray.500" p={2}>
-                                            Arrival Date
-                                        </FormLabel>
-                                        <Input
-                                            color="gray.500"
-                                            type="date"
-                                            {...register('date', {
-                                                required:
-                                                    'Please Enter The Arrival Date of The Company',
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Arrival Date:
+                                            </InputLeftAddon>
+                                            <Input
+                                                color="gray.500"
+                                                type="date"
+                                                {...register('date', {
+                                                    required:
+                                                        'Please Enter The Arrival Date of The Company',
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.date && errors.date.message}
                                         </FormErrorMessage>
@@ -295,17 +329,23 @@ const CompanyForm = () => {
                                     <FormControl
                                         isInvalid={errors.tenth !== undefined}
                                     >
-                                        <Input
-                                            type="number"
-                                            step="0.01"
-                                            placeholder="10th Marks Percentage"
-                                            {...register('tenth', {
-                                                required:
-                                                    'Please Enter Eligibile Criteria Based On 10Th Marks',
-                                                max: 100,
-                                                min: 0,
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                10 <sup>th</sup>:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="number"
+                                                step="0.01"
+                                                placeholder="10th Marks Percentage"
+                                                {...register('tenth', {
+                                                    required:
+                                                        'Please Enter Eligibile Criteria Based On 10Th Marks',
+                                                    max: 100,
+                                                    min: 0,
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.tenth &&
                                                 errors.tenth.message}
@@ -316,17 +356,23 @@ const CompanyForm = () => {
                                     <FormControl
                                         isInvalid={errors.twelth !== undefined}
                                     >
-                                        <Input
-                                            type="number"
-                                            step="0.01"
-                                            placeholder="12th Marks Percentage"
-                                            {...register('twelth', {
-                                                required:
-                                                    'Please Enter Eligibile Criteria Based On 12Th Marks',
-                                                max: 100,
-                                                min: 0,
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                12 <sup>th</sup>:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="number"
+                                                step="0.01"
+                                                placeholder="12th Marks Percentage"
+                                                {...register('twelth', {
+                                                    required:
+                                                        'Please Enter Eligibile Criteria Based On 12Th Marks',
+                                                    max: 100,
+                                                    min: 0,
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.twelth &&
                                                 errors.twelth.message}
@@ -337,17 +383,23 @@ const CompanyForm = () => {
                                     <FormControl
                                         isInvalid={errors.CGPA !== undefined}
                                     >
-                                        <Input
-                                            type="number"
-                                            step="0.01"
-                                            placeholder="CGPA Detail"
-                                            {...register('CGPA', {
-                                                required:
-                                                    'Please Enter Eligibile Criteria Based On CGPA',
-                                                max: 10,
-                                                min: 0,
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                CGPA:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="number"
+                                                step="0.01"
+                                                placeholder="CGPA Detail"
+                                                {...register('CGPA', {
+                                                    required:
+                                                        'Please Enter Eligibile Criteria Based On CGPA',
+                                                    max: 10,
+                                                    min: 0,
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.CGPA && errors.CGPA.message}
                                         </FormErrorMessage>
@@ -359,16 +411,22 @@ const CompanyForm = () => {
                                             errors.backlogs !== undefined
                                         }
                                     >
-                                        <Input
-                                            type="number"
-                                            placeholder="No of Backlogs"
-                                            {...register('backlogs', {
-                                                required:
-                                                    'Please Enter Eligible Criteria Based On backlogs',
-                                                max: 10,
-                                                min: 0,
-                                            })}
-                                        />
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Backlogs:
+                                            </InputLeftAddon>
+                                            <Input
+                                                type="number"
+                                                placeholder="No of Backlogs"
+                                                {...register('backlogs', {
+                                                    required:
+                                                        'Please Enter Eligible Criteria Based On backlogs',
+                                                    max: 10,
+                                                    min: 0,
+                                                })}
+                                            />
+                                        </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.backlogs &&
                                                 errors.backlogs.message}
