@@ -392,6 +392,11 @@ export type GetTableCountQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetTableCountQuery = { __typename?: 'Query', companyCount: number, studentCount: number, appliedCount: number, selectedCount: number, eligibleCount: number, placedStudentCount: number };
 
+export type GetAllDetailsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetAllDetailsQuery = { __typename?: 'Query', studentCount: number, companyCount: number, appliedCount: number, selectedCount: number, eligibleCount: number, placedStudentCount: number, companies: Array<{ __typename?: 'Company', name: string, selected: Array<{ __typename?: 'Selected', user: { __typename?: 'UserDetails', name: string } } | null | undefined> } | null | undefined>, allStudentDetails: Array<{ __typename?: 'UserDetails', branch: Branch, placed: boolean } | null | undefined> };
+
 export type GetSelectedByCompanyQueryVariables = Exact<{
   name: Scalars['String'];
 }>;
@@ -862,6 +867,55 @@ export function useGetTableCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetTableCountQueryHookResult = ReturnType<typeof useGetTableCountQuery>;
 export type GetTableCountLazyQueryHookResult = ReturnType<typeof useGetTableCountLazyQuery>;
 export type GetTableCountQueryResult = Apollo.QueryResult<GetTableCountQuery, GetTableCountQueryVariables>;
+export const GetAllDetailsDocument = gql`
+    query GetAllDetails {
+  companies {
+    name
+    selected {
+      user {
+        name
+      }
+    }
+  }
+  allStudentDetails {
+    branch
+    placed
+  }
+  studentCount
+  companyCount
+  appliedCount
+  selectedCount
+  eligibleCount
+  placedStudentCount
+}
+    `;
+
+/**
+ * __useGetAllDetailsQuery__
+ *
+ * To run a query within a React component, call `useGetAllDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetAllDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetAllDetailsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useGetAllDetailsQuery(baseOptions?: Apollo.QueryHookOptions<GetAllDetailsQuery, GetAllDetailsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetAllDetailsQuery, GetAllDetailsQueryVariables>(GetAllDetailsDocument, options);
+      }
+export function useGetAllDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetAllDetailsQuery, GetAllDetailsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetAllDetailsQuery, GetAllDetailsQueryVariables>(GetAllDetailsDocument, options);
+        }
+export type GetAllDetailsQueryHookResult = ReturnType<typeof useGetAllDetailsQuery>;
+export type GetAllDetailsLazyQueryHookResult = ReturnType<typeof useGetAllDetailsLazyQuery>;
+export type GetAllDetailsQueryResult = Apollo.QueryResult<GetAllDetailsQuery, GetAllDetailsQueryVariables>;
 export const GetSelectedByCompanyDocument = gql`
     query GetSelectedByCompany($name: String!) {
   getSelectedByCompany(name: $name) {

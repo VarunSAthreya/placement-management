@@ -1,8 +1,20 @@
-query GetTableCount {
-    companyCount
-    studentCount
-    appliedCount
-    selectedCount
-    eligibleCount
-    placedStudentCount
+query GetAllDetails {
+  companies {
+    name
+    selected {
+      user {
+        name
+      }
+    }
+  }
+  allStudentDetails {
+    branch
+    placed
+  }
+  studentCount
+  companyCount
+  appliedCount
+  selectedCount
+  eligibleCount
+  placedStudentCount
 }
