@@ -20,10 +20,11 @@ import {
     ProgressChart,
 } from '../components/Charts';
 import { SideBar } from '../components/Sidebar';
-import { useGetTableCountQuery } from '../generated/graphql';
+import { useGetAllDetailsQuery } from '../generated/graphql';
 
 const Home = () => {
-    const { data, loading, error } = useGetTableCountQuery();
+    const { data, loading, error } = useGetAllDetailsQuery();
+    console.log(data);
 
     return (
         <Flex
@@ -85,7 +86,17 @@ const Home = () => {
                     >
                         <Box>
                             <Flex direction="column" w="100%">
-                                <BarChart />
+                                {!loading && (
+                                    <BarChart
+                                        data={data.allStudentDetails}
+                                        branch={data.allStudentDetails.map(
+                                            (b) => b.branch
+                                        )}
+                                        students={data.allStudentDetails.map(
+                                            (s) => s.branch
+                                        )}
+                                    />
+                                )}
                             </Flex>
                         </Box>
                     </Box>
@@ -132,7 +143,16 @@ const Home = () => {
                     >
                         <Box>
                             <Flex direction="column" w="100%">
-                                <ProgressChart />
+                                {!loading && (
+                                    <ProgressChart
+                                        selected={data.companies.map(
+                                            (c) => c.selected.length
+                                        )}
+                                        category={data.companies.map(
+                                            (c) => c.name
+                                        )}
+                                    />
+                                )}
                             </Flex>
                         </Box>
                     </Box>

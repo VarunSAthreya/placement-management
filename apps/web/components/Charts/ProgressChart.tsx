@@ -5,67 +5,56 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 
-const progressChartData = [
-    {
-        data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
-    },
-];
+const ProgressChart = ({ selected, category }) => {
+    const progressChartData = [
+        {
+            data: selected,
+        },
+    ];
 
-const progressChartOptions: ApexOptions = {
-    chart: {
-        type: 'bar',
-        height: 350,
-        toolbar: {
+    const progressChartOptions: ApexOptions = {
+        chart: {
+            type: 'bar',
+            height: 350,
+            toolbar: {
+                show: false,
+            },
+        },
+        plotOptions: {
+            bar: {
+                borderRadius: 4,
+                horizontal: true,
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        xaxis: {
+            categories: category,
+            labels: {
+                style: {
+                    colors: '#c8cfca',
+                    fontSize: '12px',
+                },
+            },
+        },
+        yaxis: {
+            labels: {
+                style: {
+                    colors: '#c8cfca',
+                    fontSize: '12px',
+                },
+            },
+        },
+        tooltip: {
+            theme: 'dark',
+        },
+        legend: {
             show: false,
         },
-    },
-    plotOptions: {
-        bar: {
-            borderRadius: 4,
-            horizontal: true,
-        },
-    },
-    dataLabels: {
-        enabled: false,
-    },
-    xaxis: {
-        categories: [
-            'South Korea',
-            'Canada',
-            'United Kingdom',
-            'Netherlands',
-            'Italy',
-            'France',
-            'Japan',
-            'United States',
-            'China',
-            'Germany',
-        ],
-        labels: {
-            style: {
-                colors: '#c8cfca',
-                fontSize: '12px',
-            },
-        },
-    },
-    yaxis: {
-        labels: {
-            style: {
-                colors: '#c8cfca',
-                fontSize: '12px',
-            },
-        },
-    },
-    tooltip: {
-        theme: 'dark',
-    },
-    legend: {
-        show: false,
-    },
-    colors: ['#7928CA'],
-};
+        colors: ['#7928CA'],
+    };
 
-const ProgressChart = () => {
     return (
         <Box
             py="1rem"

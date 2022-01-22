@@ -3,84 +3,93 @@ import { ApexOptions } from 'apexcharts';
 import dynamic from 'next/dynamic';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
-const barChartData = [
-    {
-        name: 'member',
-        data: [64, 55, 21, 18, 76, 41, 44, 14, 66, 32],
-    },
-    {
-        name: 'Partcipants',
-        data: [53, 32, 42, 22, 29, 80, 16, 49, 78, 11],
-    },
-];
+const BarChart = ({ branch, data, students }) => {
+    //INCOMPLETE
+    const category = branch.filter((v, i) => branch.indexOf(v) === i);
+    const allPlaced = data.map((d) => d.placed);
+    const allStudents = students.reduce(
+        (a, b) => (a[b] = a[b] + 1 || 1) && a,
+        []
+    );
+    console.log(allPlaced);
+    console.log(allStudents);
 
-const barChartOptions: ApexOptions = {
-    colors: ['#FF0080', '#7928CA'],
-    chart: {
-        toolbar: {
-            show: false,
+    const barChartData = [
+        {
+            name: 'Total No.of Students',
+            data: allStudents,
         },
-        foreColor: '#c8cfca',
-    },
-    tooltip: {
-        theme: 'dark',
-    },
-    plotOptions: {
-        bar: {
-            horizontal: false,
-            dataLabels: {
-                position: 'top',
+        {
+            name: 'Placed Students',
+            data: [53, 32, 42, 22, 47],
+        },
+    ];
+
+    const barChartOptions: ApexOptions = {
+        colors: ['#FF0080', '#7928CA'],
+        chart: {
+            toolbar: {
+                show: false,
+            },
+            foreColor: '#c8cfca',
+        },
+        tooltip: {
+            theme: 'dark',
+        },
+        plotOptions: {
+            bar: {
+                horizontal: false,
+                dataLabels: {
+                    position: 'top',
+                },
             },
         },
-    },
-    dataLabels: {
-        enabled: true,
-        offsetX: -6,
-        style: {
-            fontSize: '12px',
+        dataLabels: {
+            enabled: true,
+            offsetX: -6,
+            style: {
+                fontSize: '12px',
+                colors: ['#fff'],
+            },
+        },
+        stroke: {
+            show: true,
+            width: 1,
             colors: ['#fff'],
         },
-    },
-    stroke: {
-        show: true,
-        width: 1,
-        colors: ['#fff'],
-    },
-    xaxis: {
-        categories: ['a', 'b', 'c', 'd', 'f', 'h', 'i', 'j', 'k', 'l'],
-        labels: {
-            style: {
-                colors: '#c8cfca',
-                fontSize: '12px',
+        xaxis: {
+            categories: category,
+            labels: {
+                style: {
+                    colors: '#c8cfca',
+                    fontSize: '12px',
+                },
             },
         },
-    },
-    yaxis: {
-        labels: {
-            style: {
-                colors: '#c8cfca',
-                fontSize: '12px',
+        yaxis: {
+            labels: {
+                style: {
+                    colors: '#c8cfca',
+                    fontSize: '12px',
+                },
             },
         },
-    },
-    legend: {
-        position: 'right',
-        markers: {
-            width: 24,
-            height: 24,
-            strokeWidth: 0,
-            strokeColor: '#fff',
-            fillColors: undefined,
-            radius: 2,
-            customHTML: undefined,
-            onClick: undefined,
-            offsetX: 0,
-            offsetY: 0,
+        legend: {
+            position: 'right',
+            markers: {
+                width: 24,
+                height: 24,
+                strokeWidth: 0,
+                strokeColor: '#fff',
+                fillColors: undefined,
+                radius: 2,
+                customHTML: undefined,
+                onClick: undefined,
+                offsetX: 0,
+                offsetY: 0,
+            },
         },
-    },
-};
-
-const BarChart = () => {
+    };
     return (
         <Box
             py="1rem"
