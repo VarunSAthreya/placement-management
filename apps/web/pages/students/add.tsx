@@ -15,17 +15,18 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { Loader } from '../components/Loader';
-import { Separator } from '../components/Separator';
-import { SideBar } from '../components/Sidebar';
+import { Loader } from '../../components/Loader';
+import { Separator } from '../../components/Separator';
+import { SideBar } from '../../components/Sidebar';
 import {
     Branch,
     Roles,
     Section,
     useCreateUserMutation,
-} from '../generated/graphql';
+} from '../../generated/graphql';
 
 type FormData = {
     name: string;
@@ -42,7 +43,7 @@ type FormData = {
     eligible: boolean;
 };
 
-const StudentForm = () => {
+const StudentForm: NextPage = () => {
     const {
         register,
         handleSubmit,

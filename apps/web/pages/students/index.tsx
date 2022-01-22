@@ -135,7 +135,7 @@ const Students = () => {
                                     type="submit"
                                     textTransform={'uppercase'}
                                     onClick={() => {
-                                        router.push(`/studentForm`);
+                                        router.push(`/students/add`);
                                     }}
                                 >
                                     Add New Student
