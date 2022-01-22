@@ -1,10 +1,24 @@
-import { Box, Flex, Text, Icon, HStack } from '@chakra-ui/react';
-import IconBox from '../Icons/IconBox';
+import { Box, Flex, HStack, Icon, Text } from '@chakra-ui/react';
+import { format } from 'date-fns';
+import { FC } from 'react';
 import { BsCalendarEvent, BsFillPersonLinesFill } from 'react-icons/bs';
 import { FiPackage, FiType } from 'react-icons/fi';
+import IconBox from '../Icons/IconBox';
 import { Separator } from '../Separator';
 
-const UpcomingCard = () => {
+type Props = {
+    data: {
+        name: string;
+        type: string;
+        arrival_date: string;
+        package: number;
+        applied: [];
+    };
+};
+
+const UpcomingCard: FC<Props> = ({ data }) => {
+    const { name, type, arrival_date, package: CTC, applied } = data;
+
     return (
         <Box p="15px" bg={'#f8f9fa'} my="8px" borderRadius="12px">
             <Flex w="100%" flexDir={'column'}>
@@ -18,7 +32,7 @@ const UpcomingCard = () => {
                         fontWeight="bold"
                         textTransform={'uppercase'}
                     >
-                        amazon
+                        {name}
                     </Text>
                     <Separator />
                 </Flex>
@@ -45,7 +59,7 @@ const UpcomingCard = () => {
                             fontWeight={'semibold'}
                             color={'black'}
                         >
-                            Product based
+                            {type} based
                         </Text>
                     </Flex>
                     <Flex
@@ -75,7 +89,7 @@ const UpcomingCard = () => {
                             fontWeight={'semibold'}
                             color={'black'}
                         >
-                            8 LPA
+                            {CTC}
                         </Text>
                     </Flex>
                     <Flex direction="row" align="center" w="100%">
@@ -100,7 +114,10 @@ const UpcomingCard = () => {
                             fontWeight={'semibold'}
                             color={'black'}
                         >
-                            10th Aug 2021
+                            {format(
+                                new Date(Number(arrival_date)),
+                                'dd MMM yyyy'
+                            )}
                         </Text>
                     </Flex>
                 </HStack>
@@ -126,7 +143,7 @@ const UpcomingCard = () => {
                         fontWeight={'semibold'}
                         color={'black'}
                     >
-                        8 students have Applied
+                        {applied.length} students have Applied
                     </Text>
                 </Flex>
                 <Text

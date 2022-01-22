@@ -2,19 +2,33 @@ import {
     Box,
     Flex,
     Grid,
-    Text,
-    Stack,
     Heading,
+    Stack,
+    Text,
     useBreakpointValue,
     useColorModeValue,
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { AppliedCard, PlacedCard, UpcomingCard } from '../components/Card';
+import { Loader } from '../components/Loader';
 import { SideBar } from '../components/Sidebar';
+import { useGetStudentHomeDetailsQuery } from '../generated/graphql';
+import { getUSNAndRole } from '../lib/functions';
 
 const StudentHome: NextPage = () => {
+    const usn = getUSNAndRole().USN;
+
+    const { data, loading, error } = useGetStudentHomeDetailsQuery({
+        variables: { usn },
+    });
+
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
+    const textHeight = useBreakpointValue({ base: '20%', md: '30%' });
+
+    if (loading || !data) return <Loader />;
+    if (error) return <Text>Error</Text>;
+
     return (
         <Flex flexDirection={'row'} bg={primaryBG}>
             <SideBar />
@@ -42,10 +56,7 @@ const StudentHome: NextPage = () => {
                                 _after={{
                                     content: "''",
                                     width: 'full',
-                                    height: useBreakpointValue({
-                                        base: '20%',
-                                        md: '30%',
-                                    }),
+                                    height: textHeight,
                                     position: 'absolute',
                                     bottom: 0,
                                     left: 0,
@@ -100,7 +111,13 @@ const StudentHome: NextPage = () => {
                             </Text>
                         </Box>
                         <Box px="5px">
-                            <UpcomingCard />
+                            {!loading &&
+                                data.getUpcomingCompanies.map((company) => (
+                                    <UpcomingCard
+                                        key={company.name}
+                                        data={company as any}
+                                    />
+                                ))}
                         </Box>
                     </Box>
                     {/*Applied & Placed*/}
@@ -123,15 +140,15 @@ const StudentHome: NextPage = () => {
                         </Box>
                         <Box px="5px">
                             <Flex direction="column">
-                                {/* {!loading &&
-                                    data.user.details.applied.map((row) => {
+                                {!loading &&
+                                    data.studentDetails.applied.map((row) => {
                                         return (
                                             <AppliedCard
                                                 key={row.company.name}
                                                 data={row.company}
                                             />
                                         );
-                                    })} */}
+                                    })}
                             </Flex>
                         </Box>
                         <Box p="12px 5px" my="12px">
@@ -147,18 +164,16 @@ const StudentHome: NextPage = () => {
                         </Box>
                         <Box px="5px">
                             <Flex direction="column">
-                                {/* {!loading &&
-                                    data.user.details.selected.map(
-                                        (row) => {
-                                            console.log(row);
-                                            return (
-                                                <PlacedCard
-                                                    key={row.company.name}
-                                                    data={row.company}
-                                                />
-                                            );
-                                        }
-                                    )} */}
+                                {!loading &&
+                                    data.studentDetails.applied.map((row) => {
+                                        console.log(row);
+                                        return (
+                                            <PlacedCard
+                                                key={row.company.name}
+                                                data={row.company}
+                                            />
+                                        );
+                                    })}
                             </Flex>
                         </Box>
                     </Box>
