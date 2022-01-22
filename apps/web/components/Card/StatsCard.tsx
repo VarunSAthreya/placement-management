@@ -35,7 +35,6 @@ const StatsCard = ({ title, count, icon }) => {
                     </StatNumber>
                 </Stat>
                 <IconBox
-                    as="box"
                     h={'45px'}
                     w={'45px'}
                     bg={'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'}
