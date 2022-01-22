@@ -19,7 +19,7 @@ import { AiFillLock, AiOutlineMail } from 'react-icons/ai';
 import { Loader } from '../components/Loader';
 import { useAuthMutation } from '../generated/graphql';
 
-type FormData = {
+type FormValues = {
     USN: string;
     password: string;
 };
@@ -29,7 +29,7 @@ const Login = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormData>();
+    } = useForm<FormValues>();
 
     const [login, { loading }] = useAuthMutation();
     const router = useRouter();
@@ -39,7 +39,7 @@ const Login = () => {
     const whiteToBlack = useColorModeValue('white', 'black');
     const buttonHover = useColorModeValue('#000000e0', '#e2e2e2');
 
-    const onSubmit = async (values: FormData) => {
+    const onSubmit = async (values: FormValues) => {
         const { USN, password } = values;
         login({
             variables: { usn: USN.toUpperCase(), password },

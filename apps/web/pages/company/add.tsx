@@ -17,6 +17,7 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components/Loader';
@@ -24,7 +25,7 @@ import { Separator } from '../../components/Separator';
 import { SideBar } from '../../components/Sidebar';
 import { CompanyType, useCreateCompanyMutation } from '../../generated/graphql';
 
-type FormData = {
+type FormValues = {
     CGPA: number;
     backlogs: number;
     date: Date;
@@ -36,12 +37,12 @@ type FormData = {
     year: number;
 };
 
-const CompanyForm = () => {
+const CompanyForm: NextPage = () => {
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormData>();
+    } = useForm<FormValues>();
 
     const router = useRouter();
     const [createCompany, { loading }] = useCreateCompanyMutation();
@@ -49,7 +50,7 @@ const CompanyForm = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
 
-    const onSubmit = (data: FormData) => {
+    const onSubmit = (data: FormValues) => {
         const variables = {
             input: {
                 name: data.name,

@@ -24,12 +24,12 @@ type Props = {
     usn: string;
 };
 
-type FormData = {
+type FormValues = {
     oldPassword: string;
     newPassword: string;
     confirmPassword: string;
 };
-const defaultValues: FormData = {
+const defaultValues: FormValues = {
     oldPassword: '',
     newPassword: '',
     confirmPassword: '',
@@ -42,7 +42,7 @@ const ChangePassword: FC<Props> = ({ isOpen, onClose, usn }) => {
         setError,
         reset,
         formState: { errors },
-    } = useForm<FormData>({ defaultValues });
+    } = useForm<FormValues>({ defaultValues });
 
     const secondaryBG = useColorModeValue('white', '#242526');
 
@@ -50,7 +50,7 @@ const ChangePassword: FC<Props> = ({ isOpen, onClose, usn }) => {
 
     const [changePassword, { loading }] = useChangePasswordMutation();
 
-    const onSubmit = async (data: FormData) => {
+    const onSubmit = async (data: FormValues) => {
         console.log(data);
         const { oldPassword, newPassword, confirmPassword } = data;
         if (newPassword !== confirmPassword) {

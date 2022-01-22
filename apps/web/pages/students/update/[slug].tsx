@@ -31,7 +31,7 @@ import {
     useUpdateStudentMutation,
 } from '../../../generated/graphql';
 
-type FormData = {
+type FormValues = {
     name: string;
     email: string;
     USN: string;
@@ -60,7 +60,7 @@ const UpdateStudent: NextPage = () => {
         handleSubmit,
         reset,
         formState: { errors },
-    } = useForm<FormData>({
+    } = useForm<FormValues>({
         defaultValues: useMemo(() => {
             return data?.studentDetails;
         }, [data]),
@@ -79,7 +79,7 @@ const UpdateStudent: NextPage = () => {
 
     const [update, { loading: updLoading }] = useUpdateStudentMutation();
 
-    const onSubmit = (values: FormData) => {
+    const onSubmit = (values: FormValues) => {
         const variables = {
             input: {
                 USN: values.USN,
