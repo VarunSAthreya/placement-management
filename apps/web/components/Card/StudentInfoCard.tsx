@@ -1,8 +1,20 @@
-import { Avatar, Box, Flex, Text, useColorModeValue } from '@chakra-ui/react';
+import {
+    Avatar,
+    Box,
+    Button,
+    Flex,
+    Text,
+    useColorModeValue,
+} from '@chakra-ui/react';
+import { useRouter } from 'next/router';
 import React from 'react';
+import { getUSNAndRole } from '../../lib/functions';
 import Separator from '../Separator/Separator';
 
 const StudentInfoCard = ({ student }) => {
+    const role = getUSNAndRole().role;
+    const router = useRouter();
+
     const {
         name,
         USN,
@@ -72,7 +84,7 @@ const StudentInfoCard = ({ student }) => {
                 <Box p="16px" margin={2}>
                     <Box>
                         <Flex
-                            justify="flex-start"
+                            justify="space-between"
                             align="center"
                             minHeight="60px"
                             w="100%"
@@ -86,6 +98,25 @@ const StudentInfoCard = ({ student }) => {
                             >
                                 General Details
                             </Text>
+                            {role === 'ADMIN' && (
+                                <Button
+                                    bg={
+                                        'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                    }
+                                    _hover={{
+                                        bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                    }}
+                                    _focus={{ outline: 'none' }}
+                                    color="white"
+                                    fontSize="md"
+                                    variant="no-hover"
+                                    onClick={() =>
+                                        router.push(`/students/update/${USN}`)
+                                    }
+                                >
+                                    EDIT
+                                </Button>
+                            )}
                         </Flex>
                         <Separator />
                     </Box>

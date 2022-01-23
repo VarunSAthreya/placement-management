@@ -18,3 +18,33 @@ query GetAllDetails {
   eligibleCount
   placedStudentCount
 }
+
+query GetStudentHomeDetails($usn: ID!) {
+    getUpcomingCompanies {
+        name
+        type
+        arrival_date
+        package
+        applied {
+            user {
+                USN
+            }
+        }
+    }
+    studentDetails(USN: $usn) {
+        applied {
+            company {
+                name
+                type
+                package
+            }
+        }
+        selected {
+            company {
+                name
+                type
+                package
+            }
+        }
+    }
+}

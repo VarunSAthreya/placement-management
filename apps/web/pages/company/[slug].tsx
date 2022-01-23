@@ -13,7 +13,7 @@ import { useEffect, useRef } from 'react';
 import { CompanyInfoCard } from '../../components/Card';
 import { Loader } from '../../components/Loader';
 import { SideBar } from '../../components/Sidebar';
-import { useGetCompanyDetailsQuery } from '../../generated/graphql';
+import { useGetCompanyDetailsWithStudentEligibilityQuery } from '../../generated/graphql';
 import { getUSNAndRole } from '../../lib/functions';
 
 const CompanyDetails = () => {
@@ -32,9 +32,10 @@ const CompanyDetails = () => {
         role.current = rol;
     }, []);
 
-    const { data, loading, error } = useGetCompanyDetailsQuery({
-        variables: { name: slug, usn: getUSNAndRole().USN ?? '' },
-    });
+    const { data, loading, error } =
+        useGetCompanyDetailsWithStudentEligibilityQuery({
+            variables: { name: slug, usn: getUSNAndRole().USN ?? '' },
+        });
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
@@ -126,6 +127,7 @@ const CompanyDetails = () => {
                                 company={data.company}
                                 user={usn.current}
                                 isEligible={data.isStudentEligible}
+                                role={role.current}
                             />
                         )}
                     </Box>

@@ -30,7 +30,7 @@ import {
     useCreateUserMutation,
 } from '../../generated/graphql';
 
-type FormData = {
+type FormValues = {
     name: string;
     email: string;
     USN: string;
@@ -50,7 +50,7 @@ const StudentForm: NextPage = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormData>();
+    } = useForm<FormValues>();
 
     const branches = ['CSE', 'ECE', 'ISE', 'ME', 'CV', 'EIE', 'IEM'];
     const sections = ['A', 'B', 'C'];
@@ -61,7 +61,7 @@ const StudentForm: NextPage = () => {
     const secondaryBG = useColorModeValue('white', '#242526');
     const router = useRouter();
 
-    const onSubmit = (data: FormData) => {
+    const onSubmit = (data: FormValues) => {
         const variables = {
             input: {
                 USN: data.USN.toUpperCase(),

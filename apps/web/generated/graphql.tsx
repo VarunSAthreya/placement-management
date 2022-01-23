@@ -360,13 +360,20 @@ export type GetCompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetCompaniesQuery = { __typename?: 'Query', companies: Array<{ __typename?: 'Company', name: string, type: CompanyType, arrival_date?: string | null | undefined, package?: number | null | undefined, year: number, eligibility: { __typename?: 'CompanyEdibility', CGPA: number, backlogs: number } } | null | undefined> };
 
-export type GetCompanyDetailsQueryVariables = Exact<{
+export type GetCompanyDetailsWithStudentEligibilityQueryVariables = Exact<{
   name: Scalars['String'];
   usn: Scalars['ID'];
 }>;
 
 
-export type GetCompanyDetailsQuery = { __typename?: 'Query', isStudentEligible: boolean, company: { __typename?: 'Company', name: string, type: CompanyType, package?: number | null | undefined, arrival_date?: string | null | undefined, eligibility: { __typename?: 'CompanyEdibility', CGPA: number, backlogs: number, tenth: number, twelth: number } } };
+export type GetCompanyDetailsWithStudentEligibilityQuery = { __typename?: 'Query', isStudentEligible: boolean, company: { __typename?: 'Company', name: string, type: CompanyType, package?: number | null | undefined, arrival_date?: string | null | undefined, eligibility: { __typename?: 'CompanyEdibility', CGPA: number, backlogs: number, tenth: number, twelth: number } } };
+
+export type GetCompanyDetailsQueryVariables = Exact<{
+  name: Scalars['String'];
+}>;
+
+
+export type GetCompanyDetailsQuery = { __typename?: 'Query', company: { __typename?: 'Company', name: string, type: CompanyType, package?: number | null | undefined, arrival_date?: string | null | undefined, year: number, eligibility: { __typename?: 'CompanyEdibility', CGPA: number, backlogs: number, tenth: number, twelth: number } } };
 
 export type CreateCompanyMutationVariables = Exact<{
   input: CompanyInput;
@@ -387,15 +394,24 @@ export type GetSelectedPerCompanyQueryVariables = Exact<{
 
 export type GetSelectedPerCompanyQuery = { __typename?: 'Query', company: { __typename?: 'Company', name: string, package?: number | null | undefined, selected: Array<{ __typename?: 'Selected', user: { __typename?: 'UserDetails', name: string, USN: string, email: string, branch: Branch, section: Section, CGPA: number } } | null | undefined> } };
 
-export type GetTableCountQueryVariables = Exact<{ [key: string]: never; }>;
+export type UpdateCompanyMutationVariables = Exact<{
+  input: CompanyUpdateInput;
+}>;
 
 
-export type GetTableCountQuery = { __typename?: 'Query', companyCount: number, studentCount: number, appliedCount: number, selectedCount: number, eligibleCount: number, placedStudentCount: number };
+export type UpdateCompanyMutation = { __typename?: 'Mutation', updateCompany: { __typename?: 'Company', name: string } };
 
 export type GetAllDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type GetAllDetailsQuery = { __typename?: 'Query', studentCount: number, companyCount: number, appliedCount: number, selectedCount: number, eligibleCount: number, placedStudentCount: number, companies: Array<{ __typename?: 'Company', name: string, selected: Array<{ __typename?: 'Selected', user: { __typename?: 'UserDetails', name: string } } | null | undefined> } | null | undefined>, allStudentDetails: Array<{ __typename?: 'UserDetails', branch: Branch, placed: boolean } | null | undefined> };
+
+export type GetStudentHomeDetailsQueryVariables = Exact<{
+  usn: Scalars['ID'];
+}>;
+
+
+export type GetStudentHomeDetailsQuery = { __typename?: 'Query', getUpcomingCompanies: Array<{ __typename?: 'Company', name: string, type: CompanyType, arrival_date?: string | null | undefined, package?: number | null | undefined, applied: Array<{ __typename?: 'Applied', user: { __typename?: 'UserDetails', USN: string } } | null | undefined> } | null | undefined>, studentDetails: { __typename?: 'UserDetails', applied: Array<{ __typename?: 'Applied', company: { __typename?: 'Company', name: string, type: CompanyType, package?: number | null | undefined } } | null | undefined>, selected: Array<{ __typename?: 'Selected', company: { __typename?: 'Company', name: string, type: CompanyType, package?: number | null | undefined } } | null | undefined> } };
 
 export type GetSelectedByCompanyQueryVariables = Exact<{
   name: Scalars['String'];
@@ -664,8 +680,8 @@ export function useGetCompaniesLazyQuery(baseOptions?: Apollo.LazyQueryHookOptio
 export type GetCompaniesQueryHookResult = ReturnType<typeof useGetCompaniesQuery>;
 export type GetCompaniesLazyQueryHookResult = ReturnType<typeof useGetCompaniesLazyQuery>;
 export type GetCompaniesQueryResult = Apollo.QueryResult<GetCompaniesQuery, GetCompaniesQueryVariables>;
-export const GetCompanyDetailsDocument = gql`
-    query GetCompanyDetails($name: String!, $usn: ID!) {
+export const GetCompanyDetailsWithStudentEligibilityDocument = gql`
+    query GetCompanyDetailsWithStudentEligibility($name: String!, $usn: ID!) {
   company(name: $name) {
     name
     type
@@ -683,6 +699,52 @@ export const GetCompanyDetailsDocument = gql`
     `;
 
 /**
+ * __useGetCompanyDetailsWithStudentEligibilityQuery__
+ *
+ * To run a query within a React component, call `useGetCompanyDetailsWithStudentEligibilityQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetCompanyDetailsWithStudentEligibilityQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetCompanyDetailsWithStudentEligibilityQuery({
+ *   variables: {
+ *      name: // value for 'name'
+ *      usn: // value for 'usn'
+ *   },
+ * });
+ */
+export function useGetCompanyDetailsWithStudentEligibilityQuery(baseOptions: Apollo.QueryHookOptions<GetCompanyDetailsWithStudentEligibilityQuery, GetCompanyDetailsWithStudentEligibilityQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetCompanyDetailsWithStudentEligibilityQuery, GetCompanyDetailsWithStudentEligibilityQueryVariables>(GetCompanyDetailsWithStudentEligibilityDocument, options);
+      }
+export function useGetCompanyDetailsWithStudentEligibilityLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetCompanyDetailsWithStudentEligibilityQuery, GetCompanyDetailsWithStudentEligibilityQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetCompanyDetailsWithStudentEligibilityQuery, GetCompanyDetailsWithStudentEligibilityQueryVariables>(GetCompanyDetailsWithStudentEligibilityDocument, options);
+        }
+export type GetCompanyDetailsWithStudentEligibilityQueryHookResult = ReturnType<typeof useGetCompanyDetailsWithStudentEligibilityQuery>;
+export type GetCompanyDetailsWithStudentEligibilityLazyQueryHookResult = ReturnType<typeof useGetCompanyDetailsWithStudentEligibilityLazyQuery>;
+export type GetCompanyDetailsWithStudentEligibilityQueryResult = Apollo.QueryResult<GetCompanyDetailsWithStudentEligibilityQuery, GetCompanyDetailsWithStudentEligibilityQueryVariables>;
+export const GetCompanyDetailsDocument = gql`
+    query GetCompanyDetails($name: String!) {
+  company(name: $name) {
+    name
+    type
+    package
+    arrival_date
+    year
+    eligibility {
+      CGPA
+      backlogs
+      tenth
+      twelth
+    }
+  }
+}
+    `;
+
+/**
  * __useGetCompanyDetailsQuery__
  *
  * To run a query within a React component, call `useGetCompanyDetailsQuery` and pass it any options that fit your needs.
@@ -695,7 +757,6 @@ export const GetCompanyDetailsDocument = gql`
  * const { data, loading, error } = useGetCompanyDetailsQuery({
  *   variables: {
  *      name: // value for 'name'
- *      usn: // value for 'usn'
  *   },
  * });
  */
@@ -830,43 +891,39 @@ export function useGetSelectedPerCompanyLazyQuery(baseOptions?: Apollo.LazyQuery
 export type GetSelectedPerCompanyQueryHookResult = ReturnType<typeof useGetSelectedPerCompanyQuery>;
 export type GetSelectedPerCompanyLazyQueryHookResult = ReturnType<typeof useGetSelectedPerCompanyLazyQuery>;
 export type GetSelectedPerCompanyQueryResult = Apollo.QueryResult<GetSelectedPerCompanyQuery, GetSelectedPerCompanyQueryVariables>;
-export const GetTableCountDocument = gql`
-    query GetTableCount {
-  companyCount
-  studentCount
-  appliedCount
-  selectedCount
-  eligibleCount
-  placedStudentCount
+export const UpdateCompanyDocument = gql`
+    mutation UpdateCompany($input: CompanyUpdateInput!) {
+  updateCompany(input: $input) {
+    name
+  }
 }
     `;
+export type UpdateCompanyMutationFn = Apollo.MutationFunction<UpdateCompanyMutation, UpdateCompanyMutationVariables>;
 
 /**
- * __useGetTableCountQuery__
+ * __useUpdateCompanyMutation__
  *
- * To run a query within a React component, call `useGetTableCountQuery` and pass it any options that fit your needs.
- * When your component renders, `useGetTableCountQuery` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
+ * To run a mutation, you first call `useUpdateCompanyMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdateCompanyMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
  *
- * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const { data, loading, error } = useGetTableCountQuery({
+ * const [updateCompanyMutation, { data, loading, error }] = useUpdateCompanyMutation({
  *   variables: {
+ *      input: // value for 'input'
  *   },
  * });
  */
-export function useGetTableCountQuery(baseOptions?: Apollo.QueryHookOptions<GetTableCountQuery, GetTableCountQueryVariables>) {
+export function useUpdateCompanyMutation(baseOptions?: Apollo.MutationHookOptions<UpdateCompanyMutation, UpdateCompanyMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetTableCountQuery, GetTableCountQueryVariables>(GetTableCountDocument, options);
+        return Apollo.useMutation<UpdateCompanyMutation, UpdateCompanyMutationVariables>(UpdateCompanyDocument, options);
       }
-export function useGetTableCountLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetTableCountQuery, GetTableCountQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetTableCountQuery, GetTableCountQueryVariables>(GetTableCountDocument, options);
-        }
-export type GetTableCountQueryHookResult = ReturnType<typeof useGetTableCountQuery>;
-export type GetTableCountLazyQueryHookResult = ReturnType<typeof useGetTableCountLazyQuery>;
-export type GetTableCountQueryResult = Apollo.QueryResult<GetTableCountQuery, GetTableCountQueryVariables>;
+export type UpdateCompanyMutationHookResult = ReturnType<typeof useUpdateCompanyMutation>;
+export type UpdateCompanyMutationResult = Apollo.MutationResult<UpdateCompanyMutation>;
+export type UpdateCompanyMutationOptions = Apollo.BaseMutationOptions<UpdateCompanyMutation, UpdateCompanyMutationVariables>;
 export const GetAllDetailsDocument = gql`
     query GetAllDetails {
   companies {
@@ -916,6 +973,65 @@ export function useGetAllDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpti
 export type GetAllDetailsQueryHookResult = ReturnType<typeof useGetAllDetailsQuery>;
 export type GetAllDetailsLazyQueryHookResult = ReturnType<typeof useGetAllDetailsLazyQuery>;
 export type GetAllDetailsQueryResult = Apollo.QueryResult<GetAllDetailsQuery, GetAllDetailsQueryVariables>;
+export const GetStudentHomeDetailsDocument = gql`
+    query GetStudentHomeDetails($usn: ID!) {
+  getUpcomingCompanies {
+    name
+    type
+    arrival_date
+    package
+    applied {
+      user {
+        USN
+      }
+    }
+  }
+  studentDetails(USN: $usn) {
+    applied {
+      company {
+        name
+        type
+        package
+      }
+    }
+    selected {
+      company {
+        name
+        type
+        package
+      }
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetStudentHomeDetailsQuery__
+ *
+ * To run a query within a React component, call `useGetStudentHomeDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetStudentHomeDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetStudentHomeDetailsQuery({
+ *   variables: {
+ *      usn: // value for 'usn'
+ *   },
+ * });
+ */
+export function useGetStudentHomeDetailsQuery(baseOptions: Apollo.QueryHookOptions<GetStudentHomeDetailsQuery, GetStudentHomeDetailsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetStudentHomeDetailsQuery, GetStudentHomeDetailsQueryVariables>(GetStudentHomeDetailsDocument, options);
+      }
+export function useGetStudentHomeDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetStudentHomeDetailsQuery, GetStudentHomeDetailsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetStudentHomeDetailsQuery, GetStudentHomeDetailsQueryVariables>(GetStudentHomeDetailsDocument, options);
+        }
+export type GetStudentHomeDetailsQueryHookResult = ReturnType<typeof useGetStudentHomeDetailsQuery>;
+export type GetStudentHomeDetailsLazyQueryHookResult = ReturnType<typeof useGetStudentHomeDetailsLazyQuery>;
+export type GetStudentHomeDetailsQueryResult = Apollo.QueryResult<GetStudentHomeDetailsQuery, GetStudentHomeDetailsQueryVariables>;
 export const GetSelectedByCompanyDocument = gql`
     query GetSelectedByCompany($name: String!) {
   getSelectedByCompany(name: $name) {

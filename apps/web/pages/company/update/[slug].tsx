@@ -25,34 +25,29 @@ import { Loader } from '../../../components/Loader';
 import { Separator } from '../../../components/Separator';
 import { SideBar } from '../../../components/Sidebar';
 import {
-    Branch,
-    Section,
-    useGetStudentDetailsQuery,
-    useUpdateStudentMutation,
+    CompanyType,
+    useGetCompanyDetailsQuery,
+    useUpdateCompanyMutation,
 } from '../../../generated/graphql';
 
 type FormValues = {
-    name: string;
-    email: string;
-    USN: string;
-    branch: string;
-    section: string;
-    tenth: number;
-    twelth: number;
     CGPA: number;
     backlogs: number;
-    year: number;
-    eligible: boolean;
-    placed: boolean;
+    date: string;
+    name: string;
     package: number;
+    tenth: number;
+    twelth: number;
+    type: string;
+    year: number;
 };
 
-const UpdateStudent: NextPage = () => {
+const CompanyForm: NextPage = () => {
     const { asPath } = useRouter();
-    const usn = asPath.split('/')[3];
+    const company = asPath.split('/')[3];
 
-    const { data, loading, error } = useGetStudentDetailsQuery({
-        variables: { usn },
+    const { data, loading, error } = useGetCompanyDetailsQuery({
+        variables: { name: company },
     });
 
     const {
@@ -62,56 +57,79 @@ const UpdateStudent: NextPage = () => {
         formState: { errors },
     } = useForm<FormValues>({
         defaultValues: useMemo(() => {
-            return data?.studentDetails;
+            const details = {
+                name: data?.company?.name,
+                type: data?.company?.type,
+                year: data?.company?.year,
+                package: data?.company?.package,
+                date: new Date(Number(data?.company?.arrival_date ?? 0))
+                    .toISOString()
+                    .substring(0, 10),
+                backlogs: data?.company?.eligibility?.backlogs,
+                CGPA: data?.company?.eligibility?.CGPA,
+                tenth: data?.company?.eligibility?.tenth,
+                twelth: data?.company?.eligibility?.twelth,
+            };
+            console.log({ details });
+
+            return details;
         }, [data]),
     });
 
     useEffect(() => {
-        reset(data?.studentDetails);
+        const details = {
+            name: data?.company?.name,
+            type: data?.company?.type,
+            year: data?.company?.year,
+            package: data?.company?.package,
+            date: new Date(Number(data?.company?.arrival_date ?? 0))
+                .toISOString()
+                .substring(0, 10),
+            backlogs: data?.company?.eligibility?.backlogs,
+            CGPA: data?.company?.eligibility?.CGPA,
+            tenth: data?.company?.eligibility?.tenth,
+            twelth: data?.company?.eligibility?.twelth,
+        };
+        reset(details);
     }, [data]);
 
-    const branches = ['CSE', 'ECE', 'ISE', 'ME', 'CV', 'EIE', 'IEM'];
-    const sections = ['A', 'B', 'C'];
+    const router = useRouter();
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
-    const router = useRouter();
 
-    const [update, { loading: updLoading }] = useUpdateStudentMutation();
+    const [update, { loading: updateLoading }] = useUpdateCompanyMutation();
 
     const onSubmit = (values: FormValues) => {
         const variables = {
             input: {
-                USN: values.USN,
                 name: values.name,
-                email: values.email,
-                branch: values.branch as Branch,
-                section: values.section as Section,
-                backlogs: Number(values.backlogs),
-                tenth: Number(values.tenth),
-                twelth: Number(values.twelth),
-                CGPA: Number(values.CGPA),
-                year: Number(values.year),
-                eligible: Boolean(values.eligible),
-                placed: values.placed,
+                type: values.type as CompanyType,
                 package: Number(values.package),
+                year: Number(values.year),
+                arrival_date: new Date(values.date).toISOString(),
+                eligibility: {
+                    backlogs: Number(values.backlogs),
+                    CGPA: Number(values.CGPA),
+                    tenth: Number(values.tenth),
+                    twelth: Number(values.twelth),
+                },
             },
         };
+
+        console.log({ variables });
+
         update({ variables })
-            .then(() => {
-                router.push('/students');
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+            .then(() => router.push('/company'))
+            .catch((err) => console.log(err));
     };
 
-    if (error) {
-        console.log({ error });
-        return <p>Error</p>;
-    }
+    if (loading || updateLoading || !data) return <Loader />;
 
-    if (loading || !data || updLoading) return <Loader />;
+    if (error) {
+        console.log(error);
+        return <Text>Error</Text>;
+    }
 
     return (
         <Flex flexDirection={'row'} bg={primaryBG}>
@@ -139,7 +157,7 @@ const UpdateStudent: NextPage = () => {
                                 fontWeight="extrabold"
                                 textTransform={'uppercase'}
                             >
-                                Update Student
+                                Update Company
                             </Text>
                             <Breadcrumb
                                 separator={
@@ -163,7 +181,7 @@ const UpdateStudent: NextPage = () => {
 
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/students"
+                                        href="/company"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',
@@ -172,7 +190,7 @@ const UpdateStudent: NextPage = () => {
                                         _focus={{ outline: 'none' }}
                                         variant="no-hover"
                                     >
-                                        Students
+                                        Companies
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
                                 <BreadcrumbItem isCurrentPage>
@@ -186,7 +204,7 @@ const UpdateStudent: NextPage = () => {
                                         _focus={{ outline: 'none' }}
                                         variant="no-hover"
                                     >
-                                        Update Student
+                                        Update Company
                                     </BreadcrumbLink>
                                 </BreadcrumbItem>
                             </Breadcrumb>
@@ -204,7 +222,7 @@ const UpdateStudent: NextPage = () => {
                                         fontWeight="extrabold"
                                         textTransform={'uppercase'}
                                     >
-                                        Student Details
+                                        Company Details
                                     </Text>
                                     <Separator />
                                 </GridItem>
@@ -218,13 +236,15 @@ const UpdateStudent: NextPage = () => {
                                             </InputLeftAddon>
                                             <Input
                                                 type="text"
-                                                placeholder="Student Name"
+                                                placeholder="Company Name"
+                                                disabled
                                                 {...register('name', {
                                                     required:
-                                                        'Please enter The Student Name',
+                                                        'Please Enter The Company Name',
                                                 })}
                                             />
                                         </InputGroup>
+
                                         <FormErrorMessage>
                                             {errors.name && errors.name.message}
                                         </FormErrorMessage>
@@ -232,110 +252,109 @@ const UpdateStudent: NextPage = () => {
                                 </GridItem>
                                 <GridItem p={4}>
                                     <FormControl
-                                        isInvalid={errors.USN !== undefined}
+                                        isInvalid={errors.type !== undefined}
                                     >
                                         <InputGroup>
                                             <InputLeftAddon>
-                                                USN:
+                                                Type:
                                             </InputLeftAddon>
-                                            <Input
-                                                type="text"
-                                                disabled
-                                                placeholder="USN"
-                                                {...register('USN', {
+                                            <Select
+                                                placeholder="Select Company Type"
+                                                {...register('type', {
                                                     required:
-                                                        'Please Enter The USN of the Student',
+                                                        'Please Enter The Company Type',
                                                 })}
-                                            />
+                                            >
+                                                <option value="SERVICE">
+                                                    Service
+                                                </option>
+                                                <option value="PRODUCT">
+                                                    Product
+                                                </option>
+                                            </Select>
                                         </InputGroup>
 
                                         <FormErrorMessage>
-                                            {errors.USN && errors.USN.message}
+                                            {errors.type && errors.type.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
                                 <GridItem p={4} colSpan={2}>
                                     <FormControl
-                                        isInvalid={errors.email !== undefined}
+                                        isInvalid={errors.year !== undefined}
                                     >
                                         <InputGroup>
                                             <InputLeftAddon>
-                                                Email:
+                                                Year:
+                                            </InputLeftAddon>
+                                            <Select
+                                                placeholder="Select Year"
+                                                {...register('year', {
+                                                    required:
+                                                        'Please Enter The Year',
+                                                })}
+                                            >
+                                                <option value="2022">
+                                                    2022
+                                                </option>
+                                                <option value="2023">
+                                                    2023
+                                                </option>
+                                                <option value="2024">
+                                                    2024
+                                                </option>
+                                            </Select>
+                                        </InputGroup>
+
+                                        <FormErrorMessage>
+                                            {errors.year && errors.year.message}
+                                        </FormErrorMessage>
+                                    </FormControl>
+                                </GridItem>
+                                <GridItem p={4} colSpan={2}>
+                                    <FormControl
+                                        isInvalid={errors.package !== undefined}
+                                    >
+                                        <InputGroup>
+                                            <InputLeftAddon>
+                                                Package:
                                             </InputLeftAddon>
                                             <Input
-                                                type="email"
-                                                placeholder="Email ID"
-                                                {...register('email', {
+                                                type="number"
+                                                placeholder="Enter Package Detail"
+                                                {...register('package', {
                                                     required:
-                                                        'Please Enter The Email Id of the Student',
+                                                        'Please Enter The Package Detail',
                                                 })}
                                             />
                                         </InputGroup>
 
                                         <FormErrorMessage>
-                                            {errors.email &&
-                                                errors.email.message}
+                                            {errors.package &&
+                                                errors.package.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={2}>
                                     <FormControl
-                                        isInvalid={errors.branch !== undefined}
+                                        isInvalid={errors.date !== undefined}
                                     >
                                         <InputGroup>
                                             <InputLeftAddon>
-                                                Branch:
+                                                Arrival Date:
                                             </InputLeftAddon>
-                                            <Select
-                                                placeholder="Select Branch"
-                                                {...register('branch', {
+                                            <Input
+                                                color="gray.500"
+                                                type="date"
+                                                {...register('date', {
                                                     required:
-                                                        'Please Enter The Branch',
+                                                        'Please Enter The Arrival Date of The Company',
                                                 })}
-                                            >
-                                                {branches.map((br) => (
-                                                    <option value={br} key={br}>
-                                                        {br}
-                                                    </option>
-                                                ))}
-                                            </Select>
-                                        </InputGroup>
-                                        <FormErrorMessage>
-                                            {errors.branch &&
-                                                errors.branch.message}
-                                        </FormErrorMessage>
-                                    </FormControl>
-                                </GridItem>
-                                <GridItem p={4}>
-                                    <FormControl
-                                        isInvalid={errors.section !== undefined}
-                                    >
-                                        <InputGroup>
-                                            <InputLeftAddon>
-                                                Section:
-                                            </InputLeftAddon>
-                                            <Select
-                                                placeholder="Select Section"
-                                                {...register('section', {
-                                                    required:
-                                                        'Please Enter The Section',
-                                                })}
-                                            >
-                                                {sections.map((sec) => (
-                                                    <option
-                                                        value={sec}
-                                                        key={sec}
-                                                    >
-                                                        {sec}
-                                                    </option>
-                                                ))}
-                                            </Select>
+                                            />
                                         </InputGroup>
 
                                         <FormErrorMessage>
-                                            {errors.section &&
-                                                errors.section.message}
+                                            {errors.date && errors.date.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
@@ -350,7 +369,7 @@ const UpdateStudent: NextPage = () => {
                                         fontWeight="extrabold"
                                         textTransform={'uppercase'}
                                     >
-                                        Academic Details
+                                        Eligibility Criteria
                                     </Text>
                                     <Separator />
                                 </GridItem>
@@ -392,7 +411,7 @@ const UpdateStudent: NextPage = () => {
                                             <Input
                                                 type="number"
                                                 step="0.01"
-                                                placeholder="12Th Marks Percentage"
+                                                placeholder="12th Marks Percentage"
                                                 {...register('twelth', {
                                                     required:
                                                         'Please Enter Eligibile Criteria Based On 12Th Marks',
@@ -436,31 +455,6 @@ const UpdateStudent: NextPage = () => {
                                 </GridItem>
                                 <GridItem p={4}>
                                     <FormControl
-                                        isInvalid={errors.year !== undefined}
-                                    >
-                                        <InputGroup>
-                                            <InputLeftAddon>
-                                                Year:
-                                            </InputLeftAddon>
-                                            <Input
-                                                type="number"
-                                                placeholder="Passing Year"
-                                                {...register('year', {
-                                                    required:
-                                                        'Please Enter Passing Year',
-                                                    max: 2050,
-                                                    min: 2015,
-                                                })}
-                                            />
-                                        </InputGroup>
-
-                                        <FormErrorMessage>
-                                            {errors.year && errors.year.message}
-                                        </FormErrorMessage>
-                                    </FormControl>
-                                </GridItem>
-                                <GridItem p={4}>
-                                    <FormControl
                                         isInvalid={
                                             errors.backlogs !== undefined
                                         }
@@ -471,10 +465,10 @@ const UpdateStudent: NextPage = () => {
                                             </InputLeftAddon>
                                             <Input
                                                 type="number"
-                                                placeholder="No of backlogs"
+                                                placeholder="No of Backlogs"
                                                 {...register('backlogs', {
                                                     required:
-                                                        'Please Enter Eligibile Criteria Based On backlogs',
+                                                        'Please Enter Eligible Criteria Based On backlogs',
                                                     max: 10,
                                                     min: 0,
                                                 })}
@@ -484,92 +478,6 @@ const UpdateStudent: NextPage = () => {
                                         <FormErrorMessage>
                                             {errors.backlogs &&
                                                 errors.backlogs.message}
-                                        </FormErrorMessage>
-                                    </FormControl>
-                                </GridItem>
-                                <GridItem p={4}>
-                                    <FormControl
-                                        isInvalid={
-                                            errors.eligible !== undefined
-                                        }
-                                    >
-                                        <InputGroup>
-                                            <InputLeftAddon>
-                                                Eligible:
-                                            </InputLeftAddon>
-                                            <Select
-                                                placeholder="Is Eligible"
-                                                {...register('eligible', {
-                                                    required:
-                                                        'Please Select if Eligible or Not',
-                                                })}
-                                            >
-                                                <option value={'true'}>
-                                                    True
-                                                </option>
-                                                <option value={'false'}>
-                                                    False
-                                                </option>
-                                            </Select>
-                                        </InputGroup>
-
-                                        <FormErrorMessage>
-                                            {errors.eligible &&
-                                                errors.eligible.message}
-                                        </FormErrorMessage>
-                                    </FormControl>
-                                </GridItem>
-                                <GridItem p={4}>
-                                    <FormControl
-                                        isInvalid={errors.placed !== undefined}
-                                    >
-                                        <InputGroup>
-                                            <InputLeftAddon>
-                                                Placed:
-                                            </InputLeftAddon>
-                                            <Select
-                                                placeholder="Is Placed"
-                                                {...register('placed', {
-                                                    required:
-                                                        'Please Select if Placed or Not',
-                                                })}
-                                            >
-                                                <option value={'true'}>
-                                                    True
-                                                </option>
-                                                <option value={'false'}>
-                                                    False
-                                                </option>
-                                            </Select>
-                                        </InputGroup>
-
-                                        <FormErrorMessage>
-                                            {errors.placed &&
-                                                errors.placed.message}
-                                        </FormErrorMessage>
-                                    </FormControl>
-                                </GridItem>
-                                <GridItem p={4}>
-                                    <FormControl
-                                        isInvalid={errors.package !== undefined}
-                                    >
-                                        <InputGroup>
-                                            <InputLeftAddon>
-                                                Package:
-                                            </InputLeftAddon>
-                                            <Input
-                                                type="number"
-                                                placeholder="Package"
-                                                {...register('package', {
-                                                    required:
-                                                        'Please Enter Package',
-                                                })}
-                                            />
-                                        </InputGroup>
-
-                                        <FormErrorMessage>
-                                            {errors.package &&
-                                                errors.package.message}
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
@@ -590,7 +498,7 @@ const UpdateStudent: NextPage = () => {
                                             type="submit"
                                             textTransform={'uppercase'}
                                         >
-                                            Update Student
+                                            Update Company
                                         </Button>
                                     </Flex>
                                 </GridItem>
@@ -603,4 +511,4 @@ const UpdateStudent: NextPage = () => {
     );
 };
 
-export default UpdateStudent;
+export default CompanyForm;

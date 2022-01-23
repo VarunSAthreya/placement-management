@@ -16,12 +16,12 @@ import {
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { Loader } from '../components/Loader';
-import { Separator } from '../components/Separator';
-import { SideBar } from '../components/Sidebar';
-import { useCreateSelectedMutation } from '../generated/graphql';
+import { Loader } from '../../components/Loader';
+import { Separator } from '../../components/Separator';
+import { SideBar } from '../../components/Sidebar';
+import { useCreateSelectedMutation } from '../../generated/graphql';
 
-type FormData = {
+type FormValues = {
     name: string;
     USN: string;
     company: string;
@@ -33,7 +33,7 @@ const PlacedForm = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm<FormData>();
+    } = useForm<FormValues>();
 
     const [create, { loading }] = useCreateSelectedMutation();
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
@@ -41,7 +41,7 @@ const PlacedForm = () => {
 
     const router = useRouter();
 
-    const onSubmit = (data: FormData) => {
+    const onSubmit = (data: FormValues) => {
         console.log({ data });
         const { company, USN, package: pkg } = data;
 

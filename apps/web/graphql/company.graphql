@@ -12,7 +12,7 @@ query GetCompanies {
     }
 }
 
-query GetCompanyDetails($name: String!, $usn: ID!) {
+query GetCompanyDetailsWithStudentEligibility($name: String!, $usn: ID!) {
     company(name: $name) {
         name
         type
@@ -26,6 +26,22 @@ query GetCompanyDetails($name: String!, $usn: ID!) {
         }
     }
     isStudentEligible(USN: $usn, company: $name)
+}
+
+query GetCompanyDetails($name: String!) {
+    company(name: $name) {
+        name
+        type
+        package
+        arrival_date
+        year
+        eligibility {
+            CGPA
+            backlogs
+            tenth
+            twelth
+        }
+    }
 }
 
 mutation CreateCompany($input: CompanyInput!) {
@@ -61,5 +77,11 @@ query GetSelectedPerCompany($name: String!) {
                 CGPA
             }
         }
+    }
+}
+
+mutation UpdateCompany($input: CompanyUpdateInput!) {
+    updateCompany(input: $input) {
+        name
     }
 }
