@@ -79,7 +79,49 @@ const AdminHome = () => {
                     <Box p="16px" bg={secondaryBG} borderRadius={16}>
                         <Box>
                             <Flex direction="column" w="100%">
-                                {/* <BarChart /> */}
+                                {!loading && (
+                                    <BarChart
+                                        branch={data.allStudentDetails.map(
+                                            (b) => b.branch
+                                        )}
+                                        students={data.allStudentDetails
+                                            .map((s) => s.branch)
+                                            .reduce(
+                                                (a, b) =>
+                                                    (a[b] = a[b] + 1 || 1) && a,
+                                                []
+                                            )}
+                                        placed={data.allStudentDetails
+                                            .map((p) => ({
+                                                branch: p.branch,
+                                                placed:
+                                                    p.placed === true
+                                                        ? 'Placed'
+                                                        : 'NotPlaced',
+                                            }))
+                                            .reduce(
+                                                (acc, { branch, placed }) => {
+                                                    acc[branch] ??= {
+                                                        placed: [],
+                                                    };
+                                                    if (Array.isArray(placed))
+                                                        acc[branch].placed =
+                                                            acc[
+                                                                branch
+                                                            ].placed.concat(
+                                                                placed
+                                                            );
+                                                    else
+                                                        acc[branch].placed.push(
+                                                            placed
+                                                        );
+
+                                                    return acc;
+                                                },
+                                                {}
+                                            )}
+                                    />
+                                )}
                             </Flex>
                         </Box>
                     </Box>
@@ -122,7 +164,16 @@ const AdminHome = () => {
                     <Box p="16px" bg={secondaryBG} borderRadius={16}>
                         <Box>
                             <Flex direction="column" w="100%">
-                                {/* <ProgressChart /> */}
+                                {!loading && (
+                                    <ProgressChart
+                                        selected={data.companies.map(
+                                            (c) => c.selected.length
+                                        )}
+                                        category={data.companies.map(
+                                            (c) => c.name
+                                        )}
+                                    />
+                                )}
                             </Flex>
                         </Box>
                     </Box>

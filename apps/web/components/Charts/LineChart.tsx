@@ -6,17 +6,6 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
     ssr: false,
 });
 
-const lineChartData = [
-    {
-        name: 'Mobile apps',
-        data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-    },
-    {
-        name: 'Websites',
-        data: [30, 90, 40, 140, 290, 290, 340, 230, 400],
-    },
-];
-
 const lineChartOptions: ApexOptions = {
     chart: {
         toolbar: {
@@ -33,20 +22,6 @@ const lineChartOptions: ApexOptions = {
         curve: 'smooth',
     },
     xaxis: {
-        categories: [
-            'Jan',
-            'Feb',
-            'Mar',
-            'Apr',
-            'May',
-            'Jun',
-            'Jul',
-            'Aug',
-            'Sep',
-            'Oct',
-            'Nov',
-            'Dec',
-        ],
         labels: {
             style: {
                 colors: '#c8cfca',
@@ -86,6 +61,16 @@ const lineChartOptions: ApexOptions = {
 };
 
 const LineChart = () => {
+    const lineChartData = [
+        {
+            name: 'Prev.Year Placed Students Record',
+            data: [5, 7, 3, 10],
+        },
+        {
+            name: 'Current Year Placed Students Record',
+            data: [2, 5, 7, 8],
+        },
+    ];
     return (
         <ReactApexChart
             options={lineChartOptions}

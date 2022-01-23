@@ -3,25 +3,24 @@ import { ApexOptions } from 'apexcharts';
 import dynamic from 'next/dynamic';
 const Chart = dynamic(() => import('react-apexcharts'), { ssr: false });
 
-const BarChart = ({ branch, data, students }) => {
-    //INCOMPLETE
+const BarChart = ({ branch, students, placed }) => {
     const category = branch.filter((v, i) => branch.indexOf(v) === i);
-    const allPlaced = data.map((d) => d.placed);
-    const allStudents = students.reduce(
-        (a, b) => (a[b] = a[b] + 1 || 1) && a,
-        []
+    const totalStudents = category.map((b) => students[b]);
+
+    const placedStudents = category.map(
+        (b) =>
+            placed[b].placed.reduce((a, b) => (a[b] = a[b] + 1 || 1) && a, [])
+                .Placed
     );
-    console.log(allPlaced);
-    console.log(allStudents);
 
     const barChartData = [
         {
             name: 'Total No.of Students',
-            data: allStudents,
+            data: totalStudents,
         },
         {
             name: 'Placed Students',
-            data: [53, 32, 42, 22, 47],
+            data: placedStudents,
         },
     ];
 
