@@ -17,7 +17,7 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Loader } from '../components/Loader';
 import { SideBar } from '../components/Sidebar';
 import { AppliedTable } from '../components/Tables';
@@ -31,6 +31,11 @@ const Applied = () => {
     const tableBoxShadow = useColorModeValue('0px 2px 3px #eee', '0px');
 
     const { data, loading, error } = useGetAllAppliedQuery();
+
+    useEffect(() => {
+        setFilteredTable(data?.applied ?? []);
+    }, [data]);
+
     if (loading) return <Loader />;
 
     const onChangeHandler = (e) => {
@@ -176,24 +181,12 @@ const Applied = () => {
                                 </Thead>
                                 <Tbody bg={secondaryBG}>
                                     {!loading &&
-                                    filteredTable.length === 0 &&
-                                    inputData.trim() === ''
-                                        ? data.applied.map((row, index) => {
-                                              return (
-                                                  <AppliedTable
-                                                      key={index}
-                                                      data={row}
-                                                  />
-                                              );
-                                          })
-                                        : filteredTable.map((row, index) => {
-                                              return (
-                                                  <AppliedTable
-                                                      key={index}
-                                                      data={row}
-                                                  />
-                                              );
-                                          })}
+                                        filteredTable.map((row, index) => (
+                                            <AppliedTable
+                                                key={index}
+                                                data={row}
+                                            />
+                                        ))}
                                 </Tbody>
                             </Table>
                             {!loading &&
