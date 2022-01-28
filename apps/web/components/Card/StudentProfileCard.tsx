@@ -2,7 +2,7 @@ import { Button, Flex, Text, useDisclosure } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 import ChangePassword from '../Modal/ChangePassword';
 
-const ProfileCard = ({ data }) => {
+const StudentProfileCard = ({ data }) => {
     const {
         name,
         USN,
@@ -309,4 +309,4 @@ const ProfileCard = ({ data }) => {
     );
 };
 
-export default ProfileCard;
+export default StudentProfileCard;

@@ -12,7 +12,12 @@ import {
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
-import { AppliedCard, PlacedCard, ProfileCard } from '../components/Card';
+import {
+    AdminProfileCard,
+    AppliedCard,
+    PlacedCard,
+    StudentProfileCard,
+} from '../components/Card';
 import { Loader } from '../components/Loader';
 import SideBar from '../components/Sidebar/Sidebar';
 import { useGetProfileDetailsLazyQuery } from '../generated/graphql';
@@ -105,35 +110,40 @@ const Profile: NextPage = () => {
                         </Breadcrumb>
                     </Flex>
                 </Box>
-                {role.current === 'STUDENT' && (
-                    <Grid
-                        templateColumns={{ sm: '1fr', xl: 'repeat(2, 1fr)' }}
-                        gap="22px"
+                <Grid
+                    templateColumns={{ sm: '1fr', xl: 'repeat(2, 1fr)' }}
+                    gap="22px"
+                >
+                    <Box
+                        p="16px"
+                        my={{ sm: '24px', xl: '0px' }}
+                        bg={secondaryBG}
+                        borderRadius={8}
                     >
-                        <Box
-                            p="16px"
-                            my={{ sm: '24px', xl: '0px' }}
-                            bg={secondaryBG}
-                            borderRadius={8}
-                        >
-                            <Box p="12px 5px" mb="12px">
-                                <Text
-                                    bgGradient="linear(to-l, #7928CA, #FF0080)"
-                                    bgClip="text"
-                                    fontSize="2xl"
-                                    fontWeight="extrabold"
-                                    textTransform={'uppercase'}
-                                >
-                                    General Information
-                                </Text>
-                            </Box>
-                            <Box px="5px">
-                                {!loading && (
-                                    <ProfileCard data={data.user.details} />
-                                )}
-                            </Box>
+                        <Box p="12px 5px" mb="12px">
+                            <Text
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                                fontSize="2xl"
+                                fontWeight="extrabold"
+                                textTransform={'uppercase'}
+                            >
+                                General Information
+                            </Text>
                         </Box>
+                        <Box px="5px">
+                            {!loading &&
+                                (role.current === 'STUDENT' ? (
+                                    <StudentProfileCard
+                                        data={data.user.details}
+                                    />
+                                ) : (
+                                    <AdminProfileCard data={usn.current} />
+                                ))}
+                        </Box>
+                    </Box>
 
+                    {role.current === 'STUDENT' && (
                         <Box
                             p="16px"
                             my={{ sm: '24px', xl: '0px' }}
@@ -192,8 +202,8 @@ const Profile: NextPage = () => {
                                 </Flex>
                             </Box>
                         </Box>
-                    </Grid>
-                )}
+                    )}
+                </Grid>
             </Flex>
         </Flex>
     );
