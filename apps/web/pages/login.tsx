@@ -84,10 +84,13 @@ const Login = () => {
                 >
                     <Heading
                         fontSize="48px"
-                        mb="20px"
+                        mb="40px"
                         p={1}
-                        color={blackToWhite}
                         textAlign={'center'}
+                        bgGradient="linear(to-l, #7928CA, #FF0080)"
+                        bgClip="text"
+                        fontWeight="extrabold"
+                        textTransform={'uppercase'}
                     >
                         Placement Portal
                     </Heading>
@@ -103,7 +106,7 @@ const Login = () => {
                                         fontWeight="normal"
                                         color={blackToWhite}
                                     >
-                                        USN
+                                        User ID
                                     </FormLabel>
                                     <InputGroup>
                                         <InputLeftElement pointerEvents="none">
@@ -127,7 +130,7 @@ const Login = () => {
                                             fontSize="md"
                                             color={blackToWhite}
                                             type="text"
-                                            placeholder="Your USN"
+                                            placeholder="Enter User ID"
                                             size="lg"
                                             {...register('USN', {
                                                 required:
@@ -211,7 +214,7 @@ const Login = () => {
                                         bg: buttonHover,
                                     }}
                                 >
-                                    SIGN IN
+                                    LOGIN
                                 </Button>
                             </GridItem>
                         </Grid>
