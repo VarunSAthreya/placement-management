@@ -1,6 +1,15 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
+import React, { FC } from 'react';
 
-const AppliedCard = ({ data }) => {
+type Props = {
+    data: {
+        name: string;
+        type: string;
+        package: number;
+    };
+};
+
+const AppliedCard: FC<Props> = ({ data }) => {
     const { name, type, package: CTC } = data;
 
     return (

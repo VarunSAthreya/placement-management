@@ -1,8 +1,13 @@
 import { Button, Flex, Text, useDisclosure } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import React, { FC } from 'react';
 import ChangePassword from '../Modal/ChangePassword';
 
-const AdminProfileCard = ({ data }) => {
+type Props = {
+    data: string;
+};
+
+const AdminProfileCard: FC<Props> = ({ data }) => {
     const USN = data;
 
     const router = useRouter();

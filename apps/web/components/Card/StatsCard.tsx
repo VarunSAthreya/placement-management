@@ -7,9 +7,17 @@ import {
     useColorModeValue,
     Icon,
 } from '@chakra-ui/react';
+import React, { FC } from 'react';
+import { IconType } from 'react-icons';
 import IconBox from '../Icons/IconBox';
 
-const StatsCard = ({ title, count, icon }) => {
+type Props = {
+    title: string;
+    count: number;
+    icon: IconType;
+};
+
+const StatsCard: FC<Props> = ({ title, count, icon }) => {
     return (
         <Box
             minH="83px"
