@@ -7,13 +7,7 @@ import IconBox from '../Icons/IconBox';
 import { Separator } from '../Separator';
 
 type Props = {
-    data: {
-        name: string;
-        type: string;
-        arrival_date: string;
-        package: number;
-        applied: [];
-    };
+    data: ICompany;
 };
 
 const UpcomingCard: FC<Props> = ({ data }) => {

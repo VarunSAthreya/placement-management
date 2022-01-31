@@ -2,11 +2,7 @@ import { Box, Flex, Text } from '@chakra-ui/react';
 import React, { FC } from 'react';
 
 type Props = {
-    data: {
-        name: string;
-        type: string;
-        package: number;
-    };
+    data: ICompany;
 };
 
 const PlacedCard: FC<Props> = ({ data }) => {
