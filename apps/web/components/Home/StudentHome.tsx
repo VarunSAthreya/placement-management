@@ -115,7 +115,7 @@ const StudentHome: NextPage = () => {
                                 data.getUpcomingCompanies.map((company) => (
                                     <UpcomingCard
                                         key={company.name}
-                                        data={company as any}
+                                        data={company}
                                     />
                                 ))}
                         </Box>
@@ -165,7 +165,7 @@ const StudentHome: NextPage = () => {
                         <Box px="5px">
                             <Flex direction="column">
                                 {!loading &&
-                                    data.studentDetails.applied.map((row) => {
+                                    data.studentDetails.selected.map((row) => {
                                         console.log(row);
                                         return (
                                             <PlacedCard
