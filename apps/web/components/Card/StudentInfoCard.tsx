@@ -7,11 +7,44 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { FC } from 'react';
 import { getUSNAndRole } from '../../lib/functions';
 import Separator from '../Separator/Separator';
 
-const StudentInfoCard = ({ student }) => {
+enum Branch {
+    CSE = 'CSE',
+    ECE = 'ECE',
+    ISE = 'ISE',
+    ME = 'ME',
+    CV = 'CV',
+    EIE = 'EIE',
+    IEM = 'IEM',
+}
+
+enum Section {
+    A = 'A',
+    B = 'B',
+    C = 'C',
+}
+
+type Props = {
+    student: {
+        name: string;
+        USN: string;
+        year: number;
+        email: string;
+        section: Section;
+        branch: Branch;
+        eligible: boolean;
+        placed: boolean;
+        CGPA: number;
+        backlogs: number;
+        tenth: number;
+        twelth: number;
+    };
+};
+
+const StudentInfoCard: FC<Props> = ({ student }) => {
     const role = getUSNAndRole().role;
     const router = useRouter();
 

@@ -1,8 +1,43 @@
 import { Button, Flex, Text, useDisclosure } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import React, { FC } from 'react';
 import ChangePassword from '../Modal/ChangePassword';
 
-const StudentProfileCard = ({ data }) => {
+enum Branch {
+    CSE = 'CSE',
+    ECE = 'ECE',
+    ISE = 'ISE',
+    ME = 'ME',
+    CV = 'CV',
+    EIE = 'EIE',
+    IEM = 'IEM',
+}
+
+enum Section {
+    A = 'A',
+    B = 'B',
+    C = 'C',
+}
+
+type Props = {
+    data: {
+        name: string;
+        USN: string;
+        year: number;
+        email: string;
+        section: Section;
+        branch: Branch;
+        eligible: boolean;
+        placed: boolean;
+        CGPA: number;
+        backlogs: number;
+        tenth: number;
+        twelth: number;
+        package: number;
+    };
+};
+
+const StudentProfileCard: FC<Props> = ({ data }) => {
     const {
         name,
         USN,

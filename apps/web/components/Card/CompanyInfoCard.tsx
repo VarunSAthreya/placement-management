@@ -21,7 +21,18 @@ import { Loader } from '../Loader';
 import Separator from '../Separator/Separator';
 
 type Props = {
-    company: any;
+    company: {
+        name: string;
+        type: string;
+        package: number;
+        arrival_date: string;
+        eligibility: {
+            CGPA: number;
+            backlogs: number;
+            tenth: number;
+            twelth: number;
+        };
+    };
     user: string;
     isEligible: boolean;
     role: string;
