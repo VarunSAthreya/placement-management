@@ -258,7 +258,7 @@ const PlacedForm = () => {
                                             type="submit"
                                             textTransform={'uppercase'}
                                         >
-                                            Add Student
+                                            Add Placed Detail
                                         </Button>
                                     </Flex>
                                 </GridItem>
