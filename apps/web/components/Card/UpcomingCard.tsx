@@ -1,5 +1,6 @@
 import { Box, Flex, HStack, Icon, Text } from '@chakra-ui/react';
 import { format } from 'date-fns';
+import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { BsCalendarEvent, BsFillPersonLinesFill } from 'react-icons/bs';
 import { FiPackage, FiType } from 'react-icons/fi';
@@ -12,6 +13,7 @@ type Props = {
 
 const UpcomingCard: FC<Props> = ({ data }) => {
     const { name, type, arrival_date, package: CTC, applied } = data;
+    const router = useRouter();
 
     return (
         <Box p="15px" bg={'#f8f9fa'} my="8px" borderRadius="12px">
@@ -25,6 +27,8 @@ const UpcomingCard: FC<Props> = ({ data }) => {
                         textAlign={'center'}
                         fontWeight="bold"
                         textTransform={'uppercase'}
+                        onClick={() => router.push(`/company/${name}`)}
+                        cursor={'pointer'}
                     >
                         {name}
                     </Text>
@@ -150,6 +154,8 @@ const UpcomingCard: FC<Props> = ({ data }) => {
                     borderRadius={8}
                     textTransform={'uppercase'}
                     bg={'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'}
+                    onClick={() => router.push(`/company/${name}`)}
+                    cursor={'pointer'}
                 >
                     Upcoming
                 </Text>

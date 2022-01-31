@@ -64,6 +64,8 @@ const SideBar = () => {
 };
 
 const SidebarContent = ({ onClose, ...rest }) => {
+    const router = useRouter();
+
     const { colorMode, toggleColorMode } = useColorMode();
     return (
         <Box
@@ -91,6 +93,8 @@ const SidebarContent = ({ onClose, ...rest }) => {
                         bgClip="text"
                         fontWeight="extrabold"
                         textTransform={'uppercase'}
+                        onClick={() => router.push(`/`)}
+                        cursor={'pointer'}
                     >
                         PLACEMENT PORTAL
                     </Text>
