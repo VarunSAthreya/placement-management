@@ -58,6 +58,12 @@ const ChangePassword: FC<Props> = ({ isOpen, onClose, usn }) => {
                 type: 'manual',
                 message: 'Passwords do not match',
             });
+        }
+        if (newPassword === oldPassword) {
+            setError('newPassword', {
+                type: 'manual',
+                message: 'Cannot change to the same password',
+            });
         } else {
             try {
                 const res = await changePassword({

@@ -348,9 +348,9 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                                 fontSize="md"
                                 variant="no-hover"
                                 onClick={onApply}
-                                disabled={data.hasStudentApplied}
+                                disabled={data?.hasStudentApplied}
                             >
-                                {data.hasStudentApplied ? 'APPLIED' : 'APPLY'}
+                                {data?.hasStudentApplied ? 'APPLIED' : 'APPLY'}
                             </Button>
                         )}
                     </Flex>
