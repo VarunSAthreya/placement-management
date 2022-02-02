@@ -52,6 +52,7 @@ interface ICompany {
     name: string;
     arrival_date?: string;
     package?: number;
+    year?: number;
     type: CompanyType;
     eligibility?: ICompanyEligibility;
     applied?: IApplied[];
