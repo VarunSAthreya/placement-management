@@ -37,7 +37,6 @@ const UpcomingCard: FC<Props> = ({ data }) => {
                 <HStack p={2} my={1}>
                     <Flex direction="row" align="center" w="100%">
                         <IconBox
-                            as="Box"
                             h={'35px'}
                             w={'35px'}
                             bg={
@@ -67,7 +66,6 @@ const UpcomingCard: FC<Props> = ({ data }) => {
                         justifyContent={'center'}
                     >
                         <IconBox
-                            as="Box"
                             h={'35px'}
                             w={'35px'}
                             bg={
@@ -92,7 +90,6 @@ const UpcomingCard: FC<Props> = ({ data }) => {
                     </Flex>
                     <Flex direction="row" align="center" w="100%">
                         <IconBox
-                            as="Box"
                             h={'35px'}
                             w={'35px'}
                             bg={
@@ -121,7 +118,6 @@ const UpcomingCard: FC<Props> = ({ data }) => {
                 </HStack>
                 <Flex direction="row" align="center" w="100%" p={2}>
                     <IconBox
-                        as="Box"
                         h={'35px'}
                         w={'35px'}
                         bg={

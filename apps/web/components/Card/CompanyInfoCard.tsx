@@ -98,7 +98,6 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                             py="14px"
                         >
                             <IconBox
-                                as="Box"
                                 h={'60px'}
                                 w={'60px'}
                                 bg={
@@ -152,7 +151,6 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                         py="14px"
                     >
                         <IconBox
-                            as="Box"
                             h={'60px'}
                             w={'60px'}
                             bg={
@@ -205,7 +203,6 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                         py="14px"
                     >
                         <IconBox
-                            as="Box"
                             h={'60px'}
                             w={'60px'}
                             bg={
@@ -258,7 +255,6 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                         py="14px"
                     >
                         <IconBox
-                            as="Box"
                             h={'60px'}
                             w={'60px'}
                             bg={
