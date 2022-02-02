@@ -8,10 +8,14 @@ import {
 } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { FC } from 'react';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
-const CompanyTable = ({ company }) => {
+type Props = {
+    company: ICompany;
+};
+
+const CompanyTable: FC<Props> = ({ company }) => {
     const router = useRouter();
 
     const { name, type, arrival_date, package: pkg, year } = company;

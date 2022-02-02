@@ -1,6 +1,7 @@
+import React, { FC } from 'react';
 import { Center, Spinner, useColorModeValue } from '@chakra-ui/react';
 
-const Loader = () => {
+const Loader: FC = () => {
     return (
         <Center h="100vh">
             <Spinner

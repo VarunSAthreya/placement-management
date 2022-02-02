@@ -9,9 +9,18 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import React, { FC } from 'react';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
-const PlacedTable = ({ placed }) => {
+type Props = {
+    placed: {
+        name: string;
+        package: number;
+        selected: ISelected[];
+    };
+};
+
+const PlacedTable: FC<Props> = ({ placed }) => {
     const router = useRouter();
     const { name, package: CTC, selected } = placed;
 

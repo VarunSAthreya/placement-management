@@ -9,9 +9,15 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import { FC } from 'react';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
-const StudentsTable = ({ student, role }) => {
+type Props = {
+    student: IUserDetails;
+    role: string;
+};
+
+const StudentsTable: FC<Props> = ({ student, role }) => {
     const router = useRouter();
     const { USN, name, email, branch, section, CGPA } = student;
     const textColor = useColorModeValue('gray.700', 'white');
@@ -93,8 +99,8 @@ const StudentsTable = ({ student, role }) => {
             <Td>
                 <Flex justifyContent={'center'}>
                     <Badge
-                        bg={CGPA >= '7.5' ? '#22c55e' : bgStatus}
-                        color={CGPA < '7.5' ? '#e11d48' : colorStatus}
+                        bg={CGPA >= 7.5 ? '#22c55e' : bgStatus}
+                        color={CGPA < 7.5 ? '#e11d48' : colorStatus}
                         fontSize="16px"
                         p="10px"
                         borderRadius="8px"

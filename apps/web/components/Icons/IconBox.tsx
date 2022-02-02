@@ -1,8 +1,14 @@
-import { Flex } from '@chakra-ui/react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { Flex, HTMLChakraProps } from '@chakra-ui/react';
+import React, { ReactNode, FC, HTMLAttributes } from 'react';
 
-const IconBox = (props) => {
-    const { children, ...rest } = props;
+interface IconBoxProps {
+    children?: ReactNode | ReactNode[];
+}
 
+type props = IconBoxProps & HTMLAttributes<any> & HTMLChakraProps<any>;
+
+const IconBox: FC<props> = ({ children, ...rest }) => {
     return (
         <Flex
             alignItems={'center'}

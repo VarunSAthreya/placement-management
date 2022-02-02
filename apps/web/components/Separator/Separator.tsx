@@ -1,6 +1,11 @@
+import React, { FC, ReactNode } from 'react';
 import { Flex } from '@chakra-ui/react';
 
-const Separator = (props) => {
+type Props = {
+    children?: ReactNode;
+};
+
+const Separator: FC<Props> = (props) => {
     const { children, ...rest } = props;
     return (
         <Flex
