@@ -60,19 +60,21 @@ export const createApplied = async (applied: IApplied) => {
         const company = await getCompany(companyID);
         if (!company) throw new Error('Company not found');
 
-        const { CGPA, backlogs, tenth, twelth } = userDetails!;
+        const { CGPA, backlogs, tenth, twelth, package: pkg } = userDetails!;
         const {
             CGPA: CGPA_cutoff,
             backlogs: backlogs_cutoff,
             tenth: tenth_cutoff,
             twelth: twelth_cutoff,
         } = company!.eligibility!;
+        const { package: CTC } = company!;
 
         if (
             CGPA < CGPA_cutoff ||
-            backlogs >= backlogs_cutoff ||
+            backlogs > backlogs_cutoff ||
             tenth < tenth_cutoff ||
-            twelth < twelth_cutoff
+            twelth < twelth_cutoff ||
+            pkg * 1.3 >= CTC!
         )
             throw new Error('User not eligible');
 
