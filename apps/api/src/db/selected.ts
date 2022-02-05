@@ -91,16 +91,24 @@ export const createSelected = async (selected: ISelectedInput) => {
 };
 
 export const deleteSelected = async (selected: ISelected) => {
-    const { userID, companyID } = selected;
-    const res = await getSelected(selected);
+    try {
+        const { userID, companyID } = selected;
+        const res = await getSelected(selected);
 
-    await prisma.selected.delete({
-        where: {
-            userID_companyID: { userID, companyID },
-        },
-    });
+        if (!res) throw new Error('Selected not found');
 
-    return res;
+        const deleted = await prisma.selected.delete({
+            where: {
+                userID_companyID: { userID, companyID },
+            },
+        });
+
+        if (!deleted) throw new Error('Delete failed');
+
+        return res;
+    } catch (err: any) {
+        return new ApolloError(err.message);
+    }
 };
 
 export const getSelectedCount = async (): Promise<number> =>

@@ -60,22 +60,33 @@ export const createCompany = async (company: ICompany, role: string) => {
     }
 };
 
-export const updateCompany = async (company: ICompany) => {
-    const { name, arrival_date, package: pkg, type, eligibility } = company;
+export const updateCompany = async (company: ICompany, role: string) => {
+    try {
+        if (role !== 'ADMIN') {
+            // TODO: Add role based error for remanding
+            throw new Error('You are not authorized to update a company');
+        }
 
-    await prisma.company.update({
-        where: { name },
-        data: {
-            arrival_date,
-            package: pkg,
-            type,
-            eligibility: {
-                update: eligibility,
+        const { name, arrival_date, package: pkg, type, eligibility } = company;
+
+        const res = await prisma.company.update({
+            where: { name },
+            data: {
+                arrival_date,
+                package: pkg,
+                type,
+                eligibility: {
+                    update: eligibility,
+                },
             },
-        },
-    });
+        });
 
-    return getCompany(name);
+        if (!res) throw new Error('Error updating company');
+
+        return getCompany(name);
+    } catch (error: any) {
+        throw new ApolloError(error.message);
+    }
 };
 
 export const deleteCompany = async (name: string) => {

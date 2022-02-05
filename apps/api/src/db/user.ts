@@ -35,25 +35,35 @@ export const getUser = async (USN: string) =>
         include: userQuery,
     });
 
-export const createUser = async (user: IUser) => {
-    console.log({ user });
+export const createUser = async (user: IUser, rol: string) => {
+    try {
+        console.log({ user });
+        if (rol !== 'ADMIN') {
+            // TODO: Add role based error for remanding
+            throw new Error('You are not authorized to create a company');
+        }
 
-    const { USN, password, role, details } = user;
+        const { USN, password, role, details } = user;
 
-    const hashedPassword = await encryptPassword(password);
+        const hashedPassword = await encryptPassword(password);
 
-    const res = await prisma.user.create({
-        data: {
-            USN,
-            password: hashedPassword,
-            role,
-            details: {
-                create: details,
+        const res = await prisma.user.create({
+            data: {
+                USN,
+                password: hashedPassword,
+                role,
+                details: {
+                    create: details,
+                },
             },
-        },
-    });
+        });
 
-    return getUser(res.USN);
+        if (!res) throw new Error('Error creating user');
+
+        return getUser(res.USN);
+    } catch (err: any) {
+        throw new ApolloError(err.message);
+    }
 };
 
 export const getAllUserDetails = async () =>
@@ -68,69 +78,85 @@ export const getUserDetails = async (USN: string) =>
         include: detailsQuery,
     });
 
-export const updateUserDetails = async (userDetails: IUserDetails) => {
-    const { USN, ...rest } = userDetails;
+export const updateUserDetails = async (
+    userDetails: IUserDetails,
+    role: string,
+    usn: string
+) => {
+    try {
+        if (role !== 'ADMIN' || userDetails.USN !== usn) {
+            // TODO: Add role based error for remanding
+            throw new Error('You are not authorized to update a company');
+        }
+        const { USN, ...rest } = userDetails;
 
-    const res = await prisma.user.update({
-        where: { USN },
-        data: {
-            details: {
-                update: rest,
+        const res = await prisma.user.update({
+            where: { USN },
+            data: {
+                details: {
+                    update: rest,
+                },
             },
-        },
-    });
+        });
 
-    return getUserDetails(res.USN);
+        if (!res) throw new Error('Error updating user details');
+
+        return getUserDetails(res.USN);
+    } catch (err: any) {
+        throw new ApolloError(err.message);
+    }
 };
 
-export const deleteUser = async (USN: string) => {
-    const res = await getUser(USN);
-    await prisma.user.delete({ where: { USN } });
-    return res;
+export const deleteUser = async (USN: string, role: string) => {
+    try {
+        if (role !== 'ADMIN') {
+            // TODO: Add role based error for remanding
+            throw new Error('You are not authorized to update a company');
+        }
+
+        const res = await getUser(USN);
+
+        if (!res) throw new Error('User not found');
+
+        const deleted = await prisma.user.delete({ where: { USN } });
+
+        if (!deleted) throw new Error('Error deleting user');
+
+        return res;
+    } catch (err: any) {
+        throw new ApolloError(err.message);
+    }
 };
 
-export const getStudentCount = async (): Promise<number> => {
-    const students = await prisma.user.count({
+export const getStudentCount = async (): Promise<number> =>
+    prisma.user.count({
         where: { role: 'STUDENT' },
     });
-    console.log({ students });
 
-    return students;
-};
-
-export const getEligibleStudentsCount = async (): Promise<number> => {
-    const res = await prisma.userDetails.count({
+export const getEligibleStudentsCount = async (): Promise<number> =>
+    prisma.userDetails.count({
         where: {
             eligible: true,
         },
     });
 
-    console.log({ res });
-
-    return res;
-};
-
-export const getPlacedStudentsCount = async (): Promise<number> => {
-    const res = await prisma.userDetails.count({
+export const getPlacedStudentsCount = async (): Promise<number> =>
+    prisma.userDetails.count({
         where: {
             placed: true,
         },
     });
-
-    console.log({ res });
-
-    return res;
-};
 
 export const isStudentEligible = async (
     USN: string,
     name: string,
     role: string
 ): Promise<boolean> => {
-    if (role == 'ADMIN') {
-        return false;
-    }
     try {
+        if (role == 'ADMIN') {
+            return false;
+        }
+
         const userDetails = await prisma.userDetails.findUnique({
             where: { USN },
         });

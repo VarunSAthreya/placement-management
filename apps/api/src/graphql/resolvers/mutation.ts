@@ -18,7 +18,7 @@ const mutation = {
         _: any,
         { input }: { input: IUser },
         { role }: { role: string }
-    ) => createUser(input),
+    ) => createUser(input, role),
 
     authenticate: async (
         _: any,
@@ -37,13 +37,23 @@ const mutation = {
     createSelected: async (_: any, { input }: { input: ISelectedInput }) =>
         createSelected(input),
 
-    updateUserDetails: async (_: any, { input }: { input: IUserDetails }) =>
-        updateUserDetails(input),
+    updateUserDetails: async (
+        _: any,
+        { input }: { input: IUserDetails },
+        { role, USN }: { role: string; USN: string }
+    ) => updateUserDetails(input, role, USN),
 
-    updateCompany: async (_: any, { input }: { input: ICompany }) =>
-        updateCompany(input),
+    updateCompany: async (
+        _: any,
+        { input }: { input: ICompany },
+        { role }: { role: string }
+    ) => updateCompany(input, role),
 
-    deleteUser: async (_: any, { USN }: { USN: string }) => deleteUser(USN),
+    deleteUser: async (
+        _: any,
+        { USN }: { USN: string },
+        { role }: { role: string }
+    ) => deleteUser(USN, role),
 
     deleteCompany: async (_: any, { name }: { name: string }) =>
         deleteCompany(name),

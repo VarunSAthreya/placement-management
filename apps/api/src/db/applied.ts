@@ -61,12 +61,14 @@ export const createApplied = async (applied: IApplied) => {
         if (!company) throw new Error('Company not found');
 
         const { CGPA, backlogs, tenth, twelth, package: pkg } = userDetails!;
+
         const {
             CGPA: CGPA_cutoff,
             backlogs: backlogs_cutoff,
             tenth: tenth_cutoff,
             twelth: twelth_cutoff,
         } = company!.eligibility!;
+
         const { package: CTC } = company!;
 
         if (
@@ -96,18 +98,23 @@ export const createApplied = async (applied: IApplied) => {
 export const deleteApplied = async (applied: IApplied) => {
     const { userID, companyID } = applied;
 
-    const res = await getApplied(applied);
+    try {
+        const res = await getApplied(applied);
+        if (!res) throw new Error('Application not found');
 
-    await prisma.applied.delete({
-        where: {
-            userID_companyID: {
-                userID,
-                companyID,
+        await prisma.applied.delete({
+            where: {
+                userID_companyID: {
+                    userID,
+                    companyID,
+                },
             },
-        },
-    });
+        });
 
-    return res;
+        return res;
+    } catch (err: any) {
+        return new ApolloError(err.message);
+    }
 };
 
 export const getAppliedCount = async (): Promise<number> =>
