@@ -8,13 +8,14 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { StudentInfoCard } from '../../components/Card';
 import { Loader } from '../../components/Loader';
 import { SideBar } from '../../components/Sidebar';
 import { useGetStudentDetailsQuery } from '../../generated/graphql';
 
-const StudentDetails = () => {
+const StudentDetails: NextPage = () => {
     const { asPath } = useRouter();
     const slug = asPath.split('/')[2].replace(/%20/g, ' ');
 

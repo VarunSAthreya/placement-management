@@ -17,13 +17,14 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { Loader } from '../components/Loader';
 import { SideBar } from '../components/Sidebar';
 import { AppliedTable } from '../components/Tables';
 import { useGetAllAppliedQuery } from '../generated/graphql';
 
-const Applied = () => {
+const Applied: NextPage = () => {
     const [inputData, setInputData] = useState('');
     const [filteredTable, setFilteredTable] = useState([]);
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');

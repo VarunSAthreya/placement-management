@@ -13,6 +13,7 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { Loader } from '../../components/Loader';
@@ -21,7 +22,7 @@ import { StudentsTable } from '../../components/Tables';
 import { useGetSelectedPerCompanyQuery } from '../../generated/graphql';
 import { getUSNAndRole } from '../../lib/functions';
 
-const CompanyDetails = () => {
+const CompanyDetails: NextPage = () => {
     const role = useRef(getUSNAndRole().role);
 
     const { asPath } = useRouter();

@@ -1,7 +1,14 @@
 import { Flex, Td, Text, Tr, useColorModeValue } from '@chakra-ui/react';
-import React from 'react';
+import React, { FC } from 'react';
 
-const AppliedTable = ({ data }) => {
+type Props = {
+    data: {
+        user: IUserDetails;
+        company: ICompany;
+    };
+};
+
+const AppliedTable: FC<Props> = ({ data }) => {
     const { USN, branch, section, name: userName, email } = data.user;
     const { name: companyName, package: CTC, type } = data.company;
     const textColor = useColorModeValue('gray.700', 'white');
