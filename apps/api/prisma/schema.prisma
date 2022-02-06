@@ -80,8 +80,6 @@ enum Branches {
     CV
     EIE
     IEM
-
-    @@map("Branches")
 }
 
 enum CompanyType {
