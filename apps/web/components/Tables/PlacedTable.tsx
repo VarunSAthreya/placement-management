@@ -15,7 +15,7 @@ import { BsFillInfoCircleFill } from 'react-icons/bs';
 type Props = {
     placed: {
         name: string;
-        package: number;
+        package?: number;
         selected: ISelected[];
     };
 };

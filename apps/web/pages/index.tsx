@@ -1,9 +1,10 @@
+import { NextPage } from 'next';
 import Router from 'next/router';
 import { useEffect } from 'react';
 import { AdminHome, StudentHome } from '../components/Home';
 import { getUSNAndRole } from '../lib/functions';
 
-const Home = () => {
+const Home: NextPage = () => {
     const role = getUSNAndRole().role;
 
     useEffect(() => {

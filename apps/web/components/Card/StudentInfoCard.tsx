@@ -12,13 +12,13 @@ import { getUSNAndRole } from '../../lib/functions';
 import Separator from '../Separator/Separator';
 
 enum Branch {
-    CSE = 'CSE',
-    ECE = 'ECE',
-    ISE = 'ISE',
-    ME = 'ME',
-    CV = 'CV',
-    EIE = 'EIE',
-    IEM = 'IEM',
+    Cse = 'CSE',
+    Ece = 'ECE',
+    Ise = 'ISE',
+    Me = 'ME',
+    Cv = 'CV',
+    Eie = 'EIE',
+    Iem = 'IEM',
 }
 
 enum Section {
@@ -29,18 +29,16 @@ enum Section {
 
 type Props = {
     student: {
-        name: string;
-        USN: string;
-        year: number;
-        email: string;
-        section: Section;
-        branch: Branch;
-        eligible: boolean;
-        placed: boolean;
-        CGPA: number;
-        backlogs: number;
-        tenth: number;
-        twelth: number;
+        USN?: string;
+        year?: number;
+        name?: string;
+        email?: string;
+        branch?: Branch;
+        section?: Section;
+        CGPA?: number;
+        backlogs?: number;
+        tenth?: number;
+        twelth?: number;
     };
 };
 

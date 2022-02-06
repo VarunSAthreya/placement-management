@@ -4,13 +4,13 @@ import React, { FC } from 'react';
 import ChangePassword from '../Modal/ChangePassword';
 
 enum Branch {
-    CSE = 'CSE',
-    ECE = 'ECE',
-    ISE = 'ISE',
-    ME = 'ME',
-    CV = 'CV',
-    EIE = 'EIE',
-    IEM = 'IEM',
+    Cse = 'CSE',
+    Ece = 'ECE',
+    Ise = 'ISE',
+    Me = 'ME',
+    Cv = 'CV',
+    Eie = 'EIE',
+    Iem = 'IEM',
 }
 
 enum Section {
@@ -21,19 +21,19 @@ enum Section {
 
 type Props = {
     data: {
-        name: string;
-        USN: string;
-        year: number;
-        email: string;
-        section: Section;
-        branch: Branch;
-        eligible: boolean;
-        placed: boolean;
-        CGPA: number;
-        backlogs: number;
-        tenth: number;
-        twelth: number;
-        package: number;
+        name?: string;
+        USN?: string;
+        year?: number;
+        email?: string;
+        section?: Section;
+        branch?: Branch;
+        eligible?: boolean;
+        placed?: boolean;
+        CGPA?: number;
+        backlogs?: number;
+        tenth?: number;
+        twelth?: number;
+        package?: number;
     };
 };
 

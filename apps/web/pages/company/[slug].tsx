@@ -8,6 +8,7 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import { CompanyInfoCard } from '../../components/Card';
@@ -16,7 +17,7 @@ import { SideBar } from '../../components/Sidebar';
 import { useGetCompanyDetailsWithStudentEligibilityQuery } from '../../generated/graphql';
 import { getUSNAndRole } from '../../lib/functions';
 
-const CompanyDetails = () => {
+const CompanyDetails: NextPage = () => {
     const { asPath } = useRouter();
     const router = useRouter();
 

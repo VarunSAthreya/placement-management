@@ -13,6 +13,7 @@ import {
     InputLeftElement,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { AiFillLock, AiOutlineMail } from 'react-icons/ai';
@@ -24,7 +25,7 @@ type FormValues = {
     password: string;
 };
 
-const Login = () => {
+const Login: NextPage = () => {
     const {
         register,
         handleSubmit,

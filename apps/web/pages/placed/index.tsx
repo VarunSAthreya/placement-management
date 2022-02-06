@@ -14,6 +14,7 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
+import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { AiFillPlusCircle } from 'react-icons/ai';
@@ -23,7 +24,7 @@ import { PlacedTable } from '../../components/Tables';
 import { useGetSelectedForAllCompaniesQuery } from '../../generated/graphql';
 import { getUSNAndRole } from '../../lib/functions';
 
-const Placed = () => {
+const Placed: NextPage = () => {
     const role = useRef(getUSNAndRole().role);
 
     const router = useRouter();

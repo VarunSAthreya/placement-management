@@ -12,7 +12,13 @@ import React, { FC } from 'react';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
 type Props = {
-    company: ICompany;
+    company: {
+        name: string;
+        arrival_date?: string;
+        package?: number;
+        year?: number;
+        type: CompanyType;
+    };
 };
 
 const CompanyTable: FC<Props> = ({ company }) => {
