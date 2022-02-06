@@ -24,9 +24,9 @@ type Props = {
     company: {
         name: string;
         type: string;
-        package: number;
-        arrival_date: string;
-        eligibility: {
+        package?: number;
+        arrival_date?: string;
+        eligibility?: {
             CGPA: number;
             backlogs: number;
             tenth: number;
