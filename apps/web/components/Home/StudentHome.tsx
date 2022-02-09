@@ -13,6 +13,7 @@ import { useGetStudentHomeDetailsQuery } from '../../generated/graphql';
 import { getUSNAndRole } from '../../lib/functions';
 import { AppliedCard, PlacedCard, UpcomingCard } from '../Card';
 import { Loader } from '../Loader';
+import ErrorModal from '../Modal/Error';
 import { SideBar } from '../Sidebar';
 
 const StudentHome: NextPage = () => {
@@ -26,8 +27,11 @@ const StudentHome: NextPage = () => {
     const secondaryBG = useColorModeValue('white', '#242526');
     const textHeight = useBreakpointValue({ base: '20%', md: '30%' });
 
+    if (error) {
+        console.log(error.message);
+        return <ErrorModal message={error.message} />;
+    }
     if (loading || !data) return <Loader />;
-    if (error) return <Text>Error</Text>;
 
     return (
         <Flex flexDirection={'row'} bg={primaryBG}>
