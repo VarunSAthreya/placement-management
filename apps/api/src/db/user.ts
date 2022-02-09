@@ -174,15 +174,15 @@ export const isStudentEligible = async (
             throw new Error('Company not found');
         }
 
-        const { CGPA, backlogs, tenth, twelth, package: pkg } = userDetails!;
+        const { CGPA, backlogs, tenth, twelth, package: pkg } = userDetails;
         const {
             CGPA: CGPA_cutoff,
             backlogs: backlogs_cutoff,
             tenth: tenth_cutoff,
             twelth: twelth_cutoff,
-        } = company!.eligibility!;
+        } = company.eligibility!;
 
-        const { package: CTC } = company!;
+        const { package: CTC } = company;
 
         console.log({ userDetails, company });
 
