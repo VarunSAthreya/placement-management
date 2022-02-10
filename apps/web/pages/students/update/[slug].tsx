@@ -17,11 +17,11 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../../components/Loader';
+import ErrorModal from '../../../components/Modal/Error';
 import { Separator } from '../../../components/Separator';
 import { SideBar } from '../../../components/Sidebar';
 import {
@@ -47,7 +47,7 @@ type FormValues = {
     package: number;
 };
 
-const UpdateStudent: NextPage = () => {
+const UpdateStudent = () => {
     const { asPath } = useRouter();
     const usn = asPath.split('/')[3];
 
@@ -68,7 +68,7 @@ const UpdateStudent: NextPage = () => {
 
     useEffect(() => {
         reset(data?.studentDetails);
-    }, [data]);
+    }, [data, reset]);
 
     const branches = ['CSE', 'ECE', 'ISE', 'ME', 'CV', 'EIE', 'IEM'];
     const sections = ['A', 'B', 'C'];
@@ -108,7 +108,7 @@ const UpdateStudent: NextPage = () => {
 
     if (error) {
         console.log({ error });
-        return <p>Error</p>;
+        return <ErrorModal message={error.message} />;
     }
 
     if (loading || !data || updLoading) return <Loader />;

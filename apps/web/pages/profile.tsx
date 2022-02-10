@@ -28,6 +28,8 @@ const Profile: NextPage = () => {
     const usn = useRef(null);
     const role = useRef(null);
 
+    const [profile, { data, loading, error }] = useGetProfileDetailsLazyQuery();
+
     useEffect(() => {
         const { USN, role: rol } = getUSNAndRole();
         usn.current = USN;
@@ -37,16 +39,13 @@ const Profile: NextPage = () => {
         profile({
             variables: { usn: usn.current },
         });
-    }, []);
+    }, [profile, router]);
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
 
-    const [profile, { data, loading, error }] = useGetProfileDetailsLazyQuery();
-
-    if (loading || !data) return <Loader />;
-
     if (error) router.push('/login');
+    if (loading || !data) return <Loader />;
 
     return (
         <Flex flexDirection={'row'} bg={primaryBG}>

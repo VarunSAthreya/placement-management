@@ -19,6 +19,7 @@ import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { Loader } from '../../components/Loader';
+import ErrorModal from '../../components/Modal/Error';
 import { SideBar } from '../../components/Sidebar';
 import { CompanyTable } from '../../components/Tables';
 import { useGetCompaniesQuery } from '../../generated/graphql';
@@ -34,6 +35,10 @@ const Company: NextPage = () => {
     const secondary = useColorModeValue('white', '#242526');
     const tableBoxShadow = useColorModeValue('0px 2px 3px #eee', '0px');
 
+    if (error) {
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
     if (loading) return <Loader />;
 
     return (
@@ -191,6 +196,3 @@ const Company: NextPage = () => {
 };
 
 export default Company;
-function jwt_decode(token: any): { USN: string; role: string } {
-    throw new Error('Function not implemented.');
-}

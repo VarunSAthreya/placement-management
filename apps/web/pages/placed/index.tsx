@@ -19,6 +19,7 @@ import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { Loader } from '../../components/Loader';
+import ErrorModal from '../../components/Modal/Error';
 import { SideBar } from '../../components/Sidebar';
 import { PlacedTable } from '../../components/Tables';
 import { useGetSelectedForAllCompaniesQuery } from '../../generated/graphql';
@@ -34,6 +35,10 @@ const Placed: NextPage = () => {
     const secondaryBG = useColorModeValue('white', '#242526');
     const tableBoxShadow = useColorModeValue('0px 2px 3px #eee', '0px');
 
+    if (error) {
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
     if (loading) return <Loader />;
 
     return (

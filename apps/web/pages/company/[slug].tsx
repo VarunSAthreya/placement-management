@@ -13,13 +13,13 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import { CompanyInfoCard } from '../../components/Card';
 import { Loader } from '../../components/Loader';
+import ErrorModal from '../../components/Modal/Error';
 import { SideBar } from '../../components/Sidebar';
 import { useGetCompanyDetailsWithStudentEligibilityQuery } from '../../generated/graphql';
 import { getUSNAndRole } from '../../lib/functions';
 
 const CompanyDetails: NextPage = () => {
     const { asPath } = useRouter();
-    const router = useRouter();
 
     const slug = asPath.split('/')[2].replace(/%20/g, ' ');
     console.log({ slug });
@@ -41,6 +41,10 @@ const CompanyDetails: NextPage = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
 
+    if (error) {
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
     if (loading) return <Loader />;
 
     return (

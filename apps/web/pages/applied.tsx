@@ -20,6 +20,7 @@ import {
 import { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { Loader } from '../components/Loader';
+import ErrorModal from '../components/Modal/Error';
 import { SideBar } from '../components/Sidebar';
 import { AppliedTable } from '../components/Tables';
 import { useGetAllAppliedQuery } from '../generated/graphql';
@@ -37,6 +38,10 @@ const Applied: NextPage = () => {
         setFilteredTable(data?.applied ?? []);
     }, [data]);
 
+    if (error) {
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
     if (loading) return <Loader />;
 
     const onChangeHandler = (e) => {

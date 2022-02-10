@@ -28,7 +28,7 @@ const StudentHome: NextPage = () => {
     const textHeight = useBreakpointValue({ base: '20%', md: '30%' });
 
     if (error) {
-        console.log(error.message);
+        console.log({ error });
         return <ErrorModal message={error.message} />;
     }
     if (loading || !data) return <Loader />;

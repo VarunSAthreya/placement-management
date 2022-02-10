@@ -18,6 +18,7 @@ import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { AiFillLock, AiOutlineMail } from 'react-icons/ai';
 import { Loader } from '../components/Loader';
+import ErrorModal from '../components/Modal/Error';
 import { useAuthMutation } from '../generated/graphql';
 
 type FormValues = {
@@ -32,7 +33,7 @@ const Login: NextPage = () => {
         formState: { errors },
     } = useForm<FormValues>();
 
-    const [login, { loading }] = useAuthMutation();
+    const [login, { loading, error }] = useAuthMutation();
     const router = useRouter();
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
@@ -59,6 +60,11 @@ const Login: NextPage = () => {
             });
     };
 
+    if (error) {
+        localStorage.clear();
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
     if (loading) return <Loader />;
 
     return (

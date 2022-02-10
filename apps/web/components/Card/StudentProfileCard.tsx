@@ -3,22 +3,6 @@ import { useRouter } from 'next/router';
 import React, { FC } from 'react';
 import ChangePassword from '../Modal/ChangePassword';
 
-enum Branch {
-    Cse = 'CSE',
-    Ece = 'ECE',
-    Ise = 'ISE',
-    Me = 'ME',
-    Cv = 'CV',
-    Eie = 'EIE',
-    Iem = 'IEM',
-}
-
-enum Section {
-    A = 'A',
-    B = 'B',
-    C = 'C',
-}
-
 type Props = {
     data: {
         name?: string;

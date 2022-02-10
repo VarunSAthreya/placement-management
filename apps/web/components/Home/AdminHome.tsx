@@ -16,6 +16,7 @@ import { useGetAllDetailsQuery } from '../../generated/graphql';
 import { StatsCard } from '../Card';
 import { BarChart, DonutChart, LineChart, ProgressChart } from '../Charts';
 import { Loader } from '../Loader';
+import ErrorModal from '../Modal/Error';
 import { SideBar } from '../Sidebar';
 
 const AdminHome = () => {
@@ -24,6 +25,10 @@ const AdminHome = () => {
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
 
+    if (error) {
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
     if (loading || !data) return <Loader />;
 
     return (

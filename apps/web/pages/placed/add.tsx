@@ -18,6 +18,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components/Loader';
+import ErrorModal from '../../components/Modal/Error';
 import { Separator } from '../../components/Separator';
 import { SideBar } from '../../components/Sidebar';
 import { useCreateSelectedMutation } from '../../generated/graphql';
@@ -36,7 +37,7 @@ const PlacedForm: NextPage = () => {
         formState: { errors },
     } = useForm<FormValues>();
 
-    const [create, { loading }] = useCreateSelectedMutation();
+    const [create, { loading, error }] = useCreateSelectedMutation();
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
 
@@ -61,6 +62,10 @@ const PlacedForm: NextPage = () => {
             .catch((err) => console.log(err));
     };
 
+    if (error) {
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
     if (loading) return <Loader />;
 
     return (

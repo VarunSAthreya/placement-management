@@ -11,7 +11,7 @@ const Home: NextPage = () => {
         if (!role) {
             Router.push('/login');
         }
-    }, []);
+    }, [role]);
 
     return role === 'ADMIN' ? <AdminHome /> : <StudentHome />;
 };

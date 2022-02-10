@@ -23,6 +23,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { AiFillPlusCircle } from 'react-icons/ai';
 import { Loader } from '../../components/Loader';
+import ErrorModal from '../../components/Modal/Error';
 import { SideBar } from '../../components/Sidebar';
 import { StudentsTable } from '../../components/Tables';
 import { useGetAllStudentsCardQuery } from '../../generated/graphql';
@@ -34,7 +35,6 @@ const Students: NextPage = () => {
 
     const { data, loading, error } = useGetAllStudentsCardQuery();
 
-    const [inputData, setInputData] = useState('');
     const [filteredTable, setFilteredTable] = useState([]);
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
@@ -45,11 +45,15 @@ const Students: NextPage = () => {
         setFilteredTable(data?.allStudentDetails ?? []);
     }, [data]);
 
+    if (error) {
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
     if (loading) return <Loader />;
 
     const onChangeHandler = (e) => {
-        setInputData(e.target.value);
-        const regex = new RegExp('.*' + e.target.value + '.*', 'i');
+        const input = e.target.value;
+        const regex = new RegExp('.*' + input + '.*', 'i');
 
         const filteredData = data.allStudentDetails.filter((d) =>
             d.USN.match(regex)

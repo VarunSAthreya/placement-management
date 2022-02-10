@@ -22,6 +22,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useMemo } from 'react';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../../components/Loader';
+import ErrorModal from '../../../components/Modal/Error';
 import { Separator } from '../../../components/Separator';
 import { SideBar } from '../../../components/Sidebar';
 import {
@@ -91,7 +92,7 @@ const CompanyForm: NextPage = () => {
             twelth: data?.company?.eligibility?.twelth,
         };
         reset(details);
-    }, [data]);
+    }, [data, reset]);
 
     const router = useRouter();
 
@@ -124,12 +125,12 @@ const CompanyForm: NextPage = () => {
             .catch((err) => console.log(err));
     };
 
-    if (loading || updateLoading || !data) return <Loader />;
-
     if (error) {
-        console.log(error);
-        return <Text>Error</Text>;
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
     }
+
+    if (loading || updateLoading || !data) return <Loader />;
 
     return (
         <Flex flexDirection={'row'} bg={primaryBG}>

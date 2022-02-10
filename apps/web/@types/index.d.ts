@@ -11,8 +11,8 @@ interface IUser {
 }
 
 enum Roles {
-    STUDENT = 'STUDENT',
-    ADMIN = 'ADMIN',
+    Admin = 'ADMIN',
+    Student = 'STUDENT',
 }
 interface IUserDetails {
     USN?: string;
@@ -33,13 +33,13 @@ interface IUserDetails {
 }
 
 enum Branch {
-    CSE = 'CSE',
-    ECE = 'ECE',
-    ISE = 'ISE',
-    ME = 'ME',
-    CV = 'CV',
-    EIE = 'EIE',
-    IEM = 'IEM',
+    Cse = 'CSE',
+    Cv = 'CV',
+    Ece = 'ECE',
+    Eie = 'EIE',
+    Iem = 'IEM',
+    Ise = 'ISE',
+    Me = 'ME',
 }
 
 enum Section {

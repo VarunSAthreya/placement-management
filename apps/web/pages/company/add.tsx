@@ -21,6 +21,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components/Loader';
+import ErrorModal from '../../components/Modal/Error';
 import { Separator } from '../../components/Separator';
 import { SideBar } from '../../components/Sidebar';
 import { CompanyType, useCreateCompanyMutation } from '../../generated/graphql';
@@ -45,7 +46,7 @@ const CompanyForm: NextPage = () => {
     } = useForm<FormValues>();
 
     const router = useRouter();
-    const [createCompany, { loading }] = useCreateCompanyMutation();
+    const [createCompany, { loading, error }] = useCreateCompanyMutation();
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
@@ -72,9 +73,9 @@ const CompanyForm: NextPage = () => {
         createCompany({
             variables: variables,
         })
-            .then((data) => {
+            .then((res) => {
                 console.log('Company Created');
-                console.log(data);
+                console.log(res);
 
                 router.push('/company');
             })
@@ -82,6 +83,11 @@ const CompanyForm: NextPage = () => {
                 console.log(err.message);
             });
     };
+
+    if (error) {
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
 
     if (loading) return <Loader />;
 

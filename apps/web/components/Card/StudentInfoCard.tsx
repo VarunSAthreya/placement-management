@@ -11,22 +11,6 @@ import React, { FC } from 'react';
 import { getUSNAndRole } from '../../lib/functions';
 import Separator from '../Separator/Separator';
 
-enum Branch {
-    Cse = 'CSE',
-    Ece = 'ECE',
-    Ise = 'ISE',
-    Me = 'ME',
-    Cv = 'CV',
-    Eie = 'EIE',
-    Iem = 'IEM',
-}
-
-enum Section {
-    A = 'A',
-    B = 'B',
-    C = 'C',
-}
-
 type Props = {
     student: {
         USN?: string;

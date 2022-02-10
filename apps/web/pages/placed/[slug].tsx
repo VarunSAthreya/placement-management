@@ -17,6 +17,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { Loader } from '../../components/Loader';
+import ErrorModal from '../../components/Modal/Error';
 import { SideBar } from '../../components/Sidebar';
 import { StudentsTable } from '../../components/Tables';
 import { useGetSelectedPerCompanyQuery } from '../../generated/graphql';
@@ -35,6 +36,10 @@ const CompanyDetails: NextPage = () => {
     const secondaryBG = useColorModeValue('white', '#242526');
     const tableBoxShadow = useColorModeValue('0px 2px 3px #eee', '0px');
 
+    if (error) {
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
     if (loading) return <Loader />;
 
     return (

@@ -12,6 +12,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { StudentInfoCard } from '../../components/Card';
 import { Loader } from '../../components/Loader';
+import ErrorModal from '../../components/Modal/Error';
 import { SideBar } from '../../components/Sidebar';
 import { useGetStudentDetailsQuery } from '../../generated/graphql';
 
@@ -26,6 +27,10 @@ const StudentDetails: NextPage = () => {
         variables: { usn: slug },
     });
 
+    if (error) {
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
     if (loading) return <Loader />;
 
     return (

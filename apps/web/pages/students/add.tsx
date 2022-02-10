@@ -21,6 +21,7 @@ import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components/Loader';
+import ErrorModal from '../../components/Modal/Error';
 import { Separator } from '../../components/Separator';
 import { SideBar } from '../../components/Sidebar';
 import {
@@ -55,7 +56,7 @@ const StudentForm: NextPage = () => {
     const branches = ['CSE', 'ECE', 'ISE', 'ME', 'CV', 'EIE', 'IEM'];
     const sections = ['A', 'B', 'C'];
 
-    const [create, { loading }] = useCreateUserMutation();
+    const [create, { loading, error }] = useCreateUserMutation();
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const secondaryBG = useColorModeValue('white', '#242526');
@@ -96,6 +97,10 @@ const StudentForm: NextPage = () => {
             });
     };
 
+    if (error) {
+        console.log({ error });
+        return <ErrorModal message={error.message} />;
+    }
     if (loading) return <Loader />;
 
     return (
