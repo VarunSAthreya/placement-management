@@ -17,13 +17,13 @@
         "esbuild-register": "^2.5.0",
         "eslint": "^7.32.0",
         "nodemon": "^2.0.15",
-        "prisma": "^3.8.1",
+        "prisma": "^3.9.2",
         "scripts": "*",
         "tsconfig": "*",
         "typescript": "^4.5.3"
     },
     "dependencies": {
-        "@prisma/client": "^3.8.1",
+        "@prisma/client": "^3.9.2",
         "@types/bcrypt": "^5.0.0",
         "apollo-server": "^3.6.1",
         "bcrypt": "^5.0.1",
