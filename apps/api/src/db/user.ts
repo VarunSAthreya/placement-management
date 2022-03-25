@@ -37,10 +37,9 @@ export const getUser = async (USN: string) =>
 
 export const createUser = async (user: IUser, rol: string) => {
     try {
-        console.log({ user });
         if (rol !== 'ADMIN') {
             // TODO: Add role based error for remanding
-            throw new Error('You are not authorized to create a company');
+            throw new Error('You are not authorized to create a user');
         }
 
         const { USN, password, role, details } = user;
