@@ -1,5 +1,6 @@
 import {
     Box,
+    Center,
     Flex,
     Grid,
     Heading,
@@ -116,12 +117,20 @@ const StudentHome: NextPage = () => {
                         </Box>
                         <Box px="5px">
                             {!loading &&
+                            data.getUpcomingCompanies.length > 0 ? (
                                 data.getUpcomingCompanies.map((company) => (
                                     <UpcomingCard
                                         key={company.name}
                                         data={company}
                                     />
-                                ))}
+                                ))
+                            ) : (
+                                <Center>
+                                    <Text fontSize="xl" mt={'4'}>
+                                        No Upcoming Companies
+                                    </Text>
+                                </Center>
+                            )}
                         </Box>
                     </Box>
                     {/*Applied & Placed*/}
@@ -145,6 +154,7 @@ const StudentHome: NextPage = () => {
                         <Box px="5px">
                             <Flex direction="column">
                                 {!loading &&
+                                data.studentDetails.applied.length > 0 ? (
                                     data.studentDetails.applied.map((row) => {
                                         return (
                                             <AppliedCard
@@ -152,7 +162,14 @@ const StudentHome: NextPage = () => {
                                                 data={row.company}
                                             />
                                         );
-                                    })}
+                                    })
+                                ) : (
+                                    <Center>
+                                        <Text fontSize="xl" mt={'4'}>
+                                            Not Applied to any Company
+                                        </Text>
+                                    </Center>
+                                )}
                             </Flex>
                         </Box>
                         <Box p="12px 5px" my="12px">
@@ -169,6 +186,7 @@ const StudentHome: NextPage = () => {
                         <Box px="5px">
                             <Flex direction="column">
                                 {!loading &&
+                                data.studentDetails.selected.length > 0 ? (
                                     data.studentDetails.selected.map((row) => {
                                         console.log(row);
                                         return (
@@ -177,7 +195,14 @@ const StudentHome: NextPage = () => {
                                                 data={row.company}
                                             />
                                         );
-                                    })}
+                                    })
+                                ) : (
+                                    <Center>
+                                        <Text fontSize="xl" mt={'4'}>
+                                            Not Placed in any Company
+                                        </Text>
+                                    </Center>
+                                )}
                             </Flex>
                         </Box>
                     </Box>

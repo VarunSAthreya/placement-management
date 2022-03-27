@@ -4,6 +4,7 @@ import {
     Breadcrumb,
     BreadcrumbItem,
     BreadcrumbLink,
+    Center,
     Flex,
     Grid,
     Text,
@@ -163,6 +164,7 @@ const Profile: NextPage = () => {
                             <Box px="5px">
                                 <Flex direction="column">
                                     {!loading &&
+                                    data.user.details.applied.length > 0 ? (
                                         data.user.details.applied.map((row) => {
                                             return (
                                                 <AppliedCard
@@ -170,7 +172,14 @@ const Profile: NextPage = () => {
                                                     data={row.company}
                                                 />
                                             );
-                                        })}
+                                        })
+                                    ) : (
+                                        <Center>
+                                            <Text fontSize="xl" mt={'4'}>
+                                                Not Applied to any Company
+                                            </Text>
+                                        </Center>
+                                    )}
                                 </Flex>
                             </Box>
                             <Box p="12px 5px" my="12px">
@@ -187,6 +196,7 @@ const Profile: NextPage = () => {
                             <Box px="5px">
                                 <Flex direction="column">
                                     {!loading &&
+                                    data.user.details.selected.length > 0 ? (
                                         data.user.details.selected.map(
                                             (row) => {
                                                 console.log(row);
@@ -197,7 +207,14 @@ const Profile: NextPage = () => {
                                                     />
                                                 );
                                             }
-                                        )}
+                                        )
+                                    ) : (
+                                        <Center>
+                                            <Text fontSize="xl" mt={'4'}>
+                                                Not Placed in any Company
+                                            </Text>
+                                        </Center>
+                                    )}
                                 </Flex>
                             </Box>
                         </Box>
