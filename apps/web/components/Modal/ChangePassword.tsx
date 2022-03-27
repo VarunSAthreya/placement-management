@@ -74,13 +74,17 @@ const ChangePassword: FC<Props> = ({ isOpen, onClose, usn }) => {
                     },
                 });
 
-                if (res.data.changePassword.USN === usn) {
+                if (res.data.changePassword !== null) {
                     setTitle('Password Changed');
                     reset();
+                    localStorage.setItem(
+                        'token',
+                        res.data.changePassword.split(' ')[1]
+                    );
                     setTimeout(() => {
                         onClose();
                         Router.reload();
-                    }, 1000);
+                    }, 2000);
                 }
             } catch (error) {
                 setError('oldPassword', {

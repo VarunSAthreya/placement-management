@@ -21,8 +21,5 @@ mutation ChangePassword(
         USN: $usn
         oldPassword: $oldPassword
         newPassword: $newPassword
-    ) {
-        USN
-        role
-    }
+    )
 }

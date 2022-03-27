@@ -56,12 +56,12 @@ const Login: NextPage = () => {
             })
             .catch((err) => {
                 console.error(err);
-                localStorage.clear();
+                localStorage.setItem('token', '');
             });
     };
 
     if (error) {
-        localStorage.clear();
+        localStorage.setItem('token', '');
         console.log({ error });
         return <ErrorModal message={error.message} />;
     }

@@ -103,7 +103,7 @@ export type CompanyUpdateInput = {
 export type Mutation = {
   __typename?: 'Mutation';
   authenticate: AuthResponse;
-  changePassword: User;
+  changePassword: Scalars['String'];
   createApplied: Applied;
   createCompany: Company;
   createSelected: Selected;
@@ -353,7 +353,7 @@ export type ChangePasswordMutationVariables = Exact<{
 }>;
 
 
-export type ChangePasswordMutation = { __typename?: 'Mutation', changePassword: { __typename?: 'User', USN: string, role: Roles } };
+export type ChangePasswordMutation = { __typename?: 'Mutation', changePassword: string };
 
 export type GetCompaniesQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -604,10 +604,7 @@ export type AuthMutationResult = Apollo.MutationResult<AuthMutation>;
 export type AuthMutationOptions = Apollo.BaseMutationOptions<AuthMutation, AuthMutationVariables>;
 export const ChangePasswordDocument = gql`
     mutation ChangePassword($usn: ID!, $oldPassword: String!, $newPassword: String!) {
-  changePassword(USN: $usn, oldPassword: $oldPassword, newPassword: $newPassword) {
-    USN
-    role
-  }
+  changePassword(USN: $usn, oldPassword: $oldPassword, newPassword: $newPassword)
 }
     `;
 export type ChangePasswordMutationFn = Apollo.MutationFunction<ChangePasswordMutation, ChangePasswordMutationVariables>;
