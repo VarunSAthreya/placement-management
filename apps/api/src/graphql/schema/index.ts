@@ -67,7 +67,7 @@ const typeDefs = gql`
             USN: ID!
             oldPassword: String!
             newPassword: String!
-        ): User!
+        ): String!
     }
 `;
 

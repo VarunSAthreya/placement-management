@@ -1,7 +1,8 @@
+import { User } from '@prisma/client';
 import bcrypt from 'bcrypt';
 import { sign, verify } from 'jsonwebtoken';
 
-export const issueToken = async (user: IUser) => {
+export const issueToken = async (user: IUser | User) => {
     const { USN, role, version } = user;
     const token = sign({ USN, role, version }, process.env.JWT_SECRET!, {
         expiresIn: 60 * 60 * 24 * 30,

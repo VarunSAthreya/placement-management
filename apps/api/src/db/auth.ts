@@ -1,7 +1,7 @@
 import { ApolloError, AuthenticationError } from 'apollo-server';
 import { prisma } from '.';
 import { comparePassword, encryptPassword, issueToken } from '../functions';
-import { getUser, userQuery } from './user';
+import { getUser } from './user';
 
 export const authenticateUser = async (USN: string, password: string) => {
     try {
@@ -44,7 +44,12 @@ export const changePassword = async (
             throw new Error('Password must be at least 8 characters long');
         }
 
-        const user = await prisma.user.findUnique({ where: { USN } });
+        const user = await prisma.user.findUnique({
+            where: { USN },
+            select: {
+                password: true,
+            },
+        });
         if (!user) {
             throw new Error('User not found');
         }
@@ -56,18 +61,25 @@ export const changePassword = async (
 
         const hashedPassword = await encryptPassword(newPassword);
 
-        const res = prisma.user.update({
+        const res = await prisma.user.update({
             where: { USN },
             data: { password: hashedPassword },
-            include: userQuery,
+            select: {
+                password: true,
+            },
         });
 
         if (res !== null) {
-            await prisma.user.update({
+            const usr = await prisma.user.update({
                 where: { USN },
-                data: { version: user.version + 1 },
+                data: {
+                    version: {
+                        increment: 1,
+                    },
+                },
             });
-            return res;
+
+            return issueToken(usr);
         } else {
             throw new Error('Error Updating Password');
         }
