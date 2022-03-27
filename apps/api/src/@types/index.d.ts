@@ -1,6 +1,7 @@
 interface IUser {
     USN: string;
     password: string;
+    version: number;
     role: Roles;
     details?: IUserDetails;
 }

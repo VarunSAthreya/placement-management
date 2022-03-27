@@ -55,11 +55,22 @@ export const changePassword = async (
         }
 
         const hashedPassword = await encryptPassword(newPassword);
-        return prisma.user.update({
+
+        const res = prisma.user.update({
             where: { USN },
             data: { password: hashedPassword },
             include: userQuery,
         });
+
+        if (res !== null) {
+            await prisma.user.update({
+                where: { USN },
+                data: { version: user.version + 1 },
+            });
+            return res;
+        } else {
+            throw new Error('Error Updating Password');
+        }
     } catch (error: any) {
         throw new ApolloError(error.message);
     }

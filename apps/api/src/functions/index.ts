@@ -2,8 +2,8 @@ import bcrypt from 'bcrypt';
 import { sign, verify } from 'jsonwebtoken';
 
 export const issueToken = async (user: IUser) => {
-    const { USN, role } = user;
-    const token = sign({ USN, role }, process.env.JWT_SECRET!, {
+    const { USN, role, version } = user;
+    const token = sign({ USN, role, version }, process.env.JWT_SECRET!, {
         expiresIn: 60 * 60 * 24 * 30,
     });
     return `Bearer ${token}`;

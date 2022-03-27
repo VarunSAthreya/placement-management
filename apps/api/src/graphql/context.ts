@@ -1,3 +1,5 @@
+import { AuthenticationError } from 'apollo-server';
+import { prisma } from '../db';
 import { verifyToken } from '../functions';
 
 const context = async ({ req }: { req: any }) => {
@@ -15,7 +17,19 @@ const context = async ({ req }: { req: any }) => {
     if (!user) {
         return { USN: null, role: null };
     }
-    const { USN, role } = user;
+    const { USN, role, version } = user;
+    const ver = await prisma.user.findUnique({
+        where: { USN },
+        select: { version: true },
+    });
+
+    console.log({ ver, version });
+    if (ver?.version !== version) {
+        console.log('version mismatch');
+
+        throw new AuthenticationError('Wrong version of password');
+    }
+
     return { USN, role };
 };
 
