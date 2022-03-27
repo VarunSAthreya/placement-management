@@ -24,6 +24,7 @@ CREATE TABLE "Company" (
     "arrival_date" TIMESTAMP(6),
     "type" "CompanyType" NOT NULL,
     "package" DOUBLE PRECISION,
+    "year" INTEGER NOT NULL DEFAULT 2023,
 
     CONSTRAINT "Company_pkey" PRIMARY KEY ("name")
 );
@@ -52,6 +53,7 @@ CREATE TABLE "User" (
     "USN" VARCHAR NOT NULL,
     "password" VARCHAR NOT NULL,
     "role" "Roles" NOT NULL DEFAULT E'STUDENT',
+    "version" INTEGER NOT NULL DEFAULT 1,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("USN")

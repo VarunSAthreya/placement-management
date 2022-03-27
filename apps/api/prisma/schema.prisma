@@ -49,6 +49,7 @@ model User {
     USN        String       @id @db.VarChar
     password   String       @db.VarChar
     role       Roles        @default(STUDENT)
+    version    Int          @default(1)
     created_at DateTime     @default(now())
     details    UserDetails?
 }
@@ -67,9 +68,9 @@ model UserDetails {
     tenth    Float      @default(0.0)
     twelth   Float      @default(0.0)
     package  Float      @default(0.0)
+    User     User       @relation(fields: [USN], references: [USN], onDelete: Cascade, onUpdate: NoAction)
     applied  Applied[]
     selected Selected[]
-    User     User       @relation(fields: [USN], references: [USN], onDelete: Cascade, onUpdate: NoAction)
 }
 
 enum Branches {
