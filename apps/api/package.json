@@ -9,7 +9,8 @@
         "build": "tsc",
         "lint": "tsc --noEmit && TIMING=1 eslint src --fix",
         "clean": "rmdir /q /s .turbo && rmdir /q /s node_modules && rmdir /q /s dist",
-        "gen": "npx prisma generate"
+        "gen": "npx prisma generate",
+        "import-data": "node -r esbuild-register ./src/db/dummy.ts"
     },
     "devDependencies": {
         "@types/jsonwebtoken": "^8.5.7",

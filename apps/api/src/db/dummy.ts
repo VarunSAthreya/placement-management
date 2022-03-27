@@ -1,47 +1,53 @@
-import { createUser, prisma ,createCompany} from '.';
+import { createApplied, createSelected } from '.';
 
 export const addDummyData = async () => {
+    users.forEach((user) => {
+        createUser(user, 'ADMIN');
+    });
 
-    // await  users.forEach((user) => {
-    //     createUser(user);
-    // });
+    companies.forEach((company) => {
+        createCompany(company, 'ADMIN');
+    });
 
-    // await companies.forEach((company) => {
-    //     createCompany(company, 'ADMIN');
-    // })
+    applied.forEach((app) => {
+        createApplied(app);
+    });
 
-    // await prisma.applied.createMany({ data: applied });
-
-    // await prisma.selected.createMany({ data: selected });
-
-    // createCompany(companies[2], 'ADMIN').then(() => {console.log('done')}).catch(err => console.log(err));
+    selected.forEach((sel) => {
+        createSelected(sel);
+    });
 };
 
 const users = [
     {
+        USN: 'ADMIN',
+        password: 'ADMIN@123',
+        role: 'ADMIN',
+    },
+    {
         USN: '1JS19CS186',
         role: 'STUDENT',
-        password: 'asdfghjkl',
-        details:{
+        password: '1234567890',
+        details: {
             CGPA: 8.5,
             name: 'Varun S Athreya',
             email: '1js19cs186@jssateb.ac.in',
             backlogs: 0,
-            tenth: 8.5,
-            twelth: 8.5,
+            tenth: 85,
+            twelth: 85,
             placed: false,
             branch: 'CSE',
             section: 'C',
             eligible: true,
             package: 0,
             year: 2023,
-        }
+        },
     },
     {
         USN: '1JS19CS146',
         role: 'STUDENT',
-        password: 'asdfghjkl',
-        details:{
+        password: '1234567890',
+        details: {
             CGPA: 8.5,
             name: 'Sandeep M',
             email: '1js19cs146@jssateb.ac.in',
@@ -50,17 +56,17 @@ const users = [
             branch: 'CSE',
             section: 'C',
             eligible: true,
-            tenth: 8.5,
-            twelth: 8.5,
+            tenth: 85,
+            twelth: 85,
             placed: true,
-            package: 10,
-        }
+            package: 1000000,
+        },
     },
     {
         USN: '1JS19CS183',
         role: 'STUDENT',
-        password: 'asdfghjkl',
-        details :{
+        password: '1234567890',
+        details: {
             CGPA: 8.5,
             backlogs: 0,
             branch: 'CSE',
@@ -69,21 +75,21 @@ const users = [
             year: 2023,
             section: 'C',
             eligible: true,
-            tenth: 8.5,
-            twelth: 8.5,
+            tenth: 85,
+            twelth: 85,
             placed: false,
             package: 0,
-        }
+        },
     },
     {
         USN: '1JS19CS157',
         role: 'STUDENT',
-        password: 'asdfghjkl',
-        details:{
+        password: '1234567890',
+        details: {
             CGPA: 8.5,
             backlogs: 0,
-            tenth: 8.5,
-            twelth: 8.5,
+            tenth: 85,
+            twelth: 85,
             placed: true,
             name: 'Shithin Shetty',
             email: '1js19cs157@jssateb.ac.in',
@@ -92,10 +98,9 @@ const users = [
             section: 'C',
             eligible: true,
             year: 2023,
-        }
+        },
     },
 ];
-
 
 const companies = [
     {
@@ -104,10 +109,10 @@ const companies = [
         package: 100000,
         type: 'PRODUCT',
         eligibility: {
-            CGPA: 8.5,
+            CGPA: 7.5,
             backlogs: 0,
-            tenth: 8.5,
-            twelth: 8.5,
+            tenth: 65,
+            twelth: 65,
         },
     },
     {
@@ -115,12 +120,12 @@ const companies = [
         arrival_date: new Date().toISOString(),
         package: 100000,
         type: 'PRODUCT',
-        eligibility:{
-            CGPA: 8.5,
+        eligibility: {
+            CGPA: 7.5,
             backlogs: 0,
-            tenth: 8.5,
-            twelth: 8.5,
-        }
+            tenth: 65,
+            twelth: 65,
+        },
     },
     {
         name: 'Microsoft',
@@ -128,11 +133,11 @@ const companies = [
         package: 100000,
         type: 'PRODUCT',
         eligibility: {
-            CGPA: 8.5,
+            CGPA: 7.5,
             backlogs: 0,
-            tenth: 8.5,
-            twelth: 8.5,
-        }
+            tenth: 65,
+            twelth: 65,
+        },
     },
     {
         name: 'TCS',
@@ -140,14 +145,13 @@ const companies = [
         package: 100000,
         type: 'SERVICE',
         eligibility: {
-            CGPA: 8.5,
-            backlogs: 0,
-            tenth: 8.5,
-            twelth: 8.5,
-        }
+            CGPA: 6.5,
+            backlogs: 2,
+            tenth: 65,
+            twelth: 65,
+        },
     },
 ];
-
 
 const applied: IApplied[] = [
     {
@@ -194,3 +198,11 @@ const selected: ISelected[] = [
         companyID: 'Amazon',
     },
 ];
+
+addDummyData()
+    .then(() => {
+        console.log('Dummy data added');
+    })
+    .catch((err) => {
+        console.log(err);
+    });

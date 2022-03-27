@@ -76,5 +76,5 @@ interface ISelected {
 }
 
 interface ISelectedInput extends ISelected {
-    package: number;
+    package?: number;
 }

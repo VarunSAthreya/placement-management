@@ -62,6 +62,10 @@ export const createSelected = async (selected: ISelectedInput) => {
         });
         if (!company) throw new Error('Company not found');
 
+        if (!selected.package) {
+            selected.package = company.package!;
+        }
+
         const applied = await getApplied(selected);
         if (!applied) throw new Error('Student not applied');
 
