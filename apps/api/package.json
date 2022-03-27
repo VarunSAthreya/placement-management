@@ -13,20 +13,21 @@
         "import-data": "node -r esbuild-register ./src/db/dummy.ts"
     },
     "devDependencies": {
+        "@types/bcrypt": "^5.0.0",
         "@types/jsonwebtoken": "^8.5.7",
         "@types/node": "^15.12.2",
-        "esbuild-register": "^2.5.0",
+        "esbuild": "^0.14.28",
+        "esbuild-register": "^3.3.2",
         "eslint": "^7.32.0",
         "nodemon": "^2.0.15",
-        "prisma": "^3.9.2",
+        "prisma": "^3.11.1",
         "scripts": "*",
         "tsconfig": "*",
         "typescript": "^4.5.3"
     },
     "dependencies": {
-        "@prisma/client": "^3.9.2",
-        "@types/bcrypt": "^5.0.0",
-        "apollo-server": "^3.6.1",
+        "@prisma/client": "^3.11.1",
+        "apollo-server": "^3.6.6",
         "bcrypt": "^5.0.1",
         "dotenv": "^10.0.0",
         "graphql": "^16.2.0",
