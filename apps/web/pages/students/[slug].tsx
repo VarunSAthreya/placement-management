@@ -75,7 +75,6 @@ const StudentDetails: NextPage = () => {
                                             color: '#FF0080',
                                         }}
                                         _focus={{ outline: 'none' }}
-                                        variant="no-hover"
                                     >
                                         Home
                                     </BreadcrumbLink>
@@ -90,7 +89,6 @@ const StudentDetails: NextPage = () => {
                                             color: '#FF0080',
                                         }}
                                         _focus={{ outline: 'none' }}
-                                        variant="no-hover"
                                     >
                                         Students
                                     </BreadcrumbLink>
@@ -104,7 +102,6 @@ const StudentDetails: NextPage = () => {
                                             color: '#FF0080',
                                         }}
                                         _focus={{ outline: 'none' }}
-                                        variant="no-hover"
                                     >
                                         Student Details
                                     </BreadcrumbLink>

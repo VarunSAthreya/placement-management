@@ -133,7 +133,6 @@ const CompanyForm: NextPage = () => {
                                             color: '#FF0080',
                                         }}
                                         _focus={{ outline: 'none' }}
-                                        variant="no-hover"
                                     >
                                         Home
                                     </BreadcrumbLink>
@@ -148,7 +147,6 @@ const CompanyForm: NextPage = () => {
                                             color: '#FF0080',
                                         }}
                                         _focus={{ outline: 'none' }}
-                                        variant="no-hover"
                                     >
                                         Companies
                                     </BreadcrumbLink>
@@ -162,7 +160,6 @@ const CompanyForm: NextPage = () => {
                                             color: '#FF0080',
                                         }}
                                         _focus={{ outline: 'none' }}
-                                        variant="no-hover"
                                     >
                                         Add Company
                                     </BreadcrumbLink>
@@ -453,7 +450,6 @@ const CompanyForm: NextPage = () => {
                                                 bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
                                             }}
                                             _focus={{ outline: 'none' }}
-                                            variant="no-hover"
                                             type="submit"
                                             textTransform={'uppercase'}
                                         >

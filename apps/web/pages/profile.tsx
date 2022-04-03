@@ -87,7 +87,6 @@ const Profile: NextPage = () => {
                                         color: '#FF0080',
                                     }}
                                     _focus={{ outline: 'none' }}
-                                    variant="no-hover"
                                 >
                                     Home
                                 </BreadcrumbLink>
@@ -102,7 +101,6 @@ const Profile: NextPage = () => {
                                         color: '#FF0080',
                                     }}
                                     _focus={{ outline: 'none' }}
-                                    variant="no-hover"
                                 >
                                     Profile
                                 </BreadcrumbLink>

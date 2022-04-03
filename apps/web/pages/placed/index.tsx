@@ -84,7 +84,6 @@ const Placed: NextPage = () => {
                                                 color: '#FF0080',
                                             }}
                                             _focus={{ outline: 'none' }}
-                                            variant="no-hover"
                                         >
                                             Home
                                         </BreadcrumbLink>
@@ -99,7 +98,6 @@ const Placed: NextPage = () => {
                                                 color: '#FF0080',
                                             }}
                                             _focus={{ outline: 'none' }}
-                                            variant="no-hover"
                                         >
                                             Placed Students
                                         </BreadcrumbLink>

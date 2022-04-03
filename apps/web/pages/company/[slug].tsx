@@ -89,7 +89,6 @@ const CompanyDetails: NextPage = () => {
                                             color: '#FF0080',
                                         }}
                                         _focus={{ outline: 'none' }}
-                                        variant="no-hover"
                                     >
                                         Home
                                     </BreadcrumbLink>
@@ -104,7 +103,6 @@ const CompanyDetails: NextPage = () => {
                                             color: '#FF0080',
                                         }}
                                         _focus={{ outline: 'none' }}
-                                        variant="no-hover"
                                     >
                                         Companies
                                     </BreadcrumbLink>
@@ -118,7 +116,6 @@ const CompanyDetails: NextPage = () => {
                                             color: '#FF0080',
                                         }}
                                         _focus={{ outline: 'none' }}
-                                        variant="no-hover"
                                     >
                                         Company Details
                                     </BreadcrumbLink>

@@ -135,14 +135,7 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                         </Flex>
                     </Box>
                 </Box>
-                <Box
-                    p="16px"
-                    display="flex"
-                    align="center"
-                    justify="center"
-                    bg={primaryBG}
-                    borderRadius={8}
-                >
+                <Box p="16px" display="flex" bg={primaryBG} borderRadius={8}>
                     <Flex
                         direction="column"
                         align="center"
@@ -187,14 +180,7 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                         </Text>
                     </Flex>
                 </Box>
-                <Box
-                    p="16px"
-                    display="flex"
-                    align="center"
-                    justify="center"
-                    bg={primaryBG}
-                    borderRadius={8}
-                >
+                <Box p="16px" display="flex" bg={primaryBG} borderRadius={8}>
                     <Flex
                         direction="column"
                         align="center"
@@ -239,14 +225,7 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                         </Text>
                     </Flex>
                 </Box>
-                <Box
-                    p="16px"
-                    display="flex"
-                    align="center"
-                    justify="center"
-                    bg={primaryBG}
-                    borderRadius={8}
-                >
+                <Box p="16px" display="flex" bg={primaryBG} borderRadius={8}>
                     <Flex
                         direction="column"
                         align="center"
