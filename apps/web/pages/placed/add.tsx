@@ -186,6 +186,11 @@ const PlacedForm: NextPage = () => {
                                             {...register('USN', {
                                                 required:
                                                     'Please Enter The USN of the Student',
+                                                maxLength: {
+                                                    value: 10,
+                                                    message:
+                                                        'USN should be of 10 characters',
+                                                },
                                             })}
                                         />
                                         <FormErrorMessage>
@@ -231,7 +236,7 @@ const PlacedForm: NextPage = () => {
                                         isInvalid={errors.package !== undefined}
                                     >
                                         <Input
-                                            type="text"
+                                            type="number"
                                             placeholder="Enter Package Detail"
                                             {...register('package', {
                                                 required:

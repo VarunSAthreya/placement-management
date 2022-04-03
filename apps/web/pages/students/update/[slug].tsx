@@ -371,8 +371,16 @@ const UpdateStudent = () => {
                                                 {...register('tenth', {
                                                     required:
                                                         'Please Enter Eligibile Criteria Based On 10Th Marks',
-                                                    max: 100,
-                                                    min: 0,
+                                                    max: {
+                                                        value: 100,
+                                                        message:
+                                                            'Max Percentage is 100',
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            'Min Percentage is 0',
+                                                    },
                                                 })}
                                             />
                                         </InputGroup>
@@ -398,8 +406,16 @@ const UpdateStudent = () => {
                                                 {...register('twelth', {
                                                     required:
                                                         'Please Enter Eligibile Criteria Based On 12Th Marks',
-                                                    max: 100,
-                                                    min: 0,
+                                                    max: {
+                                                        value: 100,
+                                                        message:
+                                                            'Max Percentage is 100',
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            'Min Percentage is 0',
+                                                    },
                                                 })}
                                             />
                                         </InputGroup>
@@ -425,8 +441,16 @@ const UpdateStudent = () => {
                                                 {...register('CGPA', {
                                                     required:
                                                         'Please Enter Eligibile Criteria Based On CGPA',
-                                                    max: 10,
-                                                    min: 0,
+                                                    max: {
+                                                        value: 10,
+                                                        message:
+                                                            'Max CGPA is 10',
+                                                    },
+                                                    min: {
+                                                        value: 4,
+                                                        message:
+                                                            'Min CGPA is 4',
+                                                    },
                                                 })}
                                             />
                                         </InputGroup>
@@ -450,8 +474,16 @@ const UpdateStudent = () => {
                                                 {...register('year', {
                                                     required:
                                                         'Please Enter Passing Year',
-                                                    max: 2050,
-                                                    min: 2015,
+                                                    max: {
+                                                        value: 250,
+                                                        message:
+                                                            'Latest passing year should be 2050',
+                                                    },
+                                                    min: {
+                                                        value: 2010,
+                                                        message:
+                                                            'Oldest passing year should be 2010',
+                                                    },
                                                 })}
                                             />
                                         </InputGroup>
@@ -477,8 +509,16 @@ const UpdateStudent = () => {
                                                 {...register('backlogs', {
                                                     required:
                                                         'Please Enter Eligibile Criteria Based On backlogs',
-                                                    max: 10,
-                                                    min: 0,
+                                                    max: {
+                                                        value: 10,
+                                                        message:
+                                                            'Max Backlogs can be 100',
+                                                    },
+                                                    min: {
+                                                        value: 0,
+                                                        message:
+                                                            'Min backlogs is 0',
+                                                    },
                                                 })}
                                             />
                                         </InputGroup>

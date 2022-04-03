@@ -187,10 +187,10 @@ export const isStudentEligible = async (
         console.log({ userDetails, company });
 
         return (
-            CGPA > CGPA_cutoff &&
+            CGPA >= CGPA_cutoff &&
             backlogs <= backlogs_cutoff &&
-            tenth > tenth_cutoff &&
-            twelth > twelth_cutoff &&
+            tenth >= tenth_cutoff &&
+            twelth >= twelth_cutoff &&
             pkg * 1.3 <= CTC!
         );
     } catch (error: any) {
