@@ -83,9 +83,10 @@ export const updateUserDetails = async (
     usn: string
 ) => {
     try {
-        if (role !== 'ADMIN' || userDetails.USN !== usn) {
+        if (role !== 'ADMIN') {
             // TODO: Add role based error for remanding
-            throw new Error('You are not authorized to update a company');
+
+            throw new Error('You are not authorized to update this user');
         }
         const { USN, ...rest } = userDetails;
 

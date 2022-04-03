@@ -77,7 +77,8 @@ const UpdateStudent = () => {
     const secondaryBG = useColorModeValue('white', '#242526');
     const router = useRouter();
 
-    const [update, { loading: updLoading }] = useUpdateStudentMutation();
+    const [update, { loading: updLoading, error: updError }] =
+        useUpdateStudentMutation();
 
     const onSubmit = (values: FormValues) => {
         const variables = {
@@ -93,7 +94,7 @@ const UpdateStudent = () => {
                 CGPA: Number(values.CGPA),
                 year: Number(values.year),
                 eligible: Boolean(values.eligible),
-                placed: values.placed,
+                placed: Boolean(values.placed),
                 package: Number(values.package),
             },
         };
@@ -102,10 +103,14 @@ const UpdateStudent = () => {
                 router.push('/students');
             })
             .catch((err) => {
-                console.log(err);
+                console.log({ err });
             });
     };
 
+    if (updError) {
+        console.log({ updError });
+        return <ErrorModal message={updError.message} />;
+    }
     if (error) {
         console.log({ error });
         return <ErrorModal message={error.message} />;
