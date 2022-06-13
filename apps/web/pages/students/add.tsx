@@ -464,7 +464,7 @@ const StudentForm: NextPage = () => {
                                                     required:
                                                         'Please Enter Passing Year',
                                                     max: {
-                                                        value: 250,
+                                                        value: 2050,
                                                         message:
                                                             'Latest passing year should be 2050',
                                                     },
@@ -497,7 +497,7 @@ const StudentForm: NextPage = () => {
                                                 placeholder="No of backlogs"
                                                 {...register('backlogs', {
                                                     required:
-                                                        'Please Enter Eligibile Criteria Based On backlogs',
+                                                        'Please Enter Eligible Criteria Based On backlogs',
                                                     max: {
                                                         value: 10,
                                                         message:

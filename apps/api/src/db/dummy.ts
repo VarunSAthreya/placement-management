@@ -1,4 +1,4 @@
-import { createApplied, createSelected } from '.';
+import { createApplied, createCompany, createSelected, createUser } from '.';
 
 export const addDummyData = async () => {
     users.forEach((user) => {
@@ -27,7 +27,7 @@ const users = [
     {
         USN: '1JS19CS186',
         role: 'STUDENT',
-        password: '1234567890',
+        password: '123456789',
         details: {
             CGPA: 8.5,
             name: 'Varun S Athreya',
@@ -46,7 +46,7 @@ const users = [
     {
         USN: '1JS19CS146',
         role: 'STUDENT',
-        password: '1234567890',
+        password: '123456789',
         details: {
             CGPA: 8.5,
             name: 'Sandeep M',
@@ -65,7 +65,7 @@ const users = [
     {
         USN: '1JS19CS183',
         role: 'STUDENT',
-        password: '1234567890',
+        password: '123456789',
         details: {
             CGPA: 8.5,
             backlogs: 0,
@@ -84,7 +84,7 @@ const users = [
     {
         USN: '1JS19CS157',
         role: 'STUDENT',
-        password: '1234567890',
+        password: '123456789',
         details: {
             CGPA: 8.5,
             backlogs: 0,
