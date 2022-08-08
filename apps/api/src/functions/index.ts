@@ -10,7 +10,7 @@ export const issueToken = async (user: IUser | User) => {
     return `Bearer ${token}`;
 };
 
-export const verifyToken = async (token: string) => {
+export const verifyToken = async (token: string): Promise<User | null> => {
     if (!token || token === '') {
         return null;
     }
@@ -20,7 +20,7 @@ export const verifyToken = async (token: string) => {
         return null;
     }
 
-    return verify(token, process.env.JWT_SECRET!);
+    return verify(token, process.env.JWT_SECRET!) as User | null;
 };
 
 export const encryptPassword = async (password: string) =>
