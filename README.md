@@ -10,18 +10,21 @@ The admin controls the academic details of the students which is provided by the
 ## Tech Stack
 
 - Frontend:
+
   - [NextJS](https://nextjs.org/)
   - [Chakra UI](https://chakra-ui.com/)
   - [Typescript](https://www.typescriptlang.org/)
   - [Apollo Client](https://www.apollographql.com/docs/react/)
 
 - Backend
+
   - [NodeJS](https://nodejs.org/)
   - [Apollo Server](https://www.apollographql.com/)
   - [Typescript](https://www.typescriptlang.org/)
   - [Prisma](https://www.prisma.io/)
 
 - Database
+
   - [PostgreSQL](https://www.postgresql.org/)
 
 - Others
