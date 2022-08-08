@@ -1,6 +1,6 @@
 import { Button, Flex, Text, useDisclosure } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React, { FC } from 'react';
+import { FC } from 'react';
 import ChangePassword from '../Modal/ChangePassword';
 
 type Props = {
