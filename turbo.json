@@ -16,6 +16,10 @@
         },
         "gen": {
             "cache": false
+        },
+        "start": {
+            "dependsOn": ["build"],
+            "outputs": []
         }
     }
 }
