@@ -1,6 +1,8 @@
 # [Placement Management](https://placement-management.vercel.app/)
 
-Placement Management is a portal for managing the placement of students in the college. It is a web application with 2 login's one for the admin and one for the student.
+The Placement Management portal is a tool for students and administrators to use when coordinating college placement.
+Students can view upcoming companies and their eligibility requirements, and administrators can add, edit, and delete
+companies and students as needed.
 
 The student can view the list of upcoming companies and apply for them if they are eligible for the company.
 Can view their details such as basic details, academics details and placement details. And also they can select the companies if they have multiple offers.
@@ -59,4 +61,26 @@ NEXT_PUBLIC_API_URL = <BACKEND URL>
 ```.env
 DATABASE_URL = <DATABASE URL>
 JWT_SECRET = <JWT SECRET>
+```
+
+### Running the app
+
+- With [docker-compose](https://docs.docker.com/compose/):
+
+```bash
+docker-compose up
+```
+
+- Without docker-compose:
+
+  - Development mode
+
+```bash
+            yarn dev
+```
+
+- Production mode
+
+```bash
+            yarn start
 ```
