@@ -33,6 +33,7 @@ The admin controls the academic details of the students which is provided by the
   - [Turborepo](https://turborepo.org/)
   - [GraphQL Codegen](https://www.graphql-code-generator.com/)
   - [JWT](https://jwt.io/)
+  - [Docker](https://www.docker.com/)
 
 ## Getting Started
 
