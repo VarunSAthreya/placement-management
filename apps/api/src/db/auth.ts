@@ -33,15 +33,19 @@ export const changePassword = async (
     try {
         if (USN !== senderUSN && role !== 'ADMIN') {
             console.log({ senderUSN, role, USN });
-            throw new Error('You are not authorized to change password');
+            throw new Error('You are not authorized to change password.');
         }
 
         if (oldPassword === newPassword) {
-            throw new Error('New password cannot be the same as old password');
+            throw new Error('New password cannot be the same as old password.');
         }
 
         if (newPassword.length < 8) {
-            throw new Error('Password must be at least 8 characters long');
+            throw new Error('Password must be at least 8 characters long.');
+        }
+
+        if (USN === 'DEMO') {
+            throw new Error('Demo user cannot change password!');
         }
 
         const user = await prisma.user.findUnique({
