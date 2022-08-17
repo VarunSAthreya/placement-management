@@ -44,6 +44,7 @@ Password: DEMO@123
   - [Turborepo](https://turborepo.org/)
   - [GraphQL Codegen](https://www.graphql-code-generator.com/)
   - [JWT](https://jwt.io/)
+  - [Docker](https://www.docker.com/)
 
 ## Getting Started
 
