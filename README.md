@@ -9,6 +9,17 @@ Can view their details such as basic details, academics details and placement de
 
 The admin controls the academic details of the students which is provided by the college. And also adds and removes the companies from the list of companies, set the companies eligibility and date of arrival and package offered.
 
+## Demo
+
+To go through the features provided to the student by the portal, you can use the following credentials:
+
+```txt
+UserID: DEMO
+Password: DEMO@123
+```
+
+**PS: Don't change the password!**
+
 ## Tech Stack
 
 - Frontend:
