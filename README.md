@@ -1,13 +1,10 @@
 # [Placement Management](https://placement-management.vercel.app/)
 
-The Placement Management portal is a tool for students and administrators to use when coordinating college placement.
-Students can view upcoming companies and their eligibility requirements, and administrators can add, edit, and delete
-companies and students as needed.
+The Placement Management portal is a tool that is used by both students and administrators in order to coordinate college placement. This portal allows students to view upcoming companies and their eligibility requirements. In addition, the portal allows administrators to add, edit, and delete companies and students as needed. 
 
-The student can view the list of upcoming companies and apply for them if they are eligible for the company.
-Can view their details such as basic details, academics details and placement details. And also they can select the companies if they have multiple offers.
+The portal is designed to be user-friendly and efficient. Students can easily view the list of upcoming companies and apply for them if they are eligible for the company. Additionally, students can view their own details such as basic details, academic details, and placement details. If a student has multiple offers, they can also use the portal to select the company they would like to work for. 
 
-The admin controls the academic details of the students which is provided by the college. And also adds and removes the companies from the list of companies, set the companies eligibility and date of arrival and package offered.
+On the other hand, administrators have complete control over the academic details of the students which are provided by the college. The administrators can also add and remove companies from the list of companies. They can also set the companies' eligibility and date of arrival, as well as the package offered.
 
 ## Demo
 
