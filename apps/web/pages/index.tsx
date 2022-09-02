@@ -6,10 +6,9 @@ import { getUSNAndRole } from '../lib/functions';
 
 const Home: NextPage = () => {
     const role = getUSNAndRole().role;
-
     useEffect(() => {
         if (!role) {
-            Router.push('/login');
+            Router.push('/landing');
         }
     }, [role]);
 
