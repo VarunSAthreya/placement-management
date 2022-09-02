@@ -1,3 +1,4 @@
+import React from 'react';
 import {
     Button,
     Flex,
@@ -7,6 +8,7 @@ import {
     Grid,
     GridItem,
     Heading,
+    Image,
     Icon,
     Input,
     InputGroup,
@@ -16,10 +18,11 @@ import {
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
-import { AiFillLock, AiOutlineMail } from 'react-icons/ai';
+import { AiFillLock, AiOutlineMail, AiOutlineLogin } from 'react-icons/ai';
 import { Loader } from '../components/Loader';
 import ErrorModal from '../components/Modal/Error';
 import { useAuthMutation } from '../generated/graphql';
+import Logo from '../components/Logo/Logo';
 
 type FormValues = {
     USN: string;
@@ -68,167 +71,167 @@ const Login: NextPage = () => {
     if (loading) return <Loader />;
 
     return (
-        <Flex position="relative" mb="40px">
-            <Flex
-                h={{ sm: 'initial', md: '75vh', lg: '90vh' }}
-                w={{ base: '100%', md: '50%', lg: '45%' }}
-                justifyContent={'center'}
-                maxW="1044px"
-                mx="auto"
-                mb="30px"
-                pt={{ sm: '100px', md: '0px' }}
-            >
+        <React.Fragment>
+            <Flex position="relative" mb="40px" justifyContent={'flex-end'}>
                 <Flex
-                    direction="column"
-                    w="100%"
-                    background="transparent"
-                    p="32px"
-                    mt={{ md: '150px', lg: '100px' }}
-                    justifyContent={'center'}
-                    color="black"
-                    borderRadius={8}
-                    bg={primaryBG}
+                    h={{ sm: 'initial', md: '75vh', lg: '90vh' }}
+                    w={{ base: '100%', md: '50%', lg: '40%' }}
+                    mb="30px"
+                    mr={'5%'}
+                    pt={{ sm: '100px', md: '0px' }}
                 >
-                    <Heading
-                        fontSize="48px"
-                        mb="40px"
-                        p={1}
-                        textAlign={'center'}
-                        bgGradient="linear(to-l, #7928CA, #FF0080)"
-                        bgClip="text"
-                        fontWeight="extrabold"
-                        textTransform={'uppercase'}
+                    <Flex
+                        direction="column"
+                        w="100%"
+                        background="transparent"
+                        p="32px"
+                        mt={{ md: '150px', lg: '100px' }}
+                        justifyContent={'center'}
+                        color="black"
+                        borderRadius={8}
+                        bg={primaryBG}
                     >
-                        Placement Portal
-                    </Heading>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <Grid templateColumns="1fr">
-                            <GridItem>
-                                <FormControl
-                                    isInvalid={errors.USN !== undefined}
-                                >
-                                    <FormLabel
-                                        ms="4px"
-                                        fontSize="md"
-                                        fontWeight="normal"
-                                        color={blackToWhite}
+                        <Logo width={'100%'} />
+                        <form onSubmit={handleSubmit(onSubmit)}>
+                            <Grid templateColumns="1fr">
+                                <GridItem>
+                                    <FormControl
+                                        isInvalid={errors.USN !== undefined}
                                     >
-                                        User ID
-                                    </FormLabel>
-                                    <InputGroup>
-                                        <InputLeftElement pointerEvents="none">
-                                            <Icon
-                                                as={AiOutlineMail}
-                                                color={blackToWhite}
-                                                w={6}
-                                                h={6}
-                                                mt={'3px'}
-                                            />
-                                        </InputLeftElement>
+                                        <FormLabel
+                                            ms="4px"
+                                            fontSize="md"
+                                            fontWeight="normal"
+                                            color={blackToWhite}
+                                        >
+                                            User ID
+                                        </FormLabel>
+                                        <InputGroup>
+                                            <InputLeftElement pointerEvents="none">
+                                                <Icon
+                                                    as={AiOutlineMail}
+                                                    color={blackToWhite}
+                                                    w={6}
+                                                    h={6}
+                                                    mt={'3px'}
+                                                />
+                                            </InputLeftElement>
 
-                                        <Input
-                                            borderRadius="15px"
-                                            variant={'filled'}
-                                            mb="4px"
-                                            focusBorderColor={blackToWhite}
-                                            _placeholder={{
-                                                color: blackToWhite,
-                                            }}
-                                            fontSize="md"
-                                            color={blackToWhite}
-                                            type="text"
-                                            placeholder="Enter User ID"
-                                            size="lg"
-                                            {...register('USN', {
-                                                required:
-                                                    'Please Enter Your USN',
-                                            })}
-                                        />
-                                    </InputGroup>
-                                    <FormErrorMessage color="red">
-                                        {errors.USN && errors.USN.message}
-                                    </FormErrorMessage>
-                                </FormControl>
-                            </GridItem>
-                            <GridItem mt={4}>
-                                <FormControl
-                                    isInvalid={errors.password !== undefined}
-                                >
-                                    <FormLabel
-                                        ms="4px"
-                                        fontSize="md"
-                                        fontWeight="normal"
-                                        color={blackToWhite}
-                                    >
-                                        Password
-                                    </FormLabel>
-                                    <InputGroup>
-                                        <InputLeftElement pointerEvents="none">
-                                            <Icon
-                                                as={AiFillLock}
+                                            <Input
+                                                borderRadius="10px"
+                                                variant={'filled'}
+                                                mb="4px"
+                                                focusBorderColor={blackToWhite}
+                                                _placeholder={{
+                                                    color: blackToWhite,
+                                                }}
+                                                fontSize="md"
                                                 color={blackToWhite}
-                                                w={6}
-                                                h={6}
-                                                mt={'3px'}
+                                                type="text"
+                                                placeholder="Enter User ID"
+                                                size="lg"
+                                                {...register('USN', {
+                                                    required:
+                                                        'Please Enter Your USN',
+                                                })}
                                             />
-                                        </InputLeftElement>
-                                        <Input
-                                            borderRadius="15px"
-                                            variant={'filled'}
-                                            mb="4px"
+                                        </InputGroup>
+                                        <FormErrorMessage color="red">
+                                            {errors.USN && errors.USN.message}
+                                        </FormErrorMessage>
+                                    </FormControl>
+                                </GridItem>
+                                <GridItem mt={4}>
+                                    <FormControl
+                                        isInvalid={
+                                            errors.password !== undefined
+                                        }
+                                    >
+                                        <FormLabel
+                                            ms="4px"
                                             fontSize="md"
-                                            focusBorderColor={blackToWhite}
+                                            fontWeight="normal"
                                             color={blackToWhite}
-                                            type="password"
-                                            placeholder="Password"
-                                            _placeholder={{
-                                                color: blackToWhite,
-                                            }}
-                                            size="lg"
-                                            {...register('password', {
-                                                required:
-                                                    'Please Enter Valid Password',
-                                                minLength: {
-                                                    value: 3,
-                                                    message:
-                                                        'Minimum Password length should be 3',
-                                                },
-                                                maxLength: {
-                                                    value: 20,
-                                                    message:
-                                                        'Maximum Password length should be 20',
-                                                },
-                                            })}
-                                        />
-                                    </InputGroup>
-                                    <FormErrorMessage color="red">
-                                        {errors.password &&
-                                            errors.password.message}
-                                    </FormErrorMessage>
-                                </FormControl>
-                            </GridItem>
-                            <GridItem>
-                                <Button
-                                    fontSize="10px"
-                                    type="submit"
-                                    bg={blackToWhite}
-                                    w="100%"
-                                    h="45"
-                                    mb="20px"
-                                    color={whiteToBlack}
-                                    mt="20px"
-                                    _hover={{
-                                        bg: buttonHover,
-                                    }}
-                                >
-                                    LOGIN
-                                </Button>
-                            </GridItem>
-                        </Grid>
-                    </form>
+                                        >
+                                            Password
+                                        </FormLabel>
+                                        <InputGroup>
+                                            <InputLeftElement pointerEvents="none">
+                                                <Icon
+                                                    as={AiFillLock}
+                                                    color={blackToWhite}
+                                                    w={6}
+                                                    h={6}
+                                                    mt={'3px'}
+                                                />
+                                            </InputLeftElement>
+                                            <Input
+                                                borderRadius="10px"
+                                                variant={'filled'}
+                                                mb="4px"
+                                                fontSize="md"
+                                                focusBorderColor={blackToWhite}
+                                                color={blackToWhite}
+                                                type="password"
+                                                placeholder="Password"
+                                                _placeholder={{
+                                                    color: blackToWhite,
+                                                }}
+                                                size="lg"
+                                                {...register('password', {
+                                                    required:
+                                                        'Please Enter Valid Password',
+                                                    minLength: {
+                                                        value: 3,
+                                                        message:
+                                                            'Minimum Password length should be 3',
+                                                    },
+                                                    maxLength: {
+                                                        value: 20,
+                                                        message:
+                                                            'Maximum Password length should be 20',
+                                                    },
+                                                })}
+                                            />
+                                        </InputGroup>
+                                        <FormErrorMessage color="red">
+                                            {errors.password &&
+                                                errors.password.message}
+                                        </FormErrorMessage>
+                                    </FormControl>
+                                </GridItem>
+                                <GridItem>
+                                    <Button
+                                        fontSize="1rem"
+                                        type="submit"
+                                        color={'white'}
+                                        rightIcon={<AiOutlineLogin />}
+                                        bgGradient="linear(to-r, #7928CA, #FF0080)"
+                                        w="100%"
+                                        h="45"
+                                        mb="20px"
+                                        mt="20px"
+                                        _hover={{
+                                            bgGradient:
+                                                'linear-gradient(to right, #531a8e, #d6016c)',
+                                        }}
+                                    >
+                                        LOGIN
+                                    </Button>
+                                </GridItem>
+                            </Grid>
+                        </form>
+                    </Flex>
                 </Flex>
+                <Image
+                    src={'/assests/images/Background-Images/login-wave.svg'}
+                    alt={'bg-image'}
+                    pos={'absolute'}
+                    left={0}
+                    zIndex={-50}
+                />
             </Flex>
-        </Flex>
+        </React.Fragment>
     );
 };
 
