@@ -1,5 +1,5 @@
 import { Box, Flex, Text } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import type { FC } from 'react';
 
 type Props = {
     data: ICompany;

@@ -1,5 +1,6 @@
 import { Box, Heading, Icon, Image, Text } from '@chakra-ui/react';
-import { FC, useEffect, useState } from 'react';
+import type { FC } from 'react';
+import { useEffect, useState } from 'react';
 import { MdDescription } from 'react-icons/md';
 import IconBox from '../Icons/IconBox';
 

@@ -9,7 +9,7 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React, { FC } from 'react';
+import type { FC } from 'react';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
 type Props = {

@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import Footer from '../components/Footer';
 import {
     Features,

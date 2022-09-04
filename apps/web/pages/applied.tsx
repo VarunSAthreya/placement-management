@@ -17,7 +17,7 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useEffect, useState } from 'react';
 import { Loader } from '../components/Loader';
 import ErrorModal from '../components/Modal/Error';

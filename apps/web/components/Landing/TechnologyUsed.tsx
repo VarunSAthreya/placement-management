@@ -7,7 +7,7 @@ import {
     Stack,
     Text,
 } from '@chakra-ui/react';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { MdSettings } from 'react-icons/md';
 
 const frontendTech = [

@@ -1,5 +1,5 @@
 import { Flex, Td, Text, Tr, useColorModeValue } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import type { FC } from 'react';
 
 type Props = {
     data: {

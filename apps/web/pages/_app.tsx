@@ -1,7 +1,7 @@
 import { ApolloProvider } from '@apollo/client';
 import { ChakraProvider } from '@chakra-ui/react';
-import { NextPage } from 'next';
-import { AppProps } from 'next/app';
+import type { NextPage } from 'next';
+import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import client from '../lib/client';
 import '../styles/globals.css';

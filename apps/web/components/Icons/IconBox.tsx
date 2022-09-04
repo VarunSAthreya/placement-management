@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Flex, HTMLChakraProps } from '@chakra-ui/react';
-import React, { ReactNode, FC, HTMLAttributes } from 'react';
+import type { FC, HTMLAttributes, ReactNode } from 'react';
 
 interface IconBoxProps {
     children?: ReactNode | ReactNode[];

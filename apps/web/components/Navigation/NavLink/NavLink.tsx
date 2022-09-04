@@ -1,6 +1,6 @@
 import { Link, useColorModeValue } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { FC, ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
 type Props = {
     link: string;

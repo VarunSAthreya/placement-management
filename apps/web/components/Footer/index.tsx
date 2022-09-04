@@ -10,7 +10,7 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import Logo from '../Logo';
 import { Separator } from '../Separator';

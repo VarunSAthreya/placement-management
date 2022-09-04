@@ -1,5 +1,5 @@
 import { Heading, Stack, Text, useColorModeValue } from '@chakra-ui/react';
-import { FC } from 'react';
+import type { FC } from 'react';
 
 type Props = {
     id: string;

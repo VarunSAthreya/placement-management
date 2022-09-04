@@ -18,7 +18,7 @@ import {
     Tr,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { AiFillPlusCircle } from 'react-icons/ai';

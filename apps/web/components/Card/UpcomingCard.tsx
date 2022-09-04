@@ -1,7 +1,7 @@
 import { Box, Flex, HStack, Icon, Text } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { BsCalendarEvent, BsFillPersonLinesFill } from 'react-icons/bs';
 import { FiPackage, FiType } from 'react-icons/fi';
 import IconBox from '../Icons/IconBox';

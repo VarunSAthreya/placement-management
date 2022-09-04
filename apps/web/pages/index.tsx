@@ -1,4 +1,4 @@
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import Router from 'next/router';
 import { useEffect } from 'react';
 import { AdminHome, StudentHome } from '../components/Home';

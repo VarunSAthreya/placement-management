@@ -9,7 +9,7 @@ import {
     useBreakpointValue,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useGetStudentHomeDetailsQuery } from '../../generated/graphql';
 import { getUSNAndRole } from '../../lib/functions';
 import { AppliedCard, PlacedCard, UpcomingCard } from '../Card';
