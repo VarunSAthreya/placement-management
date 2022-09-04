@@ -1,22 +1,18 @@
-import React from 'react';
+import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
     Box,
-    Flex,
     Button,
-    useDisclosure,
+    Flex,
+    HStack,
+    IconButton,
     Stack,
     useColorMode,
-    IconButton,
-    HStack,
-    Link,
-    useColorModeValue,
+    useDisclosure,
 } from '@chakra-ui/react';
-import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { BsFillFileTextFill } from 'react-icons/bs';
-import NavLink from './NavLink/NavLink';
 import { motion } from 'framer-motion';
 import Logo from '../Logo/Logo';
 import { Separator } from '../Separator';
+import NavLink from './NavLink/NavLink';
 
 const routes = [
     { name: 'Importance', link: '/about' },

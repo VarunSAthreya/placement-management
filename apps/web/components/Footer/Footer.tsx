@@ -1,20 +1,16 @@
-import { FC } from 'react';
-import { useRouter } from 'next/router';
 import {
-    Avatar,
     Box,
     Button,
     Container,
-    Flex,
     HStack,
     Image,
-    Icon,
     Link,
     Stack,
     Text,
     useColorModeValue,
-    VStack,
 } from '@chakra-ui/react';
+import { useRouter } from 'next/router';
+import { FC } from 'react';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
 import Logo from '../Logo/Logo';
 import { Separator } from '../Separator';

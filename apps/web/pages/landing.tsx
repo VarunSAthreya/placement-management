@@ -430,7 +430,7 @@ const Landing: NextPage = () => {
                             FRONTEND TECHNOLOGIES →
                         </Heading>
                         <List spacing={3} textAlign="start" p={4}>
-                            {frontendTech.map((desc, id) => (
+                            {frontendTech.map((desc) => (
                                 <ListItem
                                     key={desc.id}
                                     color={'gray.600'}
@@ -467,7 +467,7 @@ const Landing: NextPage = () => {
                             BACKEND TECHNOLOGIES →
                         </Heading>
                         <List spacing={3} textAlign="start" p={4}>
-                            {backendTech.map((desc, id) => (
+                            {backendTech.map((desc) => (
                                 <ListItem
                                     key={desc.id}
                                     color={'gray.600'}

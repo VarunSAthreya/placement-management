@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Button,
     Flex,
@@ -7,9 +6,8 @@ import {
     FormLabel,
     Grid,
     GridItem,
-    Heading,
-    Image,
     Icon,
+    Image,
     Input,
     InputGroup,
     InputLeftElement,
@@ -17,12 +15,13 @@ import {
 } from '@chakra-ui/react';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { AiFillLock, AiOutlineMail, AiOutlineLogin } from 'react-icons/ai';
+import { AiFillLock, AiOutlineLogin, AiOutlineMail } from 'react-icons/ai';
 import { Loader } from '../components/Loader';
+import Logo from '../components/Logo/Logo';
 import ErrorModal from '../components/Modal/Error';
 import { useAuthMutation } from '../generated/graphql';
-import Logo from '../components/Logo/Logo';
 
 type FormValues = {
     USN: string;
@@ -41,8 +40,8 @@ const Login: NextPage = () => {
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const blackToWhite = useColorModeValue('black', 'white');
-    const whiteToBlack = useColorModeValue('white', 'black');
-    const buttonHover = useColorModeValue('#000000e0', '#e2e2e2');
+    /*const whiteToBlack = useColorModeValue('white', 'black');
+     const buttonHover = useColorModeValue('#000000e0', '#e2e2e2'); */
 
     const onSubmit = async (values: FormValues) => {
         const { USN, password } = values;
