@@ -21,12 +21,12 @@
         "jsonwebtoken": "^8.5.1"
     },
     "devDependencies": {
+        "@types/bcrypt": "^5.0.0",
+        "@types/jsonwebtoken": "^8.5.7",
         "@types/node": "^15.12.2",
         "esbuild": "^0.14.38",
         "esbuild-register": "^3.3.2",
         "eslint": "^7.32.0",
-        "@types/bcrypt": "^5.0.0",
-        "@types/jsonwebtoken": "^8.5.7",
         "nodemon": "^2.0.15",
         "prisma": "^3.11.1",
         "scripts": "*",
