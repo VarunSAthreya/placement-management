@@ -4,6 +4,7 @@ import { NextPage } from 'next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import client from '../lib/client';
+import '../styles/globals.css';
 import theme from '../styles/theme';
 
 const App: NextPage<AppProps> = ({ Component, pageProps }: AppProps) => {
