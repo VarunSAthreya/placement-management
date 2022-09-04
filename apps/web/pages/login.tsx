@@ -54,7 +54,7 @@ const Login: NextPage = () => {
                     'token',
                     data.authenticate.token.split(' ')[1]
                 );
-                router.replace('/');
+                router.replace('/dashboard');
             })
             .catch((err) => {
                 console.error(err);
