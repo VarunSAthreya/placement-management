@@ -19,7 +19,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { AiFillLock, AiOutlineLogin, AiOutlineMail } from 'react-icons/ai';
 import { Loader } from '../components/Loader';
-import Logo from '../components/Logo/Logo';
+import Logo from '../components/Logo';
 import ErrorModal from '../components/Modal/Error';
 import { useAuthMutation } from '../generated/graphql';
 

@@ -10,15 +10,15 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import Logo from '../Logo/Logo';
+import Logo from '../Logo';
 import { Separator } from '../Separator';
 import NavLink from './NavLink/NavLink';
 
 const routes = [
-    { name: 'Importance', link: '/about' },
-    { name: 'Features', link: '/projects' },
-    { name: 'Technologies', link: '/contact' },
-    { name: 'Login', link: '/login' },
+    { name: 'Importance', link: '#importance' },
+    { name: 'Features', link: '#features' },
+    { name: 'Technologies', link: '#tech' },
+    { name: 'Login', link: '#login' },
 ];
 
 const Navigation = () => {

@@ -12,13 +12,17 @@ import {
 import { useRouter } from 'next/router';
 import { FC } from 'react';
 import { BsFillArrowRightCircleFill } from 'react-icons/bs';
-import Logo from '../Logo/Logo';
+import Logo from '../Logo';
 import { Separator } from '../Separator';
 
-const Footer: FC = () => {
+type Props = {
+    id: string;
+};
+
+const Footer: FC<Props> = ({ id }) => {
     const router = useRouter();
     return (
-        <Box pt={16} position={'relative'}>
+        <Box id={id} pt={16} position={'relative'}>
             <Separator style={{ pos: 'absolute', top: '10px' }} />
             <Box
                 position={'absolute'}
