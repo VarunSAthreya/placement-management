@@ -475,7 +475,7 @@ const UpdateStudent = () => {
                                                     required:
                                                         'Please Enter Passing Year',
                                                     max: {
-                                                        value: 250,
+                                                        value: 2050,
                                                         message:
                                                             'Latest passing year should be 2050',
                                                     },
