@@ -61,7 +61,7 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                 },
             },
         })
-            .then(() => router.push('/'))
+            .then(() => router.push('/dashboard'))
             .catch((err) => console.log(err));
     };
 

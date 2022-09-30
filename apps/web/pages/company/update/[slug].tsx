@@ -167,7 +167,7 @@ const CompanyForm: NextPage = () => {
                             >
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/"
+                                        href="/dashboard"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',

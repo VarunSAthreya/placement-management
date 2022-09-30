@@ -57,7 +57,7 @@ const PlacedForm: NextPage = () => {
             },
         })
             .then(() => {
-                router.push('/');
+                router.push('/dashboard');
             })
             .catch((err) => console.log(err));
     };
@@ -103,7 +103,7 @@ const PlacedForm: NextPage = () => {
                             >
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/"
+                                        href="/dashboard"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',

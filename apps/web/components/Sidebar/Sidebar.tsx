@@ -28,7 +28,7 @@ import IconBox from '../Icons/IconBox';
 import Separator from '../Separator/Separator';
 
 const routes = [
-    { name: 'Home', link: '/', icon: FiHome },
+    { name: 'Home', link: '/dashboard', icon: FiHome },
     { name: 'Company', link: '/company', icon: BsBuilding },
     { name: 'Students', link: '/students', icon: BsPeople },
     { name: 'Applied', link: '/applied', icon: BsFillPersonLinesFill },

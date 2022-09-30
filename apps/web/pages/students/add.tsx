@@ -90,7 +90,7 @@ const StudentForm: NextPage = () => {
             variables,
         })
             .then(() => {
-                router.push('/');
+                router.push('/dashboard');
             })
             .catch((err) => {
                 console.log(err);
@@ -138,7 +138,7 @@ const StudentForm: NextPage = () => {
                             >
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/"
+                                        href="/dashboard"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',

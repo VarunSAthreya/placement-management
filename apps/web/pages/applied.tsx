@@ -90,7 +90,7 @@ const Applied: NextPage = () => {
                                 >
                                     <BreadcrumbItem>
                                         <BreadcrumbLink
-                                            href="/"
+                                            href="/dashboard"
                                             color="gray.500"
                                             _hover={{
                                                 textDecoration: 'none',
