@@ -15,7 +15,6 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React from 'react';
 import {
     BsBuilding,
     BsFillPersonLinesFill,
@@ -93,7 +92,7 @@ const SidebarContent = ({ onClose, ...rest }) => {
                         bgClip="text"
                         fontWeight="extrabold"
                         textTransform={'uppercase'}
-                        onClick={() => router.push(`/`)}
+                        onClick={() => router.push(`/dashboard`)}
                         cursor={'pointer'}
                     >
                         PLACEMENT PORTAL
