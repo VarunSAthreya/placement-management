@@ -43,9 +43,10 @@ const AdminProfileCard: FC<Props> = ({ data }) => {
             </Flex>
 
             <Flex
-                align="center"
+                align={{ base: 'stretch', sm: 'center' }}
                 justifyContent="space-between"
                 mb="8px"
+                flexDir={{ base: 'column', sm: 'row' }}
                 borderRadius={8}
                 bg={'#f8f9fa'}
                 p={3}
@@ -60,6 +61,7 @@ const AdminProfileCard: FC<Props> = ({ data }) => {
                     fontSize="md"
                     variant="no-hover"
                     onClick={onOpen}
+                    my={{ base: 2, md: 0 }}
                 >
                     Change Password
                 </Button>
@@ -74,7 +76,7 @@ const AdminProfileCard: FC<Props> = ({ data }) => {
                     variant="no-hover"
                     onClick={logout}
                 >
-                    LOGOUT
+                    Logout
                 </Button>
             </Flex>
             <ChangePassword isOpen={isOpen} onClose={onClose} usn={USN} />

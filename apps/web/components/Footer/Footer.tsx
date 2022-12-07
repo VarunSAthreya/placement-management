@@ -7,6 +7,7 @@ import {
     Container,
     Flex,
     HStack,
+    Hide,
     Image,
     Icon,
     Link,
@@ -27,6 +28,7 @@ const Footer: FC = () => {
             <Box
                 position={'absolute'}
                 display={'flex'}
+                flexDir={{ base: 'column', md: 'row' }}
                 justifyContent={'space-around'}
                 alignItems={'center'}
                 top="-40px"
@@ -38,7 +40,13 @@ const Footer: FC = () => {
                 rounded={'10px'}
             >
                 <Text
-                    fontSize={'3xl'}
+                    fontSize={{
+                        base: '0.8rem',
+                        sm: '1rem',
+                        md: '1.2rem',
+                        lg: '1.6rem',
+                        xl: '2rem',
+                    }}
                     color={'white'}
                     fontWeight={600}
                     textTransform={'uppercase'}
@@ -46,7 +54,13 @@ const Footer: FC = () => {
                     Try Placement Portal Now.
                 </Text>
                 <Button
-                    fontSize={'0.8rem'}
+                    fontSize={{
+                        base: '0.4rem',
+                        sm: '0.5rem',
+                        md: '0.7rem',
+                        lg: '0.8rem',
+                        xl: '0.8rem',
+                    }}
                     size={'lg'}
                     color={'#7928CA'}
                     rightIcon={<BsFillArrowRightCircleFill />}
@@ -69,14 +83,22 @@ const Footer: FC = () => {
                 as={Stack}
                 maxW={'8xl'}
                 py={10}
-                direction={{ base: 'column', md: 'row' }}
+                direction={{ base: 'row' }}
                 justify={{ base: 'center', md: 'space-between' }}
                 align={{ base: 'center', md: 'center' }}
             >
-                <Logo width={'50%'} />
+                <Hide below="md">
+                    <Logo width={{ md: '40%', lg: '50%' }} />
+                </Hide>
+
                 <Stack align={{ base: 'center', lg: 'flex-end' }} spacing={3}>
                     <Text
-                        fontSize={'xl'}
+                        fontSize={{
+                            base: '1rem',
+                            md: '1rem',
+                            lg: '1.15rem',
+                            xl: '1.25rem',
+                        }}
                         bgGradient="linear(to-l, #7928CA, #FF0080)"
                         bgClip="text"
                         fontWeight="extrabold"
@@ -85,9 +107,18 @@ const Footer: FC = () => {
                     >
                         Designed And Developed By:
                     </Text>
-                    <HStack spacing={2} alignItems={'center'}>
+                    <HStack
+                        spacing={2}
+                        alignItems={'center'}
+                        justify={{ base: 'center', md: 'flex-start' }}
+                    >
                         <Text
-                            fontSize={'lg'}
+                            fontSize={{
+                                base: '0.8rem',
+                                md: '1rem',
+                                lg: '1.15rem',
+                                xl: '1.25rem',
+                            }}
                             bgGradient="linear(to-l, #7928CA, #FF0080)"
                             bgClip="text"
                             fontWeight={500}
@@ -128,9 +159,18 @@ const Footer: FC = () => {
                             />
                         </Link>
                     </HStack>
-                    <HStack spacing={2} alignItems={'center'}>
+                    <HStack
+                        spacing={2}
+                        alignItems={'center'}
+                        justify={{ base: 'center', md: 'flex-start' }}
+                    >
                         <Text
-                            fontSize={'lg'}
+                            fontSize={{
+                                base: '0.8rem',
+                                md: '1rem',
+                                lg: '1.15rem',
+                                xl: '1.25rem',
+                            }}
                             bgGradient="linear(to-l, #7928CA, #FF0080)"
                             bgClip="text"
                             fontWeight={500}
@@ -181,10 +221,18 @@ const Footer: FC = () => {
                 py={2}
                 p={4}
             >
-                <Text color={'white'} textTransform={'uppercase'}>
+                <Text
+                    color={'white'}
+                    textTransform={'uppercase'}
+                    fontSize={{ base: '0.8rem', md: '1rem' }}
+                >
                     © 2022 Placement Portal.
                 </Text>
-                <Text color={'white'} textTransform={'uppercase'}>
+                <Text
+                    color={'white'}
+                    textTransform={'uppercase'}
+                    fontSize={{ base: '0.8rem', md: '1rem' }}
+                >
                     All rights reserved.
                 </Text>
             </Box>

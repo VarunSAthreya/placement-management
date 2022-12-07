@@ -115,7 +115,7 @@ const ChangePassword: FC<Props> = ({ isOpen, onClose, usn }) => {
                         {title}
                     </Text>
                 </ModalHeader>
-                <ModalCloseButton />
+                <ModalCloseButton _focus={{ outline: 'none' }} />
                 <ModalBody>
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <FormControl

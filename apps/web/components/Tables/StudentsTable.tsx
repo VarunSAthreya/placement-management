@@ -32,6 +32,8 @@ const StudentsTable: FC<Props> = ({ student, role }) => {
                     justifyContent={'center'}
                     py=".8rem"
                     minWidth="100%"
+                    flexDir={{ base: 'column', md: 'row' }}
+                    alignItems={'center'}
                 >
                     <Avatar
                         name={name}
@@ -50,6 +52,7 @@ const StudentsTable: FC<Props> = ({ student, role }) => {
                             color={textColor}
                             fontWeight="bold"
                             minWidth="100%"
+                            textAlign={{ base: 'center', md: 'start' }}
                         >
                             {name}
                         </Text>

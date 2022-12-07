@@ -72,7 +72,7 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
             <Grid
                 templateColumns={{
                     sm: '1fr',
-                    md: '1fr 1fr',
+                    md: '1fr 1fr 1fr',
                     xl: '1fr 1fr 1fr 1fr 1fr',
                 }}
                 templateRows={{
@@ -87,7 +87,7 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                     borderRadius={8}
                     p="16px"
                     h={{ sm: '220px', xl: '100%' }}
-                    gridArea={{ md: '1 / 1 / 2 / 3', xl: '1 / 1 / 2 / 3' }}
+                    gridArea={{ md: '1 / 1 / 2 / 4', xl: '1 / 1 / 2 / 3' }}
                 >
                     <Box h="100%" w="100%">
                         <Flex
@@ -277,6 +277,7 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
             <Box p="16px" mt="32px" bg={primaryBG} borderRadius={8}>
                 <Box>
                     <Flex
+                        flexDir={{ base: 'column', sm: 'row' }}
                         justify="space-between"
                         align="center"
                         minHeight="60px"
@@ -288,6 +289,7 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                             fontSize="3xl"
                             fontWeight="extrabold"
                             textTransform={'uppercase'}
+                            my={{ base: 2, sm: 0 }}
                         >
                             ELIGIBILITY CRITERIA
                         </Text>
@@ -332,7 +334,7 @@ const CompanyInfoCard: FC<Props> = ({ company, user, isEligible, role }) => {
                 </Box>
                 <Box>
                     <Flex
-                        direction={{ sm: 'column', md: 'column' }}
+                        direction={{ base: 'column', md: 'column' }}
                         w="100%"
                         py="1rem"
                     >

@@ -25,10 +25,10 @@ import {
 } from 'react-icons/bs';
 import { FiHome, FiMenu } from 'react-icons/fi';
 import IconBox from '../Icons/IconBox';
-import Separator from '../Separator/Separator';
+import Logo from '../Logo/Logo';
 
 const routes = [
-    { name: 'Home', link: '/', icon: FiHome },
+    { name: 'Home', link: '/home', icon: FiHome },
     { name: 'Company', link: '/company', icon: BsBuilding },
     { name: 'Students', link: '/students', icon: BsPeople },
     { name: 'Applied', link: '/applied', icon: BsFillPersonLinesFill },
@@ -39,7 +39,7 @@ const routes = [
 const SideBar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box minH="100vh">
+        <Box minH={{ base: 0, lg: "100vh" }}>
             <SidebarContent
                 onClose={() => onClose}
                 display={{ base: 'none', md: 'flex' }}
@@ -71,48 +71,41 @@ const SidebarContent = ({ onClose, ...rest }) => {
         <Box
             bg={useColorModeValue('white', '#242526')}
             w={{ base: 'full', md: 72 }}
-            pos={'fixed'}
-            borderRadius={8}
+            pos={{ base: 'static', md: 'fixed' }}
+            borderRadius={{ base: 0, md: 8 }}
             left={2}
             flexDirection={'column'}
             top={6}
-            h="95%"
+            h={{ base: '100%', md: '95%' }}
             {...rest}
         >
             <Flex
                 h="20"
                 alignItems="center"
-                mx="6"
+                mx="5"
                 justifyContent="space-between"
             >
-                <Box pt={'25px'} mb="12px">
-                    <Text
-                        fontSize="1.3rem"
-                        mt="3px"
-                        bgGradient="linear(to-l, #7928CA, #FF0080)"
-                        bgClip="text"
-                        fontWeight="extrabold"
-                        textTransform={'uppercase'}
-                        onClick={() => router.push(`/`)}
-                        cursor={'pointer'}
-                    >
-                        PLACEMENT PORTAL
-                    </Text>
-                    <Separator></Separator>
+                <Box pt={'25px'} mb={4}>
+                    <Logo width={'250px'} />
                 </Box>
                 <CloseButton
                     display={{ base: 'flex', md: 'none' }}
                     onClick={onClose}
                 />
             </Flex>
-            <Flex flexDirection={'column'}>
+            <Flex
+                flexDirection={'column'}
+                px={{ base: 6, lg: 0 }}
+                m={{ base: 4, lg: 0 }}
+                my={{ base: 0, lg: 4 }}
+            >
                 {routes.map((link) => (
                     <NavItem key={link.name} icon={link.icon} link={link.link}>
                         {link.name}
                     </NavItem>
                 ))}
             </Flex>
-            <Flex justify={'center'} pos={'relative'} bottom={0}>
+            <Flex justify={'center'} pos={'relative'} my={3}>
                 <Button
                     onClick={toggleColorMode}
                     _focus={{ outline: 'none' }}
@@ -136,8 +129,8 @@ const NavItem = ({ icon, link, children, ...rest }) => {
     const router = useRouter();
     const defaultColor = useColorModeValue('white', '#242526');
     const textColor = useColorModeValue('#242526', 'white');
-    // console.log(router.asPath);
-    // console.log({ link });
+    console.log(router.asPath.toString().includes(link));
+    console.log(link);
 
     return (
         <Link
@@ -153,7 +146,8 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                 role="group"
                 cursor="pointer"
                 bg={
-                    router.asPath === link
+                    router.asPath === link ||
+                    router.asPath.toString().includes(link)
                         ? 'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
                         : defaultColor
                 }
@@ -167,13 +161,19 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                 {icon && (
                     <IconBox
                         bg={
-                            router.asPath === link
+                            router.asPath === link ||
+                            router.asPath.toString().includes(link)
                                 ? 'white'
                                 : 'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
                         }
                         h="40px"
                         w="40px"
-                        color={router.asPath === link ? 'black' : 'white'}
+                        color={
+                            router.asPath === link ||
+                            router.asPath.toString().includes(link)
+                                ? 'black'
+                                : 'white'
+                        }
                         me="12px"
                         _groupHover={{
                             bg: 'white',
@@ -190,7 +190,12 @@ const NavItem = ({ icon, link, children, ...rest }) => {
                     </IconBox>
                 )}
                 <Text
-                    color={router.asPath === link ? 'white' : textColor}
+                    color={
+                        router.asPath === link ||
+                        router.asPath.toString().includes(link)
+                            ? 'white'
+                            : textColor
+                    }
                     my="auto"
                     fontSize="sm"
                     _groupHover={{
@@ -224,7 +229,7 @@ const MobileNav = ({ onOpen, ...rest }) => {
                 icon={<FiMenu />}
             />
 
-            {/* <CreativeTimLogo w="32px" h="32px" me="10px" /> */}
+            <Logo width={'200px'} />
         </Flex>
     );
 };

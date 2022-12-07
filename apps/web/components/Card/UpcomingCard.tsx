@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Icon, Text } from '@chakra-ui/react';
+import { Box, Flex, HStack, Icon, Text,Stack } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import { FC } from 'react';
@@ -16,7 +16,7 @@ const UpcomingCard: FC<Props> = ({ data }) => {
     const router = useRouter();
 
     return (
-        <Box p="15px" bg={'#f8f9fa'} my="8px" borderRadius="12px">
+        <Box p="15px" bg={'#f8f9fa'} my="15px" borderRadius="12px">
             <Flex w="100%" flexDir={'column'}>
                 <Flex justifyContent={'center'} flexDirection={'column'} p={2}>
                     <Text
@@ -34,8 +34,13 @@ const UpcomingCard: FC<Props> = ({ data }) => {
                     </Text>
                     <Separator />
                 </Flex>
-                <HStack p={2} my={1}>
-                    <Flex direction="row" align="center" w="100%">
+                <Stack
+                    direction={['column', 'row']}
+                    p={2}
+                    my={1}
+                    justifyContent={'space-between'}
+                >
+                    <Flex direction="row" align="center">
                         <IconBox
                             h={'35px'}
                             w={'35px'}
@@ -59,12 +64,7 @@ const UpcomingCard: FC<Props> = ({ data }) => {
                             {type} based
                         </Text>
                     </Flex>
-                    <Flex
-                        direction="row"
-                        align="center"
-                        w="100%"
-                        justifyContent={'center'}
-                    >
+                    <Flex direction="row" align="center">
                         <IconBox
                             h={'35px'}
                             w={'35px'}
@@ -88,7 +88,7 @@ const UpcomingCard: FC<Props> = ({ data }) => {
                             {CTC}
                         </Text>
                     </Flex>
-                    <Flex direction="row" align="center" w="100%">
+                    <Flex direction="row" align="center">
                         <IconBox
                             h={'35px'}
                             w={'35px'}
@@ -115,7 +115,7 @@ const UpcomingCard: FC<Props> = ({ data }) => {
                             )}
                         </Text>
                     </Flex>
-                </HStack>
+                </Stack>
                 <Flex direction="row" align="center" w="100%" p={2}>
                     <IconBox
                         h={'35px'}
@@ -150,6 +150,18 @@ const UpcomingCard: FC<Props> = ({ data }) => {
                     borderRadius={8}
                     textTransform={'uppercase'}
                     bg={'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'}
+                    _hover={{
+                        bgGradient:
+                            'linear-gradient( 310deg, #7928CA 0%, #FF0080 80%)',
+                    }}
+                    _active={{
+                        bgGradient:
+                            'linear-gradient( 310deg, #7928CA 0%, #FF0080 80%)',
+                    }}
+                    _focus={{
+                        bgGradient:
+                            'linear-gradient( 310deg, #7928CA 0%, #FF0080 80%)',
+                    }}
                     onClick={() => router.push(`/company/${name}`)}
                     cursor={'pointer'}
                 >
@@ -161,3 +173,5 @@ const UpcomingCard: FC<Props> = ({ data }) => {
 };
 
 export default UpcomingCard;
+
+//#2c2d2e

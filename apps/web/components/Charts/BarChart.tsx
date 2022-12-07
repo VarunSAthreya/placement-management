@@ -92,8 +92,8 @@ const BarChart = ({ branch, students, placed }) => {
     return (
         <Box
             py="1rem"
-            height={{ sm: '200px', lg: '400px' }}
-            width="120%"
+            height={{ sm: '350px', lg: '400px' }}
+            width={{ lg: '120%' }}
             position="relative"
         >
             <Chart

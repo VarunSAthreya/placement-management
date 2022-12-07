@@ -8,13 +8,10 @@ import {
     useColorMode,
     IconButton,
     HStack,
-    Link,
-    useColorModeValue,
+    Hide,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
-import { BsFillFileTextFill } from 'react-icons/bs';
 import NavLink from './NavLink/NavLink';
-import { motion } from 'framer-motion';
 import Logo from '../Logo/Logo';
 import { Separator } from '../Separator';
 
@@ -29,11 +26,9 @@ const Navigation = () => {
     const { colorMode, toggleColorMode } = useColorMode();
     const { isOpen, onOpen, onClose } = useDisclosure();
 
-    const MotionBox = motion(Box);
-
     return (
         <>
-            <MotionBox px={{ base: 5, lg: 8 }}>
+            <Box px={{ base: 5, lg: 8 }}>
                 <Flex
                     h={16}
                     alignItems={'center'}
@@ -47,22 +42,24 @@ const Navigation = () => {
                         onClick={isOpen ? onClose : onOpen}
                         _focus={{ outline: 'none' }}
                     />
-                    <HStack spacing={8} alignItems={'center'}>
+                    <HStack alignItems={'center'}>
                         <Logo width={'170px'} />
                     </HStack>
-                    <Flex alignItems={'center'}>
-                        <HStack
-                            as={'nav'}
-                            spacing={10}
-                            display={{ base: 'none', md: 'flex' }}
-                        >
-                            {routes.map((link) => (
-                                <NavLink key={link.name} link={link.link}>
-                                    {link.name}
-                                </NavLink>
-                            ))}
-                        </HStack>
-                    </Flex>
+                    <Hide below="md">
+                        <Flex alignItems={'center'}>
+                            <HStack
+                                as={'nav'}
+                                spacing={10}
+                                display={{ md: 'flex' }}
+                            >
+                                {routes.map((link) => (
+                                    <NavLink key={link.name} link={link.link}>
+                                        {link.name}
+                                    </NavLink>
+                                ))}
+                            </HStack>
+                        </Flex>
+                    </Hide>
                     <Button
                         bg={
                             'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
@@ -91,7 +88,7 @@ const Navigation = () => {
                         </Stack>
                     </Box>
                 ) : null}
-            </MotionBox>
+            </Box>
             <Separator style={{}} />
         </>
     );

@@ -289,9 +289,10 @@ const StudentProfileCard: FC<Props> = ({ data }) => {
                 </Text>
             </Flex>
             <Flex
-                align="center"
+                align={{ base: 'stretch', md: 'center' }}
                 justifyContent="space-between"
                 mb="8px"
+                flexDir={{ base: 'column', md: 'row' }}
                 borderRadius={8}
                 bg={'#f8f9fa'}
                 p={3}
@@ -306,6 +307,7 @@ const StudentProfileCard: FC<Props> = ({ data }) => {
                     fontSize="md"
                     variant="no-hover"
                     onClick={onOpen}
+                    my={{ base: 2, md: 0 }}
                 >
                     Change Password
                 </Button>
@@ -320,7 +322,7 @@ const StudentProfileCard: FC<Props> = ({ data }) => {
                     variant="no-hover"
                     onClick={logout}
                 >
-                    LOGOUT
+                    Logout
                 </Button>
             </Flex>
             <ChangePassword isOpen={isOpen} onClose={onClose} usn={USN} />

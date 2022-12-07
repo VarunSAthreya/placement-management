@@ -76,6 +76,7 @@ const StudentInfoCard: FC<Props> = ({ student }) => {
                         direction="column"
                         maxWidth="100%"
                         my={{ sm: '14px' }}
+                        mx={{ base: 4, sm: 0 }}
                     >
                         <Text
                             fontSize={{ sm: 'lg', lg: '2.3rem' }}
@@ -136,11 +137,7 @@ const StudentInfoCard: FC<Props> = ({ student }) => {
                         <Separator />
                     </Box>
                     <Box>
-                        <Flex
-                            direction={{ sm: 'column', md: 'column' }}
-                            w="100%"
-                            py="1rem"
-                        >
+                        <Flex direction={{ base: 'column' }} w="100%" py="1rem">
                             <Flex
                                 align="center"
                                 justifyContent="space-between"
@@ -261,11 +258,7 @@ const StudentInfoCard: FC<Props> = ({ student }) => {
                         <Separator />
                     </Box>
                     <Box>
-                        <Flex
-                            direction={{ sm: 'column', md: 'column' }}
-                            w="100%"
-                            py="1rem"
-                        >
+                        <Flex direction={{ base: 'column' }} w="100%" py="1rem">
                             <Flex
                                 align="center"
                                 justifyContent="space-between"
