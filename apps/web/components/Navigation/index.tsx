@@ -1,25 +1,24 @@
-import React from 'react';
+import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import {
     Box,
-    Flex,
     Button,
-    useDisclosure,
+    Flex,
+    HStack,
+    IconButton,
     Stack,
     useColorMode,
-    IconButton,
-    HStack,
     Hide,
+    useDisclosure,
 } from '@chakra-ui/react';
-import { MoonIcon, SunIcon, HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
 import NavLink from './NavLink/NavLink';
-import Logo from '../Logo/Logo';
+import Logo from '../Logo';
 import { Separator } from '../Separator';
 
 const routes = [
-    { name: 'Importance', link: '/about' },
-    { name: 'Features', link: '/projects' },
-    { name: 'Technologies', link: '/contact' },
-    { name: 'Login', link: '/login' },
+    { name: 'Importance', link: '#importance' },
+    { name: 'Features', link: '#features' },
+    { name: 'Technologies', link: '#tech' },
+    { name: 'Login', link: '#login' },
 ];
 
 const Navigation = () => {

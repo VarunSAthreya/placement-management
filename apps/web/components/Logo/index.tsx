@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
 import { Box, Image, Link } from '@chakra-ui/react';
+import type { FC } from 'react';
 
 type Props = {
     width: string;

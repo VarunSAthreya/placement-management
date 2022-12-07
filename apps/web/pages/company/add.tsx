@@ -17,7 +17,7 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components/Loader';
@@ -126,7 +126,7 @@ const CompanyForm: NextPage = () => {
                             >
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/home"
+                                        href="/dashboard"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',

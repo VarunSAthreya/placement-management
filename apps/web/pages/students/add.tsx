@@ -17,7 +17,7 @@ import {
     Text,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useForm } from 'react-hook-form';
 import { Loader } from '../../components/Loader';
@@ -90,7 +90,7 @@ const StudentForm: NextPage = () => {
             variables,
         })
             .then(() => {
-                router.push('/');
+                router.push('/dashboard');
             })
             .catch((err) => {
                 console.log(err);
@@ -138,7 +138,7 @@ const StudentForm: NextPage = () => {
                             >
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/home"
+                                        href="/dashboard"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',

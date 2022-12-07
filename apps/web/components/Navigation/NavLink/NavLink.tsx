@@ -1,8 +1,16 @@
 import { Link, useColorModeValue } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
+import type { FC, ReactNode } from 'react';
 
-const NavLink = ({ link, children }) => {
+type Props = {
+    link: string;
+    children: ReactNode;
+};
+
+const NavLink: FC<Props> = ({ link, children }) => {
     const router = useRouter();
+    const color = useColorModeValue('black', 'white');
+
     return (
         <Link
             px={3}
@@ -15,12 +23,7 @@ const NavLink = ({ link, children }) => {
                 fontWeight: 600,
             }}
             _focus={{ outline: 'none' }}
-            color={
-                router.asPath === link
-                    ? '#FF0080'
-                    : // eslint-disable-next-line react-hooks/rules-of-hooks
-                      useColorModeValue('black', 'white')
-            }
+            color={router.asPath === link ? '#FF0080' : color}
             bgGradient="linear(to-l, #7928CA, #FF0080)"
             bgClip="text"
             sx={{
@@ -28,7 +31,7 @@ const NavLink = ({ link, children }) => {
                 letterSpacing: '2px',
                 padding: '12px',
             }}
-            href={children.toString().toLowerCase()}
+            href={link.toString().toLowerCase()}
         >
             {children}
         </Link>

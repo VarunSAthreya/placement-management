@@ -1,13 +1,13 @@
 import {
     Box,
     Flex,
+    Icon,
     Stat,
     StatLabel,
     StatNumber,
     useColorModeValue,
-    Icon,
 } from '@chakra-ui/react';
-import React, { FC } from 'react';
+import type { FC } from 'react';
 import { IconType } from 'react-icons';
 import IconBox from '../Icons/IconBox';
 

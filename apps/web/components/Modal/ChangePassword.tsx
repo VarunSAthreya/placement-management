@@ -14,7 +14,8 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import Router from 'next/router';
-import { FC, useState } from 'react';
+import type { FC } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useChangePasswordMutation } from '../../generated/graphql';
 

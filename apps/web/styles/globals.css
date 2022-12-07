@@ -1,0 +1,13 @@
+::-moz-selection { /* Code for Firefox */
+    color: white;
+    background: #FD0182;
+}
+
+::selection {
+    color: white;
+    background: #FD0182;
+}
+
+* {
+    scroll-behavior: 'smooth' ;
+}

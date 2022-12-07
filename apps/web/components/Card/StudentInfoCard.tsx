@@ -7,7 +7,7 @@ import {
     useColorModeValue,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React, { FC } from 'react';
+import type { FC } from 'react';
 import { getUSNAndRole } from '../../lib/functions';
 import Separator from '../Separator/Separator';
 

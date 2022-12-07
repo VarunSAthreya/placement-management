@@ -1,4 +1,3 @@
-import React from 'react';
 import {
     Box,
     Button,
@@ -8,24 +7,23 @@ import {
     FormLabel,
     Grid,
     GridItem,
-    Heading,
-    Image,
     Icon,
+    Image,
     Input,
     InputGroup,
     InputLeftElement,
     useColorModeValue,
 } from '@chakra-ui/react';
-import { NextPage } from 'next';
+import type { NextPage } from 'next';
 import { useRouter } from 'next/router';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { AiFillLock, AiOutlineMail, AiOutlineLogin } from 'react-icons/ai';
+import { AiFillLock, AiOutlineLogin, AiOutlineMail } from 'react-icons/ai';
 import { Loader } from '../components/Loader';
+import Logo from '../components/Logo';
 import ErrorModal from '../components/Modal/Error';
 import { useAuthMutation } from '../generated/graphql';
-import Logo from '../components/Logo/Logo';
-import Navigation from '../components/Navigation/Navigation';
-import Footer from '../components/Footer/Footer';
+import Navigation from '../components/Navigation';
 
 type FormValues = {
     USN: string;
@@ -47,8 +45,8 @@ const Login: NextPage = () => {
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const blackToWhite = useColorModeValue('black', 'white');
-    const whiteToBlack = useColorModeValue('white', 'black');
-    const buttonHover = useColorModeValue('#000000e0', '#e2e2e2');
+    /*const whiteToBlack = useColorModeValue('white', 'black');
+     const buttonHover = useColorModeValue('#000000e0', '#e2e2e2'); */
 
     const onSubmit = async (values: FormValues) => {
         const { USN, password } = values;
@@ -61,7 +59,7 @@ const Login: NextPage = () => {
                     'token',
                     data.authenticate.token.split(' ')[1]
                 );
-                router.replace('/home');
+                router.replace('/dashboard');
             })
             .catch((err) => {
                 console.error(err);
@@ -85,7 +83,7 @@ const Login: NextPage = () => {
                 h={`${height}px`}
             >
                 <Flex
-                h={{ sm: 'initial', md: '75vh', lg: '90vh' }}
+                    h={{ sm: 'initial', md: '75vh', lg: '90vh' }}
                     w={{ base: '80%', md: '50%', lg: '40%' }}
                     mb="30px"
                     mr={{ md: '5%' }}
@@ -243,7 +241,9 @@ const Login: NextPage = () => {
                 </Flex>
                 <Box>
                     <Image
-                        src={'/assests/images/Background-Images/login-wave-2.png'}
+                        src={
+                            '/assests/images/Background-Images/login-wave-2.png'
+                        }
                         alt={'bg-image'}
                         pos={'absolute'}
                         left={0}

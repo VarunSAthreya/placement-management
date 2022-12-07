@@ -1,9 +1,9 @@
-import React, { FC, ReactNode } from 'react';
 import { Flex, FlexProps } from '@chakra-ui/react';
+import type { FC, ReactNode } from 'react';
 
 type Props = {
     children?: ReactNode;
-    style: FlexProps;
+    style?: FlexProps;
 };
 
 const Separator: FC<Props> = (props) => {

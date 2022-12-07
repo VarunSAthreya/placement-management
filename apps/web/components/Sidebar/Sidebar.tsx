@@ -15,7 +15,6 @@ import {
     useDisclosure,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
-import React from 'react';
 import {
     BsBuilding,
     BsFillPersonLinesFill,
@@ -25,10 +24,10 @@ import {
 } from 'react-icons/bs';
 import { FiHome, FiMenu } from 'react-icons/fi';
 import IconBox from '../Icons/IconBox';
-import Logo from '../Logo/Logo';
+import Logo from '../Logo';
 
 const routes = [
-    { name: 'Home', link: '/home', icon: FiHome },
+    { name: 'Home', link: '/dashboard', icon: FiHome },
     { name: 'Company', link: '/company', icon: BsBuilding },
     { name: 'Students', link: '/students', icon: BsPeople },
     { name: 'Applied', link: '/applied', icon: BsFillPersonLinesFill },
@@ -39,7 +38,7 @@ const routes = [
 const SideBar = () => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     return (
-        <Box minH={{ base: 0, lg: "100vh" }}>
+        <Box minH={{ base: 0, lg: '100vh' }}>
             <SidebarContent
                 onClose={() => onClose}
                 display={{ base: 'none', md: 'flex' }}

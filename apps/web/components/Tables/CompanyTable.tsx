@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
-import React, { FC } from 'react';
+import type { FC } from 'react';
 import { BsFillInfoCircleFill } from 'react-icons/bs';
 
 type Props = {
