@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+    Box,
     Button,
     Flex,
     FormControl,
@@ -23,6 +24,8 @@ import { Loader } from '../components/Loader';
 import ErrorModal from '../components/Modal/Error';
 import { useAuthMutation } from '../generated/graphql';
 import Logo from '../components/Logo/Logo';
+import Navigation from '../components/Navigation/Navigation';
+import Footer from '../components/Footer/Footer';
 
 type FormValues = {
     USN: string;
@@ -38,6 +41,9 @@ const Login: NextPage = () => {
 
     const [login, { loading, error }] = useAuthMutation();
     const router = useRouter();
+
+    let height = typeof window !== 'undefined' && window.innerHeight;
+    console.log(height);
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
     const blackToWhite = useColorModeValue('black', 'white');
@@ -55,7 +61,7 @@ const Login: NextPage = () => {
                     'token',
                     data.authenticate.token.split(' ')[1]
                 );
-                router.replace('/');
+                router.replace('/home');
             })
             .catch((err) => {
                 console.error(err);
@@ -72,24 +78,28 @@ const Login: NextPage = () => {
 
     return (
         <React.Fragment>
-            <Flex position="relative" mb="40px" justifyContent={'flex-end'}>
+            <Navigation />
+            <Flex
+                position="relative"
+                justifyContent={{ base: 'center', md: 'flex-end' }}
+                h={`${height}px`}
+            >
                 <Flex
-                    h={{ sm: 'initial', md: '75vh', lg: '90vh' }}
-                    w={{ base: '100%', md: '50%', lg: '40%' }}
+                h={{ sm: 'initial', md: '75vh', lg: '90vh' }}
+                    w={{ base: '80%', md: '50%', lg: '40%' }}
                     mb="30px"
-                    mr={'5%'}
-                    pt={{ sm: '100px', md: '0px' }}
+                    mr={{ md: '5%' }}
+                    pt={{ sm: '50px', md: '0px' }}
                 >
                     <Flex
                         direction="column"
                         w="100%"
                         background="transparent"
                         p="32px"
-                        mt={{ md: '150px', lg: '100px' }}
+                        mt={{ md: '100px', lg: '100px' }}
                         justifyContent={'center'}
                         color="black"
                         borderRadius={8}
-                        bg={primaryBG}
                     >
                         <Logo width={'100%'} />
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -215,6 +225,14 @@ const Login: NextPage = () => {
                                             bgGradient:
                                                 'linear-gradient(to right, #531a8e, #d6016c)',
                                         }}
+                                        _active={{
+                                            bgGradient:
+                                                'linear-gradient(to right, #531a8e, #d6016c)',
+                                        }}
+                                        _focus={{
+                                            bgGradient:
+                                                'linear-gradient(to right, #531a8e, #d6016c)',
+                                        }}
                                     >
                                         LOGIN
                                     </Button>
@@ -223,13 +241,17 @@ const Login: NextPage = () => {
                         </form>
                     </Flex>
                 </Flex>
-                <Image
-                    src={'/assests/images/Background-Images/login-wave.svg'}
-                    alt={'bg-image'}
-                    pos={'absolute'}
-                    left={0}
-                    zIndex={-50}
-                />
+                <Box>
+                    <Image
+                        src={'/assests/images/Background-Images/login-wave-2.png'}
+                        alt={'bg-image'}
+                        pos={'absolute'}
+                        left={0}
+                        zIndex={-50}
+                        h={'100%'}
+                        w={{ base: '0%', md: '70%', lg: '85%' }}
+                    />
+                </Box>
             </Flex>
         </React.Fragment>
     );

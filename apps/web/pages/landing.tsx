@@ -12,6 +12,8 @@ import {
     List,
     ListItem,
     ListIcon,
+    Hide,
+    Show,
 } from '@chakra-ui/react';
 import { MdDescription, MdSettings } from 'react-icons/md';
 import Footer from '../components/Footer/Footer';
@@ -80,21 +82,27 @@ const Landing: NextPage = () => {
     return (
         <React.Fragment>
             <Navigation />
+            {/*WELCOME*/}
             <Box pos={'relative'} py={16}>
                 <Stack
                     align={'center'}
                     position={'relative'}
                     bottom={'70px'}
                     spacing={{ base: 8, md: 10 }}
-                    px={20}
-                    py={{ base: 20, md: 28 }}
+                    px={{ base: 10, md: 20 }}
+                    py={{ base: 10, md: 28 }}
                     direction={{ base: 'column', md: 'row' }}
                 >
                     <Stack flex={1} spacing={{ base: 5, md: 8 }}>
                         <Heading
                             lineHeight={1.1}
                             fontWeight={600}
-                            fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+                            textAlign={{ base: 'center', md: 'left' }}
+                            fontSize={{
+                                base: '4xl',
+                                md: '5xl',
+                                lg: '6xl',
+                            }}
                         >
                             <Text
                                 bgGradient="linear(to-l, #7928CA, #FF0080)"
@@ -104,7 +112,7 @@ const Landing: NextPage = () => {
                                 WELCOME,
                             </Text>
                             <Text
-                                fontSize="4xl"
+                                fontSize={{ base: '3xl', lg: '4xl' }}
                                 bgGradient="linear(to-l, #7928CA, #FF0080)"
                                 bgClip="text"
                             >
@@ -113,7 +121,7 @@ const Landing: NextPage = () => {
                         </Heading>
                         <Text
                             color={useColorModeValue('gray.500', 'gray.200')}
-                            fontSize={'md'}
+                            fontSize={{ base: 'sm', md: 'md' }}
                         >
                             Placement Management System manages student
                             information in the college with regard to placement.
@@ -183,9 +191,10 @@ const Landing: NextPage = () => {
                     src={'/assests/images/Background-Images/waves.svg'}
                 />
             </Box>
+            {/*WHY IS IT REQUIRED*/}
             <Stack
-                py={16}
-                px={8}
+                py={{ base: 12, md: 16 }}
+                px={{ base: 4, md: 8 }}
                 spacing={{ base: 8, md: 10 }}
                 align={'center'}
                 direction={'column'}
@@ -193,7 +202,7 @@ const Landing: NextPage = () => {
                 <Heading
                     lineHeight={1.1}
                     fontWeight={600}
-                    fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+                    fontSize={{ base: '2xl', sm: '4xl', md: '5xl' }}
                 >
                     <Text
                         bgGradient="linear(to-l, #7928CA, #FF0080)"
@@ -205,7 +214,7 @@ const Landing: NextPage = () => {
                 <Stack>
                     <Text
                         color={useColorModeValue('gray.500', 'gray.200')}
-                        fontSize={{ base: 'lg' }}
+                        fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
                         textAlign={'center'}
                         p={4}
                     >
@@ -226,7 +235,7 @@ const Landing: NextPage = () => {
                     </Text>
                     <Text
                         color={useColorModeValue('gray.500', 'gray.200')}
-                        fontSize={{ base: 'lg' }}
+                        fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
                         textAlign={'center'}
                         p={4}
                     >
@@ -244,7 +253,7 @@ const Landing: NextPage = () => {
                     </Text>
                     <Text
                         color={useColorModeValue('gray.500', 'gray.200')}
-                        fontSize={{ base: 'lg' }}
+                        fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
                         textAlign={'center'}
                         p={4}
                     >
@@ -258,8 +267,9 @@ const Landing: NextPage = () => {
                     </Text>
                 </Stack>
             </Stack>
+            {/*FEATURES*/}
             <Box
-                p={16}
+                p={{ base: 4, md: 10, lg: 16 }}
                 bgImage="url('/assests/images/Background-Images/blurry.png')"
                 bgSize={'cover'}
                 display={'flex'}
@@ -271,97 +281,206 @@ const Landing: NextPage = () => {
                     lineHeight={1.1}
                     textAlign={'center'}
                     fontWeight={600}
-                    fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+                    fontSize={{ base: '2xl', sm: '4xl', md: '5xl' }}
                     my={4}
                 >
                     <Text color={'white'}>INTRIGUING FEATURES</Text>
                 </Heading>
-                <Box
-                    width={'90%'}
-                    h={'500px'}
-                    borderRadius={'15px'}
-                    m={4}
-                    display={'flex'}
-                >
-                    <Image
-                        alt={'Hero Image1'}
-                        borderLeftRadius={'35px'}
-                        w={'63%'}
-                        h={'500px'}
-                        src={features[featureIndex].image}
-                    />
+                <Show below="sm">
                     <Box
-                        ml={8}
-                        bg={'white'}
-                        w={'27%'}
+                        width={{ base: '100%', lg: '90%' }}
                         h={'500px'}
-                        borderTopRightRadius={'35px'}
-                        borderBottomRightRadius={'35px'}
+                        borderRadius={'15px'}
+                        m={4}
+                        display={'flex'}
+                        flexDir={'column'}
+                        justifyContent={'center'}
+                        alignItems={'center'}
                     >
-                        <Heading
-                            lineHeight={1.1}
-                            textAlign={'center'}
-                            fontWeight={800}
-                            fontSize={{ base: '2xl' }}
-                            my={4}
-                            textTransform={'uppercase'}
-                        >
-                            <Text
-                                bgGradient="linear(to-l, #7928CA, #FF0080)"
-                                bgClip="text"
-                            >
-                                {features[featureIndex].portal}
-                            </Text>
-                        </Heading>
-
-                        <Heading
-                            fontSize={{ base: '3xl' }}
-                            textAlign={'center'}
-                            textTransform={'uppercase'}
-                            bg={
-                                'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
-                            }
-                            p={3}
-                        >
-                            <Text color={'white'}>
-                                {features[featureIndex].heading}
-                            </Text>
-                        </Heading>
+                        <Image
+                            alt={'Hero Image1'}
+                            borderTopRadius={'35px'}
+                            w={'100%'}
+                            h={'500px'}
+                            src={features[featureIndex].image}
+                        />
                         <Box
-                            display={'flex'}
-                            p={2}
-                            my={4}
-                            alignItems={'center'}
-                            flexDir={'column'}
+                            marginTop={8}
+                            w={'100%'}
+                            h={'200px'}
+                            bg={'white'}
+                            borderBottomRightRadius={'35px'}
+                            borderBottomLeftRadius={'35px'}
                         >
-                            <IconBox
-                                h={'60px'}
-                                w={'60px'}
+                            <Heading
+                                lineHeight={1.1}
+                                textAlign={'center'}
+                                fontWeight={800}
+                                fontSize={{
+                                    base: '0.8rem',
+                                    sm: '1rem',
+                                    md: 'xl',
+                                    lg: '2xl',
+                                }}
+                                my={4}
+                                textTransform={'uppercase'}
+                            >
+                                <Text
+                                    bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                    bgClip="text"
+                                >
+                                    {features[featureIndex].portal}
+                                </Text>
+                            </Heading>
+
+                            <Heading
+                                fontSize={{
+                                    base: 'lg',
+                                    sm: 'xl',
+                                    md: '2xl',
+                                    lg: '3xl',
+                                }}
+                                textAlign={'center'}
+                                textTransform={'uppercase'}
                                 bg={
                                     'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
                                 }
+                                p={3}
                             >
-                                <Icon
-                                    h={'20px'}
-                                    w={'20px'}
-                                    color="white"
-                                    as={MdDescription}
-                                />
-                            </IconBox>
-                            <Text
-                                color={'gray.500'}
-                                fontSize={{ base: 'xl' }}
-                                textAlign={'center'}
+                                <Text color={'white'}>
+                                    {features[featureIndex].heading}
+                                </Text>
+                            </Heading>
+                            <Box
+                                display={'flex'}
                                 p={2}
-                                my={4}
+                                alignItems={'center'}
+                                flexDir={'column'}
                             >
-                                {features[featureIndex].description}
-                            </Text>
+                                <Text
+                                    color={'gray.500'}
+                                    fontSize={{
+                                        base: '0.8rem',
+                                        sm: '1.1rem',
+                                        md: 'xl',
+                                    }}
+                                    textAlign={'center'}
+                                    p={2}
+                                >
+                                    {features[featureIndex].description}
+                                </Text>
+                            </Box>
                         </Box>
                     </Box>
-                </Box>
+                </Show>
+                <Show above="sm">
+                    <Box
+                        width={{ base: '100%', lg: '90%' }}
+                        h={'500px'}
+                        borderRadius={'15px'}
+                        m={4}
+                        display={'flex'}
+                        justifyContent={'center'}
+                    >
+                        <Image
+                            alt={'Hero Image1'}
+                            borderLeftRadius={'35px'}
+                            w={'63%'}
+                            h={'500px'}
+                            src={features[featureIndex].image}
+                        />
+                        <Box
+                            ml={8}
+                            bg={'white'}
+                            w={'27%'}
+                            h={'500px'}
+                            borderTopRightRadius={'35px'}
+                            borderBottomRightRadius={'35px'}
+                        >
+                            <Heading
+                                lineHeight={1.1}
+                                textAlign={'center'}
+                                fontWeight={800}
+                                fontSize={{
+                                    base: '0.6rem',
+                                    sm: '0.8rem',
+                                    md: 'xl',
+                                    lg: '2xl',
+                                }}
+                                my={4}
+                                textTransform={'uppercase'}
+                            >
+                                <Text
+                                    bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                    bgClip="text"
+                                >
+                                    {features[featureIndex].portal}
+                                </Text>
+                            </Heading>
+
+                            <Heading
+                                fontSize={{
+                                    base: '0.8rem',
+                                    sm: '1rem',
+                                    md: 'xl',
+                                    lg: '3xl',
+                                }}
+                                textAlign={'center'}
+                                textTransform={'uppercase'}
+                                bg={
+                                    'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                }
+                                p={3}
+                            >
+                                <Text color={'white'}>
+                                    {features[featureIndex].heading}
+                                </Text>
+                            </Heading>
+                            <Box
+                                display={'flex'}
+                                p={2}
+                                my={4}
+                                alignItems={'center'}
+                                flexDir={'column'}
+                            >
+                                <IconBox
+                                    h={{ base: '50px', md: '60px' }}
+                                    w={{ base: '50px', md: '60px' }}
+                                    bg={
+                                        'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                    }
+                                >
+                                    <Icon
+                                        h={'20px'}
+                                        w={'20px'}
+                                        color="white"
+                                        as={MdDescription}
+                                    />
+                                </IconBox>
+                                <Text
+                                    color={'gray.500'}
+                                    fontSize={{
+                                        base: '0.7rem',
+                                        sm: '0.9rem',
+                                        md: 'xl',
+                                    }}
+                                    textAlign={'center'}
+                                    p={2}
+                                    my={4}
+                                >
+                                    {features[featureIndex].description}
+                                </Text>
+                            </Box>
+                        </Box>
+                    </Box>
+                </Show>
             </Box>
-            <Box p={16} pb={32} pt={10}>
+            {/*TECHNOLOGIES USED*/}
+            <Box
+                p={{ base: 8, md: 16 }}
+                pb={{ base: 24, md: 32 }}
+                pt={{ base: 6, md: 10 }}
+            >
                 <Stack spacing={8} width={'100%'} direction={'column'}>
                     <Stack
                         p={5}
@@ -384,7 +503,7 @@ const Landing: NextPage = () => {
                             <Heading
                                 lineHeight={1.1}
                                 fontWeight={600}
-                                fontSize={{ base: '5xl' }}
+                                fontSize={{ base: 'xl', sm: '4xl', md: '5xl' }}
                             >
                                 <Text
                                     bgGradient="linear(to-l, #7928CA, #FF0080)"
@@ -416,13 +535,19 @@ const Landing: NextPage = () => {
                             base: 'column',
                             md: 'row',
                         }}
-                        alignItems={{ md: 'center' }}
+                        alignItems={{ base: 'center' }}
                         bg="white"
                         rounded={8}
                         boxShadow="#FF0080 0px 3px 8px"
                     >
                         <Heading
-                            size={'xl'}
+                            fontSize={{
+                                base: 'md',
+                                sm: 'xl',
+                                md: '2xl',
+                                lg: '3xl',
+                                xl: '4xl',
+                            }}
                             textTransform={'uppercase'}
                             bgGradient="linear(to-l, #7928CA, #FF0080)"
                             bgClip="text"
@@ -434,7 +559,13 @@ const Landing: NextPage = () => {
                                 <ListItem
                                     key={desc.id}
                                     color={'gray.600'}
-                                    fontSize={'1.3rem'}
+                                    fontSize={{
+                                        base: '0.8rem',
+                                        sm: '1.15rem',
+                                        md: '1.2rem',
+                                        lg: '1.3rem',
+                                        xl: '1.3rem',
+                                    }}
                                 >
                                     <ListIcon as={MdSettings} color="#FF0080" />
                                     {desc.desc}
@@ -453,13 +584,19 @@ const Landing: NextPage = () => {
                             base: 'column',
                             md: 'row',
                         }}
-                        alignItems={{ md: 'center' }}
+                        alignItems={{ base: 'center' }}
                         bg="white"
                         rounded={8}
                         boxShadow="#FF0080 0px 3px 8px"
                     >
                         <Heading
-                            size={'xl'}
+                            fontSize={{
+                                base: 'md',
+                                sm: 'xl',
+                                md: '2xl',
+                                lg: '3xl',
+                                xl: '4xl',
+                            }}
                             textTransform={'uppercase'}
                             bgGradient="linear(to-l, #7928CA, #FF0080)"
                             bgClip="text"
@@ -471,7 +608,13 @@ const Landing: NextPage = () => {
                                 <ListItem
                                     key={desc.id}
                                     color={'gray.600'}
-                                    fontSize={'1.3rem'}
+                                    fontSize={{
+                                        base: '0.8rem',
+                                        sm: '1.15rem',
+                                        md: '1.2rem',
+                                        lg: '1.3rem',
+                                        xl: '1.3rem',
+                                    }}
                                 >
                                     <ListIcon as={MdSettings} color="#FF0080" />
                                     {desc.desc}
