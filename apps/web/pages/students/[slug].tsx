@@ -34,14 +34,14 @@ const StudentDetails: NextPage = () => {
     if (loading) return <Loader />;
 
     return (
-        <Flex flexDirection={'row'} bg={primaryBG}>
+        <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={'290px'}
+                marginLeft={{ base: 0, md: '295px' }}
                 width={'100%'}
-                px={4}
+                p={4}
             >
                 <Box mb="22px" overflowX={{ sm: 'scroll', xl: 'hidden' }}>
                     <Box pb={'25px'}>
@@ -68,7 +68,7 @@ const StudentDetails: NextPage = () => {
                             >
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/"
+                                        href="/home"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',

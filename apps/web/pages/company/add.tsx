@@ -92,12 +92,12 @@ const CompanyForm: NextPage = () => {
     if (loading) return <Loader />;
 
     return (
-        <Flex flexDirection={'row'} bg={primaryBG}>
+        <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={'290px'}
+                marginLeft={{ base: 0, md: '295px' }}
                 width={'100%'}
                 p={4}
             >
@@ -126,7 +126,7 @@ const CompanyForm: NextPage = () => {
                             >
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/"
+                                        href="/home"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',
@@ -183,7 +183,7 @@ const CompanyForm: NextPage = () => {
                                     </Text>
                                     <Separator />
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.name !== undefined}
                                     >
@@ -206,7 +206,7 @@ const CompanyForm: NextPage = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.type !== undefined}
                                     >
@@ -329,7 +329,7 @@ const CompanyForm: NextPage = () => {
                                     </Text>
                                     <Separator />
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.tenth !== undefined}
                                     >
@@ -356,7 +356,7 @@ const CompanyForm: NextPage = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.twelth !== undefined}
                                     >
@@ -383,7 +383,7 @@ const CompanyForm: NextPage = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.CGPA !== undefined}
                                     >
@@ -409,7 +409,7 @@ const CompanyForm: NextPage = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={
                                             errors.backlogs !== undefined
@@ -449,7 +449,12 @@ const CompanyForm: NextPage = () => {
                                             _hover={{
                                                 bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
                                             }}
-                                            _focus={{ outline: 'none' }}
+                                            _active={{
+                                                bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                            }}
+                                            _focus={{
+                                                bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                            }}
                                             type="submit"
                                             textTransform={'uppercase'}
                                         >

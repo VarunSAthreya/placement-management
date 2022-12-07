@@ -42,12 +42,12 @@ const Placed: NextPage = () => {
     if (loading) return <Loader />;
 
     return (
-        <Flex flexDirection={'row'} bg={primaryBG}>
+        <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={'290px'}
+                marginLeft={{ base: 0, md: '295px' }}
                 width={'100%'}
                 p={4}
             >
@@ -77,7 +77,7 @@ const Placed: NextPage = () => {
                                 >
                                     <BreadcrumbItem>
                                         <BreadcrumbLink
-                                            href="/"
+                                            href="/home"
                                             color="gray.500"
                                             _hover={{
                                                 textDecoration: 'none',
@@ -107,7 +107,7 @@ const Placed: NextPage = () => {
                         </Box>
                         <Box bg={secondaryBG} p={4} borderRadius={8}>
                             <Flex
-                                flexDirection={'row'}
+                                flexDirection={{ base: 'column', md: 'row' }}
                                 justifyContent={'space-between'}
                                 alignItems={'center'}
                                 mb={4}
@@ -121,6 +121,7 @@ const Placed: NextPage = () => {
                                     fontSize="2xl"
                                     fontWeight="extrabold"
                                     textTransform={'uppercase'}
+                                    my={{ base: 2, md: 0 }}
                                 >
                                     Student&apos;s Placed(4)
                                 </Text>
@@ -128,6 +129,7 @@ const Placed: NextPage = () => {
                                     <Button
                                         fontSize={'1rem'}
                                         size={'lg'}
+                                        width={{ base: '100%', md: 'initial' }}
                                         color={'white'}
                                         rightIcon={<AiFillPlusCircle />}
                                         bg={
@@ -148,43 +150,63 @@ const Placed: NextPage = () => {
                                     </Button>
                                 )}
                             </Flex>
-                            <Table
-                                variant="simple"
-                                color="white"
-                                bgGradient={'linear(to-l, #7928CA, #FF0080)'}
-                                rounded={'md'}
-                                boxShadow={tableBoxShadow}
-                            >
-                                <Thead>
-                                    <Tr my=".8rem">
-                                        <Th color="white" textAlign={'center'}>
-                                            Companies
-                                        </Th>
-                                        <Th color="white" textAlign={'center'}>
-                                            Students
-                                        </Th>
-                                        <Th color="white" textAlign={'center'}>
-                                            No. Students Selected
-                                        </Th>
-                                        <Th color="white" textAlign={'center'}>
-                                            Packages
-                                        </Th>
-                                        <Th color="white" textAlign={'center'}>
-                                            Student Details
-                                        </Th>
-                                    </Tr>
-                                </Thead>
-                                <Tbody bg={secondaryBG}>
-                                    {data.companies.map((placed, index) => {
-                                        return placed.selected.length > 0 ? (
-                                            <PlacedTable
-                                                key={index}
-                                                placed={placed}
-                                            />
-                                        ) : null;
-                                    })}
-                                </Tbody>
-                            </Table>
+                            <Box overflowX="auto">
+                                <Table
+                                    variant="simple"
+                                    color="white"
+                                    bgGradient={
+                                        'linear(to-l, #7928CA, #FF0080)'
+                                    }
+                                    rounded={'md'}
+                                    boxShadow={tableBoxShadow}
+                                >
+                                    <Thead>
+                                        <Tr my=".8rem">
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                Companies
+                                            </Th>
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                Students
+                                            </Th>
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                No. Students Selected
+                                            </Th>
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                Packages
+                                            </Th>
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                Student Details
+                                            </Th>
+                                        </Tr>
+                                    </Thead>
+                                    <Tbody bg={secondaryBG}>
+                                        {data.companies.map((placed, index) => {
+                                            return placed.selected.length >
+                                                0 ? (
+                                                <PlacedTable
+                                                    key={index}
+                                                    placed={placed}
+                                                />
+                                            ) : null;
+                                        })}
+                                    </Tbody>
+                                </Table>
+                            </Box>
                         </Box>
                     </Flex>
                 </Box>

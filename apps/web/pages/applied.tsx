@@ -55,12 +55,12 @@ const Applied: NextPage = () => {
     };
 
     return (
-        <Flex flexDirection={'row'} bg={primaryBG}>
+        <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={'290px'}
+                marginLeft={{ base: 0, md: '295px' }}
                 width={'100%'}
                 p={4}
             >
@@ -90,7 +90,7 @@ const Applied: NextPage = () => {
                                 >
                                     <BreadcrumbItem>
                                         <BreadcrumbLink
-                                            href="/"
+                                            href="/home"
                                             color="gray.500"
                                             _hover={{
                                                 textDecoration: 'none',
@@ -120,7 +120,7 @@ const Applied: NextPage = () => {
                         </Box>
                         <Box bg={secondaryBG} p={4} borderRadius={8}>
                             <Flex
-                                flexDirection={'row'}
+                                flexDirection={{ base: 'column', md: 'row' }}
                                 alignItems={'center'}
                                 justifyContent={'space-between'}
                                 mb={4}
@@ -138,7 +138,8 @@ const Applied: NextPage = () => {
                                 </Text>
                                 <InputGroup
                                     justifyContent={'flex-end'}
-                                    w={'50%'}
+                                    w={{ base: '100%', md: '50%' }}
+                                    my={{ base: 4, md: 0 }}
                                 >
                                     <Input
                                         type="text"
@@ -151,48 +152,73 @@ const Applied: NextPage = () => {
                                     </InputRightElement>
                                 </InputGroup>
                             </Flex>
-                            <Table
-                                variant="simple"
-                                color="white"
-                                bgGradient={'linear(to-l, #7928CA, #FF0080)'}
-                                rounded={'md'}
-                                boxShadow={tableBoxShadow}
-                            >
-                                <Thead>
-                                    <Tr my=".8rem">
-                                        <Th color="white" textAlign={'center'}>
-                                            Name
-                                        </Th>
-                                        <Th color="white" textAlign={'center'}>
-                                            USN
-                                        </Th>
-                                        <Th color="white" textAlign={'center'}>
-                                            Branch & Section
-                                        </Th>
-                                        <Th color="white" textAlign={'center'}>
-                                            Company
-                                        </Th>
-                                        <Th color="white" textAlign={'center'}>
-                                            Company Type
-                                        </Th>
-                                        <Th color="white" textAlign={'center'}>
-                                            Ctc Package
-                                        </Th>
-                                        <Th color="white" textAlign={'center'}>
-                                            Application
-                                        </Th>
-                                    </Tr>
-                                </Thead>
-                                <Tbody bg={secondaryBG}>
-                                    {!loading &&
-                                        filteredTable.map((row, index) => (
-                                            <AppliedTable
-                                                key={index}
-                                                data={row}
-                                            />
-                                        ))}
-                                </Tbody>
-                            </Table>
+                            <Box overflowX="auto">
+                                <Table
+                                    variant="simple"
+                                    color="white"
+                                    bgGradient={
+                                        'linear(to-l, #7928CA, #FF0080)'
+                                    }
+                                    rounded={'md'}
+                                    boxShadow={tableBoxShadow}
+                                >
+                                    <Thead>
+                                        <Tr my=".8rem">
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                Name
+                                            </Th>
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                USN
+                                            </Th>
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                Branch & Section
+                                            </Th>
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                Company
+                                            </Th>
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                Company Type
+                                            </Th>
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                Ctc Package
+                                            </Th>
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                Application
+                                            </Th>
+                                        </Tr>
+                                    </Thead>
+                                    <Tbody bg={secondaryBG}>
+                                        {!loading &&
+                                            filteredTable.map((row, index) => (
+                                                <AppliedTable
+                                                    key={index}
+                                                    data={row}
+                                                />
+                                            ))}
+                                    </Tbody>
+                                </Table>
+                            </Box>
                             {!loading &&
                                 filteredTable.length === 0 &&
                                 inputData.trim() !== '' && <Loader />}

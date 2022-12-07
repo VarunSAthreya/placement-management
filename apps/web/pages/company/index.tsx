@@ -42,12 +42,12 @@ const Company: NextPage = () => {
     if (loading) return <Loader />;
 
     return (
-        <Flex flexDirection={'row'} bg={primary}>
+        <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primary}>
             <SideBar />
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={'290px'}
+                marginLeft={{ base: 0, md: '295px' }}
                 width={'100%'}
                 p={4}
             >
@@ -76,7 +76,7 @@ const Company: NextPage = () => {
                             >
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/"
+                                        href="/home"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',
@@ -106,7 +106,7 @@ const Company: NextPage = () => {
                     </Box>
                     <Box bg={secondary} p={4} borderRadius={8}>
                         <Flex
-                            flexDirection={'row'}
+                            flexDirection={{ base: 'column', sm: 'row' }}
                             justifyContent={'space-between'}
                             alignItems={'center'}
                             mb={4}
@@ -119,6 +119,7 @@ const Company: NextPage = () => {
                                 fontSize="2xl"
                                 fontWeight="extrabold"
                                 textTransform={'uppercase'}
+                                my={{ base: 2, sm: 0 }}
                             >
                                 No.of Company&apos;s (4)
                             </Text>
@@ -126,6 +127,7 @@ const Company: NextPage = () => {
                                 <Button
                                     fontSize={'1rem'}
                                     size={'lg'}
+                                    width={{ base: '100%', md: 'initial' }}
                                     color={'white'}
                                     rightIcon={<AiFillPlusCircle />}
                                     bg={
@@ -134,7 +136,12 @@ const Company: NextPage = () => {
                                     _hover={{
                                         bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
                                     }}
-                                    _focus={{ outline: 'none' }}
+                                    _active={{
+                                        bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                    }}
+                                    _focus={{
+                                        bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                    }}
                                     variant="no-hover"
                                     type="submit"
                                     textTransform={'uppercase'}
@@ -146,46 +153,48 @@ const Company: NextPage = () => {
                                 </Button>
                             )}
                         </Flex>
-                        <Table
-                            variant="simple"
-                            color="white"
-                            bgGradient={'linear(to-l, #7928CA, #FF0080)'}
-                            rounded={'md'}
-                            boxShadow={tableBoxShadow}
-                        >
-                            <Thead>
-                                <Tr my=".8rem" pl="0px">
-                                    <Th color="white" textAlign={'center'}>
-                                        Name
-                                    </Th>
-                                    <Th color="white" textAlign={'center'}>
-                                        type
-                                    </Th>
-                                    <Th color="white" textAlign={'center'}>
-                                        Date of Arrival
-                                    </Th>
-                                    <Th color="white" textAlign={'center'}>
-                                        CTC
-                                    </Th>
-                                    <Th color="white" textAlign={'center'}>
-                                        year
-                                    </Th>
-                                    <Th color="white" textAlign={'center'}>
-                                        More Info
-                                    </Th>
-                                </Tr>
-                            </Thead>
-                            <Tbody bg={secondary}>
-                                {data.companies.map((company, index) => {
-                                    return (
-                                        <CompanyTable
-                                            key={index}
-                                            company={company}
-                                        />
-                                    );
-                                })}
-                            </Tbody>
-                        </Table>
+                        <Box overflowX="auto">
+                            <Table
+                                variant="simple"
+                                color="white"
+                                bgGradient={'linear(to-l, #7928CA, #FF0080)'}
+                                rounded={'md'}
+                                boxShadow={tableBoxShadow}
+                            >
+                                <Thead>
+                                    <Tr my=".8rem" pl="0px">
+                                        <Th color="white" textAlign={'center'}>
+                                            Name
+                                        </Th>
+                                        <Th color="white" textAlign={'center'}>
+                                            type
+                                        </Th>
+                                        <Th color="white" textAlign={'center'}>
+                                            Date of Arrival
+                                        </Th>
+                                        <Th color="white" textAlign={'center'}>
+                                            CTC
+                                        </Th>
+                                        <Th color="white" textAlign={'center'}>
+                                            year
+                                        </Th>
+                                        <Th color="white" textAlign={'center'}>
+                                            More Info
+                                        </Th>
+                                    </Tr>
+                                </Thead>
+                                <Tbody bg={secondary}>
+                                    {data.companies.map((company, index) => {
+                                        return (
+                                            <CompanyTable
+                                                key={index}
+                                                company={company}
+                                            />
+                                        );
+                                    })}
+                                </Tbody>
+                            </Table>
+                        </Box>
                     </Box>
                 </Box>
             </Flex>

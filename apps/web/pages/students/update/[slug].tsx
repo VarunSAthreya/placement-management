@@ -119,12 +119,12 @@ const UpdateStudent = () => {
     if (loading || !data || updLoading) return <Loader />;
 
     return (
-        <Flex flexDirection={'row'} bg={primaryBG}>
+        <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={'290px'}
+                marginLeft={{ base: 0, md: '295px' }}
                 width={'100%'}
                 p={4}
             >
@@ -153,7 +153,7 @@ const UpdateStudent = () => {
                             >
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/"
+                                        href="/home"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',
@@ -210,7 +210,7 @@ const UpdateStudent = () => {
                                     </Text>
                                     <Separator />
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.name !== undefined}
                                     >
@@ -232,7 +232,7 @@ const UpdateStudent = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.USN !== undefined}
                                     >
@@ -280,8 +280,7 @@ const UpdateStudent = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.branch !== undefined}
                                     >
@@ -309,7 +308,7 @@ const UpdateStudent = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.section !== undefined}
                                     >
@@ -356,7 +355,7 @@ const UpdateStudent = () => {
                                     </Text>
                                     <Separator />
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.tenth !== undefined}
                                     >
@@ -391,7 +390,7 @@ const UpdateStudent = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.twelth !== undefined}
                                     >
@@ -426,7 +425,7 @@ const UpdateStudent = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.CGPA !== undefined}
                                     >
@@ -460,7 +459,7 @@ const UpdateStudent = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.year !== undefined}
                                     >
@@ -493,7 +492,7 @@ const UpdateStudent = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={
                                             errors.backlogs !== undefined
@@ -529,7 +528,7 @@ const UpdateStudent = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={
                                             errors.eligible !== undefined
@@ -561,7 +560,7 @@ const UpdateStudent = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.placed !== undefined}
                                     >
@@ -591,7 +590,7 @@ const UpdateStudent = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.package !== undefined}
                                     >
@@ -627,7 +626,12 @@ const UpdateStudent = () => {
                                             _hover={{
                                                 bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
                                             }}
-                                            _focus={{ outline: 'none' }}
+                                            _active={{
+                                                bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                            }}
+                                            _focus={{
+                                                bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                            }}
                                             type="submit"
                                             textTransform={'uppercase'}
                                         >

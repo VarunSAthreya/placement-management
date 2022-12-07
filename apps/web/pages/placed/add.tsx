@@ -69,12 +69,12 @@ const PlacedForm: NextPage = () => {
     if (loading) return <Loader />;
 
     return (
-        <Flex flexDirection={'row'} bg={primaryBG}>
+        <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={'290px'}
+                marginLeft={{ base: 0, md: '295px' }}
                 width={'100%'}
                 p={4}
             >
@@ -103,7 +103,7 @@ const PlacedForm: NextPage = () => {
                             >
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/"
+                                        href="/home"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',
@@ -159,7 +159,7 @@ const PlacedForm: NextPage = () => {
                                     </Text>
                                     <Separator />
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.name !== undefined}
                                     >
@@ -176,7 +176,7 @@ const PlacedForm: NextPage = () => {
                                         </FormErrorMessage>
                                     </FormControl>
                                 </GridItem>
-                                <GridItem p={4}>
+                                <GridItem p={4} colSpan={{ base: 2, md: 1 }}>
                                     <FormControl
                                         isInvalid={errors.USN !== undefined}
                                     >
@@ -261,7 +261,12 @@ const PlacedForm: NextPage = () => {
                                             _hover={{
                                                 bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
                                             }}
-                                            _focus={{ outline: 'none' }}
+                                            _active={{
+                                                bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                            }}
+                                            _focus={{
+                                                bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                            }}
                                             type="submit"
                                             textTransform={'uppercase'}
                                         >

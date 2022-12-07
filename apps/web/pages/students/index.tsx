@@ -62,12 +62,12 @@ const Students: NextPage = () => {
     };
 
     return (
-        <Flex flexDirection={'row'} bg={primaryBG}>
+        <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={'290px'}
+                marginLeft={{ base: 0, md: '295px' }}
                 width={'100%'}
                 p={4}
             >
@@ -96,7 +96,7 @@ const Students: NextPage = () => {
                             >
                                 <BreadcrumbItem>
                                     <BreadcrumbLink
-                                        href="/"
+                                        href="/home"
                                         color="gray.500"
                                         _hover={{
                                             textDecoration: 'none',
@@ -126,7 +126,7 @@ const Students: NextPage = () => {
                     </Box>
                     <Box bg={secondaryBG} p={4} borderRadius={8}>
                         <Flex
-                            flexDirection={'row'}
+                            flexDirection={{ base: 'column', lg: 'row' }}
                             justifyContent={'space-between'}
                             alignItems={'center'}
                             mb={4}
@@ -140,14 +140,26 @@ const Students: NextPage = () => {
                                 fontSize="2xl"
                                 fontWeight="extrabold"
                                 textTransform={'uppercase'}
+                                my={{ base: 1, md: 0 }}
                             >
                                 No.of Student&apos;s (4)
                             </Text>
                             {role.current === 'ADMIN' && (
-                                <>
+                                <Box
+                                    display={'flex'}
+                                    flexDir={{ base: 'column', md: 'row' }}
+                                    alignItems={'center'}
+                                    w={'100%'}
+                                    justifyContent={{
+                                        base: 'space-between',
+                                        lg: 'space-around',
+                                    }}
+                                    my={{ base: 1, lg: 0 }}
+                                >
                                     <InputGroup
                                         justifyContent={'flex-end'}
-                                        w={'50%'}
+                                        w={{ base: '100%', md: '60%' }}
+                                        my={{ base: 4, md: 0 }}
                                     >
                                         <Input
                                             type="text"
@@ -162,6 +174,7 @@ const Students: NextPage = () => {
                                     <Button
                                         fontSize={'1rem'}
                                         size={'lg'}
+                                        width={{ base: '100%', md: 'initial' }}
                                         color={'white'}
                                         rightIcon={<AiFillPlusCircle />}
                                         bg={
@@ -170,7 +183,12 @@ const Students: NextPage = () => {
                                         _hover={{
                                             bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
                                         }}
-                                        _focus={{ outline: 'none' }}
+                                        _active={{
+                                            bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                        }}
+                                        _focus={{
+                                            bg: 'linear-gradient( 310deg,  #541d8b 0%, #d8016d 100%)',
+                                        }}
                                         type="submit"
                                         textTransform={'uppercase'}
                                         onClick={() => {
@@ -179,52 +197,57 @@ const Students: NextPage = () => {
                                     >
                                         Add New Student
                                     </Button>
-                                </>
+                                </Box>
                             )}
                         </Flex>
-                        <Table
-                            variant="simple"
-                            color="white"
-                            bgGradient={'linear(to-l, #7928CA, #FF0080)'}
-                            rounded={'md'}
-                            boxShadow={tableBoxShadow}
-                        >
-                            <Thead>
-                                <Tr my=".8rem">
-                                    <Th color="white" textAlign={'center'}>
-                                        Name
-                                    </Th>
-                                    <Th color="white" textAlign={'center'}>
-                                        Branch
-                                    </Th>
-                                    <Th color="white" textAlign={'center'}>
-                                        Section
-                                    </Th>
-                                    <Th color="white" textAlign={'center'}>
-                                        USN
-                                    </Th>
-                                    <Th color="white" textAlign={'center'}>
-                                        CGPA
-                                    </Th>
-                                    {role.current === 'ADMIN' && (
+                        <Box overflowX="auto">
+                            <Table
+                                variant="simple"
+                                color="white"
+                                bgGradient={'linear(to-l, #7928CA, #FF0080)'}
+                                rounded={'md'}
+                                boxShadow={tableBoxShadow}
+                            >
+                                <Thead>
+                                    <Tr my=".8rem">
                                         <Th color="white" textAlign={'center'}>
-                                            More Info
+                                            Name
                                         </Th>
-                                    )}
-                                </Tr>
-                            </Thead>
-                            <Tbody bg={secondaryBG}>
-                                {filteredTable.map((student) => {
-                                    return (
-                                        <StudentsTable
-                                            key={student.USN}
-                                            student={student}
-                                            role={role.current}
-                                        />
-                                    );
-                                })}
-                            </Tbody>
-                        </Table>
+                                        <Th color="white" textAlign={'center'}>
+                                            Branch
+                                        </Th>
+                                        <Th color="white" textAlign={'center'}>
+                                            Section
+                                        </Th>
+                                        <Th color="white" textAlign={'center'}>
+                                            USN
+                                        </Th>
+                                        <Th color="white" textAlign={'center'}>
+                                            CGPA
+                                        </Th>
+                                        {role.current === 'ADMIN' && (
+                                            <Th
+                                                color="white"
+                                                textAlign={'center'}
+                                            >
+                                                More Info
+                                            </Th>
+                                        )}
+                                    </Tr>
+                                </Thead>
+                                <Tbody bg={secondaryBG}>
+                                    {filteredTable.map((student) => {
+                                        return (
+                                            <StudentsTable
+                                                key={student.USN}
+                                                student={student}
+                                                role={role.current}
+                                            />
+                                        );
+                                    })}
+                                </Tbody>
+                            </Table>
+                        </Box>
                     </Box>
                 </Box>
             </Flex>

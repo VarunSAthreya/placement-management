@@ -49,12 +49,12 @@ const Profile: NextPage = () => {
     if (loading || !data) return <Loader />;
 
     return (
-        <Flex flexDirection={'row'} bg={primaryBG}>
+        <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={'295px'}
+                marginLeft={{ base: 0, md: '295px' }}
                 width={'100%'}
                 p={4}
             >
@@ -80,7 +80,7 @@ const Profile: NextPage = () => {
                         >
                             <BreadcrumbItem>
                                 <BreadcrumbLink
-                                    href="/"
+                                    href="/home"
                                     color="gray.500"
                                     _hover={{
                                         textDecoration: 'none',

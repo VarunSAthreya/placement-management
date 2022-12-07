@@ -32,18 +32,18 @@ const AdminHome = () => {
     if (loading || !data) return <Loader />;
 
     return (
-        <Flex flexDirection={'row'} bg={primaryBG}>
+        <Flex flexDirection={{ base: 'column', lg: 'row' }} bg={primaryBG}>
             <SideBar />
             <Flex
                 flexDirection="column"
                 pt={{ base: '120px', md: '25px' }}
-                marginLeft={'295px'}
+                marginLeft={{ base: 0, md: '295px' }}
                 width={'100%'}
                 p={4}
             >
                 <SimpleGrid
-                    columns={{ sm: 1, md: 2, xl: 4 }}
-                    spacing={12}
+                    columns={{ base: 1, sm: 2, md: 2, xl: 4 }}
+                    spacing={{ base: 4, md: 8, lg: 12 }}
                     mb={4}
                 >
                     {!loading && (
