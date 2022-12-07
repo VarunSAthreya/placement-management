@@ -9,6 +9,13 @@ const theme = extendTheme({
             },
         }),
     },
+    breakpoints: {
+        sm: '26em',
+        md: '48em',
+        lg: '77.5em',
+        xl: '90em',
+        '2xl': '96em',
+    },
 });
 
 export default theme;
