@@ -13,6 +13,7 @@ import {
 import NavLink from './NavLink/NavLink';
 import Logo from '../Logo';
 import { Separator } from '../Separator';
+import { useRouter } from 'next/router';
 
 const routes = [
     { name: 'Importance', link: '#importance' },
@@ -24,6 +25,9 @@ const routes = [
 const Navigation = () => {
     const { colorMode, toggleColorMode } = useColorMode();
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const router = useRouter();
+
+    console.log(router.asPath);
 
     return (
         <>
@@ -45,19 +49,24 @@ const Navigation = () => {
                         <Logo width={'170px'} />
                     </HStack>
                     <Hide below="md">
-                        <Flex alignItems={'center'}>
-                            <HStack
-                                as={'nav'}
-                                spacing={10}
-                                display={{ md: 'flex' }}
-                            >
-                                {routes.map((link) => (
-                                    <NavLink key={link.name} link={link.link}>
-                                        {link.name}
-                                    </NavLink>
-                                ))}
-                            </HStack>
-                        </Flex>
+                        {router.asPath.toString() !== '/login' && (
+                            <Flex alignItems={'center'}>
+                                <HStack
+                                    as={'nav'}
+                                    spacing={10}
+                                    display={{ md: 'flex' }}
+                                >
+                                    {routes.map((link) => (
+                                        <NavLink
+                                            key={link.name}
+                                            link={link.link}
+                                        >
+                                            {link.name}
+                                        </NavLink>
+                                    ))}
+                                </HStack>
+                            </Flex>
+                        )}
                     </Hide>
                     <Button
                         bg={
