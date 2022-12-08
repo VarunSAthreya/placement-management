@@ -63,7 +63,7 @@ const SideBar = () => {
 };
 
 const SidebarContent = ({ onClose, ...rest }) => {
-    const router = useRouter();
+    // const router = useRouter();
 
     const { colorMode, toggleColorMode } = useColorMode();
     return (

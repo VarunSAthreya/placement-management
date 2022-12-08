@@ -1,4 +1,4 @@
-import { Box, Flex, HStack, Icon, Text,Stack } from '@chakra-ui/react';
+import { Box, Flex, Icon, Stack, Text } from '@chakra-ui/react';
 import { format } from 'date-fns';
 import { useRouter } from 'next/router';
 import type { FC } from 'react';
@@ -173,5 +173,3 @@ const UpcomingCard: FC<Props> = ({ data }) => {
 };
 
 export default UpcomingCard;
-
-//#2c2d2e

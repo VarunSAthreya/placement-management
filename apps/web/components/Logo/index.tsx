@@ -2,7 +2,7 @@ import { Box, Image, Link } from '@chakra-ui/react';
 import type { FC } from 'react';
 
 type Props = {
-    width: string;
+    width: any;
 };
 
 const Logo: FC<Props> = (props) => {

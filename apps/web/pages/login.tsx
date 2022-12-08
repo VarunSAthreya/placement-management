@@ -22,8 +22,8 @@ import { AiFillLock, AiOutlineLogin, AiOutlineMail } from 'react-icons/ai';
 import { Loader } from '../components/Loader';
 import Logo from '../components/Logo';
 import ErrorModal from '../components/Modal/Error';
-import { useAuthMutation } from '../generated/graphql';
 import Navigation from '../components/Navigation';
+import { useAuthMutation } from '../generated/graphql';
 
 type FormValues = {
     USN: string;
@@ -40,7 +40,7 @@ const Login: NextPage = () => {
     const [login, { loading, error }] = useAuthMutation();
     const router = useRouter();
 
-    let height = typeof window !== 'undefined' && window.innerHeight;
+    const height = typeof window !== 'undefined' && window.innerHeight;
     console.log(height);
 
     const primaryBG = useColorModeValue('#f8f9fa', '#18191A');
