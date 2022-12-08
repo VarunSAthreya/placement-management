@@ -1,4 +1,4 @@
-import { Box, Heading, Icon, Image, Text } from '@chakra-ui/react';
+import { Box, Heading, Icon, Image, Text, Show } from '@chakra-ui/react';
 import type { FC } from 'react';
 import { useEffect, useState } from 'react';
 import { MdDescription } from 'react-icons/md';
@@ -55,7 +55,7 @@ const Features: FC<Props> = ({ id }) => {
     return (
         <Box
             id={id}
-            p={16}
+            p={{ base: 4, md: 10, lg: 16 }}
             bgImage="url('/assests/images/Background-Images/blurry.png')"
             bgSize={'cover'}
             display={'flex'}
@@ -67,95 +67,199 @@ const Features: FC<Props> = ({ id }) => {
                 lineHeight={1.1}
                 textAlign={'center'}
                 fontWeight={600}
-                fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+                fontSize={{ base: '2xl', sm: '4xl', md: '5xl' }}
                 my={4}
             >
                 <Text color={'white'}>INTRIGUING FEATURES</Text>
             </Heading>
-            <Box
-                width={'90%'}
-                h={'500px'}
-                borderRadius={'15px'}
-                m={4}
-                display={'flex'}
-            >
-                <Image
-                    alt={'Hero Image1'}
-                    borderLeftRadius={'35px'}
-                    w={'63%'}
-                    h={'500px'}
-                    src={features[featureIndex].image}
-                />
+            <Show below="sm">
                 <Box
-                    ml={8}
-                    bg={'white'}
-                    w={'27%'}
+                    width={{ base: '100%', lg: '90%' }}
                     h={'500px'}
-                    borderTopRightRadius={'35px'}
-                    borderBottomRightRadius={'35px'}
+                    borderRadius={'15px'}
+                    m={4}
+                    display={'flex'}
+                    flexDir={'column'}
+                    justifyContent={'center'}
+                    alignItems={'center'}
                 >
-                    <Heading
-                        lineHeight={1.1}
-                        textAlign={'center'}
-                        fontWeight={800}
-                        fontSize={{ base: '2xl' }}
-                        my={4}
-                        textTransform={'uppercase'}
-                    >
-                        <Text
-                            bgGradient="linear(to-l, #7928CA, #FF0080)"
-                            bgClip="text"
-                        >
-                            {features[featureIndex].portal}
-                        </Text>
-                    </Heading>
-
-                    <Heading
-                        fontSize={{ base: '3xl' }}
-                        textAlign={'center'}
-                        textTransform={'uppercase'}
-                        bg={
-                            'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
-                        }
-                        p={3}
-                    >
-                        <Text color={'white'}>
-                            {features[featureIndex].heading}
-                        </Text>
-                    </Heading>
+                    <Image
+                        alt={'Hero Image1'}
+                        borderTopRadius={'35px'}
+                        w={'100%'}
+                        h={'500px'}
+                        src={features[featureIndex].image}
+                    />
                     <Box
-                        display={'flex'}
-                        p={2}
-                        my={4}
-                        alignItems={'center'}
-                        flexDir={'column'}
+                        marginTop={8}
+                        w={'100%'}
+                        h={'200px'}
+                        bg={'white'}
+                        borderBottomRightRadius={'35px'}
+                        borderBottomLeftRadius={'35px'}
                     >
-                        <IconBox
-                            h={'60px'}
-                            w={'60px'}
+                        <Heading
+                            lineHeight={1.1}
+                            textAlign={'center'}
+                            fontWeight={800}
+                            fontSize={{
+                                base: '0.8rem',
+                                sm: '1rem',
+                                md: 'xl',
+                                lg: '2xl',
+                            }}
+                            my={4}
+                            textTransform={'uppercase'}
+                        >
+                            <Text
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                            >
+                                {features[featureIndex].portal}
+                            </Text>
+                        </Heading>
+
+                        <Heading
+                            fontSize={{
+                                base: 'lg',
+                                sm: 'xl',
+                                md: '2xl',
+                                lg: '3xl',
+                            }}
+                            textAlign={'center'}
+                            textTransform={'uppercase'}
                             bg={
                                 'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
                             }
+                            p={3}
                         >
-                            <Icon
-                                h={'20px'}
-                                w={'20px'}
-                                color="white"
-                                as={MdDescription}
-                            />
-                        </IconBox>
-                        <Text
-                            color={'gray.500'}
-                            fontSize={{ base: 'xl' }}
-                            textAlign={'center'}
+                            <Text color={'white'}>
+                                {features[featureIndex].heading}
+                            </Text>
+                        </Heading>
+                        <Box
+                            display={'flex'}
                             p={2}
-                            my={4}
+                            alignItems={'center'}
+                            flexDir={'column'}
                         >
-                            {features[featureIndex].description}
-                        </Text>
+                            <Text
+                                color={'gray.500'}
+                                fontSize={{
+                                    base: '0.8rem',
+                                    sm: '1.1rem',
+                                    md: 'xl',
+                                }}
+                                textAlign={'center'}
+                                p={2}
+                            >
+                                {features[featureIndex].description}
+                            </Text>
+                        </Box>
                     </Box>
                 </Box>
-            </Box>
+            </Show>
+            <Show above="sm">
+                <Box
+                    width={{ base: '100%', lg: '90%' }}
+                    h={'500px'}
+                    borderRadius={'15px'}
+                    m={4}
+                    display={'flex'}
+                    justifyContent={'center'}
+                >
+                    <Image
+                        alt={'Hero Image1'}
+                        borderLeftRadius={'35px'}
+                        w={'63%'}
+                        h={'500px'}
+                        src={features[featureIndex].image}
+                    />
+                    <Box
+                        ml={8}
+                        bg={'white'}
+                        w={'27%'}
+                        h={'500px'}
+                        borderTopRightRadius={'35px'}
+                        borderBottomRightRadius={'35px'}
+                    >
+                        <Heading
+                            lineHeight={1.1}
+                            textAlign={'center'}
+                            fontWeight={800}
+                            fontSize={{
+                                base: '0.6rem',
+                                sm: '0.8rem',
+                                md: 'xl',
+                                lg: '2xl',
+                            }}
+                            my={4}
+                            textTransform={'uppercase'}
+                        >
+                            <Text
+                                bgGradient="linear(to-l, #7928CA, #FF0080)"
+                                bgClip="text"
+                            >
+                                {features[featureIndex].portal}
+                            </Text>
+                        </Heading>
+
+                        <Heading
+                            fontSize={{
+                                base: '0.8rem',
+                                sm: '1rem',
+                                md: 'xl',
+                                lg: '3xl',
+                            }}
+                            textAlign={'center'}
+                            textTransform={'uppercase'}
+                            bg={
+                                'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                            }
+                            p={3}
+                        >
+                            <Text color={'white'}>
+                                {features[featureIndex].heading}
+                            </Text>
+                        </Heading>
+                        <Box
+                            display={'flex'}
+                            p={2}
+                            my={4}
+                            alignItems={'center'}
+                            flexDir={'column'}
+                        >
+                            <IconBox
+                                h={{ base: '50px', md: '60px' }}
+                                w={{ base: '50px', md: '60px' }}
+                                bg={
+                                    'linear-gradient( 310deg, #7928CA 0%, #FF0080 100%)'
+                                }
+                            >
+                                <Icon
+                                    h={'20px'}
+                                    w={'20px'}
+                                    color="white"
+                                    as={MdDescription}
+                                />
+                            </IconBox>
+                            <Text
+                                color={'gray.500'}
+                                fontSize={{
+                                    base: '0.7rem',
+                                    sm: '0.9rem',
+                                    md: 'xl',
+                                }}
+                                textAlign={'center'}
+                                p={2}
+                                my={4}
+                            >
+                                {features[featureIndex].description}
+                            </Text>
+                        </Box>
+                    </Box>
+                </Box>
+            </Show>
         </Box>
     );
 };

@@ -9,8 +9,8 @@ const Importance: FC<Props> = ({ id }) => {
     return (
         <Stack
             id={id}
-            py={16}
-            px={8}
+            py={{ base: 12, md: 16 }}
+            px={{ base: 4, md: 8 }}
             spacing={{ base: 8, md: 10 }}
             align={'center'}
             direction={'column'}
@@ -18,7 +18,7 @@ const Importance: FC<Props> = ({ id }) => {
             <Heading
                 lineHeight={1.1}
                 fontWeight={600}
-                fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+                fontSize={{ base: '2xl', sm: '4xl', md: '5xl' }}
             >
                 <Text bgGradient="linear(to-l, #7928CA, #FF0080)" bgClip="text">
                     WHY IS IT REQUIRED ?
@@ -27,7 +27,7 @@ const Importance: FC<Props> = ({ id }) => {
             <Stack>
                 <Text
                     color={useColorModeValue('gray.500', 'gray.200')}
-                    fontSize={{ base: 'lg' }}
+                    fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
                     textAlign={'center'}
                     p={4}
                 >
@@ -47,7 +47,7 @@ const Importance: FC<Props> = ({ id }) => {
                 </Text>
                 <Text
                     color={useColorModeValue('gray.500', 'gray.200')}
-                    fontSize={{ base: 'lg' }}
+                    fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
                     textAlign={'center'}
                     p={4}
                 >
@@ -64,7 +64,7 @@ const Importance: FC<Props> = ({ id }) => {
                 </Text>
                 <Text
                     color={useColorModeValue('gray.500', 'gray.200')}
-                    fontSize={{ base: 'lg' }}
+                    fontSize={{ base: 'sm', sm: 'md', md: 'lg' }}
                     textAlign={'center'}
                     p={4}
                 >

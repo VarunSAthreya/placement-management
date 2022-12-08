@@ -31,7 +31,12 @@ type Props = {
 
 const TechnologyUsed: FC<Props> = ({ id }) => {
     return (
-        <Box id={id} p={16} pb={32} pt={10}>
+        <Box
+            id={id}
+            p={{ base: 8, md: 16 }}
+            pb={{ base: 24, md: 32 }}
+            pt={{ base: 6, md: 10 }}
+        >
             <Stack spacing={8} width={'100%'} direction={'column'}>
                 <Stack
                     p={5}
@@ -54,7 +59,7 @@ const TechnologyUsed: FC<Props> = ({ id }) => {
                         <Heading
                             lineHeight={1.1}
                             fontWeight={600}
-                            fontSize={{ base: '5xl' }}
+                            fontSize={{ base: 'xl', sm: '4xl', md: '5xl' }}
                         >
                             <Text
                                 bgGradient="linear(to-l, #7928CA, #FF0080)"
@@ -86,13 +91,19 @@ const TechnologyUsed: FC<Props> = ({ id }) => {
                         base: 'column',
                         md: 'row',
                     }}
-                    alignItems={{ md: 'center' }}
+                    alignItems={{ base: 'center' }}
                     bg="white"
                     rounded={8}
                     boxShadow="#FF0080 0px 3px 8px"
                 >
                     <Heading
-                        size={'xl'}
+                        fontSize={{
+                            base: 'md',
+                            sm: 'xl',
+                            md: '2xl',
+                            lg: '3xl',
+                            xl: '4xl',
+                        }}
                         textTransform={'uppercase'}
                         bgGradient="linear(to-l, #7928CA, #FF0080)"
                         bgClip="text"
@@ -104,7 +115,13 @@ const TechnologyUsed: FC<Props> = ({ id }) => {
                             <ListItem
                                 key={desc.id}
                                 color={'gray.600'}
-                                fontSize={'1.3rem'}
+                                fontSize={{
+                                    base: '0.8rem',
+                                    sm: '1.15rem',
+                                    md: '1.2rem',
+                                    lg: '1.3rem',
+                                    xl: '1.3rem',
+                                }}
                             >
                                 <ListIcon as={MdSettings} color="#FF0080" />
                                 {desc.desc}
@@ -123,13 +140,19 @@ const TechnologyUsed: FC<Props> = ({ id }) => {
                         base: 'column',
                         md: 'row',
                     }}
-                    alignItems={{ md: 'center' }}
+                    alignItems={{ base: 'center' }}
                     bg="white"
                     rounded={8}
                     boxShadow="#FF0080 0px 3px 8px"
                 >
                     <Heading
-                        size={'xl'}
+                        fontSize={{
+                            base: 'md',
+                            sm: 'xl',
+                            md: '2xl',
+                            lg: '3xl',
+                            xl: '4xl',
+                        }}
                         textTransform={'uppercase'}
                         bgGradient="linear(to-l, #7928CA, #FF0080)"
                         bgClip="text"
@@ -141,7 +164,13 @@ const TechnologyUsed: FC<Props> = ({ id }) => {
                             <ListItem
                                 key={desc.id}
                                 color={'gray.600'}
-                                fontSize={'1.3rem'}
+                                fontSize={{
+                                    base: '0.8rem',
+                                    sm: '1.15rem',
+                                    md: '1.2rem',
+                                    lg: '1.3rem',
+                                    xl: '1.3rem',
+                                }}
                             >
                                 <ListIcon as={MdSettings} color="#FF0080" />
                                 {desc.desc}

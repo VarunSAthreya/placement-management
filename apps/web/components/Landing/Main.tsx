@@ -15,21 +15,26 @@ type Props = {
 
 const Main: FC<Props> = ({ id }) => {
     return (
-        <Box id={id} pos={'relative'} py={16}>
+        <Box pos={'relative'} py={16} id={id}>
             <Stack
                 align={'center'}
                 position={'relative'}
                 bottom={'70px'}
                 spacing={{ base: 8, md: 10 }}
-                px={20}
-                py={{ base: 20, md: 28 }}
+                px={{ base: 10, md: 20 }}
+                py={{ base: 10, md: 28 }}
                 direction={{ base: 'column', md: 'row' }}
             >
                 <Stack flex={1} spacing={{ base: 5, md: 8 }}>
                     <Heading
                         lineHeight={1.1}
                         fontWeight={600}
-                        fontSize={{ base: '3xl', sm: '4xl', lg: '6xl' }}
+                        textAlign={{ base: 'center', md: 'left' }}
+                        fontSize={{
+                            base: '4xl',
+                            md: '5xl',
+                            lg: '6xl',
+                        }}
                     >
                         <Text
                             bgGradient="linear(to-l, #7928CA, #FF0080)"
@@ -39,7 +44,7 @@ const Main: FC<Props> = ({ id }) => {
                             WELCOME,
                         </Text>
                         <Text
-                            fontSize="4xl"
+                            fontSize={{ base: '3xl', lg: '4xl' }}
                             bgGradient="linear(to-l, #7928CA, #FF0080)"
                             bgClip="text"
                         >
@@ -48,7 +53,7 @@ const Main: FC<Props> = ({ id }) => {
                     </Heading>
                     <Text
                         color={useColorModeValue('gray.500', 'gray.200')}
-                        fontSize={'md'}
+                        fontSize={{ base: 'sm', md: 'md' }}
                     >
                         Placement Management System manages student information
                         in the college with regard to placement. It has the
